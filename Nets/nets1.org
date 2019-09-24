@@ -1,0 +1,5 @@
+Прикладной уровень:
+FTP: передача файлов. DNS: distributed hash table for mapping Domain name -> IP.
+SMTP: sending mail. В пакете содержатся DNS имена отправителя и получателя.
+HTTP. Skype. Relay-servers for p2p-connections. BitTorrent.
+Модель TCP: упорядоченный поток байт.

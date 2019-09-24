@@ -1,0 +1,411 @@
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{mathtools}
+#+latex_header: \usepackage[english,russian]{babel}
+#+options: toc:nil
+* Задача 2.18
+Найти интегралы:
+1. $\int_{-\infty}^\infty\frac{x\cos(x)}{x^2 - 2x + 10}$
+\begin{multline*}
+\int_{-\infty}^\infty\frac{x\cos(x)dx}{x^2 - 2x + 10} = \mathrm{Re}\int_{-\infty}^\infty\frac{xe^{ix}dx}{x^2-2x+10} = \\
+= \mathrm{Re}\left[2\pi i \mathrm{Res}_{z=-1+3i}\left(\frac{z}{z^2-2z+10}\right)\right] = \\
+= \mathrm{Re}\left[2\pi i(\frac{1}{2} - \frac{i}{6})\right] = \mathrm{Re}\left[\frac{\pi}{3} + \pi i\right] = \frac{\pi}{3}
+\end{multline*}
+$$\mathrm{Res}_{z=-1+3i}f(z) = \lim_{z \to -1 + 3i}f(z)(z - (-1 + 3i)) = \frac{-1 + 3i}{-1 + 3i - (-1 - 3i)} = \frac{-1 + 3i}{6i} = \frac{1}{2} - \frac{i}{6}$$
+2. [@2]$\int_{-\infty}^\infty\frac{x\sin(x)}{x^4 + 1}$
+\begin{multline*}
+\int_{-\infty}^\infty\frac{x\sin(x)}{x^4 + 1} = \mathrm{Im}\int_{-\infty}^\infty\frac{xe^{ix}dx}{x^4+1} = \\
+= \mathrm{Im}\left[2\pi i\left(\mathrm{Res}_{z=e^{i\frac{\pi}{4}}}\frac{z}{z^4+1} + \mathrm{Res}_{z=e^{i\frac{3\pi}{4}}}\frac{z}{z^4+1}\right)\right] = \\
+ = \mathrm{Im}\left[2\pi i\frac{1}{4}\left(-\frac{1}{\sqrt 2} - \frac{i}{\sqrt 2} + \frac{1}{\sqrt 2} - \frac{i}{\sqrt 2}\right)\right] = \mathrm{Im}\left[\frac{1}{\sqrt 2}\right] = 0
+\end{multline*}
+$$\mathrm{Res}_{z=e^{i\frac{\pi}{4}}} = \lim_{z \to e^{i\frac{\pi}{4}}}\frac{z}{z^4+1} = \lim_{z \to e^{i\frac{\pi}{4}}}\frac{1}{4z^3} = \frac{1}{4}e^{-i\frac{3\pi}{4}}$$
+$$\mathrm{Res}_{z=e^{i\frac{3\pi}{4}}} = \lim_{z \to e^{i\frac{3\pi}{4}}}\frac{z}{z^4+1} = \lim_{z \to e^{i\frac{3\pi}{4}}}\frac{1}{4z^3} = \frac{1}{4}e^{-i\frac{9\pi}{4}}$$
+3. [@3]$\int_0^\infty\frac{\cos(x)dx}{(x^2+a^2)^2}, a \ne 0$
+\begin{multline*}
+\int_0^\infty\frac{\cos(x)dx}{(x^2+a^2)^2} = \frac{1}{2}\int_{-\infty}^\infty\frac{\cos(x)dx}{(x^2+a^2)^2} = \\
+ = \frac{1}{2}\mathrm{Re}\int_{-\infty}^\infty\frac{e^{ix}dx}{(x^2+a^2)^2} = \frac{1}{2}\mathrm{Re}\left[2\pi i\mathrm{Res}_{z=ai}\frac{1}{(x^2+a^2)^2}\right] = \\
+ = \frac{1}{2}\frac{\pi}{2a^2} = \frac{\pi}{4a^2}
+\end{multline*}
+$$\mathrm{Res}_{z=ai} = \lim_{z \to ai}\frac{d}{dx}\left[\frac{1}{(x + ai)^2}\right] = \lim_{z \to ai}-\frac{2x}{(x + ai)^3} = -\frac{2ai}{(2ai)^3} = \frac{1}{4a^2}$$
+4. [@4]$\int_0^\infty\frac{\sin^2(x)dx}{x^2}$
+\begin{multline*}
+\int_0^\infty\frac{\sin^2(x)dx}{x^2} = -\int_0^\infty\sin^2(x)d\left(\frac{1}{x}\right) = \\
+= -\frac{sin^2(x)}{x}\bigg|_0^\infty + \int_0^\infty\frac{2\sin(x)\cos(x)dx}{x} = \int_0^\infty\frac{\sin(2x)d(2x)}{2x} = \frac{\pi}{2}
+\end{multline*}
+* Задача 2.16
+Вычислить интегралы:
+3. [@3] $\int_0^\infty\frac{dx}{(x^2 + 1)^n}, n \in \mathbb{N}$
+\begin{multline*}
+\int_0^\infty\frac{dx}{(x^2+1)^n} = \frac{1}{2}\int_{-\infty}^{\infty}\frac{dx}{(x^2+1)^n}
+ = 2\pi i\frac{1}{2}\mathrm{Res}_{z=i}\left[\frac{1}{(z^2+1)^n}\right] = 2\pi i(-1)^{n-1}\frac{(2n)!}{2^{2n+1}n!}
+\end{multline*}
+$$\mathrm{Res}_{z=i}\left[\frac{1}{(z^2+1)^n}\right] = \lim_{z \to i}\frac{d^n}{dz^n}\left[\frac{1}{(z + i)^n}\right]
+ = \frac{(-1)^n}{-2^{2n}}\frac{(2n)!}{n!} = (-1)^{n-1}\frac{(2n)!}{2^{2n}{n!}}$$
+4. [@4] $\int_0^\infty\frac{x^2dx}{(x^2+a^2)^2}, a > 0$
+$$\int_0^\infty\frac{x^2dx}{(x^2+a^2)^2} = \frac{1}{2}\int_{-\infty}^\infty\frac{x^2dx}{(x^2+a^2)^2}
+ = \frac{1}{2}2\pi i\mathrm{Res}_{z=ai}\left[\frac{z^2}{(z^2+a^2)^2}\right] = \frac{\pi}{4a}$$
+\begin{multline*}
+\mathrm{Res}_{z=ai}\left[\frac{z^2}{(z^2+a^2)^2}\right] = \lim_{z \to ai}\frac{d}{dz}\left[\frac{z^2}{(z+ai)^2}\right] = \\
+ = \lim_{z\to ai}\left[\frac{2z(z+ai)^2 - 2(z+ai)z^2}{(z+ai)^4}\right] = \frac{-4a^2 + 2a^2}{-8a^3i} = -\frac{i}{4a}
+\end{multline*}
+* Задача 2937
+Каков будет ряд Фурье для тригонометрического многочлена:
+$$P_n(x) = \sum_{i = 0}^n(\alpha_i\cos ix + \beta_i\sin ix)?$$
+В общем случае ряд Фурье для $(2l)$-периодической функции на $[-l; l]$ имеет вид:
+$$f(x) = \frac{a_0}{2} + \sum_{k = 1}^{\infty}(a_n\cos\frac{\pi k x}{l} + b_n\sin\frac{\pi k x}{l})$$
+Или, при $l = \pi$, как в нашем случае:
+$$f(x) = \frac{a_0}{2} + \sum_{k = 1}^{\infty}(a_n\cos kx + b_n\sin kx)$$
+Откуда видим, что $a_k = \alpha_k, k = \overline{0, n}$ и $a_k = 0, k > n$. Аналогично, $b_k = \beta_k,
+k = \overline{1, n}$ и $b_k = 0, k > n$.
+
+Иными словами, ряд Фурье для тригонометрического многочлена имеет вид:
+$$P_n(x) = \frac{2\alpha_0}{2} + \sum_{i=1}^n(\alpha_i\cos ix + \beta_i\sin ix)$$
+* Задача 2942
+Разложить в ряд Фурье функцию $f(x) = |x|$ в интервале $(-\pi; \pi)$.
+
+Ряд Фурье на $(-\pi, \pi)$ имеет вид:
+$$f(x) = \frac{a_0}{2} + \sum_{n = 1}^{\infty}(a_n\cos nx + b_n\sin nx)$$
+Где $a_n = \frac{1}\pi\int_{-\pi}^\pi f(x)\cos nxdx, n \in \mathbb{N}_0$,
+$b_n = \frac{1}\pi\int_{-\pi}^\pi f(x)\sin nxdx, n \in \mathbb{N}$.
+Функция чётная, поэтому $b_n = 0\, \forall n$. Найдём $a_n$:
+
+При $n = 0$:
+$$a_0 = \frac{1}\pi\int_{-\pi}^\pi |x|dx = \frac{2}\pi\int_0^\pi xdx = \pi$$
+При остальных $n$:
+\begin{multline*}
+a_n = \frac{1}\pi\int_{-\pi}^\pi |x|\cos nx dx = \frac{2}\pi\int_0^\pi x\cos nx dx = \\
+ = \frac{2}{\pi n}\int_0^\pi xd(\sin(nx)) = \frac{2}{\pi n}\left((x\sin nx)\bigg|_0^\pi - \int_0^\pi\sin nxdx\right) = \\
+ = \frac{2}{\pi n^2}\cos nx\bigg|_0^\pi = \frac{4}{\pi n^2}
+\end{multline*}
+Таким образом, ряд Фурье для $f(x)$ имеет вид:
+$$f(x) = \frac{\pi}{2} + \sum_{n = 1}^\infty\frac{4}{\pi n^2}\cos nx$$
+* Задача 2943
+Разложить в ряд Фурье на $(-\pi, \pi)$ функцию:
+\begin{equation*}
+f(x) = \begin{cases}
+ax, -\pi < x < 0;\\
+bx, 0 < x < \pi.
+\end{cases}
+\end{equation*}
+Где $a$ и $b$ - постоянные.
+
+Ряд Фурье имеет вид:
+$$f(x) = \frac{\alpha_0}2 + \sum_{n = 0}^\infty(\alpha_n\cos nx + \beta_n\sin nx)$$
+Где $\alpha_n = \frac{2}\pi\int_{-\pi}^\pi f(x)\cos nxdx, n \in \mathbb{N}_0,
+\beta_n = \frac{2}\pi\int_{-\pi}^\pi f(x)\sin nxdx, n \in \mathbb{N}$.
+
+Найдём коэффициенты:
+$$a_0 = \frac{1}\pi\int_{-\pi}^\pi f(x)dx = \frac{1}\pi\int_{-\pi}^0 axdx + \frac{1}\pi\int_0^\pi bxdx = (b - a)\frac{\pi}2$$
+\begin{multline*}
+a_n = \frac{1}\pi\int_{-\pi}^\pi f(x)\cos nx dx = \frac{1}\pi\int_{-\pi}^0 ax\cos nxdx + \frac{1}\pi\int_0^\pi bx\cos nxdx = \\
+ = \frac{b - a}\pi\int_0^\pi x\cos nx dx = \frac{2(b - a)}{\pi n^2}
+\end{multline*}
+\begin{multline*}
+b_n = \frac{1}\pi\int_{-\pi}^\pi f(x)\sin nx dx = \frac{1}\pi\int_{-\pi}^0 ax\sin nx + \frac{1}\pi\int_0^pi bx\sin nx dx = \\
+ = \frac{b + a}\pi\int_0^\pi x\sin nx dx = -\frac{b + a}{\pi n}\int_0^\pi xd(\cos nx) = \\
+ = -\frac{b + a}{\pi n}\left((x\cos nx)\bigg|_0^\pi - \int_0^\pi\cos nxdx\right) = \\
+ = -\frac{b+a}{\pi n}\left((-1)^n\pi - \frac{1}n\sin nx\bigg|_0^\pi\right) = (-1)^{n+1}\frac{b+a}{\pi n}
+\end{multline*}
+Собирая всё вместе, получаем:
+$$f(x) = \frac{\pi}2(b - a) + \sum_{n = 1}^\infty\left(\frac{2(b - a)}{\pi n^2}\cos nx + (-1)^{n + 1}\frac{b+a}{\pi n}\sin nx\right)$$
+* Задача 2958
+Разложить в ряд Фурье периодическую функцию $f(x) = |\cos x|$.
+
+Функция $f(x)$ является \(\pi\)-периодической, поэтому достаточно её разложить на $\left(-\frac{\pi}2; \frac{\pi}2\right)$.
+Для \(2l\)-периодической функции ряд Фурье на $(-l; l)$ имеет вид:
+$$f(x) = \frac{a_0}2 + \sum_{n = 0}^\infty\left(a_n\cos\frac{\pi nx}l + b_n\sin\frac{\pi nx}l\right)$$
+Где
+$$a_n = \frac{1}l\int_{-l}^lf(x)\cos\frac{\pi nx}ldx, n \in \mathbb{N}_0$$, $$b_n = \frac{1}l\int_{-l}^lf(x)\sin\frac{\pi nx}ldx, n \in \mathbb{N}$$
+В нашем случае $l = \frac{\pi}2$, поэтому формулы приводятся к виду:
+$$f(x) = \frac{a_0}2 + \sum_{n = 0}^\infty\left(a_n\cos 2nx + b_n\sin 2nx\right)$$
+$$a_n = \frac{2}\pi\int_{-\frac{\pi}2}^{\frac{\pi}2}f(x)\cos 2nxdx, n \in \mathbb{N}_0$$
+$$b_n = \frac{2}\pi\int_{-\frac{\pi}2}^{\frac{\pi}2}f(x)\sin 2nxdx, n \in \mathbb{N}$$
+Найдём коэффициенты:
+$$a_0 = \frac{2}\pi\int_{-\frac{\pi}2}^\frac{\pi}2f(x)dx = \frac{4}\pi\int_0^\frac{\pi}2\cos xdx = \frac{4}\pi$$
+\begin{multline*}
+a_n = \frac{2}\pi\int_{-\frac{\pi}2}^\frac{\pi}2f(x)\cos 2nxdx = \frac{4}\pi\int_0^\frac{\pi}2\cos x\cos 2nxdx = \\
+ = \frac{2}\pi\left(\int_0^\frac{\pi}2\cos(2n-1)xdx - \int_0^\frac{\pi}2\cos(2n+1)xdx\right) = \\
+ = \frac{2}{\pi(2n - 1)}\sin(2n-1)dx\bigg|_0^\frac{\pi}2 - \frac{2}{\pi(2n+1)}\sin(2n+1)dx\bigg|_0^\frac{\pi}2 = \\
+ = (-1)^n\frac{2}{\pi(2n-1)} + (-1)^{n-1}\frac{2}{\pi(2n+1)} = (-1)^n\frac{4}{\pi(4n^2 - 1)}
+\end{multline*}
+\begin{multline*}
+b_n = \frac{2}\pi\int_{-\frac{\pi}2}^\frac{\pi}2f(x)\sin 2nxdx = \frac{4}\pi\int_0^\frac{\pi}2\cos x\sin 2nxdx = \\
+ = \frac{2}\pi\left(\int_0^\frac{\pi}2\sin(2n+1)xdx - \int_0^\frac{\pi}2\sin(2n-1)x\right) = \\
+ = -\frac{2}{\pi(2n+1)}\cos(2n+1)x\bigg|_0^\frac{\pi}2 + \frac{2}{\pi(2n-1)}\cos(2n-1)x\bigg|_0^\frac{\pi}2 = \\
+ = \frac{2}{\pi(2n+1)} - \frac{2}{\pi(2n - 1)} = -\frac{4}{\pi(4n^2-1)}
+\end{multline*}
+Итого, ряд Фурье имеет вид:
+$$f(x) = \frac{2}\pi + \sum_{n = 0}^\infty\left((-1)^n\frac{4}{\pi(4n^2-1)}\cos 2nx - \frac{4}{\pi(4n^2-1)}\sin 2nx\right)$$
+* Задача 1
+Найти и классифицировать особые точки функции:
+$$g(z) = \frac{z^3e^{1/z}}{(1 - e^z)^2}$$
+Предельной точкой может быть только точка $z = 0$. Проверим эту точку:
+$$g(z) \sim_{z \to 0} \frac{z^3e^{1/z}}{z^2} = ze^{1/z}$$
+Последняя функция имеет существенную особую точку при $z = 0$.($z_{n1} = \frac{1}n, z_{n2} = \frac{i}n$).
+* Задача 13.41(2)
+Найти ДЛО, отображающее точки $z = -1, i, 1 + i$ соответственно в точки $w = i, \infty, 1$.
+
+Поскольку $f(i) = \infty$, то $f(z)$ имеет вид:
+$f(z) = \frac{az + b}{z - i}$. Запишем систему:
+#+BEGIN_LaTeX latex
+\begin{multline*}
+\begin{dcases}
+\frac{b - ai}{-1 - i} = i, \\
+\frac{(a + b) + ai}i = 1
+\end{dcases}
+\Rightarrow
+\begin{cases}
+-ai + b = 1 - i, \\
+a + (1 + i)b = 1,
+\end{cases}
+\Rightarrow
+\begin{cases}
+a = i, \\
+b = -i,
+\end{cases}
+\end{multline*}
+#+END_LaTeX
+Откуда $f(z)$ имеет вид:
+$$f(z) = \frac{iz - i}{z - i}$$
+* Задача 13.46(2)
+Отобразить конформно верхнюю полуплоскость $\{z : \mathrm{Im} z > 0\}$ на единичный круг $\{w : |w| \leq 1\}$
+так, чтобы:
+$$w(2i) = 0, \,\mathrm{arg}w'(2i) = 0$$
+Поскольку точки, симметричные относительно границы, перейдут в точки, симметричные относительно границы, то $f(-2i) = \infty$,
+что даёт общий вид отображения:
+#+BEGIN_LaTeX latex
+\begin{multline*}
+f(z) = \alpha\frac{z - 2i}{z + 2i} \Rightarrow f'(z) = \alpha\frac{z + 2i - z + 2i}{(z + 2i)^2} = \\
+= \frac{4\alphai}{(z + 2i)^2} \Rightarrow f(2i) = \frac{\alpha}{4i}
+\end{multline*}
+$$\mathrm{arg}\frac{\alpha}{4i} = 0 \Rightarrow \alpha \in i\mathbb{R}_+$$
+#+END_LaTeX
+Чтобы найти значение $\alpha$, проверим, что значение на границе $z = 0$ переходит на границу:
+#+begin_latex latex
+$$f(z) = \alpha\frac{-i}{i} = -\alpha \Rightarrow \alpha = i$$
+#+end_latex
+Таким образом, $f(z)$ имеет вид:
+$$f(z) = \frac{iz + 2}{z + 2i}$$
+* Задача 13.50(2)
+Отобразить конформно внутренность единичного круга $\{z: |z| < 1\}$ на внутренность единичного круга $\{w: |w| < 1\}$
+так, чтобы:
+$$w\left(\frac{1}2i\right) = 0, \,\mathrm{arg} w'\left(\frac{1}2i\right) = \frac{\pi}2$$
+
+Симметричные относительно границы точки при ДЛО переходят в симметричные относительно границы, поэтому $w(2i) = \infty$,
+что даёт общий вид отображения:
+#+BEGIN_Latex latex
+\begin{multline*}
+w(z) = \alpha\frac{z - i/2}{z - 2i} \Rightarrow w'(z) = \\
+= \alpha\frac{z - 2i - z + i/2}{(z - 2i)^2} = -\alpha\frac{5i}{2(z - 2i)^2} \Rightarrow w'\left(\frac{i}2\right) = \frac{2\alpha}{5i}
+\end{multline*}
+$$\mathrm{arg}\frac{2\alpha}{5i} = \frac{\pi}2 \Rightarrow \alpha \in \mathrm{R}_+$$
+#+END_Latex
+Найдём $\alpha$ из условия, что точка с границы $z = i$ переходит на границу:
+$$w(i) = \alpha\frac{-i/2}{-i} = \frac{\alpha}2 \Rightarrow \alpha = 2$$
+Итого, $w(z)$ имеет вид:
+$$w(z) = \frac{2z - 1}{z - 2i}$$
+* Задача 13.39(2)
+Найти общий вид ДЛО, переводящего верхнюю полуплоскость $\{z: \mathrm{Im}\,z > 0\}$ на правую полуплоскость
+$\{w: \mathrm{Re}\,w > 0\}$.
+Пусть точка $z = a$ переходит в точку $w = 0$. Заметим, что $a \in \mathbb{R}$, так как только точки границы
+переходят в точки границы. Тогда $f(z)$ имеет вид:
+$$f(z) = \frac{z - a}{cz + d}$$
+Точки $z = a + i$ и $z = a - i$ симметричны относительно границы, следовательно, их образы будут также симметричны
+относительно границы:
+#+begin_latex latex
+\begin{multline*}
+\begin{dcases}
+\frac{i}{(ca + d) + ci} = \alpha + i\beta, \\
+\frac{-i}{(ca + d) - ci} = -\alpha + i\beta
+\end{dcases}
+\Rightarrow
+\begin{dcases}
+\alpha = \frac{i(ca +d)}{(ca + d)^2 + c^2}, \\
+\beta = \frac{-ci}{(ca + d)^2 + c^2}
+\end{dcases}
+\end{multline*}
+#+end_latex
+Поскольку $\alpha, \beta \in \mathbb{R}$, $c, d \in i\mathbb{R}$, т. е. общий вид $f(z)$ таков:
+$$f(z) = i\frac{z - a}{cz + d}, a, c, d \in \mathbb{R}$$
+* Задача 13.69
+Доказать, что регулярные ветви функции $w = \sqrt z$ конформно отображают плоскость \mathbb{C} с разрезом по
+неотрицательной части действительной оси соответственно на нижнюю и верхнюю полуплоскости.
+
+Пусть $z = |z|(\cos\mathrm{arg}z + i\sin\mathrm{arg}z)$. Тогда
+$$w(z) = \sqrt z = \sqrt{|z|}\left(\cos\left(\mathrm{arg} z + \frac{\pi k}2\right) + i\sin\left(\mathrm{arg} z + \frac{\pi k}2\right)\right), k = 0, 1$$
+Для первой ветви при $z \in \mathbb{C}\quad |w(z)| \in [0; \infty), \mathrm{arg} w(z) \in [0; \pi]$. Для второй при
+$z \in \mathbb{C}\quad |w(z)| \in [0; \infty), \mathrm{arg} w(z) \in [\pi; 2\pi]$, что и требовалось.
+* Задача 13.75(2)
+Отобразить конформно на верхнюю полуплоскость $\{w: \mathrm{Im}\,w > 0\}$ область $\mathbb{C} \setminus [z_1, z_2]$.
+
+1) Построим ДЛО, отображающее $\mathbb{C} \setminus [z_1, z_2]$ на $\mathbb{C} \setminus \mathbb{R}_+$:
+   1. Обозначим $z_0 = \frac{z_1 + z_2}2$, тогда $f(z) = \frac{1}2\frac{z - z_0}{z_0}$ конформно отобразит исходную область на область $\mathbb{C} \setminus [0; 1]$.
+   2. Отображением $g(z) = \frac{1}z - 1$ можно конформно отобразить область $\mathbb{C} \setminus [0; 1]$ на область $\mathbb{C} \setminus \mathbb{R}_+$.
+2) По предыдущей задаче, первая ветвь корня конформно отображает полученное множество на верхнюю полуплоскость.
+
+Получили отображение:
+$$f(z) = \sqrt{\frac{1}{\frac{z - z_0}{2z_0}} - 1} = \sqrt{\frac{2z_0}{z - z_0} - 1} = \sqrt{\frac{3z_0 - z}{z - z_0}}$$
+Где под корнем подразумевается аналитическое продолжение арифметического квадратного корня.
+* Задача 13.74(1)
+Отобразить конформно на верхнюю полуплоскость круговую "луночку":
+$$\{z: |z| < 1, |z - i| < 1\}$$
+
+Для начала с помощью ДЛО "выпрямим" область($A \to 0, B \to \infty$).
+$A = -\frac{\sqrt 3}2  + \frac{i}2, B = \frac{sqrt 3}2 + \frac{i}2$.
+$$z_1 = \frac{z - z_A}{z - z_B}$$
+$$C \to \frac{\frac{\sqrt 3}2 - \frac{i}2}{-\frac{\sqrt 3}2 - \frac{i}2} = \frac{(\frac{\sqrt 3}2 - \frac{i}2)(-\frac{\sqrt 3}2 + \frac{i}2)}
+= -\left(\frac{\sqrt 3}2 - \frac{i}2\right)^2 = -\frac{1}2 + \frac{\sqrt 3}2i$$
+$$D \to \frac{\frac{\sqrt 3}2 + \frac{i}2}{-\frac{\sqrt 3}2 + \frac{i}2} = -\frac{1}2 - \frac{\sqrt 3}2i$$
+Таким образом, область перешла в угол. Угол можно перевести в верхнюю полуплоскость путём композиции поворота и возведения в степень.
+$$z^2 = z_1e^{-\frac{2\pi}3i}$$
+$$z^3 = z_2^{3/2} = z\sqrt z$$
+Где в качестве $\sqrt z$ берётся аналитическое продолжение арифметического корня.
+* Задача 12.31
+Вычислить интеграл: $\int_0^\infty\frac{\ln xdx}{x^2 + a^2} = I, a > 0$
+
+Посчитаем интеграл по контуру $\gamma$, составленному из двух полуокружностей радиусами $R$ и $\varepsilon$:
+$$\oint_\Gamma\frac{\ln z}{z^2 + a^2}dz = I_M$$
+Где $\ln z = \ln |z| + i\mathrm{arg} z$.
+Рассмотрим $lim_{R \to +\infty, \varepsilon \to 0}I_M$
+$$L  = \lim_{R \to \infty, \varepsilon \to 0}2\pi i\operatorname{res}_{z = ai}\frac{\ln z}{z^2 + a^2} = \frac{\pi}{a}\left(\ln a + i\frac{\pi}2\right)$$
+С другой стороны:
+$$I = I_1 + I_2 + I_3 + I_4$$
+$$I_1 = \int_{\varepsilon}^R\frac{\ln x}{x^2 + a^2} \to I$$
+$$I_2 = \int_{-R}^{-\varepsilon}\frac{\ln xdx}{x^2 + a^2} = \int_{-\varepsilon}^{-R}\frac{\ln(-x) + i\pi}{(-x)^2 + a^2}dx
+= \int_\varepsilon^R\frac{\ln xdx}{x^2 + a^2} + i\pi\int_\varepsilon^R\frac{dx}{x^2 + a^2} \to I + i\pi\frac{1}a\frac{\pi}2$$
+$$I_3 = \int_\pi^0\frac{ln(\varepsilon e^{i\varphi})}{\varepsilon^2e^{2i\varphi} + a^2}\varepsilon ie^{i\varphi}d\varphi
+= \varepsilon i\int_\pi^0\frac{\ln \varepsilon + i\varphi}{\varepsilon^2e^2i\varphi + a^2}d\varphi \to 0$$
+$$I_4 = \int_0^\pi\frac{Re^{i\varphi}}{R^2e^{2i\varphi} + a^2}Rie^{i\varphi}d\varphi \to 0$$
+Таким образом, $\frac{\pi}a\left(\ln a + i\frac{\pi}2\right) = I + I + i\frac{\pi^2}{2a} \Rightarrow I = \frac{\pi}{2a}\ln a$
+* Задача 13.79
+Найти образы при отображении $w = e^z, z = x + iy$:
+1. Прямоугольной сетки $x = c, y = c, c \in \mathbb{R}$.
+2. Прямых $y = kx + b, k, b \in \mathbb{R}$.
+3. Полосы $\alpha < y < \beta, 0 \leq \alpha < \beta < 2\pi$.
+4. Полосы между прямыми $y = x, y = x + 2\pi$.
+
+1. Рассмотрим образ прямой $x = c, c \in \mathbb{R}$. Точки на этой прямой имеют вид $z = c + yi, y \in \mathbb{R}$.
+Тогда $w = e^z = e^c(\cos y + i\sin y)$, т. е. вертикальные прямые перейдут в окружности с центром в нуле и радиусом $e^c$.
+
+Точки прямой $y = c, c \in \mathbb{R}$ имеют вид $z = x + ci, x \in \mathbb{R}$. Тогда $w = e^{ci}\cdot e^x$, т. е.
+образами горизонтальных прямых будут лучи, исходящие от начала координат.
+2. $y = kx + b: e^z = e^{x + i(kx + b)} = e^{ib}e^xe^{ikx} = e^x(\cos(kx + b) + i\sin(kx + b))$
+
+Таким образом, образом прямой будет спираль.
+3. Образом будет угол между $\alpha$ и $\beta$.
+4. Разобьём полосу вертикальными отрезками. Отрезки перейдут в полные окружности с центром в нуле без одной точки,
+лежащей на спирали, в которую переходят границы, т. е. образ - вся плоскость без спирали.
+* Задача 13.82
+Функция Жуковского: $w = \frac{1}2\left(z + \frac{1}{z}\right)$
+Найти образы:
+1. Единичного круга и его внутренности.
+Пусть $z = Re^{i\varphi}$. Тогда $w = \frac{1}2\left(Re^{i\varphi} + \frac{1}Re^{-i\varphi}\right)
+= \cos\varphi\frac{R + R^{-1}}2 + i\sin\varphi\frac{R - R^{-1}}2 \equiv x + iy$
+$$1 = \cos^2\varphi + \sin^2\varphi = \frac{x^2}{(\frac{1}2(R+R^{-1}))^2} + \frac{y^2}{(\frac{1}2(R - R^{-1}))^2}$$
+$$a^2 - b^2 = 1$$
+Получили семейство софокусных эллипсов, переходящее при $R = 1$ в отрезок $[-1, 1]$.
+Внутренняя(и внешняя) часть единичного круга переходит в $\mathbb{C} \setminus [-1, 1]$
+2. Верхней полуплоскости.
+Верхние полуокружности перейдут в нижние полуэллипсы. Верхние полуокружности с радиусами $\frac{1}{R}$ дадут верхние
+полуэллипсы.
+* Задача 13.84
+Отобразить на верхнюю полуплоскость ${w: \mathrm{Im} z > 0}$ области:
+1. $\{z: |z| < 1 \ \left[\frac{1}2; 1\right]\}$
+Применим к области функцию Жуковского, получим $\mathbb{C}_{i+} \setminus \left[1; \frac{5}4\right]$.
+Применим ДЛО $w_1 = \frac{w + 1}{w - \frac{5}4}$. Получим $\matbb{C}_{i+} \setminus \mathbb{R}_+$.
+Применение второй ветви корня даст $\mathbb{C}_+$.
+
+13.79, 13.80, 13.82, 13.84(2, 4), 13.87
+* Задача 2961
+Разложить функцию $f(x) = x^2$:
+1. На $(-\pi; \pi)$
+2. На $(0; \pi)$
+3. На $(0; 2\pi)$
+
+1. Ряд Фурье на $(-\pi; \pi)$ имеет вид:
+$$\frac{a_0}2 + \sum_{n = 1}^\infty(a_n\cos nx + b_n\sin nx)$$
+Где
+$$a_n = \frac{1}\pi \int_{-\pi}^\pi f(x)\cos nx dx, b_n = \frac{1}\pi \int_{-\pi}^\pi f(x)\sin nx dx, n \in \mathh{N}$$
+Поскольку $y = x^2$ - чётная функция, $b_n = 0, \forall n \in \mathbb{N}$.
+$$a_0 = 0$$
+#+BEGIN_EXPORT latex
+\begin{multline*}
+a_0 = \frac{2}\pi \int_0^\pi x^2dx = \frac{2}3\pi^2\\
+a_n = \frac{2}\pi \int_0^\pi x^2\cos nx dx = \frac{2}{\pi n}\int_0^\pi x^2d(\sin nx) = \frac{2}{\pi n}\left(x^2\sin nx\bigg|_0^\pi -
+\int_0^\pi2x\sin nx dx\right) = \\
+ = \frac{4}{\pi n^2}\int_0^\pi xd(\cos nx) = \frac{4}{\pi n^2}\left(x\cos nx\bigg|_0^\pi - \int_0^\pi\cos nxdx\right) = (-1)^{n}\frac{4}{n^2}
+\end{multline*}
+#+END_EXPORT
+Соотвественно, ряд имеет вид:
+$$f(x) = \frac{\pi^2}{3} + \sum_{n = 1}^\infty(-1)^n\frac{4}{n^2}\cos nx, x \in [-\pi; \pi]$$
+2. Ряд имеет вид $x^2 = \sum_{n = 1}^\infty b_n\sin nx$. Для получения этого разложения разложим функцию $f(x) = x^2\operatorname{sgn} x$
+$$a_n = 0 \forall n \in \mathbb{N}_0$$
+#+BEGIN_EXPORT latex
+\begin{multline*}
+b_n = \frac{2}\pi\int_0^\pi x^2\sin nxdx = \frac{2}{\pi n} x^2d(\cos nx) = \frac{2}{\pi n}\left(x^2\cos nx\bigg|_0^\pi - \int_0^\pi 2x\cos nxdx\right) = \\
+= (-1)^n\frac{2\pi}n - \frac{4}{\pi n^2}\int_0^\pi xd(\sin nx) = (-1)^n\frac{2\pi}n - \frac{4}{\pi n^2}\left(x\sin nx\bigg|_0^\pi - \int_0^\pi\sin nx dx\right) = \\
+= (-1)^n\frac{2\pi}n + \frac{4}{\pi n^3}((-1)^n - 1)
+\end{multline*}
+#+END_EXPORT
+3. Продолжим периодически функцию на $\mathbb{R}$. Тогда
+$$a_n = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx$$
+$$b_n = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx$$
+#+BEGIN_EXPORT latex
+$$a_0 = \frac{1}\pi\int_0^{2\pi}x^2dx = \frac{8}3\pi^2$$
+$$a_n = \frac{1}\pi\int_0^{2\pi}x^2\cos nxdx = \frac{4}{n^2}$$
+$$b_n = \frac{1}\pi\int_0^{2\pi}x^2\sin nxdx = \frac{4\pi}n$$
+#+END_EXPORT
+Соответственно, ряд будет иметь вид:
+$$x^2 = \frac{4\pi^2}3 + \sum_{n = 1}^\infty\left(\frac{4}{n^2}\cos nx + \frac{4\pi}n\sin nx\right), x \in (0; 2\pi)$$
+* Задача 2955
+Разложить в ряд Фурье периодическую функцию $f(x) = x - [x]$.
+
+Раскладываем по промежутку $\left[-\frac{1}2; \frac{1}2\right]$:
+$$\{x\} = \frac{a_0}2 + \sum_{n = 1}^\infty(a_n\cos 2\pi nx + b_n\sin 2\pi nx)$$
+#+BEGIN_EXPORT latex
+$$a_0 = 2\int_0^1xdx = 1$$
+\begin{multline*}
+a_n = 2\int_{-1/2}^{1/2}\{x\}\cos 2\pi nxdx = 2\int_0^1x\cos 2\pi nxdx = \frac{x\sin 2\pi nx}{\pi n}\bigg|_0^1 - \frac{1}{\pi n}\int_0^1\sin 2\pi nxdx = \\
+= \frac{1}{\pi n}\frac{\cos 2\pi nx}{2\pi n}\bigg|_0^1 = 0
+\end{multline*}
+\begin{multline*}
+b_n = 2\int_0^1x\sin 2\pi nx dx = -\frac{x\cos 2\pi nx}{\pi n}\bigg|_0^1 + \frac{1}{\pi n}\int_0^1\cos 2\pi nxdx = -\frac{1}{\pi n}
+\end{multline*}
+#+END_EXPORT
+Откуда ряд имеет вид:
+$${x} = \frac{1}2 - \frac{1}\pi\sum_{n = 1}^\infty\frac{\sin 2\pi nx}n$$
+* Задача 2479
+Пусть $f(x + \pi) \equiv -f(x)$. Какой вид имеет ряд Фурье для $f(x)$?
+#+BEGIN_export latex
+\begin{multline*}
+a_n = \frac{1}\pi\int_{-\pi}^\pi f(x)\cos nx = \frac{1}\pi\int_{-\pi}^0f(x)\cos nx + \frac{1}\pi\int_0^\pi f(x)\cos nx = \\
+= \frac{1}\pi\int_0^\pi f(y - \pi)\cos n(y - \pi)dy + \frac{1}\pi\int_0^\pi f(x)\cos nxdx = 0, при n \in 2\mathbb{Z}
+\end{multline*}
+#+END_export
+* Задача 2
+Вычислить интеграл:
+$$\int_0^\infty\frac{e^{-\alpha x^2} - e^{-2\alpha x^2}}xdx = I(\alpha), \alpha > 0$$
+
+Продифференцируем интеграл по параметру $\alpha$:
+#+BEGIN_EXPORT latex
+\begin{multline*}
+I'(\alpha) = \int_0^\infty\frac{-x^2e^{-\alpha x^2} + 2x^2e^{-2\alpha x^2}}xdx =
+\int_0^\infty(-xe^{-\alpha x^2} + 2xe^{-2\alpha x^2})dx = \\
+= \frac1{2\alpha}e^{-\alpha x^2}\bigg|_0^\infty - \frac1{2\alpha}{e^{-2\alpha x^2}\bigg|_0^\infty} = 0
+\end{multline*}
+#+END_EXPORT
+В силу признака Вейерштрасса полученный интеграл сходится равномерно на любой полупрямой
+$[\alpha_0; +\infty)$, поэтому дифференцирование правомерно.
+
+Отсюда находим $I(\alpha)$:
+$$I(\alpha) = C$$
+Найдём $C$:
+#+BEGIN_EXPORT latex
+\begin{multline*}
+C = I(1) = \int_0^\infty\frac{e^{-x^2} - e^{-2x^2}}xdx =\bigg|_{x = \sqrt t}\int_0^\infty\frac{e^{-t} - e^{-2t}}{\sqrt t}d(\sqrt t) = \\
+= -\frac12\int_0^\infty\frac{e^{-t} - e^{-2t}}tdt = -\frac12\ln2 = -\frac{\ln2}2
+\end{multline*}
+#+END_EXPORT
+Поскольку $f(t) = e^{-t} \in C[0; \infty)$ и $\forall A > 0 \exists \int_A^\infty\frac{f(t)}tdt$, то справедлива формула Фруллани:
+$$\int_0^\infty\frac{f(at) - f(bt)}tdt = f(0)\ln\left(\frac ba\right)$$
+Окончательно получаем:
+$$\int_0^\infty\frac{e^{-\alpha x^2} - e^{-2\alpha x^2}}xdx = -\frac{\ln2}2, \forall \alpha > 

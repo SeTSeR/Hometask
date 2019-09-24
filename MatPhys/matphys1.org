@@ -1,0 +1,752 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+OPTIONS: toc:nil
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+Лектор Иновенков Игорь Николаевич. Рейтинговая система, экзамен.
+
+Учебники:
+1. Тихонов, Самарский. "уравнения математической физики"
+2. Захаров, Дмитриев, ? "уравнения математической физики"
+
+* Классификация уравнений второго порядка с двумя независимыми переменными
+Это уравнения вида
+#+BEGIN_EXPORT latex
+\begin{equation}
+F(x, y, u_x, u_y, u_{xx}, u_{xy}, u_{yy}) = 0
+\end{equation}
+#+END_EXPORT
+Уравнение Монжа-Ампера:
+#+BEGIN_EXPORT latex
+\begin{equation*}
+u_{xx}u_{yy} - u_{xy}^2 = \pm 1
+\end{equation*}
+#+END_EXPORT
+Будем рассматривать более простой вариант уравнения второго порядка:
+#+BEGIN_EXPORT latex
+\begin{equation*}
+a_{11}u_{xx} + 2a_{12}u_{xy} + a_{22}u_{yy} + F(x, y, u, u_x, u_y) = 0
+\end{equation*}
+#+END_EXPORT
+Уравнение вида (1) называется *квазилинейным*, если $a_{11}, a_{12}$ и $a_{22}$ зависят от $x, y, u, u_x, u_y$.
+
+Уравнение вида
+#+BEGIN_EXPORT latex
+\begin{equation}
+a_{11}u_{xx} + 2a_{12}u_{xy} + a_{22}u_{yy} + b_1 u_{x} + b_2 u_y + cu + f = 0,
+\end{equation}
+#+END_EXPORT
+где $a_{ij}, b_k, c, f$ - функции от $x$ и $y$.
+Если $f \equiv 0$, то уравнение (2) называется *однородным*.
+Рассмотрим замену вида
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\begin{cases}
+\xi = \varphi(x, y), \\
+\eta = \psi(x, y).
+\end{cases}
+\end{equation*}
+#+END_EXPORT
+Тогда частные производные u запишутся в виде
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\begin{cases}
+u_x = u_\xi\xi_x + u_\eta\eta_x, \\
+u_y = u_\xi\xi_y + u_\eta\eta_y, \\
+u_{xx} = u_{\xi\xi}\xi_x^2 + 2u_{\xi\eta}\xi_x\eta_x + u_{\eta\eta}\eta_x^2 + u_{\xi}\xi_{xx} + u_{\eta}\eta_{xx}, \\
+u_{xy} = u_{\xi\xi}\xi_x\xi_y + u_{\xi\eta}\xi_x\eta_y + u_{\eta\xi}\eta_x\xi_y + u_{\eta}{\eta}\eta_x\eta_y + u_{\xi}\xi_{xy} + u_{\eta}\eta_{yx}, \\
+u_{yy} = u_{\xi\xi}\xi_y^2 + 2u_{\xi\eta}\xi_y\eta_y + u_{\eta\eta}\eta_y^2 + u_\xi\xi_{yy} + u_\eta\eta_{yy}, \\
+\end{cases}
+\end{equation*}
+#+END_EXPORT
+Подставим эти формулы в (2):
+#+BEGIN_EXPORT latex
+\begin{multline*}
+u_{\xi\xi}\left(a_{11}\xi_x^2 + 2a_{12}\xi_x\xi_y + a_{22}\xi_y^2\right) + 2u_{\xi\eta}\left(a_{11}\xi_x\eta_x + a_{12}(\xi_x\eta_y + \xi_y\eta_x) + a_{22}\xi_y\eta_y\right) + \\
++ u_{\eta\eta}\left(a_{11}\eta_x^2 + 2a_{12}\eta_x\eta_y + a_{22}\eta_y^2\right) + F = 0
+\end{multline*}
+#+END_EXPORT
+Или:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\overline{a_{11}}u_{\xi\xi} + 2\overline{a_{12}}u_{\xi\eta} + \overline{a_{22}}u_{\eta\eta} + F = 0
+\end{equation}
+#+END_EXPORT
+Потребуем, чтобы $\overline{a_{11}} = 0$. Получим уравнение:
+#+BEGIN_EXPORT latex
+\begin{equation}
+a_{11}\xi_x^2 + 2a_{12}\xi_x\xi_y + a_{22}\xi_y^2 = 0
+\end{equation}
+#+END_EXPORT
+Если $\varphi(x, y) = C$, то $\varphi_xdx + \varphi_ydy = 0$, откуда, выразив, например,
+$\varphi_x$, получим
+#+BEGIN_EXPORT latex
+\begin{equation}
+a_{11}dy^2 - 2a_{12}dxdy + a_{22}dx^2 = 0
+\end{equation}
+#+END_EXPORT
+Уравнение (10) называется *характеристическим*.
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\overline{a_{12}} - \overline{a_{11}}\overline{a_{22}} = (a_{12}^2 - a_{11}a_{22})D^2,
+D = \begin{vmatrix}
+\xi_x   & \xi_y, \\
+\eta_x  & \eta_y               
+\end{vmatrix}
+\end{equation*}
+#+END_EXPORT
+Расмотрим характеристическое уравнение:
+#+BEGIN_EXPORT latex
+\begin{equation*}
+a_{11}\left(\frac{dy}{dx}\right)^2 - 2a_{12}\frac{dy}{dx} + a_{22} = 0, a_{11} \neq 0
+\end{equation*}
+#+END_EXPORT
+Его решение имеет вид:
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\frac{dy}{dx} = \frac{a_{12} \pm \sqrt{a_{12}^2 - a_{11}a_{22}}}{a_{11}}
+\end{equation*}
+#+END_EXPORT
+Если $a_{12}^2 - a_{11}a_{22} > 0$, то уравнение называется *гиперболическим*.
+
+Если $a_{12}^2 - a_{11}a_{22} = 0$, то уравнение называется *параболическим*.
+
+Остальные уравнения называются *эллиптическими*.
+
+Пусть уравнение гиперболическое. Тогда $\overline{a_{11}} = \overline{a_{22}} = 0$ и уравнение
+записывается в *первой канонической форме*:
+#+BEGIN_EXPORT latex
+\begin{equation}
+u_{\xi\eta} = \Phi, \Phi = -\frac{F}{2\overline{a_{12}}}
+\end{equation}
+#+END_EXPORT
+Положим
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\xi = \alpha + \beta, \\
+\eta = \alpha - \beta,
+\end{cases}
+\end{equation}
+#+END_EXPORT
+Тогда уравнение записывается в виде:
+#+BEGIN_EXPORT latex
+\begin{equation}
+u_{\alpha\alpha} - u_{\beta\beta} = \overline\Phi, \overline\Phi = 4\Phi,
+\end{equation}
+#+END_EXPORT
+Называемом *второй канонической формой*.
+
+Перейдём теперь к уравнениям параболического типа. Для них $\xi$ - интеграл (7), $\eta$ -
+независимая от него функция, $a_12 = \sqrt{a_{11}}\sqrt{a_{22}}$. Тогда
+#+BEGIN_EXPORT latex
+\begin{equation*}
+a_{11}\xi_x^2 + 2\sqrt{a_{11}}\sqrt{a_{22}}\xi_x\xi_y + a_{22}\xi_y^2 =
+(\sqrt{a_{11}}\xi_x + \sqrt{a_{22}}\xi_y)^2 = 0
+\end{equation*}
+\begin{equation*}
+\overline{a_{12}} = a_{11}\xi_x\eta_y + \sqrt{a_{11}}\sqrt{a_{22}}(\xi_x\eta_y + \xi_y\eta_x)
++ a_{22}\xi_y\eta_y = (\sqrt{a_{11}}\xi_x + \sqrt{a_{22}}\xi_y)(\sqrt{a_{11}}\eta_x + \sqrt{a_{22}}\eta_y) = 0
+\end{equation*}
+Откуда
+\begin{equation}
+\overline{a_{11}} = \overline{a_{22}} = 0, u_{\eta\eta} = \tilde{\Phi}(\xi, \eta, u, u_\xi, u_\eta)
+\end{equation}
+#+END_EXPORT
+
+Пусть теперь у нас уравнение эллиптического типа. Тогда $\xi$ и $\eta$ представимы в виде:
+#+BEGIN_EXPORT latex
+\begin{equation*}
+\begin{cases}
+\xi = \alpha + i\beta, \\
+\eta = \alpha - i\beta
+\end{cases}
+\end{equation*}
+\begin{equation*}
+\xi_x = \alpha_x + i\beta_x,
+\end{equation*}
+\begin{multline*}
+\overline{a_{11}} = a_{11}(\alpha_x + i\beta_x)^2 +
+2a_{12}(\alpha_x + i\beta_x)(\alpha_y + i\beta_y) + a_{22}(\alpha_y + i\beta_y)^2 = \\
+= a_{11} + \alpha_x^2 + 2a_{12}\alpha_x\alpha_y + a_{22}\alpha_y^2 + 2i(a_{11}\alpha_x\beta_x +
+a_{12}(\alpha_x\beta_y + \alpha_y\beta_x) + a_{22}\alpha_y\beta_y) + (a_{11}\beta_x^2 +
+2a_{12}\beta_x\beta_y + a_{22}\beta_y^2) = 0
+\end{multline*}
+
+Откуда
+\begin{equation*}
+\overline{a_{12}} = a_{11}\alpha_x\beta_x + a_{12}(\alpha_x\beta_y + \alpha_y\beta_x) + a_{22}\alpha_y\beta_y = 0
+\end{equation*}
+#+END_EXPORT
+
+Рассмотрим случай постоянных коэффициентов:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{xx} - u_{yy} + b_1u_x + b_2u_y + cu + f = 0, \\
+u_{xx} - u_{yy} + b_1u_x + cu + f = 0, \\
+u_{xx} + u_{yy} + b_1u_x + b_2u_y + cu + f = 0.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+В гиперболическом случае:
+
+Сделаем замену $u(x, y) = e^{\lambda x + \mu y}\nu(x, y)$. Получим:
+#+BEGIN_EXPORT latex
+\begin{multline*}
+e^{\lambda x + \mu y}(\nu_{xx} + 2\lambda\nu_x + \lambda^2\nu) - e^{\lambdax + \mu y}(\nu_{yy} + 2\mu\nu_y + \mu^2\nu) + \\
++ e^{\lambda x + \mu y}(b_1\nu_x + b_2\mu\nu) + e^{\lambda x + \mu y}(b_2\nu_y + b_2\mu\nu) + ce^{\lambda x + \mu y}\nu + f = 0
+\end{multline*}
+#+END_EXPORT
+Таким образом, уравнения с постоянными коэффициентами приводятся к виду:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{xx} - u_{yy} + cu + f = 0, \\
+u_{xx} - u_y + cu + f = 0, \\
+u_{xx} + u_{yy} + cu + f = 0.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+Частные случаи, которые мы будем рассматривать:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx}, \\
+u_{xx} + u_{yy} = 0 \text{ или } \Delta u = 0, \\
+u_{tt} = u_{xx}.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+
+* Уравнение непрерывности
+Выведем *уравнение непрерывности*. Пусть P - плотность некоторой величины, $\vec j$ - плотность
+её потока, $f$ - интенсивность её источника. Уравнение баланса для этой величины будет иметь вид:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\frac{\partial}{\partial t}\iiint_{\Delta V}Pd\tau = -\oiint\vec jd\vec j + \iiint_{\Delta V}fdt
+\end{equation}
+Применяя формулу Остроградского-Гаусса, получим:
+\begin{equation}
+\frac{\partial P}{\partial t} + \operatorname{div}\vec{j} = f
+\end{equation}
+#+END_EXPORT
+Уравнение теплопроводности
+#+BEGIN_EXPORT latex
+\begin{equation}
+C_{\rho}\frac{\partial u}{\partial t} = \operatorname{div}(k\operatorname{grad}u) + f(x, y, z, t)
+\end{equation}
+#+END_EXPORT
+* Смешанная задача для уравнения в частных производных параболического типа
+Уравнение + граничные условия + начальные условия:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u|_{\Sigma} = u(M, t), M \in \Sigma \text{ - граничные условия первого рода} \\
+\vec{q}|_{\Sigma} = \vec{\nu}(M, t), q = -k\operatorname{grad}u \text{ - граничные условия второго рода}, \\
+-k\frac{\partial u}{\partial n}|_{\Sigma} = \nu_n(M, t), \\
+\frac{\partial u}{\partial n} + \alpha u_{\sigma} + \chi(M, t), M \in \Sigma \text{ - граничные условия третьего рода}.
+\end{cases}
+\end{equation}
+Рассмотрим смешанную задачу для уравнения теплопроводности:
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = a^2\frac{\partial^2 u}{\partial x^2} + f(x, t), 0 < x < l, 0 < t < +\infty, \\
+u(0, t) = \mu_1(t), \\
+u(l, t) = \mu_2(t), \\
+u(x, 0) = \varphi(x),
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+u_x(0, t) = \nu_1(t), \\
+u_x(l, t) = \nu_2(t), \\
+u_x - h_1u|_{x = 0} = \theta_1(t), \\
+u_x + h_2u|_{x = l} = \theta_2(t).
+\end{cases}
+\end{equation}
+Ищем решение типа $u(x, t) \in C^{2, 1}((0, l) \times [0, T]) \cap C([0, l] \times [0, T])$.
+Тогда $f(x, t), \nu_1(t), \nu_2(t), \varphi(x)$ непрерывны.
+Также $\nu_1(0) = \varphi(0), \nu_2(0) = \varphi(l)$.
+ #+END_EXPORT
+** Метод разделения переменных
+Рассмотрим простейший вариант смешанной задачи:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = a\frac{\partial^2 u}{\partial x^2}, 0 < x < l, 0 < t < +\infty, \\
+u(0, t) = 0, \\
+u(l, t) = 0, \\
+u(x, 0) = \varphi(x).
+\end{cases}
+\end{equation}
+Ищем частное решение в виде $u(x, t) = X(x)T(t)$. Получим:
+\begin{equation}
+\begin{cases}
+XT' = a^2X''T, \\
+X(0)T(t) = 0, \\
+X(l)T(t) = 0.
+\end{cases}
+\end{equation}
+Откуда
+\begin{equation}
+\begin{cases}
+\frac{T'}{a^2T} = \frac{X''}{X} = -\lambda, \\
+X(0) = X(l) = 0.
+\end{cases}
+\end{equation}
+Обозначим
+\begin{equation}
+Lv = \frac{d^2v}{dx^2}, \\
+Lv = \mu v \Rightarrow (Lv, v) \leq 0
+\end{equation}
+Решая уравнения, получим:
+\begin{equation}
+\begin{cases}
+X'' + \lambdaX = 0, \\
+X(0) = X(l) = 0.
+\end{cases}
+\Rightarrow
+\begin{cases}
+X(x) = C_1\cos\sqrt{\lambda}x + C_2\sin\sqrt{\lambda}x, \\
+X(0) = C_1 = 0, X(l) = C_2\sin\sqrt{\lambda}l = 0.
+\end{cases}
+\Rightarrow
+X_{n}(x) = \sin\frac{\pi nx}l.
+\end{equation}
+\begin{equation}
+T' + \left(\frac{\pi n a}l\right)^2 = 0
+\Rightarrow
+T_n(t) = e^{-\frac{\pi n a}lt}a_n
+\end{equation}
+Получим систему частных решений $u_n(x, t) = a_ne^{-\left(\frac{\pi na}l\right)^2t}\sin\frac{\pi n x}l$.
+Тогда общее решение будет иметь вид:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi n a}l\right)^2t}\sin\frac{\pi nx}t,
+\end{equation}
+Где $\varphi_n$ - коэффициенты разложения $\varphi(x)$ в ряд Фурье.
+
+Такая схема плохо работает при более общих начальных условиях.
+#+END_EXPORT
+** Общая схема метода разделения переменных
+Рассмотрим задачу
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = Lu + f(x, t), \\
+l_1u|_{x = 0} = \mu_1(t), \\
+l_2u|_{x = l} = \mu_2(t), \\
+u|_{t = 0} = \varphi(x).
+\end{cases}
+\end{equation}
+#+END_EXPORT
+1. Проверяем самосопряжённость задачи, т. е. что $L = L^*$. Если она не является самосопряжённой,
+пытаемся привести её к таковой.
+
+a) $L = \frac{d^2}{dx^2} + \frac{d}{dx}$. Привести можно с помощью замены $u(x, t) = e^{\mu t}\nu(x, t)$.
+
+b) $L = \frac{d^2}{dx^2}$. Привести не получается.
+Задача Самарского-Ионкина:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = \frac{\partial^2u}{\partial x^2}, 0 < x < \pi, \\
+u(0, t) = 0, \\
+u_x(0, t) = u_x(\pi, t)
+\end{cases}
+\end{equation}
+2. Приводим граничные условия к однородным.($f(kx, ky) = kf(x, y)$.)
+a) \begin{equation}
+\begin{cases}
+u(0, t) = \mu_1(t), \\
+u(l, t) = \mu_2(t).
+\end{cases}
+\end{equation}
+Ищем решения в виде $u(x, t) = v(x, t) + w(x, t)$, где
+\begin{equation}
+\begin{cases}
+w(0, t) = \mu_1, \\
+w(l, t) = \mu_2.
+\end{cases}
+\end{equation}
+Проще всего взять $w(x, t) = (\mu_2 - \mu_1)\frac{x}l + \mu_1$.
+b) \begin{equation}
+\begin{cases}
+u(0, t) = \mu_1(t), \\
+u_x(l, t) = \mu_2(t).
+\end{cases}
+\end{equation}
+Возьмём $w(x, t) = \mu_2(t)x +\mu_1$.
+c) \begin{equation}
+\begin{cases}
+u_x(0, t) = \mu_1, \\
+u_x(l, t) = \mu_2.
+\end{cases}
+\end{equation}
+Ищем $w(x)$ в виде $w(x, t) = ax^2 + bx$.
+#+END_EXPORT
+3. Получили *задачу Штурма-Лиувилля*:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+LX + \lambda X = 0, \\
+l_1X|_{x = 0} = 0, \\
+l_2X|_{x = l} = 0.
+\end{cases}
+\end{equation}
+\begin{Theorem}
+Собственные функции, отвечающие различным собственным значениям, ортогональны.
+\end{Theorem}
+#+END_EXPORT
+4. Раскладываем правую часть, граничные условия и решение по собственным функциям:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{dcases}
+v(x, t) = \sum_{n = 1}^{\infty}v_n(t)X_n(x), \\
+\overline{f}(x, t) = \sum_{n = 1}^{\infty}f_n(t)X_n(x), f_n(t) = \frac1{||x_n||^2}\int_{o}^l\overline{f}(x, t)X_n(x)dx, \\
+\overline{\varphi}(x) = \sum_{n = 1}^{\infty}\varphi_nX_n(x), \varphi_n = \frac1{||x_n||^2}\int_0^l\overline{\varphi}(x)X_n(x)dx.
+\end{dcases}
+\end{equation}
+Подставляя в исходное уравнение, получаем:
+\begin{equation}
+\begin{dcases}
+\sum_{n = 1}^{\infty}\left(\frac{dv_n}{dt} + \lambda_nv_n + f_n(t)\right)X_n(x) = 0, \\
+\sum_{n = 1}^{\infty}(v_{n}(0) - \varphi_n)X_n(x) = 0.
+\end{dcases}
+\end{equation}
+$$u(x, t) = \sum_{n = 1}^{\infty}v_{n}(t)X(x) + w(x, t)$$
+#+END_EXPORT
+** Теорема существования
+Рассмотрим задачу
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{dcases}
+\frac{\partial u}{\partial t} = a^2\frac{\partial^2 u}{\partial x^2}, 0 < x < l, 0 < t < +\infty, \\
+u(0, t) = 0, \\
+u(l, t) = 0, \\
+u(x, 0) = \varphi(x).
+\end{dcases}
+\end{equation}
+Методом, рассмотренным выше, получаем разложение:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi n a}l)^2t}\sin{\frac{\pi n x}l}
+\end{equation}
+$$u_t(x, t) \approx \sum_{n = 1}^{\infty}\varphi_n\left(-\left(\frac{\pi n a}l\right)^2\right)e^{-\left(\frac{\pi n a}l\right)^2t}\sin{\frac{\pi n x}l}$$
+$$u_{xx}(x, t) \approx \sum_{n = 1}^{\infty}-\varphi_n\left(\frac{\pi n}l\right)^2e^{-\left(\frac{\pi n x}l\right)^2}\sin\frac{\pi n x}l$$
+Оба ряда сходятся равномерно и являются непрерывными функциями \Rightarrow решение является хорошим.
+
+Рассмотрим теперь неоднородную задачу:
+\begin{equation}
+\begin{dcases}
+\frac{dz_n}{dt} + \left(\frac{\pi na}lz_n\right)^2 = f_n(t), \\
+z_n(0) = 0.
+\end{dcases}
+\end{equation}
+Тогда $z_n(t) = \int_0^tU(t - \tau)f_n(\tau)d\tau$, где
+\begin{equation}
+\begin{dcases}
+\frac{dU}{dt} + \left(\frac{\pi n a}l\right)^2U = 0, \\
+U(0) = 1
+\end{dcases}
+\Rightarrow U(t) = e^{-\left(\frac{\pi n a}l\right)^2t}
+\end{equation}
+
+Рассмотрим задачу:
+\begin{equation}
+\begin{dcases}
+\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} + \cos x\cdot e^{-t}, 0 < x < \frac{\pi}2, \\
+u_x(0, t) = 0, \\
+u\left(\frac{\pi}2, t\right) = 0, \\
+u(x, t) = 0.
+\end{dcases}
+\end{equation}
+
+Рассмотрим задачу:
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = a^2\frac{\partial^2u}{\partial x^2} + f(x, t), 0 < x < l, 0 < t < +\infty, \\
+u(0, t) = 0, u(l, t) = 0, \\
+u(x, 0) = \varphi(x).
+\end{cases}
+\end{equation}
+Ищем решение в виде $u(x, t) = u_1(x, t) + u_2(x, t)$, где $u_1$ и $u_2$ - решения систем
+\begin{equation}
+\begin{cases}
+\frac{\partial u_1}{\partial t} = a^2\frac{\partial^2 u}{\partial x^2}, 0 < x < l, 0 < t < +\infty, \\
+u_1(0, t) = u_1(l, t) = 0, \\
+u_1(x, 0) = \varphi(x)
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+\frac{\partial u_2}{\partial t} = a^2\frac{\partial^2 u}{\partial x^2} + f(x, t), 0 < x < l, 0 < t < +\infty, \\
+u_2(0, t) = u_2(l, t) = 0, \\
+u_2(x, 0) = 0.
+\end{cases}
+\end{equation}
+Решение задачи (41) записывается в виде:
+\begin{equation}
+u_1(x, t) = \int_0^lG(x, \xi, t)\varphi(\xi)d\xi,
+\end{equation}
+где
+\begin{equation*}
+G(x, \xi, t) = \frac2l\sum_{n = 1}^{\infty}e^{-\left(\frac{\pi n a}l\right)^2t}\sin\frac{\pi nx}l\sin\frac{\pi n\xi}l \text{ - функция-источник.}
+\end{equation*}
+Выясним физический смысл функции-источника:
+\begin{equation}
+u(x, t) = \int_0^lG(x, \xi, t)\varphi(\xi)d\xi = \int_{x^* - \varepsilon}^{x^* + \varepsilon}\varphi_{\varepsilon}(\xi)G(x, \xi, t)d\xi =
+G(x, \tilde{\xi}, t)\int_{x^* - \varepsilon}^{x^* + \varepsilon}\varphi(\xi)d\xi = \frac{Q}{\varepsilon\rho}G(x, \xi, t).
+\end{equation}
+Таким образом, функция-источник описывает влияние точечного источника тепла.
+
+Дельта-функция Дирака:
+\begin{equation}
+\delta(x) = \begin{cases}
+0, x \neq 0, \\
++\infty, x = 0, \\
+\end{cases}
+\end{equation}
+причём $\int_{-\infty}^{+\infty}\delta(x) = 1$.
+$$\forall g(x) \in C(R) \int_{-\infty}^{+\infty}\delta(x)g(x)dx = g(0).$$
+Введём функцию
+\begin{equation}
+H(x) =
+\begin{cases}
+1, x > 0, \\
+0, x < 0.
+\end{cases}
+\end{equation}
+$$\int_{-\infty}^{+\infty}H'(x) = H(x)$$
+$$H'(x) = \delta(x)$$
+Решение задачи (42) имеет вид:
+\begin{equation}
+u_2(x, t) = \int_0^t\int_0^lG(x, \xi, t - \tau)f(\xi, \tau)d\xi d\tau.
+\end{equation}
+Запись решений задач (41) и (42) в явном виде доказывает теорему существования.
+\begin{Theorem}[Принцип максимума]
+Если $u(x, t) \in C([0, l] \times [0, t])$ и $u_t = a^2u_{xx}, 0 < x < l, 0 < t \leq T$, то
+$\max_{[0, l] \times [0, T]}u(x, t) = \max_{x = 0, x = l, t = 0}u(x, t)$.
+\begin{proof}
+Пусть $\max_{x = 0, x = l, t = 0}u(x, t) = M$ и $\exists (x_0, t_0) \in (0, l) \times (0, T)$, в
+которой $u(x_0, t_0) = M + \varepsilon$. Тогда $u_x(x_0, t_0) = 0, u_{xx}(x_0, t_0) \leq 0, u_t(x_0, t_0) \geq 0$.
+Введём функцию
+\begin{equation}
+v(x, t) = u(x, t) + k(t_0 - t).
+\end{equation}
+Для неё $v(x_0, t_0) = u(x_0, t_0) = M + \varepsilon$. Выберем k так, чтобы $k(t_0 - t) < kT < \frac{\varepsilon}2$.
+При таком k
+\begin{equation}
+max_{x = 0, x = l, t = 0}v(x, t) \leq M + \frac{\varepsilon}2.
+\end{equation}
+Поскольку $v(x, t) \in C([0, l]\times[0, T])$, то $\exists (x_1, t_1)$, в которой $v(x_1, t_1) \geq M + \varepsilon$.
+В этой точке
+\begin{equation}
+v(x_1, t_1) = \max_{[0, l]\times[0, T]}v(x, t), v_{xx} = u_{xx} \leq 0, v_t = u_t - k \geq 0.
+\end{equation}
+Противоречие.
+\end{proof}
+\end{Theorem}
+\begin{Consequence}
+Если
+\begin{equation}
+\begin{cases}
+(u_1)_t = a^2(u_1)_{xx}, 0 < x < l, 0 < t, \\
+u_1(0, t) = \nu_1(t), u_1(l, t) = nu_2(t), \\
+u_1(x, 0) = \varphi_1(x)
+\end{cases}
+\text{ и }
+\begin{cases}
+(u_2)_t = a^2(u_2)_{xx}, \\
+u_2(0, t) = \overline{\nu_1}(t), u_2(l, t) = \overline{\nu_2}(t), \\
+u_2(x, 0) = \overline{\varphi_1}(x),
+\end{cases}
+\end{equation}
+причём
+\begin{equation}
+\nu_1 \leq \overline{\nu_1}, \nu_2 \leq \overline{\nu_2}, \varphi \leq \overline{\varphi} \forall (x, t) \in [0, l] \times [0, T],
+\end{equation}
+то $u_1(x, t) \leq u_2(x, t)$.
+\end{Consequence}
+\begin{Consequence}
+Если $|\nu_1(t)| \leq \varepsilon, |\nu_2(t)| \leq \varepsilon, |\varphi(x)| \leq \varepsilon$, то
+$|u(x, t)| \leq \varepsilon$, т. е. задача (35) устойчива.
+\end{Consequence}
+#+END_EXPORT
+** Теорема единственности
+#+BEGIN_EXPORT latex
+\begin{Theorem}[Теорема единственности]
+Задача (35) имеет одно решение.
+\begin{proof}
+Пусть есть два решения задачи (35): $u_1(x, t)$ и $u_2(x, t)$. Положим $v(x, t)$. Тогда $v(x, t)$ - решение задачи:
+\begin{equation}
+\begin{cases}
+v_t = a^2v_{xx}, 0 < x < l, 0 < t < T, \\
+v(0, t) = v(l, t) = 0, \\
+v(x, 0) = 0.
+\end{cases}
+\end{equation}
+Эта задача имеет только нулевое решение.
+\end{proof}
+\end{Theorem}
+Рассмотрим задачу
+\begin{equation}
+\begin{cases}
+-u_t = u_{xx}, 0 < x < \pi, 0 < t < +\infty, \\
+u(0, t) = u(\pi, t) = 0, \\
+u(x, 0) = \varepsilon\sin x.
+\end{cases}
+\end{equation}
+Её решением будет функция $u(x, t) = \varepsilon\sin xe^t \Rightarrow$ задача поставлена некорректно.
+
+Рассмотрим теперь задачу другого типа:
+\begin{equation}
+\begin{cases}
+u_t = u_{xx}, 0 < x < l, 0 < t \leq T, \\
+u_x(0, t) = u_x(l, t) = 0, \\
+u(x, 0) = 0.
+\end{cases}
+\end{equation}
+Рассмотрим функционал $E(t) = \frac12\int_0^lu^2dx$. Так как $uu_t = uu_{xx}$, то
+\begin{equation}
+\frac12\frac{d}{dt}\int_0^lu^2dx = \int_0^luu_{xx}dx = uu_x - \int_0^lu_x^2dx.
+\end{equation}
+Тогда $E(t)$ - решение системы:
+\begin{equation}
+\frac{dE}{dt} \leq 0, \\
+E(0) = 0,
+\end{equation}
+откуда $E(t) = 0 \Rightarrow u(x, t) = 0$.
+\zall
+#+END_EXPORT
+** Задача Коши для уравнения теплопроводности
+#+BEGIN_EXPORT latex
+Рассмотрим задачи
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = a^2\frac{\partial^2 u}{\partial t^2}, -\infty < x < +\infty, 0 < t \leq T, \\
+u(x, 0) = \varphi(x)
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx} + f(x, t), -\infty < x < +\infty, 0 < t \leq T, \\
+u(x, 0) = 0.
+\end{cases}
+В такой постановке решение задачи не единственно, нужно добавить условие ограниченности(либо условие "достаточно медленного" роста).
+\end{equation}
+\begin{Theorem}[Теорема единственности]
+Задача
+\begin{equation}
+\begin{cases}
+v_t = a^2v_{xx}, -\infty < x < +\infty, 0 < t, \\
+v(x, 0) = 0, \\
+|v(x, t)| < 2M
+\end{cases}
+\end{equation}
+где $v(x, t) = u_1(x, t) - u_2(x ,t)$ имеет только нулевое решение.
+\begin{proof}
+Введём функцию $V(x, t) = \frac{4M}{L^2}\left(\frac{x^2}2 + a^2t\right)$.
+Тогда $v|_{t = 0} = \frac{2M}{L^2}x^2 \geq 0, v|_{x = \pm L} = 2M + \frac{a^2t4M}{L^2} > 2M$.
+Но $|v(x, t)| < V(x, t)$, а $\lim_{h \to +\infty}V(x, t) = 0 \Rightarrow v(x, t) \equiv 0$.
+\end{proof}
+\end{Theorem}
+\begin{Theorem}[Теорема существования]
+Существует решение задачи Коши:
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx}, -\infty < x < +\infty, 0 < t \leq T, \\
+u(x, 0) = \varphi(x), \\
+|u(x, t)| < M.
+\end{cases}
+\end{equation}
+\begin{proof}
+Ищем решение в виде $u(x, t) = X(x)T(t)$. Тогда
+\begin{equation}
+\frac{X''}X = \frac{T'}T = -\lambda^2.
+\end{equation}
+Тогда $X(x) = C_1e^{i\lambda x} + C_2e^{-i\lambda x}, T(t) = e^{-a^2\lambda^2t}$. Решение записывается
+в виде $u_{\lambda}(x, t) = A(\lambda)e^{i\lambda x}e^{-a^2\lambda^2t}, -\infty < \lambda < +\infty$.
+\begin{equation}
+u(x, t) = \int_{-\infty}^{+\infty}A(\lambda)e^{i\lambda x}e^{-a^2\lambda^2t}d\lambda,
+\end{equation}
+где
+\begin{equation}
+A(\lambda) = \frac{1}{2\pi}\int_{-\infty}\varphi(\xi)e^{-i\lambda\xi}d\xi
+\end{equation}
+или
+\begin{equation}
+u(x, t) = \int_{-\infty}^{+\infty}\varphi(\xi)G(x, \xi, t)d\xi,
+\end{equation}
+где
+\begin{equation}
+G(x, \xi, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}e^{-a^2\lambda^2t + i\lambda(x - \xi)}d\lambda.
+\end{equation}
+Найдём аналитическое выражение для $G(x, \xi, t)$:
+\begin{multline}
+G(x, \xi, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}e^{-a^2\lambda^2t + i\lambda(x - \xi)}d\lambda =
+\frac1{2\pi}\int_{-\infty}^{+\infty}e^{-a^2t\left(\lambda^2 - 2i\lambda\frac{x - \xi}{2a^2t} + \left(i\frac{x - \xi}{2a^2t}\right)^2 - \left(i\frac{x - \xi}{2a^2t}\right)^2\right)} = \\
+= \frac1{2\pi}\int_{-\infty - i\sigma}^{+\infty - i\sigma}e^{-a^2tp^2}e^{-\frac{(x - \xi)^2}{4at}}dp
+= \frac1{2\pi}\frac1{a\sqrt{t}}\int_{-\infty - i\sigma}^{+\infty - i\sigma}e^{-z^2}dze^{\frac{-(x - \xi)^2}{4a^2t}} = \frac1{2a\sqrt{\pi t}e^{\frac{(x - \xi)^2}{4a^2t}}}.
+\end{multline}
+\end{proof}
+\end{Theorem}
+#+END_EXPORT
+** Метод подобия
+#+BEGIN_EXPORT latex
+\begin{equation*}
+u_t = a^2u_{xx}
+\end{equation*}
+Сделаем замену $x' = kx, t' = k^2t$, тогда $u_{t'} = a^2u_{xx}$,
+\begin{equation}
+\frac{\partial u}{\partial t} = \frac{\partial u}{\partial t'}k^2,
+\frac{\partial u}{\partial x} = \frac{\partial u}{\partial x'}k,
+\frac{\partial^2 u}{\partial x^2} = \frac{\partial^2 u}{\partial x^2}k^2.
+\end{equation}
+Рассмотрим задачи
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx}, \\
+u(x, 0) = \begin{cases}
+u_0, x > 0, \\
+0, x < 0.
+\end{cases}
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+u_{t'} = a^2u_{xx}, \\
+u(x', 0) = \begin{cases}
+u_0, x > 0, \\
+0, x < 0.
+\end{cases}
+\end{cases}
+\end{equation}
+$$u(x, t) = u(x', t') = u(kx, k^2t)$$
+Положим $k = \frac1{2\sqrt{t}}$, тогда $u(x, t) = u\left(\frac{x}{2\sqrt{t}}4\right)$.
+
+Ищем решение задачи (12) в виде $u(x, t) = u_0f\left(\frac{x}{2\sqrt{t}}\right)$.
+#+END_EXPORT

@@ -1,0 +1,46 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+OPTIONS: toc:nil
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+\zall
+
+Андрей Николаевич Оленин, andrei_olenin@mail.ru, comp.ilc.edu.ru
+
+Темы:
+1. Светодиоды и инжекционные схемы
+2. Фотодиоды и их быстродействие
+3. ПЗС и КМОП матрицы
+4. ЦАП и АЦП
+
+Уравнение Шрёдингера:
+#+BEGIN_EXPORT latex
+\begin{equation}
+-i\hslash\frac{\partial\Psi}{\partial t} = \frac{\hslash^2}{2m}\Delta\Psi - U(x, y, z, t)\Psi
+\end{equation}
+где
+$i^2 = -1$, $\hslash$ - постоянная Планка, $m$ - масса электрона, $\Psi(x, y, z, t)$ - волновая функция,
+$U$ - потенциальная энергия электрического взаимодействия.
+$|\Psi(x, y, z, t)|^2$ - вероятность обнаружить электрон в (x, y, z) в момент времени t.
+#+END_EXPORT

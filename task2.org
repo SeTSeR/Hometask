@@ -1,0 +1,32 @@
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{mathtools}
+#+latex_header: \usepackage[english,russian]{babel}
+#+options: toc:nil
+* Задача 2
+Вычислить интеграл:
+$$\int_0^\infty\frac{e^{-\alpha x^2} - e^{-2\alpha x^2}}xdx = I(\alpha), \alpha > 0$$
+
+Продифференцируем интеграл по параметру $\alpha$:
+#+BEGIN_EXPORT latex
+\begin{multline*}
+I'(\alpha) = \int_0^\infty\frac{-x^2e^{-\alpha x^2} + 2x^2e^{-2\alpha x^2}}xdx =
+\int_0^\infty(-xe^{-\alpha x^2} + 2xe^{-2\alpha x^2})dx = \\
+= \frac1{2\alpha}e^{-\alpha x^2}\bigg|_0^\infty - \frac1{2\alpha}{e^{-2\alpha x^2}\bigg|_0^\infty} = 0
+\end{multline*}
+#+END_EXPORT
+В силу признака Вейерштрасса полученный интеграл сходится равномерно на любой полупрямой
+$[\alpha_0; +\infty)$, поэтому дифференцирование правомерно.
+
+Отсюда находим $I(\alpha)$:
+$$I(\alpha) = C$$
+Найдём $C$:
+#+BEGIN_EXPORT latex
+\begin{multline*}
+C = I(1) = \int_0^\infty\frac{e^{-x^2} - e^{-2x^2}}xdx =\bigg|_{x = \sqrt t}\int_0^\infty\frac{e^{-t} - e^{-2t}}{\sqrt t}d(\sqrt t) = \\
+= -\frac12\int_0^\infty\frac{e^{-t} - e^{-2t}}tdt = -\frac12\ln2 = -\frac{\ln2}2
+\end{multline*}
+#+END_EXPORT
+Поскольку $f(t) = e^{-t} \in C[0; \infty)$ и $\forall A > 0 \exists \int_A^\infty\frac{f(t)}tdt$, то справедлива формула Фруллани:
+$$\int_0^\infty\frac{f(at) - f(bt)}tdt = f(0)\ln\left(\frac ba\right)$$
+Окончательно получаем:
+$$\int_0^\infty\frac{e^{-\alpha x^2} - e^{-2\alpha x^2}}xdx = -\frac{\ln2}2, \forall \alpha > 0$$

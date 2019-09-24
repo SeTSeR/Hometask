@@ -1,0 +1,12 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+OPTIONS: toc:nil
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+
+\zall
+
