@@ -15,3 +15,4 @@ Supercomputers/*.tex
 БД/*.tex
 ФОП/*.tex
 texput.log
+build/
