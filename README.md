@@ -12,11 +12,6 @@ To create PDF files run:
 make pdf
 ```
 
-To create tex files run:
-```
-make tex
-```
-
 TODO:
 1. Travis CI integration.
 2. Uploading PDFs to GitHub releases.
