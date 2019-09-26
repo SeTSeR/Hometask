@@ -12,8 +12,7 @@ pdf: $(PDFS)
 	rm $(DEST)/*.log
 
 $(PDFS): %.pdf: %.tex
-	mkdir -p $(DEST)/$@
-	rm -r $(DEST)/$@
+	mkdir -p $(DEST)
 	$(LATEX) -interaction nonstopmode -output-directory $(DEST) $<
 
 MatPhys/matphys_ht3.pdf: MatPhys/matphys_ht3.tex
@@ -21,7 +20,7 @@ MatPhys/matphys_ht3.pdf: MatPhys/matphys_ht3.tex
 	rm -r $(DEST)/$@
 	cp $< $(DEST)/$<
 	sed -i 's/img/MatPhys\/img/' $(DEST)/$<
-	$(LATEX) -interaction nonstopmode -output-directory $(DEST) $<
+	$(LATEX) -interaction nonstopmode -output-directory $(DEST) $(DEST)/$<
 
 clean:
 	-rm -r $(DEST)
