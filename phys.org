@@ -30,9 +30,9 @@ $$\Phi_1 = \oiint_S (\vec B, \vec n)dS = -\int_{c - a}^c \int_0^b \frac{\mu_0 I}
 $$Q = \frac{\Delta\Phi}{R} = \frac{\mu_0 bI}{\pi R}\ln\left(\frac{c + a}{c - a}\right)$$
 * Задача 10.7
 Поскольку длина квадрата не изменилась, можно найти связь между стороной квадрата и радиусом круга:
-$$4a = 2\pir \Rightarrow r = \frac{2}{\pi}a$$
+$$4a = 2\pi r \Rightarrow r = \frac{2}{\pi}a$$
 Отсюда получаем новую площадь контура:
-$$\pi r^2 = \pi\frac{4}{\pi^2}a^2 = \frac{4}{\pi}a^2 \Rightarrow \Delta\Phi = B\DeltaS = -B(1 - \frac{4}{\pi^2})a^2 \Rightarrow Q = -\frac{\Delta\Phi}{R} = \frac{B}{R}\left(1 - \frac{4}{\pi^2}\right)a^2$$
+$$\pi r^2 = \pi\frac{4}{\pi^2}a^2 = \frac{4}{\pi}a^2 \Rightarrow \Delta\Phi = B\Delta S = -B(1 - \frac{4}{\pi^2})a^2 \Rightarrow Q = -\frac{\Delta\Phi}{R} = \frac{B}{R}\left(1 - \frac{4}{\pi^2}\right)a^2$$
 * Задача 10.9
 Магнитный поток через рамку равен:
 $$\Phi = BScos(\omega t) = Babcos(\omega t)$$
@@ -106,7 +106,7 @@ E_r                         & r E_\varphi                       & E_z
 \frac{\partial (rE_\varphi)}{\partial r} - \frac{\partial E_r}{\partial\varphi} = -kr, \\
 \end{dcases}
 \end{equation*}
-Учитывая, что $\frac{\partal E}{\partial\varphi} = \frac{\partial E}{\partial z} = 0$, систему можно записать в
+Учитывая, что $\frac{\partial E}{\partial\varphi} = \frac{\partial E}{\partial z} = 0$, систему можно записать в
 виде:
 \begin{equation*}
 \begin{dcases}
@@ -224,13 +224,13 @@ $$\varphi(x) = U_0\left(\frac{x}d\right)^{4/3}$$
 Распределение тока проводимости вне пластин и токов смещения между ними обладает цилиндрической симметрией, поэтому
 создаваемое токами смещения магнитное поле имеет ту же симметрию. В силу теоремы о циркуляции $\vec H$ по окружности
 радиуса $r$ с центром на оси конденсатора:
-#+BEGIN_LATEX latex
+#+BEGIN_EXPORT latex
 \begin{multline*}
 2\pi rH = \oint_L\vec Hd\vec l = \frac{d}{dt}\oint_S\vec Dd\vec S = \frac{d}{dt}(\pi r^2D) = \pi r^2\frac{dD}{dt} = \\
 = \varepsilon_0\varepsilon\pi r^2\frac{dE}{dt} = \frac{\varepsilon_0\varepsilon\pi r^2}{d}\frac{dU}{dt}
 = -\frac{\varepsilon_0\varepsilon\pi r^2}{d}\omega U_0\sin \omega t
 \end{multline*}
-#+END_LATEX
+#+END_EXPORT
 Откуда получаем выражение для $H$ и $B$:
 $$H = -\frac{\varepsilon_0\varepsilon r}{2d}\omega U_0\sin\omega t \Rightarrow H_0 = \frac{\varepsilon_0\varepsilon r}{2d}\omega U_0$$
 $$B_0 = \mu\mu_0 H_0 = \mu\mu_0\omega U_0\frac{\varepsilon_0\varepsilon r}{2d}$$
@@ -272,8 +272,9 @@ $$\frac{1}C\int Idt + IR = 0$$
 $$\frac{I}{C} + R\frac{dI}{dt} = 0$$
 $$I = I_0\exp\left(-\frac{t}{RC}\right)$$
 $$I_0 = \frac{q_0}{RC} \Rightarrow I(t) = \frac{q_0}{RC}\exp{\left(-\frac{t}{RC}\right)}$$
-$$Q = \int_0^tI^2Rdt = \int_0^t\frac{q_0^2}{RC^2}\exp{(-\frac{2t}{RC})}dt = \frac{q_0^2}{RC^2}\left(-\frac{RC}2\right)e^{-\frac{2t}{RC}}\bigg|_0^t
-= \frac{q_0^2}\left(1 - e^{-\frac{2t}{RC}}\right)$$
+$$Q = \int_0^tI^2Rdt = \int_0^t\frac{q_0^2}{RC^2}\exp\left\{-\frac{2t}{RC}\right\}dt =
+\frac{q_0^2}{RC^2}\left(-\frac{RC}2\right)\exp\left\{-\frac{2t}{RC}\right\}\bigg|_0^t =
+\frac{q_0^2}(1 - e^{-\frac{2t}{RC}})$$
 * Задача 12.3
 Конденсатор ёмкостью $C$, заряженный до разности потенциалов $U_0$, подключён к сопротивлению $R$ параллельно с
 катушкой индуктивности $L$. Найти зависимость напряжения на конденсаторе от времени.

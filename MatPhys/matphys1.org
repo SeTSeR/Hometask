@@ -215,7 +215,7 @@ u_{xx} + u_{yy} + b_1u_x + b_2u_y + cu + f = 0.
 Сделаем замену $u(x, y) = e^{\lambda x + \mu y}\nu(x, y)$. Получим:
 #+BEGIN_EXPORT latex
 \begin{multline*}
-e^{\lambda x + \mu y}(\nu_{xx} + 2\lambda\nu_x + \lambda^2\nu) - e^{\lambdax + \mu y}(\nu_{yy} + 2\mu\nu_y + \mu^2\nu) + \\
+e^{\lambda x + \mu y}(\nu_{xx} + 2\lambda\nu_x + \lambda^2\nu) - e^{\lambda x + \mu y}(\nu_{yy} + 2\mu\nu_y + \mu^2\nu) + \\
 + e^{\lambda x + \mu y}(b_1\nu_x + b_2\mu\nu) + e^{\lambda x + \mu y}(b_2\nu_y + b_2\mu\nu) + ce^{\lambda x + \mu y}\nu + f = 0
 \end{multline*}
 #+END_EXPORT
@@ -324,7 +324,7 @@ Lv = \mu v \Rightarrow (Lv, v) \leq 0
 Решая уравнения, получим:
 \begin{equation}
 \begin{cases}
-X'' + \lambdaX = 0, \\
+X'' + \lambda X = 0, \\
 X(0) = X(l) = 0.
 \end{cases}
 \Rightarrow
@@ -343,7 +343,7 @@ T_n(t) = e^{-\frac{\pi n a}lt}a_n
 Получим систему частных решений $u_n(x, t) = a_ne^{-\left(\frac{\pi na}l\right)^2t}\sin\frac{\pi n x}l$.
 Тогда общее решение будет иметь вид:
 \begin{equation}
-u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi n a}l\right)^2t}\sin\frac{\pi nx}t,
+u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi na}l\right)^2t}\sin\frac{\pi nx}t,
 \end{equation}
 Где $\varphi_n$ - коэффициенты разложения $\varphi(x)$ в ряд Фурье.
 
@@ -450,11 +450,11 @@ u(x, 0) = \varphi(x).
 \end{equation}
 Методом, рассмотренным выше, получаем разложение:
 \begin{equation}
-u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi n a}l)^2t}\sin{\frac{\pi n x}l}
+u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi n a}l\right)^2t}\sin{\frac{\pi n x}l}
 \end{equation}
 $$u_t(x, t) \approx \sum_{n = 1}^{\infty}\varphi_n\left(-\left(\frac{\pi n a}l\right)^2\right)e^{-\left(\frac{\pi n a}l\right)^2t}\sin{\frac{\pi n x}l}$$
 $$u_{xx}(x, t) \approx \sum_{n = 1}^{\infty}-\varphi_n\left(\frac{\pi n}l\right)^2e^{-\left(\frac{\pi n x}l\right)^2}\sin\frac{\pi n x}l$$
-Оба ряда сходятся равномерно и являются непрерывными функциями \Rightarrow решение является хорошим.
+Оба ряда сходятся равномерно и являются непрерывными функциями $\Rightarrow$ решение является хорошим.
 
 Рассмотрим теперь неоднородную задачу:
 \begin{equation}

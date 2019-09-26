@@ -194,6 +194,6 @@ y = \sqrt{\frac{1}{1 - Ct}}, C \neq 0$$
 $$\sqrt{\frac{1}{1 - C}} = \delta \Rightarrow C = 1 - \frac{1}{\delta^2}$$
 Этому значению $C$ соответствует функция:
 $$y = \sqrt{\frac{\delta^2}{\delta^2 - (\delta^2 - 1)t}}$$
-Эта функция является убывающей на $\matbb{R}_+$, поэтому $y(t) < y(0) = \delta \forall t$.
+Эта функция является убывающей на $\mathbb{R}_+$, поэтому $y(t) < y(0) = \delta \forall t$.
 Поэтому $\forall \varepsilon > 0 \exists \delta = \varepsilon: |y_{\delta}(t) - 0| < \varepsilon\, \forall t$,
 т. е. решение является устойчивым. Более того, оно асимптотически устойчиво, так как $\lim_{t \to \infty}y(t) = 0$.

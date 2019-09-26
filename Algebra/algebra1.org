@@ -42,15 +42,15 @@ $V_4 = \{e, a, b, c\}$
 #+BEGIN_EXPORT latex
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-\circ  & e & a & b & c \\
+$\circ$  & e & a & b & c \\
 \hline
-e      & e & a & b & c \\
+e        & e & a & b & c \\
 \hline
-a      & a & e & c & b \\
+a        & a & e & c & b \\
 \hline
-b      & b & c & e & a \\
+b        & b & c & e & a \\
 \hline
-c      & c & b & a & e \\
+c        & c & b & a & e \\
 \hline
 \end{tabular}
 #+END_EXPORT
@@ -80,8 +80,8 @@ $$xH = \{x \circ n | n \in H\}, Hx = \{n \circ x | n \in H\}$$
 называются *изоморфными*.
 
 #+BEGIN_EXPORT latex
-\begin{Theorem}
-Любая конечная группа порядка n изоморфна некоторой подгруппе S_n.
+\begin{Theorem}[Теорема Кэли]
+Любая конечная группа порядка $n$ изоморфна некоторой подгруппе $S_n$.
 \end{Theorem}
 #+END_EXPORT
 
@@ -194,14 +194,14 @@ $(a(x)) = \{q(x)a(x) | q(x) \in \mathbb{F}_p[x]\}$. Тогда $\mathbb{F}_p[x] 
 $GF(p^n)$.
 
 \textbf{Пример}:\\
-\mathbb{F}_3^2 - ?
+$\mathbb{F}_3^2$ - ?
 
 \begin{equation}
 \mathbb{F}_3^2[x] = \mathbb{F}_3^2[x]/(x^2 + 1) = \{0, 1, 2, x, 2x, x + 1, x + 2, 2x + 1, 2x + 2\}
 \end{equation}
 
 \textbf{Пример 2}:\\
-Рассмотрим $\mathbb{R}[x]$, a(x) = x^2 + 1. Тогда
+Рассмотрим $\mathbb{R}[x], a(x) = x^2 + 1$. Тогда
 \begin{equation}
 \mathbb{R}[x]/(x^2 + 1) = \{ax + b | a, b \in \mathbb{R}\} \text{ - поле комплексных чисел}
 \end{equation}
@@ -209,7 +209,7 @@ $GF(p^n)$.
 Поля расширения по разным многочленам изоморфны.
 \end{Theorem}
 \begin{Theorem}[Соотношение Безу]
-\forall a, b \in \mathbb{N} \exists d \in \mathbb{N}, x, y \in \mathbb{Z}: ax + by = d, d = (a, b).
+$\forall a, b \in \mathbb{N} \exists d \in \mathbb{N}, x, y \in \mathbb{Z}: ax + by = d, d = (a, b)$.
 \end{Theorem}
 
 \textbf{Расширенный алгоритм Евклида}:
@@ -220,7 +220,6 @@ E = \begin{Vmatrix}
 \end{Vmatrix},
 r = 0.
 \end{equation*}
-\end{enumerate}
 Если $r = 0$, то второй столбец $E$ даёт $x$ и $y$.
 
 Иначе \begin{equation}

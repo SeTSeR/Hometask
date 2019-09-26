@@ -6,10 +6,6 @@
 #+OPTIONS: toc:nil
 #+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
 
-#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
-
-\zall
-
 * Задача 2.5
 #+BEGIN_EXPORT latex
 \begin{equation}
@@ -20,8 +16,8 @@ $U(t, x)$ - решение (1). $U_5(t, x) = (1 + 4ct)^{-1/2}\exp\{-\frac{cx^2}{
 \begin{multline}
 U_{5t} = -\frac124c(1 + 4ct)^{-3/2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right) + \\
 + (1 + 4ct)^{-1/2}\left(-\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\frac{x^2}4\left(-\frac1{\left(\frac1{4c} + t\right)^2}\right)\right)U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right) + \\
-+ (1 + 4ct)^{-1/2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\left(U_x\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\left(-\frac{4cx}{(1 + 4ct)^2}\right) + \\
-+ U_t\left(-\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\frac1{16c^2t^2}\right)
++ (1 + 4ct)^{-1/2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}(U_x\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\left(-\frac{4cx}{(1 + 4ct)^2}\right) + \\
++ U_t\left(-\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\frac1{16c^2t^2})
 \end{multline}
 \begin{equation*}
 \left(\frac{x}{1 + 4ct}\right)_t = \frac{x}{4c}\left(-\frac1{\left(\frac1{4c} + t\right)^2}\right) =
@@ -37,7 +33,7 @@ U_{5t} = -\frac124c(1 + 4ct)^{-3/2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}U\lef
 \end{multline*}
 \begin{multline}
 U_{5xx} = (1 + 4ct)^{-1/2}(\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\left(\left(\frac{2cx}{1 + 4ct}\right)^2 - \frac{2cx}{1 + 4ct}\right)
-U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\right + \\
+U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right) + \\
 + 2\left(-\frac{2cx}{1 + 4ct}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\frac1{1 + 4ct}U_x\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\right) + \\
 + \exp\left\{-\frac{cx^2}{1 + 4ct}\right\}U_{xx}\left(\frac{x}{1 + 4ct}\right)^2)
 \end{multline}

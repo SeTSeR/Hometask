@@ -172,17 +172,17 @@ $$f(z) = \frac{iz - i}{z - i}$$
 $$w(2i) = 0, \,\mathrm{arg}w'(2i) = 0$$
 Поскольку точки, симметричные относительно границы, перейдут в точки, симметричные относительно границы, то $f(-2i) = \infty$,
 что даёт общий вид отображения:
-#+BEGIN_LaTeX latex
+#+BEGIN_EXPORT latex
 \begin{multline*}
 f(z) = \alpha\frac{z - 2i}{z + 2i} \Rightarrow f'(z) = \alpha\frac{z + 2i - z + 2i}{(z + 2i)^2} = \\
-= \frac{4\alphai}{(z + 2i)^2} \Rightarrow f(2i) = \frac{\alpha}{4i}
+= \frac{4\alpha i}{(z + 2i)^2} \Rightarrow f(2i) = \frac{\alpha}{4i}
 \end{multline*}
 $$\mathrm{arg}\frac{\alpha}{4i} = 0 \Rightarrow \alpha \in i\mathbb{R}_+$$
-#+END_LaTeX
+#+END_EXPORT
 Чтобы найти значение $\alpha$, проверим, что значение на границе $z = 0$ переходит на границу:
-#+begin_latex latex
+#+begin_export latex
 $$f(z) = \alpha\frac{-i}{i} = -\alpha \Rightarrow \alpha = i$$
-#+end_latex
+#+end_export
 Таким образом, $f(z)$ имеет вид:
 $$f(z) = \frac{iz + 2}{z + 2i}$$
 * Задача 13.50(2)
@@ -192,13 +192,13 @@ $$w\left(\frac{1}2i\right) = 0, \,\mathrm{arg} w'\left(\frac{1}2i\right) = \frac
 
 Симметричные относительно границы точки при ДЛО переходят в симметричные относительно границы, поэтому $w(2i) = \infty$,
 что даёт общий вид отображения:
-#+BEGIN_Latex latex
+#+BEGIN_EXPORT latex
 \begin{multline*}
 w(z) = \alpha\frac{z - i/2}{z - 2i} \Rightarrow w'(z) = \\
 = \alpha\frac{z - 2i - z + i/2}{(z - 2i)^2} = -\alpha\frac{5i}{2(z - 2i)^2} \Rightarrow w'\left(\frac{i}2\right) = \frac{2\alpha}{5i}
 \end{multline*}
 $$\mathrm{arg}\frac{2\alpha}{5i} = \frac{\pi}2 \Rightarrow \alpha \in \mathrm{R}_+$$
-#+END_Latex
+#+END_export
 Найдём $\alpha$ из условия, что точка с границы $z = i$ переходит на границу:
 $$w(i) = \alpha\frac{-i/2}{-i} = \frac{\alpha}2 \Rightarrow \alpha = 2$$
 Итого, $w(z)$ имеет вид:
@@ -211,7 +211,7 @@ $\{w: \mathrm{Re}\,w > 0\}$.
 $$f(z) = \frac{z - a}{cz + d}$$
 Точки $z = a + i$ и $z = a - i$ симметричны относительно границы, следовательно, их образы будут также симметричны
 относительно границы:
-#+begin_latex latex
+#+begin_export latex
 \begin{multline*}
 \begin{dcases}
 \frac{i}{(ca + d) + ci} = \alpha + i\beta, \\
@@ -223,11 +223,11 @@ $$f(z) = \frac{z - a}{cz + d}$$
 \beta = \frac{-ci}{(ca + d)^2 + c^2}
 \end{dcases}
 \end{multline*}
-#+end_latex
+#+end_export
 Поскольку $\alpha, \beta \in \mathbb{R}$, $c, d \in i\mathbb{R}$, т. е. общий вид $f(z)$ таков:
 $$f(z) = i\frac{z - a}{cz + d}, a, c, d \in \mathbb{R}$$
 * Задача 13.69
-Доказать, что регулярные ветви функции $w = \sqrt z$ конформно отображают плоскость \mathbb{C} с разрезом по
+Доказать, что регулярные ветви функции $w = \sqrt z$ конформно отображают плоскость $\mathbb{C}$ с разрезом по
 неотрицательной части действительной оси соответственно на нижнюю и верхнюю полуплоскости.
 
 Пусть $z = |z|(\cos\mathrm{arg}z + i\sin\mathrm{arg}z)$. Тогда
@@ -311,7 +311,7 @@ $$a^2 - b^2 = 1$$
 Отобразить на верхнюю полуплоскость ${w: \mathrm{Im} z > 0}$ области:
 1. $\{z: |z| < 1 \ \left[\frac{1}2; 1\right]\}$
 Применим к области функцию Жуковского, получим $\mathbb{C}_{i+} \setminus \left[1; \frac{5}4\right]$.
-Применим ДЛО $w_1 = \frac{w + 1}{w - \frac{5}4}$. Получим $\matbb{C}_{i+} \setminus \mathbb{R}_+$.
+Применим ДЛО $w_1 = \frac{w + 1}{w - \frac{5}4}$. Получим $\mathbb{C}_{i+} \setminus \mathbb{R}_+$.
 Применение второй ветви корня даст $\mathbb{C}_+$.
 
 13.79, 13.80, 13.82, 13.84(2, 4), 13.87
@@ -324,7 +324,7 @@ $$a^2 - b^2 = 1$$
 1. Ряд Фурье на $(-\pi; \pi)$ имеет вид:
 $$\frac{a_0}2 + \sum_{n = 1}^\infty(a_n\cos nx + b_n\sin nx)$$
 Где
-$$a_n = \frac{1}\pi \int_{-\pi}^\pi f(x)\cos nx dx, b_n = \frac{1}\pi \int_{-\pi}^\pi f(x)\sin nx dx, n \in \mathh{N}$$
+$$a_n = \frac{1}\pi \int_{-\pi}^\pi f(x)\cos nx dx, b_n = \frac{1}\pi \int_{-\pi}^\pi f(x)\sin nx dx, n \in \mathbb{N}$$
 Поскольку $y = x^2$ - чётная функция, $b_n = 0, \forall n \in \mathbb{N}$.
 $$a_0 = 0$$
 #+BEGIN_EXPORT latex
@@ -408,4 +408,4 @@ C = I(1) = \int_0^\infty\frac{e^{-x^2} - e^{-2x^2}}xdx =\bigg|_{x = \sqrt t}\int
 Поскольку $f(t) = e^{-t} \in C[0; \infty)$ и $\forall A > 0 \exists \int_A^\infty\frac{f(t)}tdt$, то справедлива формула Фруллани:
 $$\int_0^\infty\frac{f(at) - f(bt)}tdt = f(0)\ln\left(\frac ba\right)$$
 Окончательно получаем:
-$$\int_0^\infty\frac{e^{-\alpha x^2} - e^{-2\alpha x^2}}xdx = -\frac{\ln2}2, \forall \alpha > 
+$$\int_0^\infty\frac{e^{-\alpha x^2} - e^{-2\alpha x^2}}xdx = -\frac{\ln2}2, \forall \alpha > 0$$

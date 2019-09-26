@@ -355,7 +355,7 @@ $$y = Ce^x - \frac{1}2$$
 #+BEGIN_EXPORT latex
 \begin{equation*}
 \begin{cases}
-C\ldot1 - \frac{1}2 = 0, \\
+C\cdot1 - \frac{1}2 = 0, \\
 Ce - \frac{1}2 = e^{-1}
 \end{cases}
 \Rightarrow
@@ -530,7 +530,7 @@ z = -C_1e^x - C_2e^{-x} + C_3\cos x + C_4\sin x
 #+BEGIN_EXPORT latex
 \begin{equation*}
 y = z = \sin x
-\end{equaion*}
+\end{equation*}
 #+END_EXPORT
 2. $$J[y] = \int_a^bF(x, y, y', \ldots, y^{(n)})$$
 Здесь $F \in C^{n + 1}(D)$ и заданы $2n$ граничных условий:

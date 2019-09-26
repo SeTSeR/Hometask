@@ -10,3 +10,15 @@
 
 \zall
 
+ДЗ: 4.4, 4.6, 4.7, 4.8, 4.11
+
+** Задача 4.4
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx} + f_0, 0 < x < l, t > 0, f_0 = \text{const}, \\
+u_x(0, t) = u_x(l, t) = 0, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq l.
+\end{cases}
+\end{equation}
+#+END_EXPORT

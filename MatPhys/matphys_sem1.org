@@ -103,8 +103,8 @@
  \begin{equation*}
  -2\sqrt{-y} = x + C
  \end{equation*}
- \begin{equation*}
  И, соответственно
+ \begin{equation*}
  \begin{cases}
  \xi = x + 2\sqrt{-y}, \\
  \eta = -x + 2\sqrt{-y}.
@@ -179,14 +179,14 @@
  \begin{equation}
  \begin{cases}
  \xi = y^2 + x^2, \\
- \eta = y^2 - x^2
+ \eta = y^2 - x^2,
  \end{cases}
  \end{equation}
- \Rightarrow
+ что даёт
  \begin{equation}
  \begin{cases}
  \alpha = y^2, \\
- \beta = x^2, \\
+ \beta = x^2.
  \end{cases}
  \end{equation}
  После замены получим:
@@ -243,7 +243,7 @@
  \begin{equation}
  (dy)^2 + 2dxdy + (dy)^2 = 0
  \end{equation}
- Дискриминант равен нулю \Rightarrow уравнение параболического типа.
+ Дискриминант равен нулю $\Rightarrow$ уравнение параболического типа.
  \begin{equation}
  \begin{cases}
  \xi = y + x, \\
@@ -305,7 +305,9 @@
  #+END_EXPORT
 ** Задача 2.10
  #+BEGIN_EXPORT latex
+ \begin{equation*}
  0 \leq l \leq x, u_1 = \text{const}, u_2 = \text{const}
+ \end{equation*}
  #+END_EXPORT
  Задача:
  #+BEGIN_EXPORT latex
@@ -408,7 +410,7 @@
  Получили два уравнения
  \begin{equation}
  \begin{cases}
- X'' + \lambdaX = 0, X(0) = X(l) = 0, \\
+ X'' + \lambda X = 0, X(0) = X(l) = 0, \\
  T' + \lambda a^2T = 0.
  \end{cases}
  \end{equation}
@@ -427,10 +429,11 @@
 
  Решим теперь второе уравнение. Его решением будет $T(t) = Ce^{-\lambda a^2t} = Ce^{-\left(\frac{\pi n a}l\right)^2t}$.
 
- Общее решение будем искать в виде ряда $u = \sum_{n = 1}^\inftyC_ne^{-\left(\frac{\pi na}l\right)^2}\sin\frac{\pi n}lx$.
+ Общее решение будем искать в виде ряда
+ $$u = \sum_{n = 1}^{\infty} C_ne^{-\left(\frac{\pi na}l\right)^2}\sin\frac{\pi n}lx.$$
  Для нахождения коэффициентов $C_n$ воспользуемся граничным условием:
  \begin{equation}
- u(x, 0) = \varphi(x) = \sum_{n = 1}^{\infty}C_n\cdot1\cdot\sin\frac{\pi n}lx\text{, где} C_n = \frac2l\int_{0}^l\varphi(\xi)\sin\frac{\pi n}l\xid\xi
+ u(x, 0) = \varphi(x) = \sum_{n = 1}^{\infty}C_n\cdot1\cdot\sin\frac{\pi n}lx\text{, где } C_n = \frac2l\int_{0}^l\varphi(\xi)\sin\frac{\pi n}l\xi d\xi
  \end{equation}
  Решим задачу (33) на отрезке $[0, \pi]$ с начальным условием $u(x, 0) = \sin 3x + 8\sin 5x$.
  В этих условиях
@@ -503,7 +506,7 @@
  Подставляя в начальное условие, получим:
  $$v(x, 0) = x = \sum_{n = 1}^{\infty}C_n\sin (nx)$$
  \begin{equation}
- C_n = \frac2{\pi}\int_0^{\pi}\xi\sin(n\xi)d\xi = \frac2{\pi}\left(-\frac1n\int_0^{\pi}\xid(\cos\xi)\right) =
+ C_n = \frac2{\pi}\int_0^{\pi}\xi\sin(n\xi)d\xi = \frac2{\pi}\left(-\frac1n\int_0^{\pi}\xi d(\cos\xi)\right) =
  -\frac2{\pi n}\left(\xi(\cos n\xi)\right)\bigg|_0^{\pi} - \int_0^{\pi}\cos(n\xi)d\xi = -\frac2n(-1)^n.
  \end{equation}
  Тогда
@@ -514,15 +517,15 @@
  Д. з. 2.5, 13, 14, 15, 16, 18, 19, 3.3, 3.4
 
 * Семинар 3
- Собственные значения и собственные функции ЗШЛ с разными краевыми условиями:
+ Собственные значения и собственные функции ЗШЛ с разными краевыми условиями:\\
  #+BEGIN_EXPORT latex
  \begin{equation}
  \begin{tabular}{ |c|c|c| }
- type    & \lambda_n & X_n \\
- I - I   & \left(\frac{\pi n}{l}\right)^2 & \sin\frac{\pi n}lx \\
- I - II  & \left(\frac{\pi(2n + 1)}{2l}\right)^2 & \sin\frac{\pi(2n + 1)}{2l} \\
- II - I  & \left(\frac{\pi(2n + 1)}{2l}\right)^2 & \cos\frac{\pi(2n + 1)}{2l} \\
- II - II & \left(\frac{\pi n}l\right)^2 & \cos\frac{\pi n}lx.
+ type    & $\lambda_n$                              & $X_n$ \\
+ I - I   & $\left(\frac{\pi n}{l}\right)^2$         & $\sin\frac{\pi n}lx$ \\
+ I - II  & $\left(\frac{\pi(2n + 1)}{2l}\right)^2$  & $\sin\frac{\pi(2n + 1)}{2l}$ \\
+ II - I  & $\left(\frac{\pi(2n + 1)}{2l}\right)^2$  & $\cos\frac{\pi(2n + 1)}{2l}$ \\
+ II - II & $\left(\frac{\pi n}l\right)^2$           & $\cos\frac{\pi n}lx$.
  \end{tabular}
  \end{equation}
  #+END_EXPORT
@@ -621,7 +624,7 @@
  \frac4{\pi(2n + 1)}\int_0^l(l - x)d\sin\frac{\pi(2n + 1)}{2l}x = \\
  = \frac4{\pi(2n + 1)}\left((l - x)\sin\frac{\pi(2n + 1)}{2l}x\bigg|_0^l +
  \int_0^l\sin\frac{\pi(2n + 1)}{2l}xdx\right) = \\
- = -\frac{8l}{\pi^2(4n + 1)^2}\cos\frac{\pi(2n + 1)}{2l}x\bigg_0^l = \frac{2l}{\pi^2(2n + 1)^2}
+ = -\frac{8l}{\pi^2(4n + 1)^2}\cos\frac{\pi(2n + 1)}{2l}x\bigg|_0^l = \frac{2l}{\pi^2(2n + 1)^2}
  \end{multline}
  Откуда
  \begin{equation}
@@ -768,7 +771,7 @@
  u(x, t) = \sum_{n = 0}^{\infty}C_ne^{-\lambda_na^2t}\cos\sqrt{\lambda_n}x
  \end{equation}
  \begin{equation}
- \varphi(x) = \sum_{n = 0}^{\infty}C_n\cos\sqrt{\lambda_n}x \Rightarrow C_n = \frac1{|X_n|^2}\int_0^l\varphi(\xi)\cos\sqrt{\lambda_n}\xid\xi,
+ \varphi(x) = \sum_{n = 0}^{\infty}C_n\cos\sqrt{\lambda_n}x \Rightarrow C_n = \frac1{|X_n|^2}\int_0^l\varphi(\xi)\cos\sqrt{\lambda_n}\xi d\xi,
  \end{equation}
  где
  \begin{equation}
@@ -961,7 +964,7 @@ X_n = \sin\frac{\pi n}lx
 \end{equation}
 Найдём $f_n$:
 \begin{equation}
-f_n = \frac2l\int_0^l\fracAl(x - l)\sin\frac{\pi n}lxdx = \ldots = -\frac{2A}{\pi n}.
+f_n = \frac2l\int_0^l\frac{A}l(x - l)\sin\frac{\pi n}lxdx = \ldots = -\frac{2A}{\pi n}.
 \end{equation}
 Ищем решение в виде
 \begin{equation}
