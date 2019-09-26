@@ -11,3 +11,5 @@ To create PDF files run:
 ```
 make pdf
 ```
+
+Pre-build PDFs can be found in Releases.
