@@ -7,6 +7,6 @@ before_install:
     texlive-fonts-recommended texlive-generic-recommended
     texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
     texlive-base texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra
-    pgf emacs
+    emacs zip
 script:
 - make pdf
