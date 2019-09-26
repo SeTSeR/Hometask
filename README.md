@@ -11,8 +11,3 @@ To create PDF files run:
 ```
 make pdf
 ```
-
-TODO:
-1. Travis CI integration.
-2. Uploading PDFs to GitHub releases.
-3. Fix LaTeX compilation errors.
