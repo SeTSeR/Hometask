@@ -1,10 +1,11 @@
 sudo: required
-dist: trusty
+dist: xenial
 before_install:
+- sudo apt update
 - sudo apt install -y --no-install-recommends
     texlive-fonts-recommended texlive-generic-recommended
     texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
     texlive-base texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra
     pgf emacs
-- script:
+script:
 - make pdf
