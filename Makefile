@@ -25,9 +25,9 @@ $(TEXS): %.tex: %.org
 	$(EMACS) --batch $< -f org-latex-export-to-latex
 
 clean:
-	rm -r $(DEST)
-	rm *.tex
-	rm Algebra/*.tex
-	rm MatPhys/*.tex
-	rm Nets/*tex
-	rm ФОП/*tex
+	-rm -r $(DEST)
+	-rm *.tex
+	-rm Algebra/*.tex
+	-rm MatPhys/*.tex
+	-rm Nets/*tex
+	-rm ФОП/*tex
