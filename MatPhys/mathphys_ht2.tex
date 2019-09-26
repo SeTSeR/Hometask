@@ -1,0 +1,94 @@
+% Created 2019-09-26 Thu 16:26
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+
+\section{Задача 2.5}
+\label{sec:orgd769ad6}
+\begin{equation}
+u_t = u_{xx}
+\end{equation}
+$U(t, x)$ - решение (1). $U_5(t, x) = (1 + 4ct)^{-1/2}\exp\{-\frac{cx^2}{1 + 4ct}\}\cdot U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)$ - решение (1)?
+
+\begin{multline}
+U_{5t} = -\frac124c(1 + 4ct)^{-3/2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right) + \\
++ (1 + 4ct)^{-1/2}\left(-\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\frac{x^2}4\left(-\frac1{\left(\frac1{4c} + t\right)^2}\right)\right)U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right) + \\
++ (1 + 4ct)^{-1/2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}(U_x\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\left(-\frac{4cx}{(1 + 4ct)^2}\right) + \\
++ U_t\left(-\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\frac1{16c^2t^2})
+\end{multline}
+\begin{equation*}
+\left(\frac{x}{1 + 4ct}\right)_t = \frac{x}{4c}\left(-\frac1{\left(\frac1{4c} + t\right)^2}\right) =
+-\frac{4cx}{1 + 8ct + 16ct^2}
+\end{equation*}
+\begin{equation*}
+\left(\frac{t}{1 + 4ct}\right)_t = \frac1{4c}\left(\frac{4ct}{1 + 4ct}\right)_t = \frac1{4c}\left(1 - \frac1{4ct}\right)_t = \frac1{16c^2t^2}
+\end{equation*}
+\begin{multline*}
+\left(\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\right)_{xx} = \left(-\frac{2cx}{1 + 4ct}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\right)_x = \\
+= -\left(\frac{2c}{1 + 4ct}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\} - \frac{4c^2x^2}{(1 + 4ct)^2}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\right) = \\
+= \exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\left(\left(\frac{2cx}{1 + 4ct}\right)^2 - \frac{2cx}{1 + 4ct}\right)
+\end{multline*}
+\begin{multline}
+U_{5xx} = (1 + 4ct)^{-1/2}(\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\left(\left(\frac{2cx}{1 + 4ct}\right)^2 - \frac{2cx}{1 + 4ct}\right)
+U\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right) + \\
++ 2\left(-\frac{2cx}{1 + 4ct}\exp\left\{-\frac{cx^2}{1 + 4ct}\right\}\frac1{1 + 4ct}U_x\left(\frac{x}{1 + 4ct}, \frac{t}{1 + 4ct}\right)\right) + \\
++ \exp\left\{-\frac{cx^2}{1 + 4ct}\right\}U_{xx}\left(\frac{x}{1 + 4ct}\right)^2)
+\end{multline}
+Сопоставляя коэффициенты при $U$, $U_x$, $U_{xx}$ и учитывая, что $U_{xx} = U_t$ получаем, что $U_5$
+является решением (1).
+\section{Задача 2.13}
+\label{sec:orgebf0dba}
+Если источник подключен к левому концу:
+\begin{equation}
+\begin{cases}
+u_x(0, t) = -\frac{Q}{kS}, \\
+u_x(l, t) = 0.
+\end{cases}
+\end{equation}
+К правому:
+\begin{equation}
+\begin{cases}
+u_x(0, t) = 0, \\
+u_x(l, t) = \frac{Q}{kS}.
+\end{cases}
+\end{equation}
+\section{Задача 2.15}
+\label{sec:org58ae717}
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx}, \\
+u(0, t) = u(l, t) = 0, \\
+u(x, 0) = 0.
+\end{cases}
+\end{equation}
+\end{document}

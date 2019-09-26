@@ -6,13 +6,5 @@ MatPhys/*.pdf
 Supercomputers/*.pdf
 БД/*.pdf
 ФОП/*.pdf
-*.tex
-Algebra/*.tex
-Econ/*.tex
-Nets/*.tex
-MatPhys/*.tex
-Supercomputers/*.tex
-БД/*.tex
-ФОП/*.tex
-texput.log
+*.log
 build/

@@ -1,0 +1,205 @@
+% Created 2019-09-26 Thu 16:25
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\section{Задача 1}
+\label{sec:orgf23e3d3}
+Найти \(\frac{\partial x}{\partial\mu}\) при \(\mu = 0\) для решения задачи
+$$x' = \frac{x}t + \mu te^{-x}, x(1) = 1$$
+
+Продифференцируем задачу по \(\mu\), обозначив \(u = \frac{\partial x}{\partial\mu}\):
+\begin{equation*}
+\begin{dcases}
+u' = \frac ut + t(e^{-x} - \mu e^{-x}u), \\
+u(1) = 0
+\end{dcases}
+\end{equation*}
+Подставляя \(\mu = 0\), найдём:
+\begin{equation}
+\begin{dcases}
+u' = \frac{u}t + te^{-x}, \\
+u(1) = 0
+\end{dcases}
+\end{equation}
+Теперь подставим \(\mu = 0\) в начальное уравнение системы, чтобы найти \(x\):
+\begin{equation*}
+\begin{dcases}
+x' = \frac{x}t, \\
+x(1) = 1
+\end{dcases}
+\Rightarrow x = t
+\end{equation*}
+Подставим полученное выражение для \(x\) в (1):
+\begin{equation*}
+\begin{dcases}
+u' = \frac{u}t + te^{-t}, \\
+u(1) = 0
+\end{dcases}
+\Rightarrow
+\begin{dcases}
+u' - \frac{u}t = te^{-t}, \\
+u(1) = 0
+\end{dcases}
+\end{equation*}
+Это линейное ОДУ первого порядка, общее решение однородного уравнения имеет вид:
+$$u = Ct, \forall C$$
+Найдём решение неоднородного уравнения в виде \(u = C(t)t\):
+\begin{equation*}
+u' - \frac{u}t = C't + C - C = te^{-t} \Rightarrow C' = e^{-t} \Rightarrow C(t) = C - e^{-t}
+\end{equation*}
+Тогда \(u = Ct - te^{-t}, \forall C\).
+Вспоминая, что \(u(1) = 0\), найдём окончательно, что \(u(t) = \frac{t}e - \frac{t}{e^t}\).
+\section{Задача 2}
+\label{sec:org353f77a}
+Найти решение уравнения в виде степенного ряда до 4 степени:
+\begin{equation*}
+\begin{dcases}
+y' = x^2 + y^3, \\
+y(1) = 1
+\end{dcases}
+\end{equation*}
+
+Ищем решение в виде: \(y = a_0 + a_1(x - 1) + a_2(x - 1)^2 + a_3(x - 1)^3 + a_4(x - 1)^4 + \ldots\). Тогда
+$$y' = a_1 + 2a_2(x - 1) + 3a_3(x - 1)^2 + 4a_4(x - 1)^3 + \ldots,$$
+$$y^3 = a_0^3 + 3a_0^2a_1(x - 1) + (3a_0^2a_2 + 3a_0a_1^2)(x - 1)^2 + (a_3 + 6a_0a_1a_2 + a_1^3)(x - 1)^3 + \ldots$$
+Подставив это в начальное уравнение, получим:
+\begin{equation*}
+\begin{cases}
+a_1 + 2a_2(x - 1) + 3a_3(x - 1)^2 + 4a_4(x - 1)^3 + \ldots = a_0^3 + 3a_0^2a_1(x - 1) + (3a_0^2a_2 + 3a_0a_1^2 + 1)(x - 1)^2 + (a_3 + 6a_0a_1a_2 + a_1^3)(x - 1)^3 + \ldots, \\
+y(1) = 1
+\end{cases}
+\end{equation*}
+Или:
+\begin{equation*}
+\begin{cases}
+a_1 = a_0^3, \\
+2a_2 = 3a_0^2a_1, \\
+3a_3 = 3a_0^2a_2 + 3a_0a_1^2 + 1, \\
+4a_4 = a_3 + 6a_0a_1a_2 + a_1^3, \\
+a_0 = 1
+\end{cases}
+\Rightarrow
+\begin{dcases}
+a_0 = 1, \\
+a_1 = 1, \\
+a_2 = \frac{3}2, \\
+a_3 = \frac{17}6, \\
+a_4 = \frac{77}{24}
+\end{dcases}
+\end{equation*}
+Т. е. разложение имеет вид:
+$$y = 1 + (x - 1) + \frac{3}2(x - 1)^2 + \frac{17}6(x - 1)^3 + \frac{77}{24}(x - 1)^4 + \ldots$$
+0:58:06
+\section{Задача 3}
+\label{sec:orgd2c490e}
+Исследовать на устойчивость нулевое решение:
+\begin{equation*}
+\begin{cases}
+\dot x = \tg(z - y) - 2x, \\
+\dot y = \sqrt{9 - 12x} - 3e^y, \\
+\dot z = -3y
+\end{cases}
+\end{equation*}
+
+Для начала линеаризуем систему:
+$$\tg(z - y) - 2x = -2x - y + z + o(\rho)$$
+$$\sqrt{9 - 12x} - 3e^y = 3\sqrt{1 - \frac{4}3x} - 3(1 + y + o(\rho)) = 3 - \frac{3}2\frac{4}3x - 3 - 3y + o(\rho) = -2x - 3y + o(\rho)$$
+\begin{equation*}
+\begin{cases}
+\dot x = -2x - y + z + o(\rho), \\
+\dot y = -2x - 3y + o(\rho), \\
+\dot z = -3y
+\end{cases}
+\end{equation*}
+Найдём собственные значения этой системы:
+\begin{multline*}
+|A - \lambda I| =
+\begin{vmatrix}
+-2 - \lambda & -1           & 1 \\
+-2           & -3 - \lambda & 0 \\
+0            & -3           & -\lambda
+\end{vmatrix}
+= \begin{vmatrix}
+-2 & -3 - \lambda \\
+0  & -3
+\end{vmatrix} - \lambda
+\begin{vmatrix}
+-2 - \lambda & -1 \\
+-2           & -3 - \lambda
+\end{vmatrix}
+= \\
+= 6 + \lambda + 3 - \lambda(\lambda^2 + 5\lambda + 6 - 2) = -\lambda^3- 5\lambda^2
+- 3\lambda + 9 = -\lambda^2(\lambda - 1) - 6\lambda(\lambda - 1) - 9(\lambda - 1) = \\
+= (\lambda - 1)((\lambda - 3)^2 - 18) = (\lambda - 1)(\lambda - (3 - 3\sqrt 2))(\lambda - (3 + 3\sqrt 2))
+\end{multline*}
+В данном случае есть два положительных собственных значения \(\lambda = 1\) и \(\lambda = 3(1 + \sqrt 2)\),
+поэтому система является неустойчивой.
+1:25:30
+\section{Задача 4}
+\label{sec:org4eb04cd}
+Исследовать на устойчивость по определению:
+\begin{equation*}
+\begin{cases}
+2ty' = y - y^3, \\
+y(1) = 0
+\end{cases}
+\end{equation*}
+Решим уравнение:
+$$2ty' = y - y^3 \Rightarrow \frac{2dy}{y - y^3} = \frac{dt}t$$
+$$\frac{2}{y - y^3} = \frac{A}{y} + \frac{B}{y - 1} + \frac{C}{y + 1} =
+\frac{A(y^2 - 1) + B(y^2 + y) + C(y^2 - y)}{y + 1}$$
+\begin{equation*}
+\begin{cases}
+A + B + C = 0, \\
+B - C = 0, \\
+A = -2
+\end{cases}\
+\Rightarrow
+\begin{cases}
+A = -2, \\
+B = C = 1
+\end{cases}
+\end{equation*}
+$$\int\frac{2dy}{y - y^3} = -2\int\frac{dy}y + \int\frac{d(y - 1)}{y - 1} +
+\int\frac{d(y + 1)}{y + 1} = \ln\left(C\frac{y^2 - 1}{y^2}\right), C \neq 0$$
+$$\int\frac{dt}t = \ln t$$
+$$\frac{y^2 - 1}{y^2} = Ct \Rightarrow \frac{1}{y^2} = 1 - Ct, C \neq 0 \Rightarrow
+y = \sqrt{\frac{1}{1 - Ct}}, C \neq 0$$
+При делении на \(y - y^3\) мы не учли функции \(y = 0\) и \(y = \pm 1\). Все три функции также
+являются решениями.
+Граничному условию \(y(1) = 0\) удовлетворяет только нулевое решение. Найдём решение, отвечающее
+граничному условию \(y(1) = \delta, 0 < \delta < 1\):
+$$\sqrt{\frac{1}{1 - C}} = \delta \Rightarrow C = 1 - \frac{1}{\delta^2}$$
+Этому значению \(C\) соответствует функция:
+$$y = \sqrt{\frac{\delta^2}{\delta^2 - (\delta^2 - 1)t}}$$
+Эта функция является убывающей на \(\mathbb{R}_+\), поэтому \(y(t) < y(0) = \delta \forall t\).
+Поэтому \(\forall \varepsilon > 0 \exists \delta = \varepsilon: |y_{\delta}(t) - 0| < \varepsilon\, \forall t\),
+т. е. решение является устойчивым. Более того, оно асимптотически устойчиво, так как \(\lim_{t \to \infty}y(t) = 0\).
+\end{document}

@@ -1,0 +1,98 @@
+% Created 2019-09-26 Thu 16:26
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[english, russian]{babel}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\section{Задача 4.11}
+\label{sec:org32f4507}
+$$X_1 = -0.114$$
+$$X_2 = 0.196$$
+$$H_0: X_i \sim R[-0.5, 0.5]$$
+$$H_1: X_i \sim N(0, 0,009)$$
+$$\alpha = 0.1$$
+Критерий - ?
+
+$$L_0 = \frac{1}1\mathbb{1}(\min X_i \geq -0.5)\mathbb{1}(\max X_i \leq 0.5)$$
+$$L_1 = \frac{1}{2\pi 0.009}\exp\left(-\frac{1}{2(0.009)^2(X_1^2+X_2^2)}\right)$$
+\begin{equation*}
+\phi^*(\mathbb{X}) = \begin{cases}
+1, \frac{L_1}{L_0} \geq 0.5\\
+0, \frac{L_1}{L_0} \leq 0.5
+\end{cases} \Leftrightarrow \phi^*(\mathbb{X}) = \begin{cases}
+1, \max |X_i| > 0.5\\
+0, \max |X_i| \leq 0.5
+\end{cases}
+\end{equation*}
+$$\mathbb{E}_{H_0} = 1\mathbb{P}{(X_1^2 + X_2^2 \leq C_\alpha)} = \alpha
+\Rightarrow C_\alpha = \frac{\alpha}{\pi} \approx 0.0031$$
+$$X_1^2 + X_2^2 = 0.0514 > 0.031$$
+Таким образом, гипотезу нужно принять.
+\section{Задача 2}
+\label{sec:org5904462}
+Найти характеристическую функцию распределения Коши:
+$$\xi \sim \rho(x) = \frac{1}{\pi(1 + x^2)}$$
+
+\begin{multline*}
+\varphi(t, \xi) = \mathbb{E}e^{it\xi} = \int_{-\infty}^\infty\frac{1}{\pi(1+x^2)}e^{itx}dx = \\
+ = \lim_{R \to \infty}\oint_{\gamma_R}\frac{1}{\pi(1+z^2)}e^{itz}dz = 2\pi i\, res_{z=i} f(z) = \\
+ = 2\pi i \lim_{z=i}\frac{1}{\pi(1+i)}e^{itz} = e^{-t}
+\end{multline*}
+С учётом чётности характеристической функции получим $$\varphi(t, \xi) = e^{-|t|}$$
+
+Пусть теперь \(\xi_1, \ldots, \xi_n \sim \rho(x)\). Найти распределение \(\frac{\sum_{i = 1}^n\xi}{n}\).
+\begin{multline*}
+\varphi(t, \frac{\xi_1 + \ldots + \xi_n}{n}) = \mathbb{E}\exp{it\frac{\sum_{i = 1}^n\xi_n}{n}} = \ldots = e^{-|t|}
+\end{multline*}
+\section{Задача 3}
+\label{sec:orgd135694}
+Есть выборка из распределения Рэлея:
+$$F(x, \theta) = 1 - e^{-\left(\frac{x}{\sqrt\theta}\right)^2}, x \geq -, \theta > 0$$
+Найти оценку максимального правдоподобия и её свойства.
+Найдём распределение \(X_i\):
+\begin{equation*}
+\begin{cases}
+0, x < 0, \\
+2e^{-\frac{x^2}{\theta}}\frac{x}\theta, x \geq 0
+\end{cases}
+\end{equation*}
+Функция правдоподобия:
+$$L(x, \theta) = \prod_{i = 1}^n2e^{-\frac{X_i^2}{\theta}}\frac{X_i}{\theta}
+= 2^n\prod_{i = 1}^n{X_i}\frac{e^{-\frac{1}\theta\sum_{i = 1}^n{X_i^2}}}{\theta^n}$$
+Откуда получаем, что \(T(\mathbb{X}) = (\sum_{i = 1}^nX_i)^2\) - достаточная оценка. По критерию факторизации, она
+является полной. Оценка максимального правдоподобия - \(\theta = \frac{\sum_{i = 1}^nX_i^2}n\)
+Несмещённость оценки:
+$$\mathbb{E}(\theta) = \frac{1}n\sum_{i = 1}^n\mathbb{E}X_i^2 = \mathbb{E}X_i^2 = \ldots = \theta$$
+Из доказанного и закона больших чисел следует, что оценка также является состоятельной. Оценка является
+эффективной как функция достаточной статистики.
+\section{Задача 4}
+\label{sec:orgd106b89}
+Дана выборка из логистического распределения:
+$$\rho(x, \theta) = \frac{e^{-x + \theta}}{(1 + e^{-x + \theta})^2}$$
+Плотность распределения симметрична относительно \(\theta\), поэтому \(\mathbb{E}X_i = \theta\), что и означает
+несмещённость и состоятельность.
+\end{document}
