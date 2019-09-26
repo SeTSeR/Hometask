@@ -5,7 +5,7 @@ before_install:
 - sudo apt update
 - sudo apt install -y --no-install-recommends texlive-fonts-recommended texlive-generic-recommended
   texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-base
-  texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra emacs
+  texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra pandoc
   zip
 script:
 - make pdf
