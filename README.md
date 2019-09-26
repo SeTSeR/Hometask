@@ -2,7 +2,7 @@
 
 ## Dependencies
 ```
-apt install --no-install-recommends emacs texlive-full
+apt install --no-install-recommends texlive-full make
 ```
 
 ## Build instructions
