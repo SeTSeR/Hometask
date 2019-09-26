@@ -1,7 +1,10 @@
-PDFS = calc.pdf diffeq_kr.pdf diffeq.pdf mathstat.pdf phys.pdf task2.pdf Algebra/algebra1.pdf Nets/nets1.pdf ФОП/fop.pdf MatPhys/matphys1.pdf MatPhys/matphys_sem1.pdf MatPhys/matphys_ht1.pdf MatPhys/mathphys_ht2.pdf MatPhys/matphys_ht3.pdf
-TEXS = $(PDFS:.pdf=.tex)
-SRCS = $(PDFS:.pdf=.org)
 EMACS = emacs
+LATEX = pdflatex
+DEST = build/
+SRCS = calc.org diffeq_kr.org diffeq.org mathstat.org phys.org task2.org Algebra/algebra1.org Nets/nets1.org ФОП/fop.org MatPhys/matphys1.org MatPhys/matphys_sem1.org MatPhys/matphys_ht1.org MatPhys/mathphys_ht2.org MatPhys/matphys_ht3.org
+TEXS = $(SRCS:.org=.tex)
+PDFS = $(SRCS:.org=.pdf)
+
 
 all: pdf
 
@@ -9,18 +12,20 @@ pdf: $(PDFS)
 
 tex: $(TEXS)
 
-$(PDFS): %.pdf: %.org
-	$(EMACS) --batch $< -f org-latex-export-to-pdf
+$(PDFS): %.pdf: %.tex
+	mkdir -p $(DEST)
+	$(LATEX) -interaction nonstopmode -output-directory $(DEST) $<
+
+MatPhys/matphys_ht3.pdf: MatPhys/matphys_ht3.tex
+	mkdir -p $(DEST)
+	sed -i 's/img/MatPhys\/img/' $<
+	$(LATEX) -interaction nonstopmode -output-directory $(DEST) $<
 
 $(TEXS): %.tex: %.org
 	$(EMACS) --batch $< -f org-latex-export-to-latex
 
 clean:
-	rm *.pdf
-	rm Algebra/*.pdf
-	rm MatPhys/*.pdf
-	rm Nets/*.pdf
-	rm ФОП/*.pdf
+	rm -r $(DEST)
 	rm *.tex
 	rm Algebra/*.tex
 	rm MatPhys/*.tex
