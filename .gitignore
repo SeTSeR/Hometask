@@ -6,5 +6,10 @@ MatPhys/*.pdf
 Supercomputers/*.pdf
 БД/*.pdf
 ФОП/*.pdf
+Econ
+Nets
+Supercomputers
+БД
+ФОП
 *.log
 build/
