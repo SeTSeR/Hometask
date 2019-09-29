@@ -1,4 +1,4 @@
-% Created 2019-09-26 Thu 16:26
+% Created 2019-09-29 Sun 16:29
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -38,12 +38,420 @@
 ДЗ: 4.4, 4.6, 4.7, 4.8, 4.11
 
 \section{Задача 4.4}
-\label{sec:org8f223bc}
+\label{sec:orge8613b5}
 \begin{equation}
 \begin{cases}
-u_t = a^2u_{xx} + f_0, 0 < x < l, t > 0, f_0 = \text{const}, \\
+u_t = a^2u_{xx} + f_0, 0 < x < l, t > 0, f_0 = const, \\
 u_x(0, t) = u_x(l, t) = 0, t > 0, \\
 u(x, 0) = 0, 0 \leq x \leq l.
 \end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org7738b40}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = \left(\frac{\pi n}l\right)^2, \\
+X_n = \cos\frac{\pi n}l.
+\end{cases}
+\end{equation*}
+Ищем решение (1) в виде
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}u_n(t)\cos\frac{\pi n}lx.
+\end{equation}
+Для $f_0$ получим:
+\begin{equation}
+f_0 = \sum_{n = 0}^{\infty}f_n\cos\frac{\pi n}lx \Rightarrow f_n = 0, n \neq 0.
+\end{equation}
+Подставив в (1) (2) и (3), получим систему:
+\begin{equation*}
+\begin{cases}
+u_n'(t) = -\left(\frac{\pi na}l\right)^2u_n(t) + f_n, \\
+u_n(0) = 0.
+\end{cases}
+\end{equation*}
+При $n = 0$:
+\begin{equation*}
+\begin{cases}
+u_0'(t) = -\left(\frac{\pi na}l\right)^2u_0(t) + f_0, \\
+u_0(0) = 0.
+\end{cases}
+\end{equation*}
+Решением однородной задачи будет функция $u = C\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}$. Применив
+метод вариации постоянной, найдём $C(t)$:
+$$C'(t)\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\} = f_0 \Rightarrow C(t) = \frac{f_0l^2}{\pi^2 n^2a^2}\exp\left\{\left(\frac{\pi na}l\right)^2t\right\} + C_0$$
+откуда
+\begin{equation*}
+u_0(t) = \frac{f_0l^2}{\pi^2n^2a^2} + C_0\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}
+\end{equation*}
+Подставив начальное условие, найдём $C_0$:
+\begin{equation*}
+u_0(t) = \frac{f_0l^2}{\pi^2n^2a^2}\left(1 - \exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}\right)
+\end{equation*}
+При $n \neq 0$ задача Коши будет иметь только нулевое решение, поэтому окончательно для $u(x, t)$ получаем:
+\begin{equation}
+u(x, t) = \frac{f_0l^2}{\pi^2n^2a^2}\left(1 - \exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}\right)
+\end{equation}
+\section{Задача 4.6}
+\label{sec:org34a92f3}
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx} + f_0, 0 < x < l, t > 0, f_0 = const, \\
+u_x(0, t) = u(l, t) = 0, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq l.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org74fdc22}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = \left(\frac{\pi(2n + 1)}{2l}\right)^2, \\
+X_n = \cos\frac{\pi(2n + 1)}{2l}x.
+\end{cases}
+\end{equation*}
+Ищем решение в виде:
+\begin{equation*}
+u(x, t) = \sum_{n = 0}^{\infty}u_n(t)\cos\frac{\pi(2n + 1)}{2l}x
+\end{equation*}
+Найдём разложение $f_0$:
+\begin{equation*}
+f_0 = \sum_{n = 0}^{\infty}f_n\cos\frac{\pi(2n + 1)}{2l}x, \text{ где}
+\end{equation*}
+\begin{equation*}
+f_n = \frac2l\int_0^lf_0\cos\frac{\pi(2n + 1)}{2l}xdx =
+\frac{2f_0}{l}\frac{2l}{\pi(2n + 1)}\sin\frac{\pi(2n + 1)}{2l}x\bigg|_0^l =
+\frac{4f_0}{\pi(2n + 1)}(-1)^n
+\end{equation*}
+Подставляя эти разложения в (5), получим систему задач Коши на $u_n(t)$:
+\begin{equation}
+\begin{cases}
+u_n'(t) = -\left(\frac{\pi(2n + 1)}{2l}\right)^2u_n(t) + \frac{4f_0}{\pi(2n + 1)}(-1)^n, \\
+u_n(0) = 0.
+\end{cases}
+\end{equation}
+Решение будем искать в виде:
+\begin{equation*}
+u_n(t) = C(t)\exp\left\{-\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\}
+\end{equation*}
+Тогда
+\begin{equation*}
+C'(t)\exp\left\{-\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\} = \frac{4f_0}{\pi(2n + 1)}(-1)^n.
+\end{equation*}
+\begin{equation*}
+C'(t) = \frac{4f_0}{\pi(2n + 1)}(-1)^n\exp\left\{\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\}
+\end{equation*}
+\begin{multline*}
+C(t) = (-1)^n\frac{4f_0}{\pi(2n + 1)}\left(\frac{2l}{\pi(2n + 1)}\right)^2\exp\left\{\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\} + C_0 = \\
+= (-1)^n\frac{16f_0l^2}{\pi^3(2n + 1)^3}\exp\left\{\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\} + C_0
+\end{multline*}
+Тогда для $u_n$ получаем:
+\begin{equation*}
+u_n(t) = (-1)^n\frac{16f_0l^2}{\pi^3(2n + 1)^3} + C_0\exp\left\{-\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\}
+\end{equation*}
+Подставив в начальное условие, окончательно находим:
+\begin{equation*}
+u_n(t) = (-1)^n\frac{16f_0l^2}{\pi^3(2n + 1)^3}\left(1 - \exp\left\{-\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\}\right)
+\end{equation*}
+И для $u(x, t)$ получаем выражение:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}(-1)^n\frac{16f_0l^2}{\pi^3(2n + 1)^3}\left(1 - \exp\left\{-\left(\frac{\pi(2n + 1)}{2l}\right)^2t\right\}\right)\cos\frac{\pi(2n + 1)}{2l}x
+\end{equation}
+\section{Задача 4.7}
+\label{sec:orgebccd38}
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx}, 0 < x < l, t > 0, \\
+u_x(0, t) = 0, u_x(l, t) = p, t > 0, p = const, \\
+u(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org26267a6}
+Ищем решение в виде $u = U + v$, где $U = a(t)x^2 + b(t)x$ и удовлетворяет краевым условиям,
+а $v$ - решение задачи с однородными краевыми условиями. Подставив краевые условия, найдём:
+\begin{equation*}
+\begin{cases}
+2a(t)0 + b(t) = 0, \\
+2a(t)l + b(t) = p
+\end{cases}
+\Rightarrow
+\begin{cases}
+a(t) = \frac{p}{2l}, \\
+b(t) = 0.
+\end{cases}
+\end{equation*}
+Получили, что
+\begin{equation}
+u = v + \frac{p}{2l}x^2.
+\end{equation}
+Подставив это представление в (8), получим задачу на $v$:
+\begin{equation}
+\begin{dcases}
+v_t = a^2\left(v_{xx} + \frac{p}l\right) = a^2v_{xx} + \frac{pa^2}l, 0 < x < l, t > 0, \\
+v_x(0, t) = v_x(l, t) = 0, t > 0, \\
+v(x, 0) = -\frac{p}{2l}x^2, 0 \leq x \leq \pi.
+\end{dcases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = \left(\frac{\pi n}l\right)^2, \\
+X_n = \cos\frac{\pi n}lx.
+\end{cases}
+\end{equation*}
+Ищем решение в виде:
+\begin{equation}
+v(x, t) = \sum_{n = 0}^{\infty}v_n(t)\cos\frac{\pi n}lx.
+\end{equation}
+Найдём разложения $\frac{pa^2}l$ и $v(x, 0)$:
+\begin{equation*}
+\frac{pa^2}{l} = \sum_{n = 0}^{\infty}f_n\cos\frac{\pi n}l \Rightarrow f_0 = \frac{pa^2}l, f_n = 0, n \neq 0,
+\end{equation*}
+\begin{equation*}
+v(x, 0) = \sum_{n = 0}^{\infty}v_n(0)\cos\frac{\pi n}lx = -\frac{p}{2l}x^2
+\end{equation*}
+\begin{equation*}
+v_0(0) = \frac1l\int_0^l-\frac{p}{2l}x^2dx = -\frac{p}{2l^2}\frac{l^3}3 = -\frac{pl}6, \\
+\end{equation*}
+\begin{multline*}
+v_n(0) = \frac2l\int_0^l-\frac{p}{2l}x^2\cos\frac{\pi n}lxdx =
+-\frac{p}{l^2}\frac{l}{\pi n}\int_0^lx^2d\left(\sin\frac{\pi n}lx\right) = \\
+= -\frac{p}{\pi nl}\left(x^2\sin\frac{\pi n}lx\bigg|_0^l - 2\int_0^lx\sin\frac{\pi n}lxdx\right) =
+-\frac{2p}{\pi nl}\frac{l}{\pi n}\int_0^lxd\left(\cos\frac{\pi n}lx\right) = \\
+= -\frac{2p}{\pi^2n^2}\left(x\cos\frac{\pi n}lx\bigg|_0^l - \int_0^l\cos\frac{\pi n}lxdx\right) =
+\frac{2pl}{\pi^2n^2}(-1)^{n + 1} + \frac{2p}{\pi^2n^2}\frac{l}{\pi n}\sin\frac{\pi n}lx\bigg|_0^l =
+\frac{2pl}{\pi^2n^2}(-1)^{n + 1}
+\end{multline*}
+Получаем систему задач Коши для $v_n(t)$:
+\begin{equation}
+\begin{cases}
+v_n' = -\left(\frac{\pi na}l\right)^2v_n + f_n, \\
+v_n(0) = v_n(0).
+\end{cases}
+\end{equation}
+При $n = 0$:
+\begin{equation*}
+\begin{dcases}
+v_0' = -\left(\frac{\pi na}l\right)^2v_n + \frac{pa^2}l, \\
+v_0(0) = -\frac{pl}6.
+\end{dcases}
+\end{equation*}
+Ищем решение в виде
+\begin{equation*}
+v(t) = C(t)\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}
+\end{equation*}
+Тогда
+\begin{equation*}
+C'(t)\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\} = \frac{pa^2}l
+\end{equation*}
+\begin{equation*}
+C'(t) = \frac{pa^2}l\exp\left\{\left(\frac{\pi na}l\right)^2t\right\},
+\end{equation*}
+\begin{equation*}
+C(t) = \frac{pa^2}l\frac{l}{\pi na}\exp\left\{\left(\frac{\pi na}l\right)^2t\right\} + C_0 =
+\frac{pa}{\pi n}\exp\left\{\left(\frac{\pi na}l\right)^2t\right\} + C_0.
+\end{equation*}
+Для $v_0(t)$ получаем:
+\begin{equation*}
+v_0(t) = \frac{pa}{\pi n} + C_0\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}
+\end{equation*}
+Подставляя начальные условия:
+\begin{equation*}
+v_0(0) = \frac{pa}{\pi n} + C_0 = -\frac{pl}6 \Rightarrow C_0 = -\frac{p(6a + \pi nl)}{6\pi n},
+\end{equation*}
+т. е.
+\begin{equation}
+v_0(t) = \frac{pa}{\pi n} - \frac{p(6a + \pi nl)}{6\pi n}\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}
+\end{equation}
+При $n \neq 0$:
+\begin{equation}
+\begin{dcases}
+v'_n = -\left(\frac{\pi na}l\right)^2v_n, \\
+v_n(0) = \frac{2pl}{\pi^2n^2}(-1)^{n + 1}.
+\end{dcases}
+\end{equation}
+Решением этой задачи будет функция:
+\begin{equation}
+v_n(t) = \frac{2pl}{\pi^2n^2}(-1)^{n + 1}\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}.
+\end{equation}
+Подставляя найденные функции $v_n(t)$ в (11) и (9), находим окончательно выражение для $u(x, t)$:
+\begin{equation}
+u(x, t) = \frac{p}{2l}x^2 + \frac{pa}{\pi n} - \frac{p(6a + \pi nl)}{6\pi n}\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\} +
+\sum_{n = 1}^{\infty}\frac{2pl}{\pi^2n^2}(-1)^{n + 1}\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}\cos\frac{\pi n}lx
+\end{equation}
+\section{Задача 4.8}
+\label{sec:orgfbcb388}
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + \cos(t), 0 < x < \pi, t > 0, \\
+u(0, t) = u(\pi, t) = 0, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:orgfc28506}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = n^2, \\
+X_n = \sin nx.
+\end{cases}
+\end{equation*}
+Ищем решение в виде:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}u_n(t)\sin nx
+\end{equation}
+Найдём разложение неоднородности:
+\begin{equation*}
+\cos t = \sum_{n = 0}^{\infty}f_n(t)\sin nx, \text{ где}
+\end{equation}
+\begin{equation*}
+f_n(t) = \int_0^{\pi}\cos t\sin nxdx = -\frac{\cos t}n\cos{nx}|_0^{\pi}
+= \frac{\cos t}n(1 - (-1)^n) = \begin{cases}
+\frac{2\cos t}n, n = 2k + 1, k \in \mathbb{N}_0, \\
+0, k \in 2k, k \in \mathbb{N}_0.
+\end{cases}
+\end{equation*}
+Получаем систему задач Коши для $u_n(t)$:
+\begin{equation}
+\begin{cases}
+u_n' = -n^2u_n + f_n, \\
+u_n(0) = 0.
+\end{cases}
+\end{equation}
+Для чётных $n$ $u_n = 0$. Для нечётных $n$:
+\begin{equation*}
+\begin{dcases}
+u_n' = -n^2u_n + \frac{2\cos t}n, \\
+u_n(0) = 0.
+\end{dcases}
+\end{equation*}
+Ищем решение в виде:
+\begin{equation*}
+u_n = C(t)e^{-n^2t}.
+\end{equation*}
+Тогда
+\begin{equation}
+C'(t)e^{-n^2t} = \frac{2\cos t}n \Rightarrow C'(t) = \frac{2e^{-n^2t}\cos t}n
+\end{equation}
+Пусть $I_a = \int_0^ae^{-n^2t}\cos tdt$. Тогда:
+\begin{multline*}
+I_a = \int_0^ae^{-n^2t}d(\sin t) = e^{-n^2t}\sin t\bigg|_0^a + n^2\int_0^ae^{-n^2t}\sin tdt = \\
+= e^{-n^2a}\sin a - n^2\int_0^ae^{-n^2t}d(\cos t) = \\
+= e^{-n^2a}\sin a - n^2\left(e^{-n^2t}\cos t\bigg|_0^a + n^2\int_0^ae^{-n^2t}\cos tdt\right) = \\
+= e^{-n^2a}\sin a - n^2(e^{-n^2a}\cos a - 1) - n^4I_a
+\end{multline*}
+Отсюда получаем выражение для $I_a$:
+\begin{equation*}
+I_a = \frac{e^{-n^2a}\sin a - n^2(e^{-n^2a}\cos a - 1)}{n^4 + 1}
+\end{equation*}
+Тогда для $C(t)$:
+\begin{equation}
+C(t) = \frac{2e^{-n^2t}\sin t - 2n^2e^{-n^2t}\cos t + 2n^2}{n(n^4 + 1)} + C_0.
+\end{equation}
+Поскольку $u_n(0) = 0$, то $C(0) = 0$, поэтому $C_0 = 0$, что даёт для $u_n$:
+\begin{equation}
+u_n(t) = \frac{2e^{-2n^2t}\sin t - 2n^2e^{-2n^2t}\cos t + 2ne^{-n^2t}}{n^5 + n}.
+\end{equation}
+Подставляя в (18), получим для $u(x, t)$:
+\begin{equation}
+u(x, t) = \sum_{k = 0}^{\infty}\frac{2e^{-2(2k + 1)^2t}\sin t - 2(2k + 1)^2e^{-2(2k + 1)^2t}\cos t + 2(2k + 1)e^{-(2k + 1)^2t}}{(2k + 1)^5 + (2k + 1)}\sin(2k + 1)x
+\end{equation}
+\section{Задача 4.11}
+\label{sec:orgd971981}
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + x, 0 < x < \pi, t > 0, \\
+u(0, t) = u(\pi, t) = 0, t > 0, \\
+u(x, 0) = \sin 2x, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org4e6a5d8}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = n^2, \\
+X_n = \sin nx.
+\end{cases}
+\end{equation}
+Ищем решение в виде:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}u_n(t)\sin nx.
+\end{equation}
+Найдём разложения $x$ и $u(x, 0)$:
+\begin{equation*}
+u(x, 0) = \sum_{n = 0}^{\infty}v_n\sin nx = \sin 2x \Rightarrow v_2 = 1, v_n = 0, n \neq 2.
+\end{equation*}
+\begin{equation*}
+x = \sum_{n = 0}^{\infty}f_n\sin nx, \text{ где}
+\end{equation*}
+\begin{multline*}
+f_n = \int_0^{\pi}x\sin nxdx = -\frac1n\int_0^{\pi}xd(\cos nx)dx = \\
+= -\frac1n\left(x\cos nx\bigg|_0^{\pi} - \int_0^{\pi}\cos nxdx\right) =
+\frac{\pi}n(-1)^{n + 1} + \frac1{n^2}\sin nx\bigg|_0^{\pi} = \frac{\pi}n(-1)^{n + 1}
+\end{multline*}
+Подставив найденные коэффициенты в задачу (24), получим систему задач Коши:
+\begin{equation}
+\begin{dcases}
+u_n' = -n^2u_n + \frac{\pi}n(-1)^{n + 1}, \\
+u_n(0) = v_n.
+\end{dcases}
+\end{equation}
+При $n = 2$:
+\begin{equation*}
+\begin{cases}
+u_n' = -n^2u_n + \frac{\pi}n(-1)^{n + 1}, \\
+u_n(0) = 1.
+\end{cases}
+\end{equation*}
+Ищем решение в виде
+\begin{equation*}
+u_n = C(t)e^{-n^2t}.
+\end{equation*}
+Тогда для $C(t)$:
+\begin{equation*}
+C'(t)e^{-n^2t} = \frac{\pi}n(-1)^{n + 1} \Rightarrow C'(t) = \frac{\pi}n(-1)^{n + 1}e^{n^2t}
+\Rightarrow C(t) = \frac{\pi}{n^3}(-1)^{n + 1}e^{n^2t} + C_0.
+\end{equation*}
+Так как $u_n(0) = 1$, то $C(0) = 1 \Rightarrow C_0 = 1 + \frac{pi}8$, откуда получаем выражение
+для $u_2(t)$:
+\begin{equation}
+u_2(t) = -\frac{\pi}8 + \left(1 + \frac{\pi}8\right)e^{-4t}.
+\end{equation}
+При $n \neq 2$:
+\begin{equation}
+\begin{cases}
+u'_n = -n^2u_n + \frac{\pi}n(-1)^{n + 1}, \\
+u_n(0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде
+\begin{equation*}
+u_n = C(t)e^{-n^2t}.
+\end{equation*}
+Тогда для $C(t)$ получаем:
+\begin{equation*}
+\begin{cases}
+C'(t)e^{-n^2t} = \frac{\pi}n(-1)^{n + 1}, \\
+C(0) = 0.
+\end{cases}
+\Rightarrow
+\begin{cases}
+C'(t) = \frac{\pi}n(-1)^{n + 1}e^{n^2t}, \\
+C(0) = 0.
+\end{cases}
+\Rightarrow
+C = \frac{\pi}{n^3}(-1)^{n + 1}(e^{n^2t} - 1)
+\end{equation*}
+Откуда следует, что
+\begin{equation}
+u_n(t) = \frac{\pi}{n^3}(-1)^{n + 1}(1 - e^{-n^2t}).
+\end{equation}
+Окончательно для $u(x, t)$ имеем:
+\begin{equation}
+u(x, t) = \pi(1 - e^{-t}) + \left(-\frac{\pi}8 + \left(1 + \frac{\pi}8\right)e^{-4t}\right) +
+\sum_{n = 3}^{\infty}\frac{\pi}n^3(-1)^{n + 1}(1 - e^{-n^2t})\sin nx
 \end{equation}
 \end{document}
