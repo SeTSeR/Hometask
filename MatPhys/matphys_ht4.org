@@ -49,24 +49,14 @@ u_n(0) = 0.
 При $n = 0$:
 \begin{equation*}
 \begin{cases}
-u_0'(t) = -\left(\frac{\pi na}l\right)^2u_0(t) + f_0, \\
+u_0'(t) = f_0, \\
 u_0(0) = 0.
 \end{cases}
 \end{equation*}
-Решением однородной задачи будет функция $u = C\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}$. Применив
-метод вариации постоянной, найдём $C(t)$:
-$$C'(t)\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\} = f_0 \Rightarrow C(t) = \frac{f_0l^2}{\pi^2 n^2a^2}\exp\left\{\left(\frac{\pi na}l\right)^2t\right\} + C_0$$
-откуда
-\begin{equation*}
-u_0(t) = \frac{f_0l^2}{\pi^2n^2a^2} + C_0\exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}
-\end{equation*}
-Подставив начальное условие, найдём $C_0$:
-\begin{equation*}
-u_0(t) = \frac{f_0l^2}{\pi^2n^2a^2}\left(1 - \exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}\right)
-\end{equation*}
+Решением этой задачи будет функция $u_0(t) = f_0t$.
 При $n \neq 0$ задача Коши будет иметь только нулевое решение, поэтому окончательно для $u(x, t)$ получаем:
 \begin{equation}
-u(x, t) = \frac{f_0l^2}{\pi^2n^2a^2}\left(1 - \exp\left\{-\left(\frac{\pi na}l\right)^2t\right\}\right)
+u(x, t) = f_0t.
 \end{equation}
 #+END_EXPORT
 ** Задача 4.6
