@@ -655,8 +655,8 @@ u(x, 0) = \varphi(x)
 u_t = a^2u_{xx} + f(x, t), -\infty < x < +\infty, 0 < t \leq T, \\
 u(x, 0) = 0.
 \end{cases}
-В такой постановке решение задачи не единственно, нужно добавить условие ограниченности(либо условие "достаточно медленного" роста).
 \end{equation}
+В такой постановке решение задачи не единственно, нужно добавить условие ограниченности(либо условие "достаточно медленного" роста).
 \begin{Theorem}[Теорема единственности]
 Задача
 \begin{equation}
@@ -914,11 +914,11 @@ v\frac{\partial u}{\partial n}\right)\delta\sigma
 v(M) = v(x, y, z) = \frac1{R_{M_0M}}
 \end{equation}
 Применим к области T вторую формулу Грина, "выкинув" из неё сферу $K_{\varepsilon}$:
-\begin{equation}
-p\iiint_{T\K_{\varepsilon}(M_o)}\left(u\Delta\frac1{R_{M_0M}}-\frac1{R_{M_0M}}\Delta u\right)d\tau =
-\iint_{\Sigma}\left(u\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}\frac{\partial u}{\partial n}\right)d\sigma +
-\iint_{S_{\varepsilon}}\left(u\frac{\partial}{\partial u}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}frac{\partial u}{\partial n}\right)d\sigma
-\end{equation}
+\begin{multline}
+p\iiint_{K_{\varepsilon}(M_o)}\left(u\Delta\frac1{R_{M_0M}}-\frac1{R_{M_0M}}\Delta u\right)d\tau =
+\iint_{\Sigma}\left(u\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}\frac{\partial u}{\partial n}\right)d\sigma + \\
++ \iint_{S_{\varepsilon}}\left(u\frac{\partial}{\partial u}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}\frac{\partial u}{\partial n}\right)d\sigma
+\end{multline}
 Если $M \neq M_0$, то $\Delta\left(\frac1{R_{M_0M}}\right) = 0$. При $\varepsilon \to 0$ получаем:
 \begin{equation}
 -\iiint_T\frac{\Delta u}{R_{M_0M}}d\tau = \iint_{\Sigma}\left(u\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right) - \frac1R_{M_0M}\frac{\partial u}{\partial n}\right)d\sigma
