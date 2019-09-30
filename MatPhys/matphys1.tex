@@ -1,4 +1,4 @@
-% Created 2019-09-26 Thu 16:26
+% Created 2019-09-30 Mon 12:06
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -54,7 +54,7 @@
 \end{enumerate}
 
 \section{Классификация уравнений второго порядка с двумя независимыми переменными}
-\label{sec:org97dfba8}
+\label{sec:orgad47940}
 Это уравнения вида
 \begin{equation}
 F(x, y, u_x, u_y, u_{xx}, u_{xy}, u_{yy}) = 0
@@ -221,7 +221,7 @@ u_{tt} = u_{xx}.
 \end{equation}
 
 \section{Уравнение непрерывности}
-\label{sec:orgce360fa}
+\label{sec:org9620b4f}
 Выведем \textbf{уравнение непрерывности}. Пусть P - плотность некоторой величины, \(\vec j\) - плотность
 её потока, \(f\) - интенсивность её источника. Уравнение баланса для этой величины будет иметь вид:
 \begin{equation}
@@ -236,7 +236,7 @@ u_{tt} = u_{xx}.
 C_{\rho}\frac{\partial u}{\partial t} = \operatorname{div}(k\operatorname{grad}u) + f(x, y, z, t)
 \end{equation}
 \section{Смешанная задача для уравнения в частных производных параболического типа}
-\label{sec:org9e63746}
+\label{sec:org549d8be}
 Уравнение + граничные условия + начальные условия:
 \begin{equation}
 \begin{cases}
@@ -267,7 +267,7 @@ u_x + h_2u|_{x = l} = \theta_2(t).
 Тогда $f(x, t), \nu_1(t), \nu_2(t), \varphi(x)$ непрерывны.
 Также $\nu_1(0) = \varphi(0), \nu_2(0) = \varphi(l)$.
 \subsection{Метод разделения переменных}
-\label{sec:orgadd0c40}
+\label{sec:org979145b}
 Рассмотрим простейший вариант смешанной задачи:
 \begin{equation}
 \begin{cases}
@@ -325,7 +325,7 @@ u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi na}l\right)^2t}\sin\
 
 Такая схема плохо работает при более общих начальных условиях.
 \subsection{Общая схема метода разделения переменных}
-\label{sec:org9b20872}
+\label{sec:org6fb3d54}
 Рассмотрим задачу
 \begin{equation}
 \begin{cases}
@@ -412,7 +412,7 @@ v(x, t) = \sum_{n = 1}^{\infty}v_n(t)X_n(x), \\
 \end{equation}
 $$u(x, t) = \sum_{n = 1}^{\infty}v_{n}(t)X(x) + w(x, t)$$
 \subsection{Теорема существования}
-\label{sec:org0b5e728}
+\label{sec:org401a1e1}
 Рассмотрим задачу
 \begin{equation}
 \begin{dcases}
@@ -568,7 +568,7 @@ u_2(x, 0) = \overline{\varphi_1}(x),
 $|u(x, t)| \leq \varepsilon$, т. е. задача (35) устойчива.
 \end{Consequence}
 \subsection{Теорема единственности}
-\label{sec:org1f648c8}
+\label{sec:orgecefdd5}
 \begin{Theorem}[Теорема единственности]
 Задача (35) имеет одно решение.
 \begin{proof}
@@ -613,7 +613,7 @@ E(0) = 0,
 откуда $E(t) = 0 \Rightarrow u(x, t) = 0$.
 \zall
 \subsection{Задача Коши для уравнения теплопроводности}
-\label{sec:org07e0a4c}
+\label{sec:orgfc8c806}
 Рассмотрим задачи
 \begin{equation}
 \begin{cases}
@@ -686,7 +686,7 @@ G(x, \xi, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}e^{-a^2\lambda^2t + i\lambda(
 \end{proof}
 \end{Theorem}
 \subsection{Метод подобия}
-\label{sec:orge986be3}
+\label{sec:org388f98b}
 \begin{equation*}
 u_t = a^2u_{xx}
 \end{equation*}
@@ -720,4 +720,264 @@ $$u(x, t) = u(x', t') = u(kx, k^2t)$$
 Положим $k = \frac1{2\sqrt{t}}$, тогда $u(x, t) = u\left(\frac{x}{2\sqrt{t}}4\right)$.
 
 Ищем решение задачи (12) в виде $u(x, t) = u_0f\left(\frac{x}{2\sqrt{t}}\right)$.
+\section{Уравнения эллиптического типа}
+\label{sec:org89c2cfd}
+\zall
+Уравнение Лапласа имеет вид
+\begin{equation}
+\Delta u = u_{xx} + u_{yy} + u_{zz} = 0,
+\end{equation}
+Неоднородное уравнение Лапласа
+\begin{equation}
+\Delta u = -f(x, y, z)
+\end{equation}
+называется уравнением Пуассона.
+\subsection{Стационарная теплопроводность}
+\label{sec:org97c7822}
+В нестационарном случае
+\begin{equation}
+c\rho\frac{\partial u}{\partial t} = \operatorname{div}(k\operatorname{grad} u) + f.
+\end{equation}
+Если $\frac{\partial u}{\partial t} = 0, k = k_0 = const$, получаем:
+\begin{equation}
+\operatorname{div}(\operatorname{grad} u) = -\frac{f}{k_0}
+\end{equation}
+В декартовых координатах:
+\begin{equation}
+\operatorname{div}(\operatorname{grad} u) = u_{xx} + u_{yy} + u_{zz},
+\end{equation}
+В цилиндрических:
+\begin{equation}
+\operatorname{div}(\operatorname{grad} u) = \frac1r\frac{\partial}{\partial u}(r\frac{\partial u}{\partial r}) +
+\frac1{r^2}\frac{\partial^2 u}{\partial \varphi^2} + \frac{\partial^2u}{\partial z^2}
+\end{equation}
+В сферических:
+\begin{equation}
+\Delta u = \Delta_ru + \frac1{r^2}\Delta_{\theta, \varphi}u, { где}
+\end{equation}
+\begin{equation}
+\Delta_ru = \frac1{r^2}\frac{d}{dr}\left(r^2\frac{du}{dr}\right) = \frac1r\frac{d^2}{dr^2}(ru) =
+\frac{d^2u}{dr^2} + \frac2r\frac{du}{dr},
+\end{equation}
+\begin{equation}
+\Delta_{\theta, \varphi}u = \frac1{\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial u}{\partial\theta}\right) +
+\frac1{\sin^2\theta}\frac{\partial^2u}{\partial\varphi^2}
+\end{equation}
+Видно, что оператор Лапласа имеет вид суммы вторых производных \textbf{только в декартовых
+координатах}.
+
+Задача Дирихле:
+\begin{equation}
+\begin{cases}
+\Delta u = -f, \\
+u|_{Sigma} = g(p),
+\end{cases}
+\end{equation}
+Задача Неймана:
+\begin{equation}
+\begin{cases}
+\Delta u = -f, \\
+\frac{\partial u}{\partial n}|_{\Sigma} = h(p),
+\end{cases}
+\end{equation}
+Краевое условие третьего рода:
+\begin{equation}
+\Delta u = -f, \\
+\frac{\partial u}{\partial n} + hu|_{\Sigma} = p(t).
+\end{equation}
+\subsection{Потенциальное течение жидкости}
+\label{sec:org29a1c3d}
+\begin{equation}
+\begin{cases}
+\operatorname{div}\vec v = 0, \\
+\operatorname{rot}\vec v = 0, \text{ нет вихрей.}
+\end{cases}
+\end{equation}
+Так как $\operatorname{rot}\vec v$, то $\vec v = \operatorname{grad}u$, тогда $\Delta u = 0$.
+Получаем задачу
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+v_n|_{\Sigma} = 0, \frac{\partial u}{\partial n}|_{\Sigma} = 0, \\
+v_x|+{\pm \infty} = v_0, \frac{\partial u}{\partial x}|_{x = \pm \infty} = v_0.
+\end{cases}
+\end{equation}
+\subsection{Задачи электростатики}
+\label{sec:org63142d1}
+Уравнения Максвелла: \\
+Гауссова система:
+\begin{equation}
+\begin{cases}
+\operatorname{div}\vec E = 4\pi\rho, \\
+rd\vec E = -\frac1c\frac{\partial\vec B}{\partial t}
+\end{cases}
+\end{equation}
+Получаем уравнение
+\begin{equation}
+\Delta u = -4\pi\rho.
+\end{equation}
+
+Система СИ:
+\begin{equation}
+\begin{cases}
+\operatorname{div}\vec D = \rho, \\
+\operatorname{rot}\vec E = -\frac{\partial\vec B}{\partial t} = 0, \\
+\vec D = \varepsilon\varepsilon_0\vec E.
+\end{cases}
+\end{equation}
+\subsection{Фундаментальные решения уравнения Лапласа}
+\label{sec:org6baa7a4}
+В трёхмерном случае $u = u(r), r = \sqrt{x^2 + y^2 + z^2}$, тогда
+\begin{equation}
+\frac1{r^2}\frac{d}{dr}\left(r^2\frac{du}{dr}\right) = 0, r \neq 0.
+\end{equation}
+\begin{equation}
+\frac1r\frac{d^2}{dr^2}(ru) = 0 \Rightarrow ru = C_2r + C_1 \Rightarrow u(r) = \frac1r, r \neq 0.
+\end{equation}
+В двумерном случае:
+\begin{equation}
+\frac1r\frac{d}{dr}\left(r\frac{du}{dr}\right) = 0,
+\end{equation}
+\begin{equation}
+d\frac{du}{dr} = C_1,
+\end{equation}
+\begin{equation}
+\frac{du}{dr} = \frac{C_1}r,
+\end{equation}
+\begin{equation}
+u(r) = C_1\ln r + C_2, \\
+u(r) = \ln\frac1r, r = \sqrt{x^2 + y^2}.
+\end{equation}
+Гармоническая функция, зависящая только от x:
+\begin{equation}
+\Delta u = 0, u = u(x), u_{xx} = 0 \Rightarrow u = C_1x + C_2.
+\end{equation}
+\subsection{Формулы Грина}
+\label{sec:org88965e2}
+\begin{equation}
+\iiint_T\operatorname{div}\vec Ad\tau = \iint_{\Sigma}A_nd\sigma,
+\vec A \in C^1(T) \cap C(\overline T), \overline T = T \cup \Sigma
+\end{equation}
+Пусть теперь $u, v \in C^2(T) \cap C^1(\overline T), \vec A = u\operatorname{grad}v, \div A = \operatorname{div}(u\operatorname{grad}v)
+= \nabla(u\nabla v) = u\operatorname{div}\operatorname{grad}v + \operatorname{grad}u\operatorname{grad}v = u\Delta v + \operatorname{grad}u\operatorname{grad}v$. Тогда
+\begin{equation}
+\iiint_Tu\Delta vd\tau = \iint_{\Sigma}u\frac{\partial v}{\partial n}d\sigma -
+\iiint_T(\operatorname{grad}u - \operatorname{grad}v)d\tau, \text{ - первая формула Грина.}
+\end{equation}
+Поменяем местами $u$ и $v$:
+\begin{equation}
+\iiint_T(v\Delta u)d\tau = \iint_{\Sigma}v\frac{\partial u}{\partial n}d\sigma -
+\iiint_T(\operatorname{grad}u - \operatorname{grad}v)d\tau
+\end{equation}
+Вычтя из первого равенства второе, получим \textbf{вторую формулу Грина}:
+\begin{equation}
+\iiint_T(u\Delta v - v\Delta u) = \iint_{\Sigma}\left(u\frac{\partial v}{\partial n} -
+v\frac{\partial u}{\partial n}\right)\delta\sigma
+\end{equation}
+\textbf{Интегральная формула Грина(третья формула Грина)}:
+\begin{equation}
+v(M) = v(x, y, z) = \frac1{R_{M_0M}}
+\end{equation}
+Применим к области T вторую формулу Грина, "выкинув" из неё сферу $K_{\varepsilon}$:
+\begin{equation}
+p\iiint_{T\K_{\varepsilon}(M_o)}\left(u\Delta\frac1{R_{M_0M}}-\frac1{R_{M_0M}}\Delta u\right)d\tau =
+\iint_{\Sigma}\left(u\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}\frac{\partial u}{\partial n}\right)d\sigma +
+\iint_{S_{\varepsilon}}\left(u\frac{\partial}{\partial u}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}frac{\partial u}{\partial n}\right)d\sigma
+\end{equation}
+Если $M \neq M_0$, то $\Delta\left(\frac1{R_{M_0M}}\right) = 0$. При $\varepsilon \to 0$ получаем:
+\begin{equation}
+-\iiint_T\frac{\Delta u}{R_{M_0M}}d\tau = \iint_{\Sigma}\left(u\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right) - \frac1R_{M_0M}\frac{\partial u}{\partial n}\right)d\sigma
++ 4\pi u(M_0)
+\end{equation}
+Или, если $M_0 \in T$, то:
+\begin{equation}
+u(M_0) = \frac1{4\pi}\iint_{\Sigma}\frac1{R_{M_0M}}\frac{\partial u}{\partial n}\left(\frac1{R_{M_0M}}\right)d\sigma -
+\frac1{4\pi}\iiint_T\frac{\Delta u}{R_{M_0M}}d\tau
+\end{equation}
+Если дополнительно $\Delta u = 0$, то $u(M_0)$ представляется в виде:
+\begin{equation}
+u(M_0) = u_1(M_0) + u_2(M_0), \text{ где}
+\end{equation}
+\begin{equation}
+u_1(M_0) = \iint_{\Sigma}\frac{\mu(p)}{R_{M_0M}}d\sigma,
+\end{equation}
+\begin{equation}
+u_2(M_0) = \iint_{\Sigma}v(p)\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right)d\sigma.
+\end{equation}
+Поскольку $u_1(M_0)$ и $u_2(M_0) \in C^{\infty}$, то $u(M_0) \in C^{\infty}(R^3)$.
+
+В двумерном случае $v(M) = \ln\frac1{R_{M_0M}}$:
+\begin{equation}
+u(M_0) = \frac1{2\pi}\int_C\ln\frac1{R_{M_0M}}\frac{\partial u}{\partial n}dl -
+\frac1{2\pi}\int_Cu\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right)dl -
+\frac1{2\pi}\iint_D\ln\frac1{R_{M_0M}}\Delta ud\sigma.
+\end{equation}
+Если $\Delta u = 0$:
+\begin{equation}
+u(M_0) = \frac1{2\pi}\int_C\ln\frac1{R_{M_0P}}\frac{\partial u}{\partial n}dl -
+\frac1{2\pi}\int_Cu\frac{\partial}{\partial n}\ln\frac1{R_{M_0P}}dP.
+\end{equation}
+\subsection{Свойства гармонических функций}
+\label{sec:orgdd491b0}
+\begin{Theorem}
+Если $\Delta u = 0$ в $T$, $S \subset T$, $S$ - поверхность, то
+\begin{equation}
+\iint_S\frac{\partial u}{\partial n}d\sigma = 0.
+\end{equation}
+\begin{proof}
+По второй формуле Грина:
+\begin{equation}
+\iiint_{K_S}u(\Delta 1)d\tau - \iiint_{K_S}1\Delta ud\tau =
+\iint_S\left(u\frac{\partial}{\partial n}(1) - 1\frac{\partial u}{\partial n}\right)d\sigma
+\Rightarrow \iint_S\frac{\partial u}{\partial n}d\sigma = 0.
+\end{equation}
+\end{proof}
+\end{Theorem}
+\begin{Consequence}
+Если дана задача Неймана
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ в T}, \\
+\frac{\partial u}{\partial n}|_{\Sigma} = g(P)
+\end{cases}
+\end{equation}
+и она разрешима, то
+\begin{equation}
+\iint_{\Sigma}g(P)d\sigma = 0
+\end{equation}
+\end{Consequence}
+\begin{Theorem}
+Пусть $\Delta u = 0$. Если $T = K_a(M_0)$, то
+\begin{equation}
+u(M_0) = \frac1{4\pi a^2}\iint_{S_a}ud\sigma.
+\end{equation}
+\begin{proof}
+По третьей формуле Грина:
+\begin{equation}
+u(M_0) = -\frac1{4\pi}\iint_{S_a}\frac{\partial}{\partial n}\left(\frac1{R_{M_0P}}\right)d\sigma +
+\frac1{4\pi}\iint_{S_a}\frac1{R_{M_0P}}\frac{\partial u}{\partial n}d\sigma =
+\frac1{4\pi a^2}\iint_{S_a}ud\sigma + \frac1{4\pi a}\iint_{S_a}\frac{\partial u}{\partial n}d\sigma =
+\frac1{4\pi a^2}\iint_{S_a}ud\sigma.
+\end{equation}
+\end{proof}
+\end{Theorem}
+\begin{Theorem}[Принцип максимума]
+Если $u(M) \in C^2(T) \cap C(\overline T), \Delta u = 0$ в $T$. Тогда экстремумы $u(M)$
+достигаются на границе.
+\begin{proof}
+Пусть $\max_{\overline T} u(M_0)$. Окружим эту точку сферой радиуса $\rho$. Получим, что
+\begin{equation}
+u(M_0) = \frac1{4\pi a^2}\iint_{S_{\rho}(M_0)}u(P)d\sigma
+\end{equation}
+Если $\exists P \in S_{\rho}(M_0), u(P) < u(M_0)$, тогда
+$u(M_0) = \frac1{4\pi a^2}\iint_{S_{\rho}(M_0)}u(P)d\sigma < \frac1{4\pi a^2}u(M_0)\iint_{S_{\rho}}d\sigma = u(M_0)$.
+Получили противоречие.
+\end{proof}
+\end{Theorem}
+\begin{Consequence}
+Если $\Delta u_1 = \Delta u_2 = 0$ в $T$, $u_1|_{\Sigma} \leq u_2|_{\Sigma}$, то $u_1(M) \leq u_2(M) \forall M \in \overline T$.
+\begin{proof}
+Нужно применить принцип максимума к функции $V = u_1 - u_2$.
+\end{proof}
+\end{Consequence}
 \end{document}

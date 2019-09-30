@@ -257,3 +257,114 @@ $$y_0(x) = -q_0(x)$$
 $$y_{i - 1}(x) = y_{i - 3}(x) - y_{i - 2}(x)q_{i - 1}(x)$$
 Если $\operatorname{deg}r_{i - 1} > 0$, продолжаем итерации.
 #+END_EXPORT
+
+Элементы поля можно рассматривать как элементы некоторого векторного пространства с естественным
+базисом.
+
+Рассмотрим $\mathbb{F}_2^4 \approx \mathbb{F}_2[x] / (a(x))$, где $a(x) = x^4 + x + 1$.
+Составим таблицу перехода от векторов к полиномам.
+
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{tabular}{|c|c|c|c|c|}
+           & 1 & $x$ & $x^2$ & $x^3$ \\
+$\alpha$     & 0 & 1 & 0   & 0 \\
+$\alpha^2$   & 0 & 0 & 1   & 0 \\
+$\alpha^3$   & 0 & 0 & 0   & 1 \\
+$\alpha^4$   & 1 & 1 & 0   & 0 \\
+$\alpha^5$   & 0 & 1 & 1   & 0 \\
+$\alpha^6$   & 0 & 0 & 1   & 1 \\
+$\alpha^7$   & 1 & 1 & 0   & 1 \\
+$\alpha^8$   & 1 & 0 & 1   & 0 \\
+$\alpha^9$   & 0 & 1 & 0   & 1 \\
+$\alpha^{10}$ & 1 & 1 & 1   & 0 \\
+$\alpha^{11}$ & 0 & 1 & 1   & 1 \\
+$\alpha^{12}$ & 1 & 1 & 1   & 1 \\
+$\alpha^{13}$ & 1 & 0 & 1   & 1 \\
+$\alpha^{14}$ & 1 & 0 & 0   & 1 \\
+$\alpha^{15}$ & 1 & 0 & 0   & 0.
+\end{tabular}
+\end{equation}
+#+END_EXPORT
+* Корни многочленов над конечными полями
+Рассмотрим поле $\mathbb{F}_p^n$, $\beta \in \mathbb{F}_p^n$.
+
+*Минимальным многочленом* элемента $\beta \in \mathbb{F}_p^n$ называется нормированный
+многочлен минимальной степени, для которого $\beta$ - корень.
+
+Рассмотрим поле $\mathbb{F}_p[x] / (a(x)) \approx \mathbb{F}_p^n$. Тогда $x$ - корень $a(x)$.
+Если $a(x)$ неприводимый, то $m_x(x) = a_n^{-1}a(x)$. Если $x$ - корень многочлена меньшей
+степени, то базис в пространстве многочленов оказывается линейно зависим.
+
+Любой минимальный многочлен:
+1. Существует
+2. Неразложим
+3. Единственен
+#+BEGIN_EXPORT latex
+\begin{Theorem}
+$$\forall \beta \in \mathbb{F}_p^n \exists m_{\beta}(x), \deg m_{\beta}(x) \leq n$$
+\begin{proof}
+Рассмотрим элементы $1, \beta, \ldots, \beta^n$. Существуют коэффициенты $C_0, \ldots, C_n$,
+одновременно не равные нулю, такие, что $C_01 + C_1\beta + \ldots + C_n\beta^n = 0$.
+Тогда для многочлена $C(x) = C_0 + C_1x + \ldots + C_nx^n$ $\beta$ является корнем, из него
+можно получить минимальный.
+\end{proof}
+\end{Theorem}
+\begin{Theorem}
+Минимальный многочлен неразложим.
+\begin{proof}
+Пусть $m_{\beta}(x) = m_1(x)m_2(x)$. При $x = \beta$ $0 = m_1(\beta)m_2(\beta) \Rightarrow m_1(\beta) = 0$
+или $m_2(\beta) = 0$, что невозможно, если $m_1(x)$ и $m_2(x)$ не константы.
+\end{proof}
+\end{Theorem}
+\begin{Theorem}
+Пусть $m_{\beta}(x)$ - минимальный многочлен, $f(x)$ - многочлен, корнем которого является $\beta$.
+Тогда $m_{\beta}(x) | f(x)$.
+\begin{proof}
+\begin{equation}
+f(x) = m_{\beta}(x)q(x) + r(x)
+\end{equation}
+Подставим $\beta$:
+\begin{equation}
+0 = 0q(\beta) + r(\beta) \Rightarrow r(\beta) = 0 \Rightarrow r(x) = 0.
+\end{equation}
+\end{proof}
+\end{Theorem}
+\begin{Consequence}
+Минимальный многочлен единственен.
+\begin{proof}
+Если бы было два минимальных многочлена, они бы делили друг друга $\Rightarrow$ они должны быть равны.
+\end{proof}
+\end{Consequence}
+Минимальный многочлен примитивного элемента поля называется \textbf{примитивным многочленом}.
+
+Рассмотрим $f(x) \in \mathbb{F}_p[x]$. Наименьшее поле, в котором $f(x)$ раскладывается на
+линейные множители, называется \textbf{полем разложения} $f(x)$.
+
+Каждый ненулевой элемент $\mathbb{F}_p^n$ удовлетворяет уравнению $x^{p^n - 1} - 1 = 0$, т. е.
+$\mathbb{F}_p^n$ - поле разложения полинома $f(x) = x^{p^n - 1} - 1$. Отсюда следует МТФ.
+\begin{Theorem}
+\begin{equation}
+(x^m - 1) \vdots (x^n - 1) \Leftrightarrow m \vdots n
+\end{equation}
+\end{Theorem}
+\begin{Theorem}
+Все неприводимые многочлены степени $n$ над $\mathbb{F}_p$ делят $x^{p^n} - x$.
+\begin{proof}
+При $n = 1$ утверждение тривиально. Пусть $n > 1$, $f(x)$ - неприводимый. Строим поле
+$\mathbb{F}_p[x] / (f(x))$. $x$ - корень $f(x)$, и при этом $x^{p^n - 1} - 1 = 0$, что и даёт
+требуемое.
+\end{proof}
+\end{Theorem}
+\begin{Theorem}
+Любой неприводимый делитель $x^{p^n} - 1$ имеет степень не выше $n$.
+\end{Theorem}
+\begin{Theorem}
+Пусть $\beta \in \mathbb{F}_p^n$ - корень неприводимого многочлена $f(x) \in \mathbb{F}_p[x]$ степени n.
+Тогда $\beta$, $\beta^p$, \ldots, $\beta^{p^{n - 1}}$ - все корни $f(x)$.
+\begin{proof}
+При $n = 1$ утверждение тривиально. Пусть $f(\beta) = 0$. Тогда $0 = (f(\beta))^p = f(\beta^p) = 0
+\Rightarrow \beta^p$ - корень.
+\end{proof}
+\end{Theorem}
+#+END_EXPORT
