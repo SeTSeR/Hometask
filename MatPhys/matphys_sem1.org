@@ -1027,3 +1027,391 @@ u_1(0) = 0
 u(x, t) = t\cos x + \left(\frac18e^{-8t} - \frac18\right)\cos3x.
 \end{equation}
 #+END_EXPORT
+* Семинар 5
+** Задача 4.13
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + u, 0 < x < 1, t > 0, \\
+u(0, t) = 0, u(l, t) = t, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq 1
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v$. $U = a(t)x + b(t)$. Подставляя в начальные условия, получим:
+\begin{equation}
+a(t) = t, b(t) = 0.
+\end{equation}
+Получаем, что $u = tx + v$. Получаем задачу на $v$:
+\begin{equation}
+\begin{cases}
+v_t + x = v_{xx} + v + tx, \\
+v(0, t) = v(l, t) = 0, \\
+v(x, 0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $v = e^{bt}z$. Тогда:
+\begin{equation}
+be^{bt}z + e^{bt}z_t = e^{bt}z_{xx} + e^{bt}z + x(t - 1)
+\end{equation}
+Положим $b = 1$. Тогда
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + x(t - 1)e^{-t}, \\
+z(0, t) = z(l, t) = 0, \\
+z(x, 0) = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = (\pi n)^2, \\
+X_n = \sin\pi nx.
+\end{cases}
+\end{equation}
+Ищем решение в виде
+\begin{equation}
+z = \sum_{n = 1}^{\infty}z_n\sin\pi nx.
+\end{equation}
+Разложим источник в ряд Фурье:
+\begin{equation}
+f_n = 2(t - 1)e^{-t}\int_0^1\xi\sin n\xid\xi = \ldots = 2(t - 1)e^{-t}\frac{(-1)^{n + 1}}{\pi n}.
+\end{equation}
+Получаем систему задач Коши на $z_n$:
+\begin{equation}
+\begin{cases}
+z_n' = -(\pi n)^2z_n + 2(t - 1)e^{-t}\frac{(-1)^{n + 1}}{\pi n}, \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $z_n = C(t)e^{-\pi^2n^2t}$. Тогда:
+\begin{equation}
+C' = 2(t - 1)\exp\{t(\pi^2n^2 - 1)\}
+\end{equation}
+\begin{equation}
+C = \frac{2(-1)^{n + 1}}{\pi n}\int_0^t(\tau - 1)e^{(\pi n^2 - 1)\tau}d\tau = \ldots =
+\frac{2(-1)^{n + 1}}{\pi n((\pi n)^2 - 1)}\left[e^{(\pi n)^2 - 1}\left(t - 1 - \frac1{\pi^2n^2 - 1}\right)\right]
+= B_n(t)
+\end{equation}
+Тогда
+\begin{equation}
+u(x, t) = tx + e^t\left(\sum_{n = 1}^{\infty}B_n(t)e^{-\pi^2n^2t}\sin\pi nx\right)
+\end{equation}
+#+END_EXPORT
+** Задача 4.15
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} - u, 0 < x < 1, t > 0 \\
+u(0, t) = 0, u_x(1, t) = t, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v$, где $U = a(t)x + b(t)$. Подставляя в краевые условия, найдём:
+\begin{equation}
+\begin{cases}
+a(t) = t, \\
+b(t) = 0.
+\end{cases}
+\end{equation}
+Тогда $u = tx + v$. Получаем задачу на $v$:
+\begin{equation}
+\begin{cases}
+x + v_t = v_{xx} - v - tx, \\
+v(0, t) = u_x(1, t) = 0, \\
+v(x, 0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $v = e^{bt}z$, где $b = -1$. Получаем задачу на $z$:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} - x(t + 1)e^t, \\
+z(0, t) = z_x(l, t) = 0, \\
+z(x, 0) = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = \frac{(\pi(2n + 1))^2}4, \\
+X_n = \sin\frac{\pi(2n + 1)}2x.
+\end{cases}
+\end{equation}
+Раскладываем источник в ряд Фурье:
+\begin{equation}
+f_n = 2(t + 1)e^t\int_0^1x\sin\frac{\pi(2n + 1)}2xdx = \ldots = \frac{8(t + 1)e^t}{\pi^2(2n + 1)^2}(-1)^n.
+\end{equation}
+Подставляя всё в уравнение, получаем систему задач Коши:
+\begin{equation}
+\begin{cases}
+z_n' = -\frac{\pi^2(2n + 1)^2}4z_n + \frac{8(t + 1)e^t}{\pi^2(2n + 1)^2}(-1)^n, \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде:
+\begin{equation}
+z_n = C(t)\exp\left\{-\frac{\pi^2(2n + 1)^2t}4\right\}.
+\end{equation}
+Тогда для $C(t)$ находим
+\begin{equation}
+C' = \frac{8(t + 1)}{\pi^2(2n + 1)^2}(-1)^n\exp\left\{1 + \frac{\pi^2(2n + 1)^2}4\right\}
+\end{equation}
+Откуда для $C(t)$:
+\begin{equation}
+C(t) = \frac{8(-1)^n}{\pi^2(2n + 1)^2}\frac4{4 + \pi^2(2n + 1)^2}\left[e^{kt}\left(t + 1 - \frac4{4 + \pi^2(2n + 1)^2}\right) - 1 + \frac4{4 + \pi^2(2n + 1)^2}\right] + C_0
+\end{equation}
+Подставляя в краевые условия, находим, что $C_0 = 0$:
+Тогда для $u(x, t)$:
+\begin{equation}
+u(x, t) = tx + e^{-t}\left(\sum_{n = 0}^{\infty}C_n\exp\left\{-\left(1 + \frac{\pi^2(2n + 1)^2}4\right)t\right\}\sin\frac{2n + 1}2x\right)
+\end{equation}
+#+END_EXPORT
+** Задача 4.17
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + u + \cos 2x\sin x, 0 < x < \frac{\pi}2, t > 0, \\
+u(0, t) = u_x\left(\frac{\pi}2, t\right) = 0, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq \frac{\pi}2.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = e^tz$. Тогда для $z$ получаем задачу:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + \frac12(\sin 3x - \sin x)e^{-t}, \\
+z(0, t) = z_x\left(\frac{\pi}2, t\right) = 0, \\
+z(x, 0) = 0.
+\end{cases}
+\end{equation}
+Источник уже является разложением в ряд Фурье, так что получаем задачи:
+\begin{equation}
+\begin{cases}
+z_n' = -(2n + 1)^2z_n + f_n, \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+При $n > 1 f_n = 0 \Rightarrow z_n = 0$.
+
+При $n = 0$:
+\begin{equation}
+\begin{cases}
+z_0' = -z_0 - \frac12e^{-t}, \\
+z_0(0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $z = C(t)e^{-t}$. Тогда:
+\begin{equation}
+C'(t) = -\frac12 \Rightarrow C(t) = -\frac12t + C_1 = -\frac{t}2
+\end{equation}
+Получили, что $z_0 = -\frac12te^{-t}$.
+
+При $n = 1$:
+\begin{equation}
+\begin{cases}
+z_1' = -9z_1 + \frac12e^{-t}, \\
+z_1(0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $z_1 = C(t)e^{-9t}$. Тогда $C' = \frac12e^{8t} \Rightarrow C(t) = \frac1{16}e^{8t} + C_1$.
+Подставляя краевые условия, находим, что $C = \frac1{16}(e^{8t} - 1)$.
+
+Итого для $u(x, t)$ получаем:
+\begin{equation}
+u(x, t) = e^t\left(-\frac12 + e^{-t}\right)\sin x + \left(\frac1{16}(e^{8t} - 1)e^{-9t}\sin 3x\right)
+\end{equation}
+#+END_EXPORT
+** Задача 4.19
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + x^2 - 2t + \cos 3x, 0 < x < \pi, t > 0, \\
+u_x(0, t) = 1, u_x(\pi, t) = 2\pi t + 1, t > 0, \\
+u(x, 0) = x, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Решение ищем в виде $u = U + v$, где $U = a(t)x^2 + b(t)x$. Получим, что:
+\begin{equation}
+\begin{cases}
+a(t) = t, \\
+b(t) = 1,
+\end{cases}
+\end{equation}
+поэтому $u = tx^2 + x + v$. После подстановки получим задачу на $v$:
+\begin{equation}
+\begin{cases}
+v_t + x^2 = v_{xx} + 2t + x^2 - 2t + \cos 3x, \\
+v_x(0, t) = v_x(\pi, t) = 0, \\
+v(x, 0) = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответсвующей ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = n^2, \\
+X_n = \cos nx.
+\end{cases}
+\end{equation}
+Ищем решение в виде
+\begin{equation}
+v(x, t) = \sum_{n = 0}^{\infty}v_n(t)\cos nx.
+\end{equation}
+Получим систему задач Коши:
+\begin{equation}
+\begin{cases}
+v_n' = -n^2v_n + f_n, \\
+v_n(0) = 0.
+\end{cases}
+\end{equation}
+При $n \neq 3 v_n \equiv 0$. При $n = 3$ решением будет функция $v_3 = Ce^{-9t} + \frac19$.
+Подставляя начальные условия, получаем, что $v_3 = \frac19(1 - e^{-9t})$. Итого получим:
+\begin{equation}
+u(x, t) = tx^2 + x + \frac19(1 - e^{-9t})\cos 3x.
+\end{equation}
+#+END_EXPORT
+** Задача 4.21
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + u - x + 2\sin2x\cos x, 0 < x < \frac{\pi}2, t > 0, \\
+u(0, t) = 0, u_x\left(\frac{\pi}2, t\right) = 1, t > 0, \\
+u(x, 0) = x, 0 \leq x \leq \frac{\pi}2.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v$, $U = a(t)x + b(t)$, получим, что $U = x \Rightarrow u = v + x$.
+Для $v$ получаем задачу:
+\begin{equation}
+\begin{cases}
+v_t = v_{xx} + v + \sin3x + \sin x, \\
+v(0, t) = v_x\left(0, \frac{\pi}2\right) = 0, t > 0, \\
+v(x, 0) = 0, 0 \leq x \leq \frac{\pi}2.
+\end{cases}
+\end{equation}
+Ищем решение в виде $v = e^tz$, получим задачу на $z$:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + (\sin 3x + \sin x)e^{-t}, \\
+z(0, t) = z_x\left(\frac{\pi}2, t\right) = 0, \\
+z(x, 0) = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = (2n + 1)^2, \\
+X_n = \sin(2n + 1)x.
+\end{cases}
+\end{equation}
+Раскладывая $z$ и источник в ряды Фурье, получаем задачи для $z_n$:
+\begin{equation}
+\begin{cases}
+z_0' = -z_0 + e^{-t}, \\
+z_0(0) = 0,
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+z_1' = -9z_1 + e^{-t}, \\
+z_1(0) = 0.
+\end{cases}
+\end{equation}
+Решениями этих задач будут функции $z_0 = te^{-t}$ и $z_1 = \frac18(e^{-t} - e^{-9t})$. Итого
+получаем:
+\begin{equation}
+u(x, t) = x + e^t\left[te^{-t}\sin x + \frac18(e^{8t} + 1)\sin 3x\right]
+\end{equation}
+#+END_EXPORT
+** Задача 4.24
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} - 2u_x + u + e^x\sin x - t, 0 < x < \pi, t > 0, \\
+u(0, t) = u(\pi, t) = 1 + t, t > 0, \\
+u(x, 0) = 1 + e^x\sin2x, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Решение ищем в виде $u = U + v$, где $U = a(t)x + b(t)$. Тогда
+\begin{equation}
+\begin{cases}
+a(t) = 0, \\
+b(t) = 1 + t.
+\end{cases}
+\end{equation}
+Получили, что $u = 1 + t + v$. Это приводит к задаче для $v$:
+\begin{equation}
+\begin{cases}
+v_t = v_{xx} - 2v_x + v + e^x\sin x, \\
+v(0, t) = v(\pi, t) = 0, \\
+v(x, 0) = e^x\sin2x
+\end{cases}
+\end{equation}
+Ищем решение в виде $v = e^{\alpha x + \beta t}z$. Подставим в задачу:
+\begin{equation}
+\beta e^{\alpha x + \beta t}z + e^{\alpha x + \beta t}z = \alpha^2e^{\alpha x + \beta t}z + 2\alpha e^{\alpha x + \beta z}z_x + e^{\alpha x + \beta z}z_{xx}
+- 2\alpha e^{\alpha x + \beta z}z - 2e^{\alpha x + \beta z}z_x + e^x\sin x + e^{\alpha x + \beta t}z
+\end{equation}
+Получаем систему:
+\begin{equation}
+\begin{cases}
+\beta = \alpha^2 - 2\alpha + 1,  \\
+2\alpha - 2 = 0.
+\end{cases}
+\end{equation}
+Откуда
+\begin{equation}
+\begin{cases}
+\alpha = 1, \\
+\beta = 0.
+\end{cases}
+\end{equation}
+Получим задачу на $z$:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + \sin x, \\
+z(0, t) = z(\pi, t) = 0, \\
+z(x, 0) = \sin 2x.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = n^2, \\
+X_n = \sin nx.
+\end{cases}
+\end{equation}
+Если искать решение в виде ряда Фурье, получим задачи:
+\begin{equation}
+\begin{cases}
+z_1' = -z_1 + 1, \\
+z_1(0) = 0,
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+z_2' = -4z_2, \\
+z_2(0) = 1,
+\end{cases}
+\end{equation}
+решениями которых будут функции $z_1 = 1 - e^{-t}$ и $z_2 = e^{-4t}$ соответсвенно. Итого для $u(x, t)$:
+\begin{equation}
+u(x, t) = 1 + t + e^x((1 - e^{-t})\sin x + e^{-4t}\sin 2x)
+\end{equation}
+#+END_EXPORT
+ДЗ: 4.14, 4.16, 4.18, 4.20, 4.22, 4.23
