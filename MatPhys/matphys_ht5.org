@@ -1,0 +1,582 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+OPTIONS: toc:nil
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+ДЗ: 4.14, 4.16, 4.18, 4.20, 4.22, 4.23
+* Задача 4.14
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + u, 0 < x < 1, t > 0, \\
+u_x(0, t) = u_x(1, t) = t, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v$, где $U = a(t)x^2 + b(t)x$. Подставляя в краевые условия, получим:
+\begin{equation}
+\begin{cases}
+b(t) = t, \\
+2a(t) + b(t) = t.
+\end{cases}
+\Rightarrow
+\begin{cases}
+a(t) = 0, \\
+b(t) = t.
+\end{cases}
+\end{equation}
+Получаем, что $u = tx + v$, получаем задачу для $v$:
+\begin{equation}
+\begin{cases}
+v_t = v_{xx} + v + (t - 1)x, 0 < x < 1, t > 0, \\
+v_x(0, t) = v_x(1, t) = 0, t > 0, \\
+v(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+Сделаем замену $v = e^{at}z(x, t)$, получим:
+\begin{equation*}
+\begin{cases}
+ae^{at}z + e^{at}z_t = e^{at}z_{xx} + e^{at}z + (t - 1)x, 0 < x < 1, t > 0, \\
+e^{at}z_x(0, t) = e^{at}z_x(1, t) = 0, \\
+e^{at}z(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation*}
+Положив $a = 1$, получим:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + (t - 1)xe^{-t}, 0 < x < 1, t > 0, \\
+z_x(0, t) = z_x(1, t) = 0, \\
+z(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = (\pi n)^2, \\
+X_n = \cos\pi n x.
+\end{cases}
+\end{equation*}
+Ищем решение (4) в виде разложения по собственным функциям:
+\begin{equation}
+z(x, t) = \sum_{n = 0}^{\infty}z_n(t)\cos\pi n x
+\end{equation}
+Разложим неоднородность по собственным функциям:
+\begin{equation}
+x = \sum_{n = 0}^{\infty}f_n(t)\cos\pi nx
+\end{equation}
+(множитель, зависящий только от $t$, выносится за скобки) где
+\begin{equation*}
+f_0 = \int_0^1xdx = \frac12
+\end{equation*}
+\begin{multline*}
+f_n = 2\int_0^1x\cos\pi nxdx = \frac2{\pi n}\int_0^1xd(\sin\pi nx) = \\
+= \frac2{\pi n}\left(\sin\pi nx|_0^1 - \int_0^1\sin \pi nxdx\right) = 
+= \frac2{\pi n}\cos\pi nx|_0^1 = \frac2{\pi n}(-1)^n
+\end{multline*}
+Подставляя разложения (5) и (6) в (4), получаем систему задач Коши:
+\begin{equation}
+\begin{cases}
+z_n'(t) = (\pi n)^2z_n(t) + f_n(t), \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+При $n = 0$:
+\begin{equation*}
+\begin{cases}
+z_0'(t) = \frac12e^{-t}(t - 1), \\
+z_0(0) = 0
+\end{cases}
+\end{equation*}
+\begin{equation*}
+\int e^{-t}(t - 1)dt = C - te^{-t}
+\end{equation*}
+Поэтому решением этой задачи будет функция $z_0(t) = -te^{-t}$.
+
+При $n \neq 0$:
+\begin{equation*}
+\begin{cases}
+z_n'(t) = (\pi n)^2z(t) + \frac2{\pi n}(-1)^ne^{-t}(t - 1), \\
+z_n(0) = 0.
+\end{cases}
+\end{equation*}
+Ищем решение в виде $z_n(t) = C(t)e^{-(\pi n)^2t}$. На $C(t)$ получаем задачу:
+\begin{equation*}
+\begin{cases}
+C_n'(t) = \frac2{\pi n}(-1)^ne^{((\pi n)^2 - 1)t}(t - 1), \\
+C_n(0) = 0.
+\end{cases}
+\end{equation*}
+\begin{multline*}
+\int e^{((\pi n)^2 - 1)t}(t - 1)dt = \int te^{((\pi n)^2 - 1)t}dt - \int e^{((\pi n)^2 - 1)t}dt = \\
+= \frac1{(\pi n)^2 - 1}\int td(e^{((\pi n)^2 - 1)t}) - \frac1{(\pi n)^2 - 1}e^{((\pi n)^2 - 1)t} = \\
+= \frac1{(\pi n)^2 - 1}\left(te^{((\pi n)^2 - 1)t} - \int e^{((\pi n)^2 - 1)t}dt - e^{((\pi n)^2 - 1)t}\right) = \\
+= \frac{e^{((\pi n)^2 - 1)t}}{(\pi n)^2 - 1}\left(t - 1 - \frac1{(\pi n)^2 - 1}\right)
+= \frac{e^{((\pi n)^2 - 1)t}((\pi n)^2t - (\pi n)^2 - t)}{((\pi n)^2 - 1)^2} + C
+\end{multline*}
+Получаем, что
+\begin{equation*}
+C_n(t) = (-1)^n\frac2{\pi n}\left(\frac{e^{((\pi n)^2 - 1)t}((\pi n)^2t - (\pi n)^2 - t)}{((\pi n)^2 - 1)^2}
++ \left(\frac{\pi n}{(\pi n)^2 - 1}\right)^2\right)
+\end{equation*}
+Тогда для $z_n(t)$ получим:
+\begin{equation*}
+z_n(t) = (-1)^n\left(\frac{2e^{-t}((\pi n)^2t - (\pi n)^2 - t)}{\pi n((\pi n)^2 - 1)^2} +
+\frac{2\pi n}{(\pi n)^2 - 1}\right)
+\end{equation*}
+Итого для $u(x, t)$ получим:
+\begin{equation}
+u(x, t) = t(x - 1) + (-1)^n\sum_{n = 1}^{\infty}\left(\frac{2((\pi n)^2t - (\pi n)^2 - t)}{\pi n((\pi n)^2 - 1)^2} + \frac{2\pi ne^t}{(\pi n)^2 - 1}\right)\cos \pi nx
+\end{equation}
+#+END_EXPORT
+* Задача 4.16
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} - u - 1, 0 < x < 1, t > 0, \\
+u_x(0, t) = u(1, t) = 0, \\
+u(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = e^{-t}z$. Получим задачу:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} - e^t, 0 < x < 1, t > 0, \\
+z_x(0, t) = z(1, t) = 0, \\
+z(x, 0) = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = \left(\frac{\pi(2n + 1)}2\right)^2, \\
+X_n = \cos\frac{\pi(2n + 1)}2x.
+\end{cases}
+\end{equation*}
+Ищем решение в виде:
+\begin{equation}
+z(x, t) = \sum_{n = 0}^{\infty}z_n(t)\cos\frac{\pi(2n + 1)}2x
+\end{equation}
+Разложим неоднородность по собственным функциям ЗШЛ:
+\begin{equation*}
+1 = \sum_{n = 0}^{\infty}f_n\cos\frac{\pi(2n + 1)}2x,
+\end{equation*}
+где
+\begin{equation*}
+f_n = \int_0^1\cos\frac{\pi(2n + 1)}2xdx = \frac2{\pi(2n + 1)}\sin\frac{\pi(2n + 1)}2x|_0^1 = 
+\frac2{\pi(2n + 1)}(-1)^n.
+\end{equation*}
+Подставляя эти разложения в (10), получаем систему задач Коши:
+\begin{equation}
+\begin{cases}
+z_n' = -\frac{\pi(2n + 1)}2z_n - (-1)^n\frac{2e^t}{\pi(2n + 1)}, \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $z_n = C_n(t)\exp\left(-\frac{\pi(2n + 1)}2t\right)$. Получим систему задач
+Коши для $C_n(t)$:
+\begin{equation}
+\begin{cases}
+C_n' = (-1)^{n + 1}\frac2{\pi(2n + 1)}\exp\left(\frac{\pi(2n + 3)}2t\right), \\
+C_n(0) = 0.
+\end{cases}
+\end{equation}
+Для $C_n(t)$ получаем:
+\begin{equation*}
+C_n = \int (-1)^{n + 1}\frac2{\pi(2n + 1)}\exp\left(\frac{\pi(2n + 3)}2t\right) = 
+(-1)^{n + 1}\frac2{\pi(2n + 1)}\frac2{\pi(2n + 3)}\exp\left(\frac{\pi(2n + 3)}2t\right) + C
+\end{equation*}
+Из начальных условий найдём окончательно:
+\begin{equation*}
+C_n = (-1)^{n + 1}\frac4{\pi^2(2n + 1)(2n + 3)}\left(\exp\left(\frac{\pi(2n + 3)}2t\right) - 1\right)
+\end{equation*}
+Тогда для $z_n(t)$:
+\begin{equation*}
+z_n(t) = (-1)^{n + 1}\frac4{\pi^2(2n + 1)(2n + 3)}\left(\exp(-\pi t) - \exp\left(-\frac{\pi(2n + 1)}2t\right)\right)
+\end{equation*}
+Тогда окончательно для $u(x, t)$ получим:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}\frac4{\pi^2(2n + 1)(2n + 3)}\left(\exp(-(\pi + 1)t) -
+\exp\left(-\frac{\pi(2n + 3)}2t\right)\right)\cos\frac{\pi(2n + 1)}2x
+\end{equation}
+#+END_EXPORT
+* Задача 4.18
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = 4u_{xx} + 2tx + 2\cos\frac{5\pi}2x, 0 < x < 1, t > 0, \\
+u_x(0, t) = t^2 + 1, u(1, t) = t^2, t > 0, \\
+u(x, 0) = x - 1, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v, U = a(t)x + b(t)$. Подставляя в начальные условия, находим:
+\begin{equation*}
+\begin{cases}
+a(t) = t^2 + 1, \\
+a(t) + b(t) = t^2
+\end{cases}
+\Rightarrow
+\begin{cases}
+a(t) = t^2 + 1, \\
+b(t) = -1.
+\end{cases}
+\end{equation*}
+Получили, что $u = (t^2 + 1)x - 1 + v$. Подставляя в (15), получим задачу на $v$:
+\begin{equation*}
+\begin{cases}
+v_t + 2tx = v_{xx} + 2tx + 2\cos\frac{5\pi}2x, 0 < x < 1, t > 0, \\
+v_x(0, t) = v(1, t) = 0, t > 0, \\
+x - 1 + v(x, 0) = x - 1, 0 \leq x \leq 1
+\end{cases}
+\end{equation*}
+или
+\begin{equation}
+\begin{cases}
+v_t = v_{xx} + 2\cos\frac{5\pi}2x, 0 < x < 1, t > 0, \\
+v_x(0, t) = v(1, t) = 0, t > 0, \\
+v(x, 0) = 0, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции соответствующей ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = \left(\frac{\pi(2n + 1)}2\right)^2, \\
+X_n = \cos\frac{\pi(2n + 1)}2x.
+\end{cases}
+\end{equation*}
+Ищем решение в виде разложения по собственным функциям
+\begin{equation*}
+v(x, t) = \sum_{n = 0}^{\infty}v_n(t)\cos\frac{\pi(2n + 1)}2x.
+\end{equation*}
+Разложим неоднородность
+\begin{equation*}
+2\cos\frac{5\pi}2x = \sum_{n = 0}^{\infty}f_n\cos\frac{\pi(2n + 1)}2x
+\end{equation*}
+откуда $f_n = 0, n \neq 2$ и $f_2 = 2$.
+
+Получаем систему задач Коши:
+\begin{equation}
+\begin{cases}
+v_n' = -\left(\frac{\pi(2n + 1)}2\right)^2v_n + f_n, \\
+v_n(0) = 0.
+\end{cases}
+\end{equation}
+При $n \neq 2$ единственным решением этой задачи будет нулевое. При $n = 2$ получаем задачу:
+\begin{equation*}
+\begin{cases}
+v_2' = -\left(\frac{5\pi}2\right)^2v_2 + 2, \\
+v_2(0) = 0.
+\end{cases}
+\end{equation*}
+Решением этой задачи будет функция:
+\begin{equation*}
+v_2 = \frac{8}{25\pi^2}\left(1 - \exp\left(-\left(\frac{5\pi}2\right)^2t\right)\right)
+\end{equation*}
+Тогда для $u(x, t)$ окончательно получаем:
+\begin{equation}
+u(x, t) = (t^2 + 1)x - 1 + \frac8{25\pi^2}\left(1 - \exp\left(-\left(\frac{5\pi}2\right)t\right)\right)\cos\frac{5\pi}2x
+\end{equation}
+#+END_EXPORT
+* Задача 4.20
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + u + \cos x\sin\frac{x}2, 0 < x < \pi, t > 0, \\
+u(0, t) = u_x(\pi, t) = 0, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = e^tz$. Получаем задачу на $z$:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + \cos x\sin\frac{x}2e^{-t}, 0 < x < \pi, t > 0, \\
+z(0, t) = z_x(\pi, t) = 0, t > 0, \\
+z(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+Соответствующие собственные значения и собственные функции:
+\begin{equation}
+\begin{cases}
+\lambda_n = \frac{(2n + 1)^2}4, \\
+X_n = \sin\frac{2n + 1}2x.
+\end{cases}
+\end{equation}
+Ищем решение в виде разложения по собственным функциям:
+\begin{equation}
+z(x, t) = \sum_{n = 0}^{\infty}z_n(t)\sin\frac{2n + 1}2x
+\end{equation}
+Разложим неоднородность в ряд Фурье:
+\begin{multline*}
+\cos x\sin\frac{x}2 = \frac12\left(\sin\left(\frac{x}2 + x\right) + \sin\left(\frac{x}2 - x\right)\right)
+= -\frac12\sin\frac{x}2 + \frac12\sin\frac{3x}2 \Rightarrow \\
+\Rightarrow f_n = 0, n \notin \{0, 1\}, f_0 = -\frac12, f_1 = \frac12.
+\end{multline*}
+Подставляя разложение (22) в задачу (20), получаем систему задач Коши:
+\begin{equation}
+\begin{cases}
+z_n' = -\left(\frac{2n + 1}2\right)^2z_n + f_n, \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+При $n \notin \{0, 1\}$ у этой задачи будет только нулевое решение. Пусть $n = 0$:
+\begin{equation*}
+\begin{cases}
+z_0' = -\frac14z_0 - \frac12, \\
+z_0(0) = 0.
+\end{cases}
+\end{equation*}
+Решением этой задачи Коши будет функция
+\begin{equation}
+z_0(t) = 2(e^{-\frac14t} - 1)
+\end{equation}
+При $n = 1$ получим задачу:
+\begin{equation*}
+\begin{cases}
+z_1' = -\frac94z_1 + \frac12, \\
+z_1(0) = 0.
+\end{cases}
+\end{equation*}
+Решением этой задачи Коши будет функция:
+\begin{equation}
+z_1(t) = \frac29(1 - e^{-\frac94t})
+\end{equation}
+Окончательно для $u(x, t)$ получаем:
+\begin{equation}
+u(x, t) = 2(e^{\frac34t} - e^t)\sin{x}2 + \frac29(e^t - e^{-\frac54t})\sin\frac{3x}2
+\end{equation}
+#+END_EXPORT
+* Задача 4.22
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} - 2u_{x} + x + 2t, 0 < x < 1, t > 0, \\
+u(0, t) = 0, u(1, t) = t, t > 0, \\
+u(x, 0) = e^x\sin\pi x, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v, U = a(t)x + b(t)$. Подставляя в краевые условия, находим:
+\begin{equation*}
+\begin{cases}
+b(t) = 0, \\
+a(t) + b(t) = t.
+\end{cases}
+\Rightarrow
+\begin{cases}
+a(t) = t, \\
+b(t) = 0.
+\end{cases}
+\end{equation*}
+Получили, что $u = tx + v$. Подставив в (27), получаем задачу на $v$:
+\begin{equation*}
+\begin{cases}
+v_t + x = v_{xx} - 2t - v_{x} + x + 2t, 0 < x < 1, t > 0, \\
+v(0, t) = v(1, t) = 0, t > 0, \\
+v(x, 0) = e^x\sin\pi x, 0 \leq x \leq 1.
+\end{cases}
+\end{equation*}
+Или
+\begin{equation}
+\begin{cases}
+v_t = v_{xx} - v_x, 0 < x < 1, t > 0, \\
+v(0, t) = v(1, t) = 0, t > 0, \\
+v(x, 0) = e^x\sin\pi x, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+Ищем решение в виде $v = e^{\alpha x + \beta t}z$. Подставим в задачу:
+\begin{equation*}
+\beta e^{\alpha x + \beta t}z + e^{\alpha x + \beta t}z_t = \alpha^2e^{\alpha x + \beta z}z +
+2\alpha e^{\alpha x + \beta z}z_x + e^{\alpha x + \beta z}z_{xx} - \alpha e^{\alpha x + \beta t}z -
+e^{\alpha x + \beta t}z_x
+\end{equation*}
+Приравнивая коэффициенты при соответствующих производных, находим:
+\begin{equation*}
+\begin{cases}
+\beta = \alpha^2 - \alpha, \\
+2\alpha - 1 = 0.
+\end{cases}
+\Rightarrow
+\begin{cases}
+\alpha = \frac12, \\
+\beta = -\frac14.
+\end{cases}
+\end{equation*}
+Иными словами подстановка имеет вид $v = \exp\left(\frac{x}2 - \frac{t}4\right)z$. Подставляя,
+получаем задачу на $z$:
+\begin{equation*}
+\begin{cases}
+z_t = z_{xx}, 0 < x < 1, t > 0, \\
+z(0, t) = z(1, t) = 0, t > 0, \\
+z(x, 0)e^{\frac{x}2} = e^x\sin\pi x, 0 \leq x \leq 1.
+\end{cases}
+\end{equation*}
+или
+\begin{equation}
+\begin{cases}
+z_t = z_{xx}, 0 < x < 1, t > 0, \\
+z(0, t) = z(1, t) = 0, t > 0, \\
+z(x, 0) = e^{\frac{x}2}\sin\pi x, 0 \leq x \leq 1.
+\end{cases}
+\end{equation}
+Соответствующие собственные значения и собственные функции:
+\begin{equation*}
+\lambda_n = (\pi n)^2, \\
+X_n = \sin\pi nx.
+\end{equation*}
+Ищем решение в виде разложения по собственным функциям:
+\begin{equation}
+z = \sum_{n = 0}^{\infty}z_n(t)\sin\pi nx.
+\end{equation}
+Разложим неоднородность по собственным функциям:
+\begin{equation*}
+e^{\frac{x}2}\sin\pi x = \sum_{n = 0}^{\infty}f_n\sin \pi nx,
+\end{equation*}
+где
+\begin{multline*}
+f_n = \int_0^1e^{\frac{x}2}\sin\pi x\sin\pi nxdx =
+\frac12\left(\int_0^1e^{\frac{x}2}\cos{\pi(n - 1)x}dx - \int_0^1e^{\frac{x}2}\cos{\pi(n + 1)x}dx\right) = \\
+= (\sqrt{e}(-1)^{n + 1} - 1)\left(\frac1{4\pi^2(n - 1)^2 + 1} - \frac1{4\pi^2(n + 1)^2 + 1}\right)
+\end{multline*}
+\begin{multline*}
+I_p = \int_0^1e^{\frac{x}2}\cos\pi pxdx = \frac1{\pi p}\int_0^1e^{\frac{x}2}d(\sin\pi px) =
+\frac1{\pi p}\left(e^{\frac{x}2}\sin\pi px|_0^1 - \frac12\int_0^1e^{\frac{x}2}\sin\pi pxdx\right) = \\
+= \frac1{2\pi^2p^2}\int_0^1e^{\frac{x}2}d(\cos\pi px) =
+\frac1{2\pi^2p^2}\left(e^{\frac{x}2}\cos\pi px|_0^1 - \frac12\int_0^1e^{\frac{x}2}\cos\pi pxdx\right)
+= \frac1{2\pi^2p^2}(\sqrt{e}(-1)^p - 1) - \frac1{4\pi^2p^2}I_p \Rightarrow \\
+\Rightarrow I_p = \left(\frac1{2\pi^2p^2}(\sqrt{e}(-1)^p - 1)\right)/\left(1 + \frac1{4\pi^2p^2}\right)
+= \frac{4\pi^2p^2(\sqrt{e}(-1)^p - 1)}{2\pi^2p^2(4\pi^2p^2 + 1)} = \frac{2(\sqrt{e}(-1)^p - 1)}{4\pi^2p^2 + 1}
+\end{multline*}
+Подставляя разложение (30) в (29), получаем систему задач Коши:
+\begin{equation*}
+z_n' = -(\pi n)^2z_n, \\
+z_n(0) = f_n.
+\end{equation*}
+Решением этой задачи будет функция:
+\begin{equation*}
+z_n = (\sqrt{e}(-1)^{n + 1} - 1)\left(\frac1{4\pi^2(n - 1)^2 + 1} - \frac1{4\pi^2(n + 1)^2 + 1}\right)e^{-\pi^2n^2t}.
+\end{equation*}
+Окончательно для $u(x, t)$ получаем:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}(\sqrt{e}(-1)^{n + 1} - 1)\left(\frac1{4\pi^2(n - 1)^2 + 1} -
+\frac1{4\pi^2(n + 1)^2 + 1}\right)\exp\left(\frac{x}2 - \left(\frac14 + \pi^2n^2\right)t\right)
+\sin\pi nx.
+\end{equation}
+#+END_EXPORT
+* Задача 4.23
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + 4u + x^2 - 2t - 4x^2t + 2\cos^2x, 0 < x < \pi, t > 0, \\
+u_x(0, t) = 0, u_x(\pi, t) = 2\pi t, t > 0, \\
+u(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v, U = a(t)x^2 + b(t)x$. Подставляя в краевые условия, находим:
+\begin{equation*}
+\begin{cases}
+b(t) = 0, \\
+2a(t)\pi + b(t)\pi = 2\pi t,
+\end{cases}
+\Rightarrow
+\begin{cases}
+a(t) = t, \\
+b(t) = 0.
+\end{cases}
+\end{equation*}
+Откуда получаем, что $u = tx^2 + v$. Подставляя это выражение для $u$ в (32), получаем задачу
+для $v$:
+\begin{equation*}
+\begin{cases}
+v_t + x^2 = v_{xx} + 2t + 4v + 4tx^2 - 2t - 4tx^2 + 2\cos^2x, 0 < x < \pi, t > 0, \\
+v_x(0, t) = v_x(\pi, t) = 0, t > 0, \\
+v(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation*}
+Или
+\begin{equation}
+\begin{cases}
+v_t = v_{xx} + 4v + 2\cos^2x, 0 < x < \pi, t > 0, \\
+v_x(0, t) = v_x(\pi, t) = 0, t > 0, \\
+v(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+Ищем решение в виде $v = e^{4t}z$. Получаем задачу на z:
+\begin{equation}
+\begin{cases}
+z_t = z_{xx} + 2\cos^2xe^{-4t}, 0 < x < \pi, t > 0, \\
+z_x(0, t) = z_x(\pi, t) = 0, t > 0, \\
+z(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+\end{equation}
+Соответствующие собственные значения и собственные функции:
+\begin{equation*}
+\begin{cases}
+\lambda_n = n^2, \\
+X_n = \cos nx.
+\end{cases}
+\end{equation*}
+Ищем решение в виде разложения по собственным функциям:
+\begin{equation*}
+z(x, t) = \sum_{n = 0}^{\infty}z_n(t)\cos nx.
+\end{equation*}
+Разложим неоднородность:
+\begin{equation*}
+2\cos^2xe^{-4t} = e^{-4t}(1 + \cos 2x) = e^{-4t} + e^{-4t}\cos 2x \Rightarrow f_0 = f_2 = e^{-4t},
+f_n = 0, n \notin \{0, 2\}.
+\end{equation*}
+Подставляя разложение $z$ в (34), получим систему задач Коши:
+\begin{equation}
+\begin{cases}
+z_n' = -n^2z_n + f_n, \\
+z_n(0) = 0.
+\end{cases}
+\end{equation}
+При $n = 0$:
+\begin{equation*}
+\begin{cases}
+z_0' = e^{-4t}, \\
+z_0(0) = 0.
+\end{cases}
+\end{equation*}
+Решением этой задачи Коши будет функция
+\begin{equation}
+z_0(t) = \frac14(1 - e^{-4t})
+\end{equation}
+При $n = 2$:
+\begin{equation*}
+z_2' = -4z_2 + e^{-4t}, \\
+z_2(0) = 0.
+\end{equation*}
+Ищем решение этой задачи в виде $z_2(t) = C(t)e^{-4t}$, получим задачу Коши для $C(t)$:
+\begin{equation*}
+\begin{cases}
+C'(t) = 1, \\
+C(0) = 0.
+\end{cases}
+\end{equation*}
+Откуда получаем, что $C(t) = t \Rightarrow z_2(t) = te^{-4t}$.
+
+Подставляя найденные значения $z_0$ и $z_2$, для $u(x, t)$ получаем:
+\begin{equation}
+u(x, t) = tx^2 + \frac14(e^{4t} - 1) + t\cos 2x.
+\end{equation}
+#+END_EXPORT
