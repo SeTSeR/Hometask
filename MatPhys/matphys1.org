@@ -784,7 +784,7 @@ c\rho\frac{\partial u}{\partial t} = \operatorname{div}(k\operatorname{grad} u) 
 \end{equation}
 В сферических:
 \begin{equation}
-\Delta u = \Delta_ru + \frac1{r^2}\Delta_{\theta, \varphi}u, { где}
+\Delta u = \Delta_ru + \frac1{r^2}\Delta_{\theta, \varphi}u, \text{ где}
 \end{equation}
 \begin{equation}
 \Delta_ru = \frac1{r^2}\frac{d}{dr}\left(r^2\frac{du}{dr}\right) = \frac1r\frac{d^2}{dr^2}(ru) =
@@ -1016,4 +1016,321 @@ $u(M_0) = \frac1{4\pi a^2}\iint_{S_{\rho}(M_0)}u(P)d\sigma < \frac1{4\pi a^2}u(M
 Нужно применить принцип максимума к функции $V = u_1 - u_2$.
 \end{proof}
 \end{Consequence}
+\begin{Consequence}
+Если $\Delta u = \Delta v = 0$ в $T$, $|u||_{\Sigma} \leq v|_{\Sigma}$, то $|u||_{T} \leq v_{T}$.
+\end{Consequence}
+\begin{Consequence}
+Если $max_{\Sigma}|v| = M$, то $v|_{T} \leq M$.
+\end{Consequence}
+#+END_EXPORT
+** Краевые задачи для гармонических функций
+*** Внутренняя задача Дирихле
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ в T}, \\
+u|_{\Sigma} = g(p), u \in C^2(T)\cap C\overline{T} \Rightarrow g(p) \in C(\Sigma)
+\end{cases}
+\end{equation}
+\begin{Theorem}[Теорема единственности]
+Если $u_1$ и $u_2$ - решения внутренней задачи Дирихле для уравнения Лапласа, то $u_1 = u_2$.
+\begin{proof}
+Рассмотрим $v = u_1 - u_2$. Тогда $v$ - решение однородной задачи:
+\begin{equation}
+\begin{cases}
+\Delta v = 0, \\
+v|_{\Sigma} = 0.
+\end{cases}
+\end{equation}
+В силу следствия 4 $v \equiv 0$.
+\end{proof}
+\end{Theorem}
+\begin{Theorem}[Теорема устойчивости]
+Если $\Delta u_1 = \Delta u_2 = 0$ в $T$ и $|u_1 - u_2||_{\Sigma} < \varepsilon$, то $|u_1 - u_2|_{T} < \varepsilon$.
+\begin{proof}
+Это вытекает из следствия 3.
+\end{proof}
+\end{Theorem}
+Внутренняя задача Дирихле обобщается на случай разрывных граничных условий.
+Пример:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, r < 1, \\
+u|_{r = 1} = \begin{cases}
+1, 0 < \varphi < \pi, \\
+0, \pi < \varphi < 2\pi.
+\end{cases}
+\end{cases}
+\end{equation}
+Тогда нужно дополнительно потребовать, чтобы $u \in C^2(T), |u||_T < M, \lim_{M \to P}u(M) = g(P), P \in \Sigma$.
+#+END_EXPORT
+*** Внутренняя задача Неймана
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ в T}, \\
+\frac{\partial u}{\partial n}|_{\Sigma} = h(P), u \in C^2(T)\cap C^2(\overline{T}).
+\end{cases}
+\end{equation}
+Необходимое условие разрешимости:
+\begin{equation}
+\oiint_{\Sigma}g(P)d\sigma = 0.
+\end{equation}
+\begin{Theorem}[Теорема единственности]
+Если $u_1$ и $u_2$ - решения внутренней задачи Неймана, то $u_1 \equiv u_2$.
+\begin{proof}
+Рассмотрим функцию $v = u_1 - u_2$. Тогда $v$ - решение задачи:
+\begin{equation}
+\begin{cases}
+\Delta v = 0 \text{в T}, \\
+\frac{\partial v}{\partial n}|_{\Sigma} = 0
+\end{cases}
+\end{equation}
+Решением этой задачи является функция $v \equiv const$.
+
+Из первой формулы Грина вытекает, что
+\begin{equation}
+\iiint_Tv\Delta vd\tau = -\iiint_T(\operatorname{grad} v)^2d\tau + \iint_{\Sigma}v\frac{\partial v}{\partial n}d\sigma
+\end{equation}
+Оба слагаемых равны нулю, поэтому $v \equiv const$.
+\end{proof}
+\end{Theorem}
+#+END_EXPORT
+*** Внешняя задача Дирихле
+**** Трёхмерная задача
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ вне T}, \\
+u|_{\Sigma} = g(p).
+\end{cases}
+\end{equation}
+Такая задача имеет в общем случае не единственное решение. Для однозначности добавим
+дополнительное условие:
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ вне T}, \\
+u|_{\Sigma} = g(p), \\
+\lim_{r \to \infty}u = 0.
+\end{cases}
+\end{equation}
+\begin{Theorem}[Теорема единственности]
+Пусть $u_1$ и $u_2$ - решения внешней задачи Дирихле, тогда $u_1 \equiv u_2$.
+\begin{proof}
+Рассмотрим $v = u_1 - u_2$. Это решение задачи:
+\begin{equation}
+\begin{cases}
+\Delta v = 0 \text{ вне T}, \\
+v|_{\Sigma} = 0, \\
+\lim_{M \to \infty} v(M) = 0.
+\end{cases}
+\end{equation}
+Окружим область $T$ сферой $C_R$, вне которой $|v| < \varepsilon$. Тогда $v$ - решение задачи:
+\begin{equation}
+\begin{cases}
+\Delta v = 0, \\
+v|_{\Sigma} = 0, \\
+|v||_{C_R} < \varepsilon.
+\end{cases}
+\end{equation}
+Это означает, что $|v| < \varepsilon$ в $C_R \ T$. В силу произвольности $\varepsilon \equiv 0$.
+\end{proof}
+\end{Theorem}
+#+END_EXPORT
+**** Плоская задача
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ вне D}, \\
+u|_{C} = g(p), \\
+|u| < N.
+\end{cases}
+\end{equation}
+\begin{Theorem}[Теорема единственности]
+Если $u_1$ и $u_2$ - решения внешней задачи Дирихле, то $u_1 \equiv u_2$.
+\begin{proof}
+$v = u_1 - u_2$ - решение задачи:
+\begin{equation}
+\begin{cases}
+\Delta v = 0 \text{ вне D}, \\
+v|_C = 0, \\
+|v| < N.
+\end{cases}
+\end{equation}
+Рассмотрим $M_0 \in D$ и окружности с радиусами $R$ и $R_1$($C_R$ и $C_{R_1}$), находящиеся внутри и вне $D$
+соответственно. Рассмотрим функцию $U = N\frac{\ln\frac{R_{M_0M}}R}{\ln\frac{R_1}R}$. Тогда
+$U|_{C} > 0$ и $U|_{C_{R_1}} = N$. Для $v$ же $v|_{C} = 0$, $|v||_{C_{R_1}} < N$, что означает, что
+$v(M) < U(M) \to_{R_1 \to \infty} 0$.
+\end{proof}
+\end{Theorem}
+#+END_EXPORT
+** Общее решение уравнения Лапласа в полярных координатах
+#+BEGIN_EXPORT latex
+Пусть $u = u(r, \varphi), \Delta u = 0$ или
+$\frac1r\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}\right) +
+\frac1{r^2}\frac{\partial^2u}{\partial\varphi^2} = 0$. Воспользуемся методом разделения
+переменных, будем искать решение в виде $u = R(r)\Phi(\varphi)$. Подставив в уравнение,
+получим:
+\begin{equation}
+\frac1r\frac{d}{dr}r\frac{dR}{dr}\Phi + \frac1{r^2}R\frac{d^2\Phi}{d\varphi^2} = 0,
+\end{equation}
+\begin{equation}
+\frac{\Phi''}{\Phi} = -\frac{r(rR')'}R = -\lambda.
+\end{equation}
+При решении задачи на круге надо добавить условия
+\begin{equation}
+\Phi(\varphi + 2\pi) = \Phi(\varphi)
+\end{equation}
+или
+\begin{equation}
+\begin{cases}
+\Phi(0) = \Phi(2\pi), \\
+\Phi'(0) = \Phi'(2\pi).
+\end{cases}
+\end{equation}
+Есть три случая:
+1. $\lambda_0 = 0$. Получаем систему:
+\begin{equation}
+\begin{cases}
+\Phi_0'' = 0, \\
+\Phi_0(0) = \Phi_0(2\pi), \\
+\phi'_0(0) = \Phi_0(2\pi).
+\end{cases}
+\end{equation}
+откуда $\Phi_0 = 1$.
+2. $\lambda > 0$. Тогда $\Phi = C_1\cos(\sqrt{\lambda}\varphi) + C_2\sin(\sqrt{\lambda}\varphi)$.
+Получаем систему:
+\begin{equation}
+\begin{cases}
+C_1(\cos(\sqrt{\lambda}2\pi) - 1) + C_2\sin(\sqrt{\lambda}2\pi) = 0, \\
+C_1\sin(\sqrt{\lambda}2\pi) + C_2(1 - \cos(\sqrt{\lambda}2\pi)) = 0.
+\end{cases}
+\end{equation}
+Тогда $\lambda_n = n^2, \Phi_n = \begin{cases}\cos n\varphi,\\\sin n\varphi\end{cases}$.
+
+1. $\lambda_0 = 0$. Тогда $r(rR')' = 0, rR' = A, R' = \frac{A}r \Rightarrow R_0(r) = A\ln r + B$.
+2. $\lambda_n = n^2$. Тогда
+\begin{equation}
+\frac{r(rR')'}R = n^2 \Rightarrow r^2R'' + rR' - n^2R = 0.
+\end{equation}
+Тогда
+\begin{equation}
+R_n(r) = \begin{cases}
+r^{\mu}\mu(\mu - 1) + r^{\mu}\mu - n^2r^{\mu} = 0, \\
+r^n, \\
+\frac1{r^n}.
+\end{cases}
+\end{equation}
+Отсюда следует, что общее решение ищется в виде
+\begin{equation}
+u(r, \varphi) = A\ln r + B + \sum_{n = 1}^{\infty}(A_n\cos n\varphi + B_n\sin n\varphi)r^n +
+\sum_{n = 1}^{\infty}(C_n\cos n\varphi + D_n\sin n\varphi)r^{-n}.
+\end{equation}
+Если задача решается в кольце, решение лучше искать в виде:
+\begin{equation}
+u(r, \varphi) = A\ln r + B + \sum_{n = 1}^{\infty}\left(\left(A_nr^n + \frac{C_n}{r^n}\right)\cos n\varphi + 
+\left(B_nr^n + \frac{D_n}{r^n}\right)\sin n\varphi\right)
+\end{equation}
+#+END_EXPORT
+*** Задачи для круга
+**** Внутренняя
+ #+BEGIN_EXPORT latex
+ \begin{equation}
+ \begin{cases}
+ \Delta u = 0, r < a, \\
+ u|_{r = a} = f(\varphi).
+ \end{cases}
+ \end{equation}
+ Ищем решение в виде
+ \begin{equation}
+ u(r, \varphi) = \frac{a_0}2 + \sum_{n = 1}^{\infty}\left(\frac{r}a\right)^n(a_n\cos n\varphi + b_n\sin n\varphi).
+ \end{equation}
+ Тогда
+ \begin{equation}
+ a_0 = \frac2{\pi}\int_0^{2\pi}f(\varphi)d\varphi, a_n = \frac2{\pi}\int_0^{2\pi}f(\varphi)\cos n\varphi d\varphi,
+ b_n = \frac2{\pi}\int_0^{2\pi}f(\varphi)\sin n\varphi d\varphi.
+ \end{equation}
+ #+END_EXPORT
+**** Внешняя
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, r > a, \\
+u|_{r = a} = f(\varphi), \\
+|u| < n
+\end{cases}
+\end{equation}
+Ищем решение в виде:
+\begin{equation}
+u(r, \varphi) = \frac{a_0}2 + \sum_{n = 1}^{\infty}\left(\frac{a}r\right)^n(a_n\cos n\varphi +
+b_n\sin n\varphi).
+\end{equation}
+#+END_EXPORT
+*** Задача Дирихле для прямоугольника
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{xx} + u_{yy} = 0, 0 < x < a, 0 < y < b, \\
+u|_{x = 0} = f_1(y), \\
+u|_{x = a} = f_2(y), \\
+u|_{y = 0} = f_3(x), \\
+u|_{y = b} = f_4(x).
+\end{cases}
+\end{equation}
+Ищем решение в виде $u = u_1 + u_2 + u_3 + u_4$, где
+\begin{equation}
+\begin{cases}
+\Delta u_1 = 0, \\
+u_1|_{x = 0} = f_1(y), \\
+u_1|_{x = a} = 0, \\
+u_1|_{y = 0} = 0, \\
+u_2|_{y = b} = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде $u = X(x)Y(y)$, получаем систему:
+\begin{equation}
+\begin{cases}
+\frac{X''}X + \frac{Y''}{Y} = 0, \\
+Y(0) = Y(b) = 0.
+\end{cases}
+\end{equation}
+или
+\begin{equation}
+\begin{cases}
+Y'' + \lambda Y = 0, \\
+Y(0) = Y(b) = 0.
+\end{cases}
+\end{equation}
+Получаем собственные значения и собственные функции
+\begin{equation}
+\begin{cases}
+\lambda_n = \left(\frac{\pi n}b\right)^2, \\
+Y_n = \sin \frac{\pi ny}b.
+\end{cases}
+\end{equation}
+Получаем задачу
+\begin{equation}
+\begin{cases}
+u(x, y) = \sum_{n = 1}^{\infty}X(x)\sin\frac{\pi ny}b, \\
+X(0) = (f_1)_n, (f_1)_n = \frac2b\int_0^bf_1(y)\sin\frac{\pi ny}bdy, \\
+X(b) = 0.
+\end{cases}
+\end{equation}
+Решим задачу
+\begin{equation}
+\begin{cases}
+X''_n - \left(\frac{\pi n}b\right)^2X_n = 0, 0 < x < a, \\
+X_n(0) = (f_n)_1, \\
+X_n(a) = 0
+\end{cases}
+\end{equation}
+Ищем решение в виде
+\begin{equation}
+X_n = C_1\sh\frac{\pi n(a - x)}b.
+\end{equation}
+Подставляя в начальные условия, найдём $C_1 = \frac{(f_n)_1}{\sh\frac{\pi n a}b}$. Подставляя,
+находим $u_1(x, y)$:
+\begin{equation}
+u_1(x, y) = \sum_{n = 1}^{\infty}(f_n)_1\frac{\sh\frac{\pi n(a - x)}b}{\sh\frac{\pi na}b}\sin\frac{\pi na}b.
+\end{equation}
 #+END_EXPORT

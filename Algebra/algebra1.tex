@@ -1,4 +1,4 @@
-% Created 2019-09-30 Mon 14:08
+% Created 2019-10-12 Sat 08:56
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -277,26 +277,26 @@ $$y_{i - 1}(x) = y_{i - 3}(x) - y_{i - 2}(x)q_{i - 1}(x)$$
 
 \begin{equation}
 \begin{tabular}{|c|c|c|c|c|}
-           & 1 & $x$ & $x^2$ & $x^3$ \\
-$\alpha$     & 0 & 1 & 0   & 0 \\
-$\alpha^2$   & 0 & 0 & 1   & 0 \\
-$\alpha^3$   & 0 & 0 & 0   & 1 \\
-$\alpha^4$   & 1 & 1 & 0   & 0 \\
-$\alpha^5$   & 0 & 1 & 1   & 0 \\
-$\alpha^6$   & 0 & 0 & 1   & 1 \\
-$\alpha^7$   & 1 & 1 & 0   & 1 \\
-$\alpha^8$   & 1 & 0 & 1   & 0 \\
-$\alpha^9$   & 0 & 1 & 0   & 1 \\
-$\alpha^{10}$ & 1 & 1 & 1   & 0 \\
-$\alpha^{11}$ & 0 & 1 & 1   & 1 \\
-$\alpha^{12}$ & 1 & 1 & 1   & 1 \\
-$\alpha^{13}$ & 1 & 0 & 1   & 1 \\
-$\alpha^{14}$ & 1 & 0 & 0   & 1 \\
-$\alpha^{15}$ & 1 & 0 & 0   & 0.
+             & 1 & $x$ & $x^2$ & $x^3$ \\
+$\alpha$     & 0 & 1   & 0     & 0 \\
+$\alpha^2$   & 0 & 0   & 1     & 0 \\
+$\alpha^3$   & 0 & 0   & 0     & 1 \\
+$\alpha^4$   & 1 & 1   & 0     & 0 \\
+$\alpha^5$   & 0 & 1   & 1     & 0 \\
+$\alpha^6$   & 0 & 0   & 1     & 1 \\
+$\alpha^7$   & 1 & 1   & 0     & 1 \\
+$\alpha^8$   & 1 & 0   & 1     & 0 \\
+$\alpha^9$   & 0 & 1   & 0     & 1 \\
+$\alpha^{10}$ & 1 & 1   & 1     & 0 \\
+$\alpha^{11}$ & 0 & 1   & 1     & 1 \\
+$\alpha^{12}$ & 1 & 1   & 1     & 1 \\
+$\alpha^{13}$ & 1 & 0   & 1     & 1 \\
+$\alpha^{14}$ & 1 & 0   & 0     & 1 \\
+$\alpha^{15}$ & 1 & 0   & 0     & 0.
 \end{tabular}
 \end{equation}
 \section{Корни многочленов над конечными полями}
-\label{sec:org5375de1}
+\label{sec:orga5a7ff5}
 Рассмотрим поле \(\mathbb{F}_p^n\), \(\beta \in \mathbb{F}_p^n\).
 
 \textbf{Минимальным многочленом} элемента \(\beta \in \mathbb{F}_p^n\) называется нормированный
@@ -370,4 +370,67 @@ $\mathbb{F}_p[x] / (f(x))$. $x$ - корень $f(x)$, и при этом $x^{p^
 \begin{Theorem}
 Любой неприводимый делитель $x^{p^n} - 1$ имеет степень не выше $n$.
 \end{Theorem}
+\begin{Theorem}
+Пусть $\beta \in \mathbb{F}_p^n$ - корень неприводимого многочлена $f(x) \in \mathbb{F}_p[x]$ степени n.
+Тогда $\beta$, $\beta^p$, \ldots, $\beta^{p^{n - 1}}$ - все корни $f(x)$.
+\begin{proof}
+При $n = 1$ утверждение тривиально. Пусть $f(\beta) = 0$. Тогда $0 = (f(\beta))^p = f(\beta^p) = 0
+\Rightarrow \beta^p$ - корень.
+\end{proof}
+\end{Theorem}
+\subsubsection{Задача 1}
+\label{sec:orgba76c59}
+  Найти корни многочлена $f(x) = x^4 + 2x^3 + x^2 + x + 1 \in \mathbb{F}_3[x]$.
+
+$f(1) = 0 \Rightarrow f(x) = (x - 1)(x^3 + x + 2)$. $f(2) = 0 \Rightarrow f(x) = (x - 1)(x - 2)(x^2 + 2x + 2)$.
+Последний многочлен не имеет корней в $\mathbb{F}_3$. Строим поле $\mathbb{F}_3[x]/(x^2 + 2x + 2)$.
+В этом поле многочлен имеет два корня, один из которых это $x$.
+
+Второй корень по теореме (14) это $x^3$. Таким образом, в поле $\mathbb{F}_3[x] / (x^2 + 2x + 1)$ многочлен имеет корни
+$1, 2, x, x^3$.
+Пусть $\beta \in \mathbb{F}_p[x] / (a(x))$. Корнями минимального многочлена будут числа $\beta^{p^n}, n \in \mathbb{N}$.
+Это даёт вид минимального многочлена $m_{\beta}(x) = (x - \beta)\ldots(x - \beta^{p^d - 1})$, если
+$\beta^{p^d} = \beta$. Если для некоторого $d$ $\beta^{pd} = x$, минимальным многочленом будет
+нормированный $a(x)$.
+Рассмотрим многочлен из $\mathbb{F}_p[x]$. Обозначим через $I^n_p$ число неприводимых многочленов
+степени $n$ в $\mathbb{F}_p[x]$.
+\begin{Theorem}[Формула Гаусса]
+\begin{equation}
+\sum_{d|n}dI_p^d = p^n
+\end{equation}
+\end{Theorem}
+Функция Мёбиуса $\mu(n)$: $\mu(1) = 1$
+\begin{equation}
+\mu(n) = \begin{cases}1, \text{ чётное произведение различных простых(чётное количество сомножителей)} \\
+-1, \text{ нечётное число различных простых}\\
+0, \text{ не свободно от квадратов}.
+\end{cases}
+\end{equation}
+\begin{Theorem}[Альтернативная формула]
+\begin{equation}
+I_p^n = \frac1n\sum_{d|n}\mu(d)p^{\frac{n}d}
+\end{equation}
+\end{Theorem}
+\section{Циклические подпространства колец вычетов}
+\label{sec:orgd10a250}
+Рассмотрим $f \in \mathbb{F}_p[x]$ и образуем фактор-кольцо $R = \mathbb{F}_p[x]/(f)$.
+\begin{Theorem}
+Рассмотрим $f, \varphi \in \mathbb{F}_p[x], \varphi | f, \varphi$ - неприводим и нормирован.
+Тогда в $R = \mathbb{F}_p[x] / f$:\\
+1. $(\varphi)$ - идеал.\\
+2. $\varphi$ - единственный нормированный многочлен степени $k$.\\
+3. $\operatorname{dim}(\varphi) = n - k, n = \operatorname{deg} f$.\\
+\end{Theorem}
+Подпространство $L$ векторного пространства $V$ называется \textbf{циклическим}, если оно
+инвариантно относительно операции циклического сдвига вектора.
+\begin{Theorem}
+Если $a(x) = x^n - 1$, то $R$ - циклическое пространство.
+\end{Theorem}
+
+Рассмотрим многочлены вида $x^n - 1 \in \mathbb{F}_p[x]$.
+
+1. $n = kp$, тогда многочлен переписывается в виде $(x^k - 1)^p$. Тогда $x^k - 1$ уже
+раскладывается.
+
+2. $x^n - 1 = f_1(x)\ldots f_k(x)$.
 \end{document}
