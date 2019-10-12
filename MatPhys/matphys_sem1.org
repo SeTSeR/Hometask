@@ -30,6 +30,7 @@
 6 вопросов, 3 теории, 3 задачи
 
 * Семинар 1
+\zall
 ** Уравнения в частных производных второго порядка
  #+BEGIN_EXPORT latex
  Это уравнения вида
@@ -267,6 +268,7 @@
  Д. з.: 1.11, 1.14, 1.8, 1.19, 1.23
  Начало в 12:15
 * Семинар 2
+\zall
 ** Уравнение теплопроводности
  #+BEGIN_EXPORT latex
  \begin{equation}
@@ -517,6 +519,7 @@
  Д. з. 2.5, 13, 14, 15, 16, 18, 19, 3.3, 3.4
 
 * Семинар 3
+\zall
  Собственные значения и собственные функции ЗШЛ с разными краевыми условиями:\\
  #+BEGIN_EXPORT latex
  \begin{equation}
@@ -812,6 +815,7 @@
 
  Д. з. 3.7, 9, 10, 11, 12
 * Семинар 4
+\zall
 ДЗ: 4.4, 4.6, 4.7, 4.8, 4.11
 ** Задача 4.5
 #+BEGIN_EXPORT latex
@@ -1028,6 +1032,7 @@ u(x, t) = t\cos x + \left(\frac18e^{-8t} - \frac18\right)\cos3x.
 \end{equation}
 #+END_EXPORT
 * Семинар 5
+\zall
 ** Задача 4.13
 #+BEGIN_EXPORT latex
 \begin{equation}
@@ -1415,3 +1420,181 @@ u(x, t) = 1 + t + e^x((1 - e^{-t})\sin x + e^{-4t}\sin 2x)
 \end{equation}
 #+END_EXPORT
 ДЗ: 4.14, 4.16, 4.18, 4.20, 4.22, 4.23
+* Семинар 6
+\zall
+ДЗ: 5.2, 5.3, 5.5, 5.6, 5.7, 5.9, 5.15, 5.19, 5.20
+** Задача 5.4
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = u_{xx} + e^{-t}\cos x, -\infty < x < +\infty, t > 0, \\
+u(x, 0) = \cos x, -\infty < x < +\infty.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u(x, t) = F(t)\cos x$. Подставим в условие:
+\begin{equation}
+\begin{cases}
+F'\cos x = -F\cos x + e^{-t}\cos x, \\
+F(0) = 1
+\end{cases}
+\end{equation}
+или
+\begin{equation}
+\begin{cases}
+F' = -F + e^{-t}, \\
+F(0) = 1.
+\end{cases}
+\end{equation}
+Решение задачи ищем в виде $F = Ce^{-t}$, получаем, что
+\begin{equation}
+F(t) = t + 1
+\end{equation}
+Тогда для $u(x, t)$:
+\begin{equation}
+u(x, t) = (t + 1)e^{-t}\cos x.
+\end{equation}
+#+END_EXPORT
+** Задача 2
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = 4u_{xx}, \\
+u(x, 0) = 2\sin 3x.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u(x, t) = F(t)\sin 3x$. Подставляя в условие, находим, что $F(t) = 2e^{-36t}$ и что
+\begin{equation}
+u(x, t) = 2e^{-36t}\sin 3x.
+\end{equation}
+#+END_EXPORT
+** Задача 5.8
+#+BEGIN_EXPORT latex
+\begin{equation}
+u_t = a^2u_{xx},
+u(x, t) - { решение}.
+\end{equation}
+Тогда $U(x, t) = \frac1{\sqrt{1 + 4at^2ct}}e^{-\frac{cx^2}{1 + 4a^2ct}}U\left(\frac{x}{1 + 4a^2ct, \frac{t}{1 + 4a^2ct}}\right)$ - тоже решение.
+\begin{equation}
+\begin{cases}
+4u_t = u_{xx}, -\infty < x < +\infty, t > 0, \\
+u(x, 0) = e^{2x - x^2}, -\infty < x < +\infty.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Подставим в начальные условия решение в виде, выписанном выше:
+\begin{equation}
+u(x, 0) = e^{2x - x^2} = e^{-cx^2}u(x, 0) \Rightarrow c = 1.
+\end{equation}
+$\ldots$
+#+END_EXPORT
+** Задача 5.10
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx}, -\infty < x < +\infty, t > 0, \\
+u(x, 0) = \varphi(x), x \in \mathbb{R}, \\
+|u(x, t)| < C
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде
+\begin{equation}
+u(x, t) = X(x)T(t).
+\end{equation}
+Тогда
+\begin{equation}
+\frac{T'}{a^2T} = \frac{X''}{X} = -\lambda.
+\end{equation}
+Получаем две задачи:
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, \\
+T' + a^2\lambda T = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции:
+\begin{equation}
+\begin{cases}
+\lambda = k^2, \\
+X = e^{ikx}, T = e^{-k^2a^2t}, k \in \mathbb{R}
+\end{cases}
+\end{equation}
+Ищем решение в виде:
+\begin{equation}
+u(x, t) = \int_{-\infty}^{\infty}A(k)e^{-k^2a^2t + ikx}dk
+\end{equation}
+Тогда
+\begin{equation}
+u(x, 0) = \varphi(x) = \int_{-\infty}^{+\infty}A(k)e^{ikx}dk.
+\end{equation}
+Подставив в $u(x, t)$, находим:
+\begin{equation}
+u(x, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp(-k^2a^2t + ik(x - \xi))dk\varphi(\xi)d\xi
+= \frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}\varphi{\xi}d\xi
+\end{equation}
+\begin{equation}
+\Phi(x) = \frac2{\sqrt{\pi}}\int_0^ze^{-x^2}dx, \Phi(\infty) = 1.
+\end{equation}
+#+END_EXPORT
+** Задача 5.16
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx}, \\
+u(x, 0) = \varphi(x) = \begin{cases}
+0, -\infty < x < l { или } l < x < +\infty, \\
+u_0 = const \neq 0, -l < x < l.
+\end{cases}
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Решение имеет вид
+\begin{multline}
+u(x, t) = \int_{-l}^l\frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}u_0d\xi =
+\frac{2a\sqrt{t}u_0}{2\sqrt{\pi a^2t}}\int_{-\frac{e - x}{2a\sqrt{t}}}^{\frac{l - x}{2a\sqrt{t}}}e^{-z^2}dz = \\
+= \frac{u_0}{\sqrt{\pi}}\left(\int_0^{\frac{l - x}{2a\sqrt{t}}}e^{-z^2}dz +
+\int_0^{\frac{l + x}{2a\sqrt{t}}}e^{-z^2}dz\right)
+= \frac{u_0}2\left(\Phi\left(\frac{l - x}{2a\sqrt{t}}\right) + \Phi\left(\frac{l - x}{2a\sqrt{t}}\right)\right)
+\end{multline}
+#+END_EXPORT
+** Задача 5.17
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_0 = u_{xx}, \\
+u(x, 0) = \begin{cases}
+0, x < 0, \\
+e^{-\alpha x}, x > 0, \alpha = const > 0.
+\end{cases}
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде
+\begin{equation}
+u(x, t) = \int_0^{+\infty}\frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}e^{-\alpha\xi}d\xi
+\end{equation}
+\begin{equation}
+-\frac{(x - \xi)^2 + 4a^2t\alpha\xi}{4a^2t} = \ldots =
+-\frac{(\xi - x + 2a^2t\alpha)^2 + 4a^2t\alpha x + 4a^4t^2\alpha^2}{4a^2t}
+\end{equation}
+Подставляя в (23), получим:
+\begin{equation}
+u(x, t) = \frac1{2\sqrt{\pi a^2 t}}e^{\alpha x + a^2t + a^2t\alpha}\int_{\frac{-x + 2a^2ta}{2a\sqrt{t}}}^{+\infty}e^{-z^2}dz =
+\frac{e^{\alpha x + a^2t\alpha^2}}{\sqrt\pi}\left(\sqrt{\pi} - \int_0^{\frac{-x + 2a^2t\alpha}{2a\sqrt{t}}}e^{-z^2}dz\right) = \ldots
+\end{equation}
+#+END_EXPORT
+Если краевые условия первого рода, продолжаем нечётным образом, иначе чётным.
