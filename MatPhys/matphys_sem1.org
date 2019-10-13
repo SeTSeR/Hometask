@@ -1477,9 +1477,9 @@ u(x, t) = 2e^{-36t}\sin 3x.
 #+BEGIN_EXPORT latex
 \begin{equation}
 u_t = a^2u_{xx},
-u(x, t) - { решение}.
+u(x, t) - \text{ решение}.
 \end{equation}
-Тогда $U(x, t) = \frac1{\sqrt{1 + 4at^2ct}}e^{-\frac{cx^2}{1 + 4a^2ct}}U\left(\frac{x}{1 + 4a^2ct, \frac{t}{1 + 4a^2ct}}\right)$ - тоже решение.
+Тогда $U(x, t) = \frac1{\sqrt{1 + 4at^2ct}}e^{-\frac{cx^2}{1 + 4a^2ct}}U\left(\frac{x}{1 + 4a^2ct}, \frac{t}{1 + 4a^2ct}\right)$ - тоже решение.
 \begin{equation}
 \begin{cases}
 4u_t = u_{xx}, -\infty < x < +\infty, t > 0, \\
@@ -1540,7 +1540,7 @@ u(x, 0) = \varphi(x) = \int_{-\infty}^{+\infty}A(k)e^{ikx}dk.
 Подставив в $u(x, t)$, находим:
 \begin{equation}
 u(x, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp(-k^2a^2t + ik(x - \xi))dk\varphi(\xi)d\xi
-= \frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}\varphi{\xi}d\xi
+= \frac1{2\sqrt{\pi a^2t}}\int_{-\infty}^{+\infty}e^{-\frac{(x - \xi)^2}{4a^2t}}\varphi(\xi)d\xi
 \end{equation}
 \begin{equation}
 \Phi(x) = \frac2{\sqrt{\pi}}\int_0^ze^{-x^2}dx, \Phi(\infty) = 1.
@@ -1552,7 +1552,7 @@ u(x, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp(-k^2a
 \begin{cases}
 u_t = a^2u_{xx}, \\
 u(x, 0) = \varphi(x) = \begin{cases}
-0, -\infty < x < l { или } l < x < +\infty, \\
+0, -\infty < x < l \text{ или } l < x < +\infty, \\
 u_0 = const \neq 0, -l < x < l.
 \end{cases}
 \end{cases}
