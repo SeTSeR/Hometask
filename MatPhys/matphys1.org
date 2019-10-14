@@ -1334,3 +1334,231 @@ X_n = C_1\sh\frac{\pi n(a - x)}b.
 u_1(x, y) = \sum_{n = 1}^{\infty}(f_n)_1\frac{\sh\frac{\pi n(a - x)}b}{\sh\frac{\pi na}b}\sin\frac{\pi na}b.
 \end{equation}
 #+END_EXPORT
+** Замкнутая форма решения задачи Дирихле для круга
+Внутренняя задача Дирихле:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, r < a, \\
+u|_{r = a} = f(\varphi), u \in C^2(r < a) \cap C(r \leq a)
+\end{cases}
+\end{equation}
+#+END_EXPORT
+Внешняя задача:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0. r \geq a, \\
+u|_{r = a} = f(\varphi), u \in C^2(r > a) \cap C(r \geq a) \cap M, \\
+|u| < k, r \geq a
+\end{cases}
+\end{equation}
+#+END_EXPORT
+Решение внутренней задачи:
+#+BEGIN_EXPORT latex
+\begin{equation}
+u(r, \varphi) = \frac{a_0}2 + \sum_{n = 1}^{\infty}\left(\frac{r}a\right)^n(a_n\cos n\varphi + b_n\sin n\varphi)
+\end{equation}
+#+END_EXPORT
+Решение внешней задачи:
+#+BEGIN_EXPORT latex
+\begin{equation}
+u(r, \varphi) = \frac{a_0}2 + \sum_{n = 1}^{\infty}\left(\frac{r}a\right)^n(c_n\cos n\varphi + d_n\sin n\varphi)
+\end{equation}
+\begin{equation}
+a_0 = \frac1{\pi}\int_0^{2\pi}f(\varphi)d\varphi, a_n = c_n = \frac1{\pi}\int_0^{2\pi}f(\varphi)\cos n\varphi d\varphi,
+b_n = d_n = \frac1{\pi}\int_0^{2\pi}f(\varphi)\sin n\varphi d\varphi.
+\end{equation}
+#+END_EXPORT
+Подставим интегралы (86) в (85):
+#+BEGIN_EXPORT latex
+\begin{multline}
+u(r, \varphi) = \frac1{\pi}\int_0^{2\pi}f(\varphi)\left(\frac12 +
+\sum_{n = 1}^{\infty}\left(\frac{r}a\right)^n(a_n\cos n\varphi\cos n\psi + \sin n\varphi\sin n\psi)\right)d\psi = \\
+= \frac1{\pi}\int_0^{2\pi}f(\varphi)\left(\frac12 + \sum_{n = 1}^{\infty}t^n\cos n(\varphi - \psi)\right)d\psi
+\end{multline}
+\begin{equation}
+\frac12 + \sum_{n = 1}^{\infty}t^n\cos n(\varphi - \psi) = \ldots = \frac{1 - \frac{r}a}{2\left(1 + \left(\frac{r}a\right)^2 - 2\frac{r}a\cos(\varphi - \psi)\right)}
+\end{equation}
+Таким образом, для внутренней задачи Дирихле
+\begin{equation}
+u(r, \varphi) = \frac1{2\pi}\int_0^{2\pi}\frac{a^2 - r^2}{a^2 + r^2 - 2ar\cos(\varphi - \psi)}f(\psi)d\psi, r < a,
+\end{equation}
+а для внешней
+\begin{equation}
+u(r, \varphi) = \frac1{2\pi}\int_0^{2\pi}\frac{r^2 - a^2}{a^2 + r^2 - 2ar\cos(\varphi - \psi)}f(\psi)d\psi, r \geq a.
+\end{equation}
+Эта формула называется \textbf{формулой Пуассона}, а функция
+\begin{equation}
+K(r, \varphi, a, \psi) = \frac{a^2 - r^2}{a^2 + r^2 - 2ar\cos{\varphi - \psi}}
+\end{equation}
+называется \textbf{ядром Пуассона}.
+#+END_EXPORT
+** Функция Грина
+#+BEGIN_EXPORT latex
+Если $u \in C^2(T) \cap C^1(\overline{T})$, то справедлива формула Грина:
+\begin{equation}
+u(M_0) = \frac1{4\pi}\iint_{\Sigma}\frac1{R_{MM_0}}\frac{\partial u}{\partial n}d\sigma -
+\frac1{4\pi}\iint_{\Sigma}u(M)\frac{\partial}{\partial n}\left(\frac1{R_{MM0}}\right)d\sigma -
+\frac1{4\pi}\iiint_T\frac{\Delta u}{R_{MM_0}}d\tau
+\end{equation}
+Пусть теперь $v(M)$ - гармоническая функция, т. е. $\Delta v = 0$. Запишем вторую формулу Грина:
+\begin{equation}
+\iiint_T(u\Delta v - v\Delta u)d\tau = \iint_{\Sigma}\left(u\frac{\partial v}{\partial n} - v\frac{\partial u}{\partial n}d\sigma\right)
+\end{equation}
+Из (92) и (93), учитывая, что $\Delta v = 0$, получим:
+\begin{equation}
+u(M_0) = \iint_{\Sigma}\left(\frac1{4\pi R_{MM_0}} + v\right)\frac{\partial u}{\partial n}d\sigma -
+\iint_{\Sigma}u(M)\frac{\partial}{\partial n}\left(\frac1{4\pi R_{M_0M}} + v\right)d\sigma -
+\iiint_T\Delta u\left(\frac1{4\pi R_{M_0M}} + v\right)d\tau.
+\end{equation}
+Введём \textbf{функцию Грина}:
+\begin{equation}
+G(M, M_0) = \frac1{4\pi R_{M_0M}} + v(M)
+\end{equation}
+В этих обозначениях формула (94) перепишется в виде:
+\begin{equation}
+u(M_0) = \iint_{\Sigma}G\frac{\partial u}{\partial n}d\sigma - \iint_{\Sigma}u\frac{\partial G}{\partial n}d\sigma -
+\iiint_TG\Delta ud\tau.
+\end{equation}
+Если мы имеем задачу Дирихле
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ в T}, \\
+u|_{\Sigma} = f(P)
+\end{cases}
+\end{equation}
+Положим $G|_{\Sigma} = 0 \Rightarrow u(M_0) = -\iint_{\Sigma}g(P)\frac{\partial G}{\partial n}d\sigma$.
+
+Для задачи Неймана
+\begin{equation}
+\begin{cases}
+\Delta u = 0 \text{ в T}, \\
+u|_{\Sigma} = h(P).
+\end{cases}
+\end{equation}
+В данном случае надо положить например $\frac{\partial G}{\partial n}|_{\Sigma} = \frac1S$, где $S$ - площадь $\Sigma$
+(условие $\frac{\partial F}{\partial n}|_{\Sigma} = 0$ невыполнимо).
+#+END_EXPORT
+*** Функция Грина для задачи Дирихле
+#+BEGIN_EXPORT latex
+Пусть $G(M, M_0) = \frac1{4\pi R_{MM_0}} + v(M)$ и выполнены условия:
+1. $\Delta_Mv = 0$ в T.
+2. $v|_{\Sigma} = -\frac1{4\pi R_{MM_0}}$.
+
+Тогда решение задачи Дирихле выражается в виде:
+\begin{equation}
+u(M_0) = -\iint_{\Sigma}g(P)\frac{\partial G}{\partial n}d\sigma
+\end{equation}
+Для уравнения Пуассона
+\begin{equation}
+\begin{cases}
+\Delta u = -F, \\
+u|_{\Sigma} = g
+\end{cases}
+\end{equation}
+решение имеет вид
+\begin{equation}
+u(M_0) = -\iint_{\Sigma}g(p)\frac{\partial G}{\partial n}d\sigma + \iiint_TGFd\tau
+\end{equation}
+#+END_EXPORT
+*** Свойства функции Грина для задачи Дирихле
+#+BEGIN_EXPORT latex
+\begin{Theorem}
+\begin{equation}
+G(M, M_0) > 0 \text{ в T}
+\end{equation}
+\begin{proof}
+Окружим точку $M_0$ сферой $S_{\varepsilon}$. Тогда в области $\overline{T} \\ K_{\varepsilon}$
+\begin{equation}
+\Delta G = 0, G|_{\Sigma} = 0, G|_{\S_l} > 0,
+\end{equation}
+откуда по принципу максимума $G > 0$ внутри $T$. Отсюда же следует, что
+$\frac{\partial G}{\partial n}|_{\Sigma} \leq 0$.
+\end{proof}
+\end{Theorem}
+\begin{Theorem}[Симметричность функции Грина]
+\begin{equation}
+G(M_0, M) = G(M_0, M).
+\end{equation}
+\begin{proof}
+Рассмотрим точки $M_0'$ и $M_0''$ внутри $T$ и окружим их сферами радиуса $\varepsilon$.
+Рассмотрим функции
+\begin{equation}
+u(M) = G(M, M_0')
+\end{equation}
+\begin{equation}
+v(M) = G(M, M_0'')
+\end{equation}
+Запишем для них вторую формулу Грина
+\begin{equation}
+\iiint_{T\\(K_{\varepsilon_1} \cup K_{\varepsilon_2})}(u\Delta v - v\Delta u) =
+\iint_{\Sigma}\left(u\frac{\partial v}{\partial n} - v\frac{\partial u}{\partial n}\right)d\sigma +
+\iint_{S_{\varepsilon_1}}\left(u\frac{\partial v}{\partial n} - v\frac{\partial u}{\partial n}\right)d\sigma +
+\iint_{S_{\varepsilon_2}}\left(u\frac{\partial v}{\partial n} - v\frac{\partial u}{\partial n}\right)d\sigma
+\end{equation}
+Левая часть равна нулю, поэтому
+\begin{equation}
+\iint_{S_{\varepsilon_1}}\left(u\frac{\partial v}{\partial n} - v\frac{\partial u}{\partial n}\right)d\sigma +
+\iint_{S_{\varepsilon_2}}\left(u\frac{\partial v}{\partial n} - v\frac{\partial u}{\partial n}\right)d\sigma = 0
+\end{equation}
+Из определения $u$ и $v$ получаем:
+\begin{equation}
+-\iint_{S_{\varepsilon_1}}G(M, M_0'')\frac{\partial G}{\partial n}(M, M_0')d\sigma +
+\iint_{S_{\varepsilon_2}}G(M, M_0')\frac{\partial G}{\partial n}(M, M_0'')d\sigma = 0,
+\end{equation}
+\begin{equation}
+d\sigma = \varepsilon^2d\Omega,
+\end{equation}
+\begin{equation}
+-\iint_{\Omega}\frac1{4\pi\varepsilon^2}G(M, M_0'')\varepsilon^2d\sigma +
+\iint_{\Omega}G(M, M_0')\frac1{4\pi\varepsilon^2}\varepsilon^2d\sigma = 0
+\end{equation}
+При $\varepsilon \to 0$ получим $-G(M_0', M_0'') + G(M_0'', M_0') = 0$.
+\end{proof}
+\end{Theorem}
+#+END_EXPORT
+*** Задача Дирихле для полупространства
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, -\infty < x, y < +\infty, z > 0, \\
+u|_{z = 0} = f(x, y).
+\end{cases}
+\end{equation}
+Методом изображений можно получить функцию Грина:
+\begin{equation}
+G(M, M_0) = \frac1{4\pi R_{MM_0}} + \left(-\frac1{4\pi R_{M\tilde{M_0}}}\right)
+\end{equation}
+или
+\begin{equation}
+G(M, M_0) = \frac1{4\pi}\left(\frac1{\sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}} -
+\frac1{\sqrt{(x - x_0)^2 + (y - y_0)^2 + (z + z_0)^2}}\right)
+\end{equation}
+\begin{multline}
+-\frac{\partial G}{\partial n}\bigg|_{\Sigma} = \frac{\partial G}{\partial z}\bigg|_{z = 0} =
+\frac1{4\pi}(-\frac12\frac{2(z - z_0)}{((x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2)^{\frac32}} + \\
++ \frac12\frac{2(z + z_0)}{((x - x_0)^2 + (y - y_0)^2 + (z + z_0)^2)^{\frac32}})\bigg|_{z = 0} = 
+\frac1{2\pi}\frac{z_0}{((x - x_0)^2 + (y - y_0)^2 + z_0^2)^{\frac32}}
+\end{multline}
+Поэтому решение имеет вид:
+\begin{equation}
+u(x_0, y_0, z_0) = \frac1{2\pi}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\frac{f(x, y)z_0}{((x - x_0)^2 + (y - y_0)^2 + z_0^2)^{\frac32}}dxdy
+\end{equation}
+#+END_EXPORT
+** Применение конформных отображений для решения эллиптических уравнений на плоскости
+#+BEGIN_EXPORT latex
+Пусть $u = u(x, y)$. Рассмотрим $z = x + iy$, $f(z) = u + iv$. Тогда выполнены условия
+Коши-Римана
+\begin{equation}
+\begin{cases}
+u_x = v_y, \\
+u_y = -v_x
+\end{cases}
+\Rightarrow
+u_{xx} + u_{yy} = v_{xx} + v_{yy} = 0
+\end{equation}
+Рассмотрим конформное отображение $w = f(z), f'(z) \neq 0$. При конформном отображении вид
+оператора Лапласа не меняется, поэтому возможно решать задачу Дирихле, отобразив исходное
+множество в "удобное".
+#+END_EXPORT
