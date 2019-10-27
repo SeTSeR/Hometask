@@ -1,4 +1,4 @@
-% Created 2019-10-13 Sun 21:16
+% Created 2019-10-26 Sat 18:27
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -33,6 +33,9 @@
 \newcounter{Cmt}\setcounter{Cmt}{0}
 \def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
 \newtheorem*{Note}{Замечание \cmt}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\grad}{\operatorname{grad}}
 \author{Sergey Makarov}
 \date{\today}
 \title{}
@@ -51,10 +54,10 @@
 6 вопросов, 3 теории, 3 задачи
 
 \section{Семинар 1}
-\label{sec:orgd25c1d7}
+\label{sec:org84ad944}
 \zall
 \subsection{Уравнения в частных производных второго порядка}
-\label{sec:orga578f4b}
+\label{sec:org592823c}
 Это уравнения вида
 \begin{equation}
 a_{11}(x, y)u_{xx} + 2a_{12}(x, y)u_{xy} + a_{22}u_{yy} + f(x, y, u, u_x, u_y) = 0
@@ -95,7 +98,7 @@ u_{xy} = v_{\xi\xi}\xi_x\xi_y + v_{\xi\eta}(\xi_x\eta_y + \xi_y\eta_x) + v_{\eta
 \end{cases}
 \end{equation*}
 \subsection{Задача 6}
-\label{sec:orgd1afe9f}
+\label{sec:org4f4b91d}
 \begin{equation}
 u_{xx} + yu_{yy} = 0
 \end{equation}
@@ -174,7 +177,7 @@ v_{\xi\xi} + y\left(v_{\eta\eta}\frac1y + \eta_n\left(-\frac12\right)\frac1{y^{\
 v_{\eta\eta} = 0.
 \end{equation}
 \subsection{Задача 6.10}
-\label{sec:orgedf2b86}
+\label{sec:org624f656}
 \begin{equation}
 y^2u_{xx} - x^2u_{yy} = 0.
 \end{equation}
@@ -209,7 +212,7 @@ v_{\beta}2y^2 - 2v_{\alpha}x^2 = 0
 y = x = 0, u_{yy} = u_{xx} = 0, v_{\beta\beta} - v_{\alpha\alpha} + \frac{v_{\beta}}{2\alpha} + \frac{v_{\alpha}}{2\alpha} = 0
 \end{equation}
 \subsection{Задача 15}
-\label{sec:org803bb86}
+\label{sec:org1366835}
 \begin{equation}
 x^2u_{xx} + 2xyu_{xy} + y^2u_{yy} = 0.
 \end{equation}
@@ -240,7 +243,7 @@ y^2v_{\xi\xi}\frac1{x^2} = 0
 v_{\eta\eta} = 0
 \end{equation}
 \subsection{Задача 24}
-\label{sec:org6dab48f}
+\label{sec:org9cbe45f}
 \begin{equation}
 u_{xx} - 2u_{xy} + u_{yy} + 6u_x - 2u_y + u = 0.
 \end{equation}
@@ -271,10 +274,10 @@ u_{\eta\eta} + 4u_{\xi} + 6u_{\eta} + u = 0.
 Д. з.: 1.11, 1.14, 1.8, 1.19, 1.23
 Начало в 12:15
 \section{Семинар 2}
-\label{sec:org99f29a1}
+\label{sec:org384cb98}
 \zall
 \subsection{Уравнение теплопроводности}
-\label{sec:org55378fc}
+\label{sec:org674031b}
 \begin{equation}
 u_t = a^2u_{xx} - b(u - u_{avg}) + f(x, t), 0 < x < C
 \end{equation}
@@ -289,7 +292,7 @@ u(x, 0) = \varphi(x)
 u_x(0, t) = \nu_1(t)
 \end{equation}
 \subsection{Задача 2.5}
-\label{sec:orgb935c2b}
+\label{sec:orgecb7816}
 \begin{equation}
 a^2 = 1, u_t = u_{xx}.
 \end{equation}
@@ -308,7 +311,7 @@ $$U_4(x, t) = e^{-cx + c^2t}U(x - 2ct, t)$$
 $$U_{4t}(x, t) = e^{-cx+c^2t}c^2U(x - 2ct, t) + e^{-cx + c^2t}(U_x(x - 2ct, t)(-2c) + U_t(x - 2ct, t))$$
 $$U_{4xx}(x, t) = e^{-cx + c^2t}(-c)^2U(x - 2ct, t) + e^{-cx + cx^2}(-c)U_x(x - 2ct, t) + e^{-cx + cx^2}U_{xx}(x - 2ct, t)$$
 \subsection{Задача 2.10}
-\label{sec:org5560c41}
+\label{sec:org5819c26}
 \begin{equation*}
 0 \leq l \leq x, u_1 = \text{const}, u_2 = \text{const}
 \end{equation*}
@@ -322,7 +325,7 @@ u(x, 0) = u_0x.
 \end{cases}
 \end{equation}
 \subsection{Задача 2.11}
-\label{sec:org032fc60}
+\label{sec:org6e650e1}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx} - b(u - u_{out}), \\
@@ -332,7 +335,7 @@ u(x, 0) = u_0.
 \end{cases}
 \end{equation}
 \subsection{Задача 2.12}
-\label{sec:orgd8a4c78}
+\label{sec:org76d81d2}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, \\
@@ -342,7 +345,7 @@ u(x, 0) = 0.
 \end{cases}
 \end{equation}
 \subsection{Задача 2.17(2)}
-\label{sec:org721bab3}
+\label{sec:org2dd396d}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, \\
@@ -392,7 +395,7 @@ b(t) = \nu_1, \\
 \end{equation}
 Откуда $a(t) = \frac{\nu_2 - \nu_1}{2C}$.
 \subsection{Задача 3.1}
-\label{sec:orgf5e1d56}
+\label{sec:orgbbbee85}
 Решить задачу
 \begin{equation}
 \begin{cases}
@@ -440,7 +443,7 @@ $$\sin 3x + 8\sin 5x = \sum_{n = 1}^{\infty}C_n\sin nx$$
 Получили решение:
 $$u = e^{-9a^2t}\sin3x + 8e^{-25a^2t^2}\sin 5x$$
 \subsection{Задача 3.2}
-\label{sec:org72b48b0}
+\label{sec:org03a4246}
 \begin{equation}
 \begin{cases}
 u_t = \frac14u_{xx} + 1 - x, 0 \leq x \leq 1, t > 0, \\
@@ -473,7 +476,7 @@ v = \sum_{n = 1}^{\infty}C_ne^{-\frac14(\pi n)^2t}\sin(\pi nx).
 \end{equation}
 Тогда $u = -tx + t + 3\sin(2\pi x)e^{-\pi^2 t}$.
 \subsection{Задача 3.3}
-\label{sec:org86cde85}
+\label{sec:orgd64e4e1}
 \begin{equation}
 \begin{cases}
 u_t = 4u_{xx} + 2t, x \in (0, \pi), \\
@@ -512,7 +515,7 @@ u = \frac{x}\pi + t^2 - 1 + \sum_{n = 1}^{\infty}\left(-\frac2n(-1)^n\right)e^{4
 Д. з. 2.5, 13, 14, 15, 16, 18, 19, 3.3, 3.4
 
 \section{Семинар 3}
-\label{sec:org15e7d6b}
+\label{sec:org82c3891}
 \zall
  Собственные значения и собственные функции ЗШЛ с разными краевыми условиями:\\
 \begin{equation}
@@ -525,7 +528,7 @@ II - II & $\left(\frac{\pi n}l\right)^2$           & $\cos\frac{\pi n}lx$.
 \end{tabular}
 \end{equation}
 \subsection{Задача 3.5}
-\label{sec:orgf38f11f}
+\label{sec:org46c4453}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx}, 0 < x < 1, t > 0, \\
@@ -578,7 +581,7 @@ u(x, t) = \sum_{n = 1}^{\infty}\frac{(-1)^n\cdot32}{\pi^3(2n + 1)^3}\exp\left\{-
 \cos\frac{\pi(2n + 1)}{2l}x
 \end{equation}
 \subsection{Задача 3.6}
-\label{sec:org74b001c}
+\label{sec:org7e6e3d3}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx}, 0 < x < l, t > 0, \\
@@ -626,7 +629,7 @@ u = x - l + \sum_{n = 0}^{\infty}\frac{8l}{\pi^2(2n + 1)^2}\exp\left\{-\left(\fr
 \cos\frac{\pi(2n + 1)}{2l}x
 \end{equation}
 \subsection{Задача 3.8}
-\label{sec:org5c69211}
+\label{sec:org1d1d421}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, 0 < x < \pi, t > 0, \\
@@ -652,7 +655,7 @@ C_1 = 1, C_n = 0, n \neq 1.
 \end{equation}
 Получаем, что $u(x ,t) = e^{-\frac94}a^2t\cos\frac{3x}2$.
 \subsection{Задача next}
-\label{sec:org98096d5}
+\label{sec:org11ef2fd}
 \begin{equation}
 \begin{cases}
 u_t = \frac19u_{xx} + 1, \\
@@ -691,7 +694,7 @@ v(x, 0) = \sum_{n = 0}^{\infty}C_n\sin\frac{\pi(2n + 1)}2x = 2\sin\frac32x
 u(x, t) = t + 2\exp\left\{-\frac{\pi^2}4t\right\}\sin\frac32\pi x.
 \end{equation}
 \subsection{Задача next2}
-\label{sec:org484a024}
+\label{sec:org009c9a5}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} - u, \\
@@ -732,7 +735,7 @@ C_n = \frac2l\int_0^l\sin\frac{\pi n}lxdx = \frac2{\pi n}\cos\frac{\pi n}lx\bigg
 u = \sum_{n = 1}^{\infty}\frac2{\pi n}(1 - (-1)^n)\exp\left\{-\left(\left(\frac{\pi n}l\right)^2 1\right)t\right\}\sin\frac{\pi n}lx
 \end{equation}
 \subsection{Задача 3.14}
-\label{sec:orgc9de3e7}
+\label{sec:orgc6319a7}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, 0 < x < l, \\
@@ -768,7 +771,7 @@ u(x, t) = \sum_{n = 0}^{\infty}C_ne^{-\lambda_na^2t}\cos\sqrt{\lambda_n}x
 |X_n|^2 = \int_0^l\cos^2\sqrt{\lambda_n}xdx
 \end{equation}
 \subsection{Задача 3.15}
-\label{sec:org52eef2f}
+\label{sec:orgccf28be}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, 0 < x < l, \\
@@ -800,11 +803,11 @@ C_1\cos\sqrt{\lambda}l + C_2\sin\sqrt{\lambda}l = 0.
 
 Д. з. 3.7, 9, 10, 11, 12
 \section{Семинар 4}
-\label{sec:orge601ba0}
+\label{sec:orgd339607}
 \zall
 ДЗ: 4.4, 4.6, 4.7, 4.8, 4.11
 \subsection{Задача 4.5}
-\label{sec:org3f4e62b}
+\label{sec:org69ccb3c}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx} + f_0, 0 < x < l, t > 0, f_0 = \text{const}, \\
@@ -843,7 +846,7 @@ u_n = \frac{f_n}{a^2\lambda_n}(1 - e^{-a^2\lambda_nt}).
 u(x, t) \sum_{n = 0}^{\infty}\frac{16f_0l^2}{\pi^3(2n + 1)^3a^2}\left(1 - \exp\left\{-\left(\frac{\pi(2n + 1)a}{2l}\right)^2\right\}\right)\sin\frac{\pi(2n + 1)}{2l}x
 \end{equation}
 \subsection{Задача 4.9}
-\label{sec:orgdaaca08}
+\label{sec:orgb83e66b}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} + 2, 0 < x < \frac{\pi}2, t > 0, \\
@@ -873,7 +876,7 @@ $C_2 = 1, C_n = 0, n \neq 2$, откуда
 u(x, t) = 2t + e^{-25t}\sin5x.
 \end{equation}
 \subsection{Задача 4.10}
-\label{sec:orgf74ef91}
+\label{sec:org61e6780}
 Решить задачу
 \begin{equation}
 \begin{cases}
@@ -913,7 +916,7 @@ v_2(0) = 0.
 u = 2t + \left(\frac2{25}e^{-25t} + \frac2{25}\right)\sin5x
 \end{equation}
 \subsection{Задача next}
-\label{sec:org3e75217}
+\label{sec:orga3fc8f2}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, 0 < x < l, t > 0, \\
@@ -970,7 +973,7 @@ v_n(0) = 0.
 u(x, t) = -\frac{At}l(x - l) + \sum_{n = 1}^{\infty}-\frac{2Al^2}{\pi^3n^3d^2}\left(1 - \exp\left\{-a^2\ldots\right\}\right)\sin
 \end{equation}
 \subsection{Задача next2}
-\label{sec:orga37e572}
+\label{sec:orge0ecfb3}
 Решить задачу
 \begin{equation}
 \begin{cases}
@@ -1013,10 +1016,10 @@ u_1(0) = 0
 u(x, t) = t\cos x + \left(\frac18e^{-8t} - \frac18\right)\cos3x.
 \end{equation}
 \section{Семинар 5}
-\label{sec:orgbcead42}
+\label{sec:orgaff893f}
 \zall
 \subsection{Задача 4.13}
-\label{sec:org5b986d0}
+\label{sec:orgccd18e0}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} + u, 0 < x < 1, t > 0, \\
@@ -1025,7 +1028,7 @@ u(x, 0) = 0, 0 \leq x \leq 1
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org6529137}
+\label{sec:org4675a66}
 Ищем решение в виде $u = U + v$. $U = a(t)x + b(t)$. Подставляя в начальные условия, получим:
 \begin{equation}
 a(t) = t, b(t) = 0.
@@ -1086,7 +1089,7 @@ C = \frac{2(-1)^{n + 1}}{\pi n}\int_0^t(\tau - 1)e^{(\pi n^2 - 1)\tau}d\tau = \l
 u(x, t) = tx + e^t\left(\sum_{n = 1}^{\infty}B_n(t)e^{-\pi^2n^2t}\sin\pi nx\right)
 \end{equation}
 \subsection{Задача 4.15}
-\label{sec:org6adde83}
+\label{sec:org2998c77}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} - u, 0 < x < 1, t > 0 \\
@@ -1095,7 +1098,7 @@ u(x, 0) = 0, 0 \leq x \leq 1.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org7f8d02c}
+\label{sec:orgee5f459}
 Ищем решение в виде $u = U + v$, где $U = a(t)x + b(t)$. Подставляя в краевые условия, найдём:
 \begin{equation}
 \begin{cases}
@@ -1155,7 +1158,7 @@ C(t) = \frac{8(-1)^n}{\pi^2(2n + 1)^2}\frac4{4 + \pi^2(2n + 1)^2}\left[e^{kt}\le
 u(x, t) = tx + e^{-t}\left(\sum_{n = 0}^{\infty}C_n\exp\left\{-\left(1 + \frac{\pi^2(2n + 1)^2}4\right)t\right\}\sin\frac{2n + 1}2x\right)
 \end{equation}
 \subsection{Задача 4.17}
-\label{sec:orgaeca880}
+\label{sec:org141b3a1}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} + u + \cos 2x\sin x, 0 < x < \frac{\pi}2, t > 0, \\
@@ -1164,7 +1167,7 @@ u(x, 0) = 0, 0 \leq x \leq \frac{\pi}2.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org2060b06}
+\label{sec:orgc3791bf}
 Ищем решение в виде $u = e^tz$. Тогда для $z$ получаем задачу:
 \begin{equation}
 \begin{cases}
@@ -1210,7 +1213,7 @@ z_1(0) = 0.
 u(x, t) = e^t\left(-\frac12 + e^{-t}\right)\sin x + \left(\frac1{16}(e^{8t} - 1)e^{-9t}\sin 3x\right)
 \end{equation}
 \subsection{Задача 4.19}
-\label{sec:org648f513}
+\label{sec:org25721ef}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} + x^2 - 2t + \cos 3x, 0 < x < \pi, t > 0, \\
@@ -1219,7 +1222,7 @@ u(x, 0) = x, 0 \leq x \leq \pi.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org0490c51}
+\label{sec:org9a932b9}
 Решение ищем в виде $u = U + v$, где $U = a(t)x^2 + b(t)x$. Получим, что:
 \begin{equation}
 \begin{cases}
@@ -1259,7 +1262,7 @@ v_n(0) = 0.
 u(x, t) = tx^2 + x + \frac19(1 - e^{-9t})\cos 3x.
 \end{equation}
 \subsection{Задача 4.21}
-\label{sec:orgf3a7e42}
+\label{sec:org5ba3d7c}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} + u - x + 2\sin2x\cos x, 0 < x < \frac{\pi}2, t > 0, \\
@@ -1268,7 +1271,7 @@ u(x, 0) = x, 0 \leq x \leq \frac{\pi}2.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org8410f67}
+\label{sec:org0c007b1}
 Ищем решение в виде $u = U + v$, $U = a(t)x + b(t)$, получим, что $U = x \Rightarrow u = v + x$.
 Для $v$ получаем задачу:
 \begin{equation}
@@ -1312,7 +1315,7 @@ z_1(0) = 0.
 u(x, t) = x + e^t\left[te^{-t}\sin x + \frac18(e^{8t} + 1)\sin 3x\right]
 \end{equation}
 \subsection{Задача 4.24}
-\label{sec:orge1eab45}
+\label{sec:orgaf21a4d}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} - 2u_x + u + e^x\sin x - t, 0 < x < \pi, t > 0, \\
@@ -1321,7 +1324,7 @@ u(x, 0) = 1 + e^x\sin2x, 0 \leq x \leq \pi.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org58d06e0}
+\label{sec:orgcf8e5b7}
 Решение ищем в виде $u = U + v$, где $U = a(t)x + b(t)$. Тогда
 \begin{equation}
 \begin{cases}
@@ -1391,11 +1394,11 @@ u(x, t) = 1 + t + e^x((1 - e^{-t})\sin x + e^{-4t}\sin 2x)
 \end{equation}
 ДЗ: 4.14, 4.16, 4.18, 4.20, 4.22, 4.23
 \section{Семинар 6}
-\label{sec:org5c35d25}
+\label{sec:org66ad880}
 \zall
 ДЗ: 5.2, 5.3, 5.5, 5.6, 5.7, 5.9, 5.15, 5.19, 5.20
 \subsection{Задача 5.4}
-\label{sec:org2120537}
+\label{sec:org5293b21}
 \begin{equation}
 \begin{cases}
 u_t = u_{xx} + e^{-t}\cos x, -\infty < x < +\infty, t > 0, \\
@@ -1403,7 +1406,7 @@ u(x, 0) = \cos x, -\infty < x < +\infty.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org499a5d5}
+\label{sec:org77f9be8}
 Ищем решение в виде $u(x, t) = F(t)\cos x$. Подставим в условие:
 \begin{equation}
 \begin{cases}
@@ -1427,7 +1430,7 @@ F(t) = t + 1
 u(x, t) = (t + 1)e^{-t}\cos x.
 \end{equation}
 \subsection{Задача 2}
-\label{sec:orgbf092d3}
+\label{sec:org88e1cc6}
 \begin{equation}
 \begin{cases}
 u_t = 4u_{xx}, \\
@@ -1435,13 +1438,13 @@ u(x, 0) = 2\sin 3x.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgdcd847d}
+\label{sec:org656911e}
 Ищем решение в виде $u(x, t) = F(t)\sin 3x$. Подставляя в условие, находим, что $F(t) = 2e^{-36t}$ и что
 \begin{equation}
 u(x, t) = 2e^{-36t}\sin 3x.
 \end{equation}
 \subsection{Задача 5.8}
-\label{sec:org48f97aa}
+\label{sec:orgbeae236}
 \begin{equation}
 u_t = a^2u_{xx},
 u(x, t) - \text{ решение}.
@@ -1454,14 +1457,14 @@ u(x, 0) = e^{2x - x^2}, -\infty < x < +\infty.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgd4ef010}
+\label{sec:org98ba8be}
 Подставим в начальные условия решение в виде, выписанном выше:
 \begin{equation}
 u(x, 0) = e^{2x - x^2} = e^{-cx^2}u(x, 0) \Rightarrow c = 1.
 \end{equation}
 $\ldots$
 \subsection{Задача 5.10}
-\label{sec:orga8db665}
+\label{sec:orgddd82ae}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, -\infty < x < +\infty, t > 0, \\
@@ -1470,7 +1473,7 @@ u(x, 0) = \varphi(x), x \in \mathbb{R}, \\
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org523a158}
+\label{sec:org78fe0f1}
 Ищем решение в виде
 \begin{equation}
 u(x, t) = X(x)T(t).
@@ -1510,7 +1513,7 @@ u(x, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\exp(-k^2a
 \Phi(x) = \frac2{\sqrt{\pi}}\int_0^ze^{-x^2}dx, \Phi(\infty) = 1.
 \end{equation}
 \subsection{Задача 5.16}
-\label{sec:orgcd313b8}
+\label{sec:org1b79b30}
 \begin{equation}
 \begin{cases}
 u_t = a^2u_{xx}, \\
@@ -1521,7 +1524,7 @@ u_0 = const \neq 0, -l < x < l.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org43d2d7e}
+\label{sec:org38cce02}
 Решение имеет вид
 \begin{multline}
 u(x, t) = \int_{-l}^l\frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}u_0d\xi =
@@ -1531,7 +1534,7 @@ u(x, t) = \int_{-l}^l\frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}u_0d\
 = \frac{u_0}2\left(\Phi\left(\frac{l - x}{2a\sqrt{t}}\right) + \Phi\left(\frac{l - x}{2a\sqrt{t}}\right)\right)
 \end{multline}
 \subsection{Задача 5.17}
-\label{sec:org0bb5aea}
+\label{sec:org20a5943}
 \begin{equation}
 \begin{cases}
 u_0 = u_{xx}, \\
@@ -1542,7 +1545,7 @@ e^{-\alpha x}, x > 0, \alpha = const > 0.
 \end{cases}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org90d4b1f}
+\label{sec:org14c0f4a}
 Ищем решение в виде
 \begin{equation}
 u(x, t) = \int_0^{+\infty}\frac1{2\sqrt{\pi a^2t}}e^{-\frac{(x - \xi)^2}{4a^2t}}e^{-\alpha\xi}d\xi
@@ -1557,4 +1560,197 @@ u(x, t) = \frac1{2\sqrt{\pi a^2 t}}e^{\alpha x + a^2t + a^2t\alpha}\int_{\frac{-
 \frac{e^{\alpha x + a^2t\alpha^2}}{\sqrt\pi}\left(\sqrt{\pi} - \int_0^{\frac{-x + 2a^2t\alpha}{2a\sqrt{t}}}e^{-z^2}dz\right) = \ldots
 \end{equation}
 Если краевые условия первого рода, продолжаем нечётным образом, иначе чётным.
+\section{Семинар 7}
+\label{sec:org5bb1292}
+\zall
+ДЗ: 6.5, 6.13, 6.14, 7.22, 7.25, 7.26, 7.19, 7.20
+
+\textbf{Уравнение Лапласа}: \(\Delta u = 0\), \textbf{уравнение Пуассона}: \(\Delta u = -F\).
+Функции, удовлетворяющие уравнению Лапласа, называются \textbf{гармоническими}.
+\textbf{Задача Дирихле}: \(u|_{\Sigma} = f_1\), \textbf{задача Неймана}: \(\frac{\partial u}{\partial n}|_{\Sigma} = f_2\).
+\subsection{Задача 6.1}
+\label{sec:org487daab}
+Проверить, являются ли функции гармоническими:
+1. u_1 = \frac1{\sqrt{x^2 + y^2 + z^2}}, x^2 + y^2 + z^2
+2. u_2 = e^{xyz}
+3. u_3 = \sin x\sin y\sin z
+4. u_4 = \sin 3x\sin 4y\sh 5z
+\subsubsection{Решение}
+\label{sec:org0e38bd7}
+1.
+$$\frac{\partial u}{\partial x} = -\frac{x}{(x^2 + y^2 + z^2)^{\frac32}}$$
+$$\operatorname{grad}u = -\left\{\frac{x}{(x^2 + y^2 + z^2)^{\frac32}}, \frac{y}{(x^2 + y^2 + z^2)^{\frac32}}, \frac{z}{(x^2 + y^2 + z^2)^{\frac32}}\right\}$$
+$$\Delta u = \operatorname{div}(\operatorname{grad}u) = \frac{2x^2 - y^2 - z^2 + 2y^2 - x^2 - z^2 + 2z^2 - x^2 - y^2}{\frac{x^2 + y^2 + z^2}^{\frac52}} = 0$$
+$$\frac{\partial^2u}{\partial x^2} = -\frac{(x^2 + y^2 + z^2)^{\frac32}} + x\frac32(x^2 + y^2 + z^2)^{\frac12}\cdot2x = \frac{2x^2 - y^2 - z^2}{(x^2 + y^2 + z^2)^{\frac52}}$$
+Гармоническая\\
+2. 
+$$\operatorname{grad}u = \{yz2e^{xyz}, xze^{xyz}, xye^{xyz}\}$$
+$$\operatorname{div}(\operatorname{grad}u) = yze^{xyz}yz + (xz)^2e^{xyz} + (xy)^2e^{xyz}$$
+Не гармоническая\\
+3.
+$$\operatorname{grad}u = \{\cos x\sin y\sin z, \cos y\sin x\sin z, \cos z\sin x\sin y\}$$
+$$\operatorname{div}\operatorname{grad}u = -\sin x\sin y\sin z - \sin y\sin x\sin z - \sin z\sin x\sin y = -3\sin x\sin y\sin z$$
+Не гармоническая\\
+4.
+$$\frac{\partial u}{\partial x} = 3\cos 3x\sin 4y\sh 5z$$
+$$\frac{\partial u}{\partial y} = 4\sin 3x\cos 4y\sh 5z$$
+$$\frac{\partial u}{\partial z} = 5\sin 3x\sin 4y\ch 5z$$
+$$\operatorname{div}\operatorname{grad}u = -9\sin 3x\sin 4y\sh 5z - 16\sin 3x\sin 4x\sh 5z + 25\sin 3x\sin 4y\sh 5z = 0$$
+Гармоническая
+\subsection{Задача 6.5}
+\label{sec:org2e4e89d}
+Проверить, являются ли функции гармоническими:
+$$u_1 = \ln\frac1{\sqrt{x^2 + y^2}}, x^2 + y^2 \neq 0$$
+$$u_2 = x^2 - y^2 + xy$$
+$$u_3 = \frac{x}{x^2 + y^2}$$
+$$u_4 = \cos x\sh y - \sin x\sin y$$
+\subsubsection{Решение}
+\label{sec:org9110cca}
+1.
+$$u_1 = -\frac12\ln(x^2 + y^2)$$
+$$\operatorname{grad}u = -\left(\frac{x}{x^2 + y^2}, \frac{y}{x^2 + y^2}\right)$$
+$$\operatorname{div}\operatorname{grad}u = \ldots = 0$$
+Гармоническая\\
+2.
+$$\frac{\partial u}{\partial x} = 2x + y$$
+$$\frac{\partial u}{\partial y} = -2y + x$$
+$$\operatorname{div}\operatorname{grad}u = 2 - 2 = 0$$
+Гармоническая\\
+3.
+$$\frac{\partial u}{\partial x} = \frac{y^2 - x^2}{(y^2 + x^2)^2}$$
+$$\operatorname{div}\operatorname{grad}u = \ldots = 0$$
+Гармоническая\\
+4.
+$$\div\grad u = \ldots = 0$$
+Гармоническая\\
+\subsection{Задача 6.3}
+\label{sec:org6a82426}
+Рассчитать производную по нормали:
+\begin{equation}
+x^2 + y^2 + z^2 = a^2
+\end{equation}
+\begin{equation}
+u_1 = xyz
+\end{equation}
+\begin{equation}
+u_2 = x^3 + y^3 + z^3
+\end{equation}
+\begin{equation}
+u_3 = x^2 + y^2 + z^2
+\end{equation}
+\subsubsection{Решение}
+\label{sec:org3b8ba18}
+$$\frac{\partial u}{\partial n} = \frac{\partial u}{\partial x}\cos\alpha +
+\frac{\partial u}{\partial y}\cos\beta + \frac{\partial u}{\partial z}\cos\gamma$$
+\subsection{Задача 7.20}
+\label{sec:orgc48cebe}
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < x < a, 0 < y < b, \\
+u|_{y = 0} = f_1(x), 0 \leq x \leq a, \\
+u|_{x = a} = f_2(y), 0 \leq y \leq b, \\
+u|_{y = b} = f_3(x), 0 \leq x \leq a, \\
+u|_{x = 0} = f_4(y), 0 \leq y \leq b.
+\end{cases}
+\end{equation}
+\subsubsection{Решение}
+\label{sec:org37f4efe}
+Разбиваем задачу на две:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+u|_{y = 0} = f_1(x), \\
+u|_{y = b} = f_3(x), \\
+u|_{x = 0} = u|_{x = a} = 0
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+u|_{x = 0} = f_4(y), \\
+u|_{x = a} = f_2(y), \\
+u|_{y = 0} = u|_{y = b} = 0.
+\end{cases}
+\end{equation}
+Решение задачи (1) будет суммой решений (2) и (3).
+
+Ищем решение каждой задачи в виде $u(x, y) = X(x)Y(y)$. После подстановки получаем задачи:
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, \\
+X(0) = X(a) = 0, \\
+Y'' - \lambda Y = 0, \\
+\lambda_n = \left(\frac{\pi n}a\right)^2, \\
+X_n = \sin\frac{\pi n}ax, \\
+Y_n = C_1e^{\frac{\pi n}ay} + C_2e^{-\frac{\pi n}ay} = A_n\sh\frac{\pi n}ay + B_n\sh\frac{\pi n}a(b - y)
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+X'' - \lambda X = 0, \\
+Y'' + \lambda Y = 0, \\
+Y(0) = Y(b) = 0, \\
+\lambda_n = \left(\frac{\pi n}b\right)^2, \\
+Y_n = \sin\frac{\pi n}by, \\
+X_n = \ldots
+\end{cases}
+\end{equation}
+Получаем, что
+\begin{equation}
+\begin{cases}
+u_1 = \sum_{n = 1}^{\infty}\left(A_n\sh\frac{\pi n}ay + B_n\sh\frac{\pi n}a(b - y)\right)\sin\frac{\pi n}ax\\
+u_2 = \sum_{n = 1}^{\infty}\left(C_n\sh\frac{\pi n}bx + D_n\sh\frac{\pi n}b(a - x)\right)\sin\frac{\pi n}by
+\end{cases}
+\end{equation}
+Подставив в начальные условия, найдём $A_n$ и $B_n$:
+\begin{equation}
+\begin{dcases}
+A_n = \frac1{\sh\frac{\pi n a}b}\frac2a\int_0^af_3(x)\sin\frac{\pi n}axdx, \\
+B_n = \frac1{\sh\frac{\pi n b}a}\frac2a\int_0^af_1(x)\sin\frac{\pi n}axdx, \\
+C_n = \frac1{\sh\frac{\pi n a}b}\frac2b\int_0^bf_4(y)\sin\frac{\pi n}bydy, \\
+D_n = \frac1{\sh\frac{\pi n b}a}\frac2b\int_0^bf_2(y)\sin\frac{\pi n}bydy.
+\end{dcases}
+\end{equation}
+\subsection{Задача next}
+\label{sec:org1dc3830}
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+u(0, y) = v_0, \\
+u(a, y) = 0, \\
+u(x, 0) = 0, \\
+u(x, b) = 0.
+\end{cases}
+\end{equation}
+\subsubsection{Решение}
+\label{sec:orge2020b3}
+Ищем решение в виде
+\begin{equation}
+u(x, y) = X(x)Y(y)
+\end{equation}
+Получаем задачу
+\begin{equation}
+\begin{cases}
+Y'' + \lambda Y = 0, \\
+Y(0) = Y(b) = 0, \\
+X'' - \lambda X = 0, \\
+\lambda_n = \left(\frac{\pi n}b\right)^2, \\
+Y_n = \frac{\pi n}by, \\
+X_n = C_n\sh\frac{\pi n}bx + D_n\sh\frac{\pi n}b(a - x).
+\end{cases}
+\end{equation}
+Получаем, что
+\begin{equation}
+u(x, y) = \sum_{n = 1}^{\infty}\left(C_n\sh\frac{\pi n}bx + D_n\sh\frac{\pi n}b(a - x)\right)\sin\frac{\pi n}bx
+\end{equation}
+Подставим начальные условия:
+\begin{equation}
+u(0, y) = v_0 = \sum_{n = 1}^{\infty}D_n\sh\frac{\pi n}ba\sin\frac{\pi n}by
+\end{equation}
+Что даёт
+\begin{equation}
+D_n = \frac1{\sh\frac{\pi n}ba}\frac{2v_0}b\int_0^b\sin\frac{\pi n}bydy = (1 - (-1)^n)\frac{2v_0}{\sin\frac{\pi na}bb}
+\end{equation}
 \end{document}

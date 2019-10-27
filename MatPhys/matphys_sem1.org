@@ -24,6 +24,10 @@
 #+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
 #+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
 
+#+LATEX_HEADER:\renewcommand{\div}{\operatorname{div}}
+#+LATEX_HEADER:\newcommand{\rot}{\operatorname{rot}}
+#+LATEX_HEADER:\newcommand{\grad}{\operatorname{grad}}
+
 \zall
 
 Захаров, Дмитриев, Орлик "Уравнения математической физики".
@@ -1598,3 +1602,205 @@ u(x, t) = \frac1{2\sqrt{\pi a^2 t}}e^{\alpha x + a^2t + a^2t\alpha}\int_{\frac{-
 \end{equation}
 #+END_EXPORT
 Если краевые условия первого рода, продолжаем нечётным образом, иначе чётным.
+* Семинар 7
+\zall
+ДЗ: 6.5, 6.13, 6.14, 7.22, 7.25, 7.26, 7.19, 7.20
+
+*Уравнение Лапласа*: $\Delta u = 0$, *уравнение Пуассона*: $\Delta u = -F$.
+Функции, удовлетворяющие уравнению Лапласа, называются *гармоническими*.
+*Задача Дирихле*: $u|_{\Sigma} = f_1$, *задача Неймана*: $\frac{\partial u}{\partial n}|_{\Sigma} = f_2$.
+** Задача 6.1
+#+BEGIN_EXPORT latex
+Проверить, являются ли функции гармоническими:
+1. u_1 = \frac1{\sqrt{x^2 + y^2 + z^2}}, x^2 + y^2 + z^2
+2. u_2 = e^{xyz}
+3. u_3 = \sin x\sin y\sin z
+4. u_4 = \sin 3x\sin 4y\sh 5z
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+1.
+$$\frac{\partial u}{\partial x} = -\frac{x}{(x^2 + y^2 + z^2)^{\frac32}}$$
+$$\operatorname{grad}u = -\left\{\frac{x}{(x^2 + y^2 + z^2)^{\frac32}}, \frac{y}{(x^2 + y^2 + z^2)^{\frac32}}, \frac{z}{(x^2 + y^2 + z^2)^{\frac32}}\right\}$$
+$$\Delta u = \operatorname{div}(\operatorname{grad}u) = \frac{2x^2 - y^2 - z^2 + 2y^2 - x^2 - z^2 + 2z^2 - x^2 - y^2}{\frac{x^2 + y^2 + z^2}^{\frac52}} = 0$$
+$$\frac{\partial^2u}{\partial x^2} = -\frac{(x^2 + y^2 + z^2)^{\frac32}} + x\frac32(x^2 + y^2 + z^2)^{\frac12}\cdot2x = \frac{2x^2 - y^2 - z^2}{(x^2 + y^2 + z^2)^{\frac52}}$$
+Гармоническая\\
+2. 
+$$\operatorname{grad}u = \{yz2e^{xyz}, xze^{xyz}, xye^{xyz}\}$$
+$$\operatorname{div}(\operatorname{grad}u) = yze^{xyz}yz + (xz)^2e^{xyz} + (xy)^2e^{xyz}$$
+Не гармоническая\\
+3.
+$$\operatorname{grad}u = \{\cos x\sin y\sin z, \cos y\sin x\sin z, \cos z\sin x\sin y\}$$
+$$\operatorname{div}\operatorname{grad}u = -\sin x\sin y\sin z - \sin y\sin x\sin z - \sin z\sin x\sin y = -3\sin x\sin y\sin z$$
+Не гармоническая\\
+4.
+$$\frac{\partial u}{\partial x} = 3\cos 3x\sin 4y\sh 5z$$
+$$\frac{\partial u}{\partial y} = 4\sin 3x\cos 4y\sh 5z$$
+$$\frac{\partial u}{\partial z} = 5\sin 3x\sin 4y\ch 5z$$
+$$\operatorname{div}\operatorname{grad}u = -9\sin 3x\sin 4y\sh 5z - 16\sin 3x\sin 4x\sh 5z + 25\sin 3x\sin 4y\sh 5z = 0$$
+Гармоническая
+#+END_EXPORT
+** Задача 6.5
+Проверить, являются ли функции гармоническими:
+#+BEGIN_EXPORT latex
+$$u_1 = \ln\frac1{\sqrt{x^2 + y^2}}, x^2 + y^2 \neq 0$$
+$$u_2 = x^2 - y^2 + xy$$
+$$u_3 = \frac{x}{x^2 + y^2}$$
+$$u_4 = \cos x\sh y - \sin x\sin y$$
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+1.
+$$u_1 = -\frac12\ln(x^2 + y^2)$$
+$$\operatorname{grad}u = -\left(\frac{x}{x^2 + y^2}, \frac{y}{x^2 + y^2}\right)$$
+$$\operatorname{div}\operatorname{grad}u = \ldots = 0$$
+Гармоническая\\
+2.
+$$\frac{\partial u}{\partial x} = 2x + y$$
+$$\frac{\partial u}{\partial y} = -2y + x$$
+$$\operatorname{div}\operatorname{grad}u = 2 - 2 = 0$$
+Гармоническая\\
+3.
+$$\frac{\partial u}{\partial x} = \frac{y^2 - x^2}{(y^2 + x^2)^2}$$
+$$\operatorname{div}\operatorname{grad}u = \ldots = 0$$
+Гармоническая\\
+4.
+$$\div\grad u = \ldots = 0$$
+Гармоническая\\
+#+END_EXPORT
+** Задача 6.3
+Рассчитать производную по нормали:
+#+BEGIN_EXPORT latex
+\begin{equation}
+x^2 + y^2 + z^2 = a^2
+\end{equation}
+\begin{equation}
+u_1 = xyz
+\end{equation}
+\begin{equation}
+u_2 = x^3 + y^3 + z^3
+\end{equation}
+\begin{equation}
+u_3 = x^2 + y^2 + z^2
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+$$\frac{\partial u}{\partial n} = \frac{\partial u}{\partial x}\cos\alpha +
+\frac{\partial u}{\partial y}\cos\beta + \frac{\partial u}{\partial z}\cos\gamma$$
+#+END_EXPORT
+** Задача 7.20
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < x < a, 0 < y < b, \\
+u|_{y = 0} = f_1(x), 0 \leq x \leq a, \\
+u|_{x = a} = f_2(y), 0 \leq y \leq b, \\
+u|_{y = b} = f_3(x), 0 \leq x \leq a, \\
+u|_{x = 0} = f_4(y), 0 \leq y \leq b.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Разбиваем задачу на две:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+u|_{y = 0} = f_1(x), \\
+u|_{y = b} = f_3(x), \\
+u|_{x = 0} = u|_{x = a} = 0
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+u|_{x = 0} = f_4(y), \\
+u|_{x = a} = f_2(y), \\
+u|_{y = 0} = u|_{y = b} = 0.
+\end{cases}
+\end{equation}
+Решение задачи (1) будет суммой решений (2) и (3).
+
+Ищем решение каждой задачи в виде $u(x, y) = X(x)Y(y)$. После подстановки получаем задачи:
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, \\
+X(0) = X(a) = 0, \\
+Y'' - \lambda Y = 0, \\
+\lambda_n = \left(\frac{\pi n}a\right)^2, \\
+X_n = \sin\frac{\pi n}ax, \\
+Y_n = C_1e^{\frac{\pi n}ay} + C_2e^{-\frac{\pi n}ay} = A_n\sh\frac{\pi n}ay + B_n\sh\frac{\pi n}a(b - y)
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+X'' - \lambda X = 0, \\
+Y'' + \lambda Y = 0, \\
+Y(0) = Y(b) = 0, \\
+\lambda_n = \left(\frac{\pi n}b\right)^2, \\
+Y_n = \sin\frac{\pi n}by, \\
+X_n = \ldots
+\end{cases}
+\end{equation}
+Получаем, что
+\begin{equation}
+\begin{cases}
+u_1 = \sum_{n = 1}^{\infty}\left(A_n\sh\frac{\pi n}ay + B_n\sh\frac{\pi n}a(b - y)\right)\sin\frac{\pi n}ax\\
+u_2 = \sum_{n = 1}^{\infty}\left(C_n\sh\frac{\pi n}bx + D_n\sh\frac{\pi n}b(a - x)\right)\sin\frac{\pi n}by
+\end{cases}
+\end{equation}
+Подставив в начальные условия, найдём $A_n$ и $B_n$:
+\begin{equation}
+\begin{dcases}
+A_n = \frac1{\sh\frac{\pi n a}b}\frac2a\int_0^af_3(x)\sin\frac{\pi n}axdx, \\
+B_n = \frac1{\sh\frac{\pi n b}a}\frac2a\int_0^af_1(x)\sin\frac{\pi n}axdx, \\
+C_n = \frac1{\sh\frac{\pi n a}b}\frac2b\int_0^bf_4(y)\sin\frac{\pi n}bydy, \\
+D_n = \frac1{\sh\frac{\pi n b}a}\frac2b\int_0^bf_2(y)\sin\frac{\pi n}bydy.
+\end{dcases}
+\end{equation}
+#+END_EXPORT
+** Задача next
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+u(0, y) = v_0, \\
+u(a, y) = 0, \\
+u(x, 0) = 0, \\
+u(x, b) = 0.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде
+\begin{equation}
+u(x, y) = X(x)Y(y)
+\end{equation}
+Получаем задачу
+\begin{equation}
+\begin{cases}
+Y'' + \lambda Y = 0, \\
+Y(0) = Y(b) = 0, \\
+X'' - \lambda X = 0, \\
+\lambda_n = \left(\frac{\pi n}b\right)^2, \\
+Y_n = \frac{\pi n}by, \\
+X_n = C_n\sh\frac{\pi n}bx + D_n\sh\frac{\pi n}b(a - x).
+\end{cases}
+\end{equation}
+Получаем, что
+\begin{equation}
+u(x, y) = \sum_{n = 1}^{\infty}\left(C_n\sh\frac{\pi n}bx + D_n\sh\frac{\pi n}b(a - x)\right)\sin\frac{\pi n}bx
+\end{equation}
+Подставим начальные условия:
+\begin{equation}
+u(0, y) = v_0 = \sum_{n = 1}^{\infty}D_n\sh\frac{\pi n}ba\sin\frac{\pi n}by
+\end{equation}
+Что даёт
+\begin{equation}
+D_n = \frac1{\sh\frac{\pi n}ba}\frac{2v_0}b\int_0^b\sin\frac{\pi n}bydy = (1 - (-1)^n)\frac{2v_0}{\sin\frac{\pi na}bb}
+\end{equation}
+#+END_EXPORT
