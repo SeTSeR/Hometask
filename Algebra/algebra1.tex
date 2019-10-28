@@ -1,4 +1,4 @@
-% Created 2019-10-12 Sat 08:56
+% Created 2019-10-28 Mon 13:45
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -296,7 +296,7 @@ $\alpha^{15}$ & 1 & 0   & 0     & 0.
 \end{tabular}
 \end{equation}
 \section{Корни многочленов над конечными полями}
-\label{sec:orga5a7ff5}
+\label{sec:orgb92ebcd}
 Рассмотрим поле \(\mathbb{F}_p^n\), \(\beta \in \mathbb{F}_p^n\).
 
 \textbf{Минимальным многочленом} элемента \(\beta \in \mathbb{F}_p^n\) называется нормированный
@@ -379,7 +379,7 @@ $\mathbb{F}_p[x] / (f(x))$. $x$ - корень $f(x)$, и при этом $x^{p^
 \end{proof}
 \end{Theorem}
 \subsubsection{Задача 1}
-\label{sec:orgba76c59}
+\label{sec:org9b23f43}
   Найти корни многочлена $f(x) = x^4 + 2x^3 + x^2 + x + 1 \in \mathbb{F}_3[x]$.
 
 $f(1) = 0 \Rightarrow f(x) = (x - 1)(x^3 + x + 2)$. $f(2) = 0 \Rightarrow f(x) = (x - 1)(x - 2)(x^2 + 2x + 2)$.
@@ -412,7 +412,7 @@ I_p^n = \frac1n\sum_{d|n}\mu(d)p^{\frac{n}d}
 \end{equation}
 \end{Theorem}
 \section{Циклические подпространства колец вычетов}
-\label{sec:orgd10a250}
+\label{sec:orgd8050f0}
 Рассмотрим $f \in \mathbb{F}_p[x]$ и образуем фактор-кольцо $R = \mathbb{F}_p[x]/(f)$.
 \begin{Theorem}
 Рассмотрим $f, \varphi \in \mathbb{F}_p[x], \varphi | f, \varphi$ - неприводим и нормирован.
@@ -433,4 +433,39 @@ I_p^n = \frac1n\sum_{d|n}\mu(d)p^{\frac{n}d}
 раскладывается.
 
 2. $x^n - 1 = f_1(x)\ldots f_k(x)$.
+11 ноября контрольная
+Коды БЧХ - циклические коды, для которых заранее известно о кодовом расстоянии. Рассмотрим поле \(\mathbb{F}_p^t = F\), его мультипликативную группу \(F^*\).
+
+\textbf{Циклотомический класс} \(F^*\) - набор элементов \(F\), являющиеся корнями одного минимального многочлена. В \(\mathbb{F}^t_2\) все элементы можно получить из одного путём домножения на 2.
+
+Построение БЧХ-кодов:
+\begin{enumerate}
+\item Выбираем \(t, n = 2^t - 1\).
+\item Рассматривается многочлен \(x^n - 1\) и его разложение. Пусть код должен исправлять \(r\) ошибок. Число \(2r + 1 = \delta\) называется \textbf{конструктивным кодовым расстоянием}.
+\item В \(\mathbb{F}^t_n\) есть порождающий элемент \(\alpha\). Выбираем элементы \(\alpha, \alpha^2, \ldots, \alpha^{2r}\) - \textbf{нули кода}.
+\item Порождающий полином \(g(x)\) выбирается так, чтобы все нули кода были его корнями.
+\end{enumerate}
+\textbf{Синдромами} принятого кодового слова \(w\) называются значения полинома в нулях кода.
+\begin{enumerate}
+\item \(t, n = 2^t - 1 > 2r + 1\)
+\item \(\alpha(x), \operatorname{deg}\alpha(x) = t\), \(\mathbb{F}_2[x] / (\alpha(x))\), \(\alpha(x)\) неприводим.
+\item \(\alpha, \alpha^2, \ldots, \alpha^{2r}\). Пусть \(h\) - количество классов, в который попало (?).
+\item \(g_1(x), \ldots, g_n(x)\).
+\item \(g(x) = g_1(x)\ldots g_n(x)\).
+\end{enumerate}
+
+Декодирование:
+Известны \((n, k, d), \alpha\), поле \(F = \mathbb{F}_2^t = F_2[x] / (a(x))\), \(n = 2^t - 1, g(x), w(x)\).
+\begin{enumerate}
+\item Находим все синдромы \(S_i = w(\alpha^i), i = 1, \ldots, 2r\).
+\item \(\sigma(x)\) - \textbf{полином локаторов ошибок}. Считаем, что произошло \(\mu \leq r\) ошибок. Составляется система линейных алгебраических уравнений, её решение даёт \(\sigma(x)\). \(\operatoname{deg}\sigma(x) = \nu\).
+\item По корням полинома ошибок находятся позиции ошибок: \(\alpha^{k_1}, \ldots, \alpha^{k_{\nu}}, j_i \equiv -k_i, i = \overline{1, v}\).
+\item \(e(x) = x^{j_1} + \ldots + x^{j_{\nu}}\).
+\item \(v(x) = w(x) + e(x)\).
+\end{enumerate}
+Нахождение полинома локаторов ошибок:
+\begin{enumerate}
+\item По синдромам составляется \textbf{синдромный полином} \(S(x) = 1 + S_1(x) + \ldots + S_{2r}x^{2r}\).
+\end{enumerate}
+$$S(x)\sigma(x) = 1 + \lambda_1x + \lambda_2x^2 + \ldots + \lambda_{2r + \nu}x^{2r + \nu}$$
 \end{document}
