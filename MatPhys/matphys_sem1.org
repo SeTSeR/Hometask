@@ -1804,3 +1804,221 @@ u(0, y) = v_0 = \sum_{n = 1}^{\infty}D_n\sh\frac{\pi n}ba\sin\frac{\pi n}by
 D_n = \frac1{\sh\frac{\pi n}ba}\frac{2v_0}b\int_0^b\sin\frac{\pi n}bydy = (1 - (-1)^n)\frac{2v_0}{\sin\frac{\pi na}bb}
 \end{equation}
 #+END_EXPORT
+* Семинар 8
+ДЗ: 7.7, 7.6, 7.8, 7.9, 7.12, 7.14, 7.15
+#+BEGIN_EXPORT latex
+\zall
+\begin{equation}
+u = \tilde{C_0} + \tilde{C_1}\ln r + \sum_{n = 1}^{\infty}(C_nr^n + D_nr^{-n})(A_n\sin n\varphi + B_n\cos n\varphi)
+\end{equation}
+\begin{equation}
+u = \frac1{2\pi}\int_0^{2\pi}\frac{(a^2 - r^2)f(\xi)d\xi}{r^2 + a^2 - 2ra\cos(\varphi - \xi)}
+\end{equation}
+#+END_EXPORT
+** Задача 7.1
+Решить задачу:
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = \frac1r\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}\right) + \frac1r^2\frac{\partial^2u}{\partial\varphi^2} = 0, 0 \leq r < a, 0 \leq \varphi < 2\pi, \\
+u(a, \varphi) = f(\varphi), 0 \leq \varphi < 2\pi.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде:
+\begin{equation}
+u = R(r)\Phi(\varphi)
+\end{equation}
+Тогда:
+\begin{equation}
+r(R' + rR'')\Phi + R\Phi'' = 0.
+\end{equation}
+Получаем задачу:
+\begin{equation}
+\begin{cases}
+\Phi'' + \lambda\Phi = 0, \\
+\Phi(0) = \Phi(2\pi), \\
+r^2R'' + rR' - \lambda R = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции первой задачи:
+\begin{equation}
+\lambda_n = n^2, \\
+\Phi = A_n\sin n\varphi + B_n\cos n\varphi
+\end{equation}
+Для решения последнего уравнения сделаем замену $R = e^tr$, \ldots, получаем решение:
+\begin{equation}
+R = C_ne^{nt} + D_ne^{-nt} = C_nr^n + \frac{D_n}{r^n}, R_0 = C_0 + \tilde{C_1}t = C_0 + \tilde{C_1}\ln r.
+\end{equation}
+Получили, что $u$ имеет вид:
+\begin{equation}
+u = C_0 + \sum_{n = 1}^{\infty}r^n(A_n\sin n\varphi + B_n\cos n\varphi).
+\end{equation}
+Разложим $f(\varphi)$:
+\begin{equation}
+f(\varphi) = u(a, \varphi) = C_0 + \sum_{n = 1}^{\infty}a^n(A_n\sin n\varphi + B_n\cos n\varphi),
+\end{equation}
+т. е.:
+\begin{equation}
+C_0 = \frac1{2\pi}\int_0^nf(\xi)d\xi, a^nA_n = \frac1{\pi}\int_0^{2\pi}f(\xi)\sin n\xi d\xi,
+a^nB_n = \frac1{\pi}\int_0^{2\pi}f(\xi)\cos n\xi d\xi
+\end{equation}
+Подставляя в (26), получаем:
+\begin{multline}
+u = \frac1{2\pi}\int_0^{pi}f(\xi)d\xi + \frac1{2\pi}\sum_{n = 1}^{\infty}\left(\frac{r}a\right)^n
+\int_0^{2\pi}f(\xi)(\sin n\xi\sin n\varphi + \cos n\xi\cos n\varphi)d\xi = \\
+= \frac1{2\pi}\left[\int_0^{2\pi}f(\xi)\left(1 + \frac{r}a\frac{e^{2(\varphi - \xi)}}{1 - \frac{r}ae^{i(\varphi - \xi)}}
++ \frac{r}a\frac{e^{-2i(\varphi - \xi)}}{1 - \frac{r}ae^{-i(\varphi - \xi)}}\right)\right]
+\end{multline}
+#+END_EXPORT
+** Задача 7.3
+#+BEGIN_EXPORT latex
+Решить задачу:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, r > a, \\
+u|_{r = a} = f(\varphi), 0 < \varphi < 2\pi.
+|u(r, \varphi)| < C
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде:
+\begin{equation}
+u = C_0 + \sum_{n = 1}^{\infty}r^{-n}(A_n\sin n\varphi + B_n\cos n\varphi).
+\end{equation}
+Тогда
+\begin{equation}
+u(a, \varphi) = f(\varphi) = C_0 + \sum_{n = 1}^{\infty}a^{-n}(A_n\sin n\varphi + B_n\cos n\varphi)
+\end{equation}
+\begin{equation}
+\begin{cases}
+C_0 = \frac2{\pi}\int_0^{2\pi}f(\xi)d\xi, \\
+a^{-n}A_n = \frac1{\pi}\int_0^{2\pi}f(\xi)\sin n\xi d\xi, \\
+a^{-n}B_n = \frac1{\pi}\int_0^{2\pi}f(\xi)\cos n\xi d\xi.
+\end{cases}
+\end{equation}
+\begin{equation}
+u(a, \varphi) = \frac2{\pi}\int_0^{2\pi}f(\xi)d\xi + \frac1{\pi}\sum_{n = 1}^{\infty}\left(\frac{a}r\right)^n
+\int_0^{2\pi}f(\xi)\cos n(\varphi - \xi)d\xi
+\end{equation}
+Пусть теперь $f(\varphi) = \cos^2\varphi$. Тогда
+\begin{equation}
+cos^2\varphi = \frac12\cos2\varphi + \frac12 \Rightarrow C_0 = \frac12, B_2a^{-2} = \frac12 \Rightarrow B_2 = \frac{a^2}2
+\end{equation}
+и
+\begin{equation}
+u(r, \varphi) = \frac12 + \left(\frac{a}r\right)^2\frac12\cos2\varphi
+\end{equation}
+#+END_EXPORT
+** Задача 7.4
+#+BEGIN_EXPORT latex
+\begin{cases}
+\Delta u = 0, r < a, 0 \leq \varphi \leq 2\pi, \\
+\frac{\partial u}{\partial r}|_{r = a} = f(\varphi), \int_0^{2\pi}f(\varphi)d\varphi = 0.
+\end{cases}
+Последнее условие является необходимым для наличия решения.
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде
+\begin{equation}
+u = \tilde{C_0} + \sum_{n = 0}r^n(A_n\sin n\varphi + B_n\cos n\varphi).
+\end{equation}
+Тогда из краевого условия:
+\begin{equation}
+\frac{\partial u}{\partial r}|_{r = a} = f(\varphi) = \sum_{n = 0}^{\infty}na^{n - 1}(A_n\sin n\varphi + B_n\cos n\varphi),
+\end{equation}
+т. е.
+\begin{equation}
+\begin{cases}
+na^{n - 1}A_n = \frac1{\pi}\int_0^{2\pi}f(\xi)\sin n\xi d\xi, \\
+na^{n - 1}B_n = \frac1{\pi}\int_0^{2\pi}f(\xi)\cos n\xi d\xi.
+\end{cases}
+\end{equation}
+Подставляя в (37), получаем:
+\begin{equation}
+u(r, \varphi) = C_0 + \frac1{\pi}\sum_{n = 1}^{\infty}\frac{r^n}{na^{n - 1}}\int_0^{2\pi}f(\xi)\cos n(\varphi - \xi)d\xi
+\end{equation}
+Положим теперь $f(\varphi) = A\cos\varphi$. Можно проверить, что решение существует. Тогда
+\begin{equation}
+\frac{\partial u}{\partial r}|_{r = a} = \sum_{n = 0}^{\infty}na^{n - 1}(A_n\sin n\varphi + B_n\cos n\varphi) = A\cos n\varphi \Rightarrow B_1 = A,
+\end{equation}
+т. е.
+\begin{equation}
+u = C_0 + rA\cos\varphi
+\end{equation}
+
+Рассмотрим теперь задачу в области $r > a$. В этом случае решение приобретёт вид:
+\begin{equation}
+\frac{\partial u}{\partial r}|_{r = a} = \sum_{n = 1}^{\infty}-na^{-(n + 1)}(A_n\sin n\varphi + B_n\cos n\varphi) = f(\varphi)
+\end{equation}
+#+END_EXPORT
+** Задача 7.11
+#+BEGIN_EXPORT latex
+Решить задачу
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < a < r < b, 0 < \varphi < 2\pi, \\
+u(a, \varphi) = f_1(\varphi), \\
+u(b, \varphi) = f_2(\varphi).
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Решение имеет вид (1). Подставляя в начальные условия, получим:
+\begin{equation}
+\begin{dcases}
+u(a, \varphi) = f_1(\varphi) = \tilde{C_0} + \tilde{C_1}\ln a + \sum_{n = 1}^{\infty}(C_na^n + D_na^{-n})(A_n\sin n\varphi + B_n\cos n\varphi), \\
+u(b, \varphi) = f_2(\varphi) = \tilde{C_0} + \tilde{C_1}\ln b + \sum_{n = 1}^{\infty}(C_nb^n + D_nb^{-n})(A_n\sin n\varphi + B_n\cos n\varphi), \\
+\frac1{2\pi}\int_0^{2\pi}f_1(\varphi) = \tilde{C_0} + \tilde{C_1}\ln a, \\
+\frac1{2\pi}\int_0^{2\pi}f_2(\varphi) = \tilde{C_0} + \tilde{C_1}\ln b, \\
+\frac1{\pi}\int_0^{2\pi}f_1(\xi)\sin n\xi d\xi = (C_na^n + D_na^{-n})A_n, \\
+\frac1{\pi}\int_0^{2\pi}f_2(\xi)\sin n\xi d\xi = (C_nb^n + D_nb^{-n})A_n, \\
+\frac1{\pi}\int_0^{2\pi}f_1(\xi)\cos n\xi d\xi = (C_na^n + D_na^{-n})B_n, \\
+\frac1{\pi}\int_0^{2\pi}f_2(\xi)\cos n\xi d\xi = (C_nb^n + D_nb^{-n})B_n.
+\end{dcases}
+\end{equation}
+#+END_EXPORT
+** Задача 7.13
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < r < a, 0 < \varphi < \alpha < 2\pi, \\
+u(r, 0) = u(r, \alpha) = 0, 0 \leq r \leq a, \\
+u(a, \varphi) = f(\varphi), 0 < \varphi < a.
+\end{cases}
+\end{equation}
+Ищем решение в виде:
+\begin{equation}
+u(r, \varphi) = R(r)\Phi(\varphi)
+\end{equation}
+Получим задачи:
+\begin{equation}
+\begin{cases}
+\Phi'' + \lambda\Phi = 0, \\
+\Phi(0) = \Phi(\alpha) = 0, \\
+r^2R'' + rR' - \lambda R = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции:
+\begin{equation}
+\lambda_n = \left(\frac{\pi n}\alpha\right)^2, \\
+\Phi_n = \sin\frac{\pi n}\alpha\varphi.
+\end{equation}
+Решения уравнения имеют вид:
+\begin{equation}
+R = C_nr^{\sqrt{\lambda_n}} + D_nr^{-\sqrt{\lambda_n}}
+\end{equation}
+$D_n = 0$ вследствие ограниченности функции в нуле. Тогда $u(r, \varphi)$ будет иметь вид:
+\begin{equation}
+\begin{cases}
+u(r, \varphi) = \sum_{n = 1}^{\infty}C_nr^{\frac{\pi n}{\alpha}}\sin\frac{\pi n}{\alpha}\varphi, \\
+f(\varphi) = \sum_{n = 1}^{\infty}C_n\alpha^{\frac{\pi n}{\alpha}\sin\frac{\pi n}{\alpha}\varphi}
+\end{cases}
+\end{equation}
+#+END_EXPORT
