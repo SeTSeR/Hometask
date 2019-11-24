@@ -1,0 +1,93 @@
+% Created 2019-11-11 Mon 22:52
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\grad}{\operatorname{grad}}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\zall
+
+ДЗ: 8.6, 8.9, 9.1-9.7(прочитать), 9.12, 9.20, 9.13, 9.10, 9.17
+\section{Задача 8.6}
+\label{sec:orgd86bd9c}
+Найти функцию Грина и решить задачу Дирихле в области:
+\begin{equation}
+y > 0, z > 0
+\end{equation}
+\subsection{Решение}
+\label{sec:org33efbd0}
+Рассмотрим точку $Q(x_0, y_0, z_0)$. Введём точки $Q_1(x_0, -y_0, z_0), Q_2(x_0, -y_0, -z_0), Q_3(x_0, y_0, -z_0)$.
+Тогда, поскольку $G(P, Q)$ на границе равна нулю, она имеет вид:
+\begin{multline}
+G(P, Q) = \frac1{4\pi r_{PQ}} - \frac1{4\pi r_{PQ_1}} + \frac1{4\pi r_{PQ_2}} - \frac1{4\pi r_{PQ_3}} =
+\frac1{4\sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}} - \\
+- \frac1{4\sqrt{(x - x_0)^2 + (y + y_0)^2 + (z - z_0)^2}} +
+\frac1{4\sqrt{(x - x_0)^2 + (y + y_0)^2 + (z + z_0)^2}} - \\
+- \frac1{4\sqrt{(x - x_0)^2 + (y - y_0)^2 + (z + z_0)^2}}
+\end{multline}
+Далее решение можно найти из формулы Грина:
+\begin{equation}
+u(Q) = -\iint_Sf(P)\frac{\partial G}{\partial n_P}dS_P
+\end{equation}
+\section{Задача 8.9}
+\label{sec:org78fab1e}
+Найти функцию Грина и решить задачу Дирихле в области:
+\begin{equation}
+x^2 + y^2 + z^2 < 1
+\end{equation}
+\subsection{Решение}
+\label{sec:org54a4554}
+Рассмотрим точку $Q(x_0, y_0, z_0)$. Рассмотрим симметричную ей относительно окружности точку
+$$Q'\left(\frac{x_0}{x_0^2 + y_0^2 + z_0^2}, \frac{y_0}{x_0^2 + y_0^2 + z_0^2}, \frac{z_0}{x_0^2 + y_0^2 + z_0^2}\right)$$
+Тогда функция Грина будет иметь вид:
+\begin{equation}
+G(P, Q) = \frac1{4\pi r_{PQ}} - \frac1{\sqrt{x_0^2 + y_0^2 + z_0^2}}\frac1{4\pi r_{PQ'}}
+\end{equation}
+Решение можно найти из теоремы о среднем:
+\begin{equation}
+u(Q) = \frac1{4\pi a^2}\oiint_Sudl
+\end{equation}
+\end{document}

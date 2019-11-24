@@ -1,0 +1,438 @@
+% Created 2019-11-04 Mon 17:33
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\grad}{\operatorname{grad}}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\zall
+
+ДЗ: 7.7, 7.6, 7.8, 7.9, 7.12, 7.14, 7.15
+\section{Задача 7.7}
+\label{sec:org857e419}
+Решить задачи Дирихле:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+0 \leq r \leq 1, \\
+u|_{r = 1} = \sin 3\varphi,
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+0 \leq r \leq 1, \\
+u|_{r = 1} = \sin^2\varphi,
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+\Delta u = 0, \\
+0 \leq r \leq 1, \\
+u|_{r = 1} = \cos^2\varphi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:orga2f9287}
+Ищем решение уравнения Лапласа в виде:
+\begin{equation*}
+u = R(r)\Phi(\varphi)
+\end{equation*}
+\begin{equation*}
+\Delta u = \frac1r\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}\right) +
+\frac1{r^2}\frac{\partial^2 u}{\partial\varphi^2} = \frac1r\frac{\partial}{\partial r}\left(\Phi rR'\right) + \frac1{r^2}R\Phi'' =
+\frac1r\left(R' + rR''\right)\Phi + \frac1{r^2}R\Phi''
+\end{equation*}
+Получаем:
+\begin{equation*}
+r(R' + rR'')\Phi + R\Phi'' = 0 \Rightarrow \frac{\Phi''}{\Phi} = -\frac{r(R' + rR'')}{R} = -\lambda
+\end{equation*}
+Получаем задачу:
+\begin{equation}
+\begin{cases}
+\Phi'' + \lambda\Phi = 0, \\
+\Phi(0) = \Phi(2\pi), \\
+r^2R'' + rR' - \lambda R = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции задачи Штурма-Лиувилля:
+\begin{equation*}
+\begin{cases}
+\lambda_n = n^2, \\
+\Phi_n = A_n\sin n\varphi + B_n\cos n\varphi.
+\end{cases}
+\end{equation*}
+Чтобы решить третье уравнение, положим $r = e^t$, тогда $t = \ln |r|$ и $R(r) = T(t)$:
+\begin{equation*}
+\begin{cases}
+R(r) = T(t), R'(r) = T'(t)t'(r) = \frac{T'}r = e^{-t}T', \\
+R''(r) = (R'(r))' = \left(\frac{T'}r\right)' = \frac{T''(t)t'(r)r - T'}{r^2} = e^{-2t}(T'' - T').
+\end{cases}
+\end{equation*}
+Подставив в уравнение, получаем:
+\begin{equation}
+r^2R'' + rR' - \lambda R = T'' - T' + T'  - \lambda T = T'' - \lambda T = 0.
+\end{equation}
+Решениями этого уравнения будут функции:
+\begin{equation*}
+T_n(t) = C_ne^{nt} + D_ne^{-nt} = C_nr^n + D_nr^{-n} = R_n(r)
+\end{equation*}
+При $n = 0$:
+\begin{equation*}
+T_0(t) = C_0t + C_1 = C_0\ln r + C_1 = R_0(r)
+\end{equation*}
+
+Тогда решение исходной задачи можно искать в виде ряда по решениям уравнения:
+\begin{equation}
+u(r, \varphi) = \sum_{n = 0}^{\infty}R_n(r)\Phi_n(\varphi) = B_0(C_0\ln r + C_1) +
+\sum_{n = 1}^{\infty}(A_n\sin n\varphi + B_n\cos n\varphi)\left(C_nr^n + D_nr^{-n}\right)
+\end{equation}
+
+В данной задаче функция должна быть ограничена в нуле, поэтому $C_0 = D_n = 0$. Остальные
+коэффициенты находим из краевого условия:
+\begin{equation*}
+u(1, \varphi) = B_0C_1 + \sum_{n = 1}^{\infty}(A_n\sin n\varphi + B_n\cos n\varphi)C_n = \sin3\varphi
+\end{equation*}
+Не ограничивая общности, можно положить $C_n = 1$. $B_0C_1 = 0$, $A_n = B_n = 0, n \neq 3$.
+$A_3 = 1, B_3 = 0$. Итого получаем:
+\begin{equation}
+u(r, \varphi) = \sin3\varphi \cdot r^3
+\end{equation}
+
+Для решения (2) сначала понизим степень у синуса:
+\begin{equation*}
+\sin^2\varphi = \frac12 - \frac{\cos2\varphi}2
+\end{equation*}
+Теперь подставим начальное условие в (6) с учётом сказанного выше:
+\begin{equation*}
+u(1, \varphi) = B_0C_1 + \sum_{n = 1}^{\infty}(A_n\sin n\varphi + B_n\cos n\varphi)C_n = \frac12 - \frac{\cos2\varphi}2
+\end{equation*}
+Отсюда $B_0C_1 = \frac12, C_n = 1$, $A_n = B_n = 0, n \neq 2$, $A_2 = 0, B_2 = -\frac12$. Итого получаем:
+\begin{equation}
+u(r, \varphi) = \frac12 - \frac12\cos2\varphi\cdot r^2
+\end{equation}
+
+Для решения (3) понизим степень косинуса:
+\begin{equation*}
+\cos^2\varphi = \frac12 + \frac{\cos2\varphi}2
+\end{equation*}
+Используя (8), можно сразу записать решение:
+\begin{equation}
+u(r, \varphi) = \frac12 + \frac12\cos2\varphi\cdot r^2
+\end{equation}
+\section{Задача 7.6}
+\label{sec:org62717c2}
+Разрешима ли задача:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 \leq r < a, 0 \leq \varphi \leq 2\pi, \\
+\frac{\partial u}{\partial r}\bigg|_{r = a} = 1, 0 \leq \varphi \leq 2\pi?
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org64f1f70}
+Проверим выполнение необходимого условия разрешимости задачи:
+\begin{equation*}
+\int_0^{2\pi}f(\varphi)d\varphi = 2\pi \neq 0,
+\end{equation*}
+следовательно, задача неразрешима.
+\section{Задача 7.8}
+\label{sec:orgfd253f8}
+Решить задачи Неймана:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 \leq r \leq 1, \\
+\frac{\partial u}{\partial r}\bigg|_{r = 1} = \sin\varphi,
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 \leq r \leq 1, \\
+\frac{\partial u}{\partial r}\bigg|_{r = 1} = \sin\varphi + \cos\varphi,
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 \leq r \leq 1, \\
+\frac{\partial u}{\partial r}\bigg|_{r = 1} = \cos^2\varphi = \frac12 + \frac12\cos2\varphi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org384f0d9}
+Проверим сначала разрешимость задач:
+\begin{equation*}
+\int_0^{2\pi}f_1(\varphi) = \int_0^{2\pi}\sin\varphi d\varphi = \cos0 - \cos2\pi = 0,
+\end{equation*}
+\begin{equation*}
+\int_0^{2\pi}f_2(\varphi) = \int_0^{2\pi}(\sin\varphi + \cos\varphi)d\varphi =
+\cos0 - \cos2\pi + \sin2\pi - \sin0 = 0
+\end{equation*}
+\begin{equation*}
+\int_0^{2\pi}f_3(\varphi) = \int_0^{2\pi}\cos^2\varphi d\varphi = \pi + \frac14(\sin4\pi - \sin0) = \pi \neq 0.
+\end{equation*}
+Таким образом, задача (14) неразрешима.
+
+Для решения задач (12) и (13) воспользуемся представлением (6) с учётом ограниченности искомой функции в нуле:
+\begin{equation*}
+\frac{\partial u}{\partial r}\bigg|_{r = 1} = \sum_{n = 1}^{\infty}n(A_n\sin n\varphi + B_n\cos n\varphi)C_n = \sin\varphi
+\end{equation*}
+Отсюда $nA_nC_n = nB_nC_n = 0, n \neq 1, A_1C_1 = 1, B_1C_1 = 0$, тогда для $u(r, \varphi)$:
+\begin{equation}
+u(r, \varphi) = C_0 + \sin\varphi\cdot r
+\end{equation}
+Для задачи (13):
+\begin{equation*}
+\frac{\partial u}{\partial r}\bigg|_{r = 1} = \sum_{n = 1}^{\infty}n(A_n\sin n\varphi + B_n\cos n\varphi)C_n = \sin\varphi + \cos\varphi
+\end{equation*}
+Тогда $nA_nC_n = nB_nC_n = 0, n \neq 1, A_1C_1 = B_1C_1 = 1$, тогда для $u(r, \varphi)$:
+\begin{equation}
+u(r, \varphi) = C_0 + (\sin\varphi + \cos\varphi)r
+\end{equation}
+\section{Задача 7.9}
+\label{sec:org5204541}
+Решить задачу Дирихле:
+\begin{equation}
+\Delta u = 0, r > 1, \\
+u|_{r = 1} = \cos\varphi.
+\end{equation}
+\subsection{Решение}
+\label{sec:org371cfe1}
+Ищем решение в виде (6). Поскольку функция должна быть ограничена на бесконечности, $C_n = 0$.
+Все остальные слагаемые могут быть ненулевыми. Подставим начальное условие:
+\begin{equation*}
+u(1, \varphi) = B_0C_1 + \sum_{n = 1}^{\infty}(A_n\sin n\varphi + B_n\cos n\varphi)D_n = \cos\varphi.
+\end{equation*}
+Отсюда $B_0C_1 = 0, A_nD_n = B_nD_n = 0, n \neq 1, A_1D_1 = 0, B_1D_1 = 1$. Итого получаем:
+\begin{equation}
+u(r, \varphi) = \frac{\cos\varphi}r
+\end{equation}
+\section{Задача 7.12}
+\label{sec:org8d982ae}
+Решить задачу:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < a < r < b, 0 \leq \varphi \leq 2\pi, \\
+u|_{r = a} = 1 + \cos^2\varphi = \frac32 + \frac12\cos2\varphi, \\
+u|_{r = b} = \sin^2\varphi = \frac12 - \frac12\cos2\varphi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org29e072f}
+Ищем решение в виде (6). В данном случае ограничений на коэффициенты нет, поэтому решение
+нужно искать в полном виде. Подставим краевые условия:
+\begin{equation*}
+\begin{cases}
+u(a, \varphi) = B_0C_0\ln a + B_0C_1 + \sum_{n = 1}^{\infty}(A_n(C_na^n + D_na^{-n})\sin n\varphi +
+B_n(C_na^n + D_na^{-n})\cos n\varphi) = \frac32 + \frac12\cos2\varphi, \\
+u(b, \varphi) = B_0C_0\ln b + B_0C_1 + \sum_{n = 1}^{\infty}(A_n(C_nb^n + D_nb^{-n})\sin n\varphi +
+B_n(C_nb^n + D_nb^{-n})\cos n\varphi) = \frac12 - \frac12\cos2\varphi.
+\end{cases}
+\end{equation*}
+Сразу же можно понять, что при $n \notin \{0, 2\}$ коэффициенты нулевые. Для остальных коэффициентов получаем систему:
+\begin{equation*}
+\begin{cases}
+B_0C_0\ln a + B_0C_1 = \frac32, \\
+B_0C_0\ln b + B_0C_1 = \frac12, \\
+A_2(C_2a^2 + D_2a^{-2}) = A_2(C_2b^2 + D_2b^{-2}) = 0, \\
+B_2C_2a^2 + B_2D_2a^{-2} = \frac12, \\
+B_2C_2b^2 + B_2D_2b^{-2} = -\frac12.
+\end{cases}
+\end{equation*}
+Отсюда находим:
+\begin{equation*}
+\begin{dcases}
+B_0C_0 = \frac1{\ln a - \ln b}, \\
+B_0C_1 = \frac12 - \frac{\ln b}{\ln a - \ln b} = \frac{\ln a - 3\ln b}{\ln a - \ln b}, \\
+A_2 = 0, \\
+B_2C_2 = \frac{a^{-2} + b^{-2}}{2(a^2b^{-2} - a^{-2}b^2)}, \\
+B_2D_2 = \frac{a^2 + b^2}{2(a^2b^{-2} - a^{-2}b^2)}.
+\end{dcases}
+\end{equation*}
+Итого для $u$ получаем:
+\begin{equation}
+u(r, \varphi) = \frac{\ln r + \ln a - 3\ln b}{\ln a - \ln b} +
+\frac{(a^{-2} + b^{-2})r^2 + (a^2 + b^2)r^{-2}}{2(a^2b^{-2} - a^{-2}b^2)}\cos2\varphi
+\end{equation}
+\section{Задача 7.14}
+\label{sec:orgb35660f}
+Решить задачу:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < r < 2, 0 < \varphi < 1, \\
+u(r, 0) = r(r, 1) = 0, 0 \leq r < 2, \\
+u(2, \varphi) = \sin3\pi\varphi.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:orgdf5ecab}
+Ищем решение уравнения Лапласа в виде:
+\begin{equation*}
+u = R(r)\Phi(\phi)
+\end{equation*}
+Получаем задачу:
+\begin{equation*}
+\begin{cases}
+\Phi + \lambda\Phi = 0, \\
+\Phi(0) = \Phi(1) = 0, \\
+r^2R'' + rR' - \lambda R = 0.
+\end{cases}
+\end{equation*}
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation*}
+\begin{cases}
+\lambda_n = (\pi n)^2, \\
+\Phi_n = \sin\pi n\varphi.
+\end{cases}
+\end{equation*}
+Решения уравнения:
+\begin{equation*}
+\begin{cases}
+R_0 = \tilde{C_0}\ln r + \tilde{C_1}, \\
+R_n = C_nr^{\pi n} + D_nr^{-\pi n}
+\end{cases}
+\end{equation*}
+Тогда решение задачи можно искать в виде:
+\begin{equation*}
+u(r, \varphi) = \sum_{n = 0}^{\infty}R_n(r)\Phi_n(\phi) = \tilde{C_0}\ln r + \tilde{C_1} +
+\sum_{n = 0}^{\infty}(C_nr^{\pi n} + D_nr^{-\pi n})\sin\pi n\varphi
+\end{equation*}
+Исходя из ограниченности функции в нуле, получаем, что $\tilde{C_0} = D_n = 0$. Подставим в
+краевые условия:
+\begin{equation*}
+u(2, \varphi) = \tilde{C_1} + \sum_{n = 0}^{\infty}C_n2^n\sin\pi n\varphi = \sin3\pi\varphi
+\end{equation*}
+Отсюда $\tilde{C_1} = 0, C_n = 0, n \neq 3, C_3 = \frac18$ и соответственно:
+\begin{equation}
+u(r, \varphi) = \frac18r^3\sin3\pi\varphi
+\end{equation}
+\section{Задача 7.15}
+\label{sec:orgc5f1dfb}
+Решить задачу Дирихле:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, 0 < r < a < b, 0 < \varphi < \alpha, \\
+u|_{\varphi = 0} = u|_{\varphi = \alpha} = 0, 0 < a \leq r \leq b, \\
+u|_{r = a} = f_1(\varphi), u|_{r = b} = f_2(\varphi), 0 < \varphi < \alpha.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org8559e45}
+Ищем решение уравнения Лапласа в виде
+\begin{equation*}
+u(r, \varphi) = R(r)\Phi(\varphi)
+\end{equation*}
+Получаем задачу:
+\begin{equation*}
+\begin{cases}
+\Phi'' + \lambda\Phi = 0, \\
+\Phi(0) = \Phi(\alpha) = 0, \\
+r^2R'' + rR' - \lambda R = 0.
+\end{cases}
+\end{equation*}
+Собственные значения и собственные функции задачи Штурма-Лиувилля:
+\begin{equation*}
+\begin{cases}
+\lambda_n = \left(\frac{\pi n}{\alpha}\right)^2, \\
+\Phi_n = \sin\frac{\pi n}{\alpha}\varphi.
+\end{cases}
+\end{equation*}
+Решения уравнения имеют вид:
+\begin{equation*}
+\begin{cases}
+R_0 = \tilde{C_0}\ln r + \tilde{C_1}, \\
+R_n = C_nr^{\frac{\pi n}\alpha} + D_nr^{-\frac{\pi n}\alpha}.
+\end{cases}
+\end{equation*}
+Тогда решение задачи (20) ищем в виде:
+\begin{equation}
+u(r, \varphi) = \sum_{n = 0}^{\infty}R_n(r)\Phi_n(\varphi) = \tilde{C_0}\ln r + \tilde{C_1} +
+\sum_{n = 1}^{\infty}(C_nr^{\frac{\pi n}\alpha} + D_nr^{-\frac{\pi n}\alpha})\sin\frac{\pi n}\alpha\varphi
+\end{equation}
+Разложим $f_1(\varphi)$ и $f_2(\varphi)$ в ряды Фурье:
+\begin{equation*}
+\begin{dcases}
+f_1(\varphi) = \sum_{n = 0}^{\infty}p_n\sin\frac{\pi n}\alpha\varphi, \\
+f_2(\varphi) = \sum_{n = 0}^{\infty}q_n\sin\frac{\pi n}\alpha\varphi, \\
+p_n = \frac2\alpha\int_0^{\alpha}f_1(\varphi)\sin\frac{\pi n}\alpha\varphi d\varphi, \\
+q_n = \frac2\alpha\int_0^{\alpha}f_2(\varphi)\sin\frac{\pi n}\alpha\varphi d\varphi.
+\end{dcases}
+\end{equation*}
+Подставим теперь представление (23) в краевые условия:
+\begin{equation*}
+\begin{dcases}
+u(a, \varphi) = \tilde{C_0}\ln a + \tilde{C_1} + \sum_{n = 1}^{\infty}(C_na^{\frac{\pi n}\alpha} + D_na^{-\frac{\pi n}\alpha})\sin\frac{\pi n}\alpha\varphi
+= \sum_{n = 0}^{\infty}p_n\sin\frac{\pi n}\alpha\varphi, \\
+u(b, \varphi) = \tilde{C_0}\ln b + \tilde{C_1} + \sum_{n = 1}^{\infty}(C_nb^{\frac{\pi n}\alpha} + D_nb^{-\frac{\pi n}\alpha})\sin\frac{\pi n}\alpha\varphi
+= \sum_{n = 0}^{\infty}q_n\sin\frac{\pi n}\alpha\varphi.
+\end{dcases}
+\end{equation*}
+Получаем систему:
+\begin{equation*}
+\begin{cases}
+\tilde{C_0}\ln a + \tilde{C_1} = 0, \\
+\tilde{C_0}\ln b + \tilde{C_1} = 0, \\
+C_na^{\frac{\pi n}\alpha} + D_na^{-\frac{\pi n}\alpha} = p_n, \\
+C_nb^{\frac{\pi n}\alpha} + D_nb^{-\frac{\pi n}\alpha} = q_n.
+\end{cases}
+\end{equation*}
+Из которой:
+\begin{equation*}
+\begin{dcases}
+\tilde{C_0} = \tilde{C_1} = 0, \\
+C_n = \frac{p_nb^{-\frac{\pi n}\alpha} - q_na^{-\frac{\pi n}\alpha}}{a^{\frac{\pi n}\alpha}b^{-\frac{\pi n}\alpha} - a^{-\frac{\pi n}\alpha}b^{\frac{\pi n}\alpha}}, \\
+D_n = \frac{q_na^{\frac{\pi n}\alpha} - p_nb^{\frac{\pi n}\alpha}}{a^{\frac{\pi n}\alpha}b^{-\frac{\pi n}\alpha} - a^{-\frac{\pi n}\alpha}b^{\frac{\pi n}\alpha}}.
+\end{dcases}
+\end{equation*}
+Подставляя в (23), окончательно получаем:
+\begin{multline}
+u(r, \varphi) = \sum_{n = 1}^{\infty}(\frac{(b^{-\frac{\pi n}\alpha}\int_0^{\alpha}f_1(\varphi)\sin\frac{\pi n}\alpha\varphi d\varphi -
+a^{-\frac{\pi n}\alpha}\int_0^\alpha f_2(\varphi)\sin\frac{\pi n}\alpha\varphi d\varphi)r^{\frac{\pi n}\alpha}}{{a^{\frac{\pi n}\alpha}}b^{-\frac{\pi n}\alpha} - a^{-\frac{\pi n}\alpha}b^{\frac{\pi n}\alpha}} + \\
++ \frac{(a^{\frac{\pi n}\alpha}\int_0^{\alpha}f_2(\varphi)\sin\frac{\pi n}\alpha\varphi d\varphi
+- b^{\frac{\pi n}\alpha}\int_0^{\alpha}f_1(\varphi)\sin\frac{\pi n}\alpha\varphi d\varphi
+)r^{-\frac{\pi n}\alpha}}{a^{\frac{\pi n}\alpha}b^{-\frac{\pi n}\alpha} - a^{-\frac{\pi n}\alpha}b^{\frac{\pi n}\alpha}}
+)\frac2\alpha\sin\frac{\pi n}\alpha\varphi
+\end{multline}
+\end{document}
