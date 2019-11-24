@@ -2022,3 +2022,477 @@ f(\varphi) = \sum_{n = 1}^{\infty}C_n\alpha^{\frac{\pi n}{\alpha}\sin\frac{\pi n
 \end{cases}
 \end{equation}
 #+END_EXPORT
+* Семинар 9
+\zall
+ДЗ: 8.6, 8.9, 9.1-9.7(прочитать), 9.12, 9.20, 9.13, 9.10, 9.17
+
+*Формула Грина*:\\
+Трёхмерный случай:
+#+BEGIN_EXPORT latex
+\begin{equation}
+u(Q) = \iint_S\left(G(P, Q)\frac{\partial u}{\partial \eta_P} - u(P)\frac{\partial G(P, Q)}{\partial \eta_P}dS_P\right) -
+\iiint_{\Omega} G(P, Q)\Delta u(P)dxdydz
+\end{equation}
+\begin{equation}
+G(P, Q) = \frac1{4\pi r_{PQ}} + \nu(P), \text{ где } \nu(P) \text{ - гармоническая функция}
+\end{equation}
+Постановка задачи:
+\begin{equation}
+\begin{cases}
+\Delta u(P) = -F(P) \text{ в } \Omega, \\
+u|_{P \in S} = f(P)
+\end{cases}
+\end{equation}
+По формуле Грина:
+\begin{equation}
+u(Q) = -\iint_Sf(P)\frac{\partial G}{\partial n_P}dS_P + \iiint_{\Omega}GFdxdydz
+\end{equation}
+Плоский случай:
+\begin{equation}
+u(Q) = \int_{\gamma}\left(G\frac{\partial u}{\partial n_P} - u\frac{\partial G}{\partial n_P}\right) - \iint_DG\Delta udxdy
+\end{equation}
+\begin{equation}
+G(P, Q) = \frac1{2\pi}\ln\frac1{r_{PQ}} + \nu(P)
+\end{equation}
+Постановка задачи:
+\begin{equation}
+\begin{cases}
+\Delta u = -F, \\
+u|_{P \in \gamma} = f(P)
+\end{cases}
+\end{equation}
+По формуле Грина:
+\begin{equation}
+u(Q) = -\int_{\gamma}f\frac{\partial G}{\partial n_P}d\gamma_P + \iint_DGFdxdy
+\end{equation}
+#+END_EXPORT
+** Задача 8.5
+ #+BEGIN_EXPORT latex
+ \begin{equation}
+ \begin{cases}
+ \Delta u = 0, x, z \in K, y > 0, \\
+ u|_{y = 0} = f(x, z).
+ \end{cases}
+ \end{equation}
+ #+END_EXPORT
+*** Решение
+ #+BEGIN_EXPORT latex
+ По формуле Грина:
+ \begin{equation}
+ u(Q) = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x, z)\frac{\partial G}{\partial y}dxdz
+ \end{equation}
+ \begin{multline}
+ G(P, Q) = \frac1{4\pi r_{PQ}} - \frac1{4\pi r_{PQ_1}} = \\
+ = \frac1{4\pi}\left(\frac1{\sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}} +
+ \frac1{\sqrt{(x - x_0)^2 + (y + y_0)^2 + (z - z_0)^2}}\right)
+ \end{multline}
+ Тогда
+ \begin{multline}
+ \frac{\partial G}{\partial y}\bigg|_{y = 0} = -\frac1{4\pi}\left(-\frac{y_0}{((x - x_0)^2 + y_0^2 + (z - z_0)^2)^{\frac32}} -
+ \frac{y_0}{((x - x_0)^2 + y_0^2 + (z - z_0)^2)^{\frac32}}\right) = \\
+ = \frac{y_0}{2\pi((x - x_0)^2 + y_0^2 + (z - z_0)^2)^{\frac32}}
+ \end{multline}
+ #+END_EXPORT
+** Задача 8.10
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, x \in K, y > 0, \\
+u|_{y = 0} = f(x).
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+По формуле Грина:
+\begin{equation}
+u(Q) = \int_{-\infty}^{+\infty}f(x)\frac{\partial G}{\partial y} = \frac{y_0}{\pi}\int_{-\infty}^{+\infty}\frac{f(x)dx}{(x - x_0)^2 + y_0^2}
+\end{equation}
+Здесь
+\begin{equation}
+G(P, Q) = \frac1{2\pi}\ln\frac1{r_{PQ}} - \frac1{2\pi}\ln\frac1{r_{PQ_1}}
+\end{equation}
+\begin{equation}
+\frac{\partial G}{\partial y}\bigg|_{y = 0} = -\frac1{4\pi}\left(-\frac{2y_0}{(x - x_0)^2 + y_0^2} -
+\frac{2y_0}{(x - x_0)^2 + y_0^2}\right) = \frac{y_0}{\pi((x - x_0)^2 + y_0^2)}
+\end{equation}
+#+END_EXPORT
+** Задача 8.11
+#+BEGIN_EXPORT latex
+\begin{equation}
+\Omega = \{(x, y) | x > 0, y > 0\}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Пусть $Q(x_0, y_0)$. Введём точки $Q_1(x_0, -y_0), Q_2(-x_0, y_0), Q_3(-x_0, -y_0)$. Тогда функция
+Грина имеет вид:
+\begin{multline}
+G = \frac1{2\pi}\left(\ln\frac1{\sqrt{(x - x_0)^2 + (y - y_0)^2}} -
+\ln\frac1{\sqrt{(x - x_0)^2 + (y + y_0)^2}} - \\
+- \ln\frac1{\sqrt{(x + x_0)^2 + (y - y_0)^2}} +
+\ln\frac1{\sqrt{(x + x_0)^2 + (y + y_0)^2}}\right)
+\end{multline}
+#+END_EXPORT
+** Задача 8.13
+#+BEGIN_EXPORT latex
+\begin{equation}
+\Omega = \{(x, y) | \rho((x, y), O) < R\}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Рассматриваются точки, симметричные относительно окружности
+\begin{equation}
+G = \frac1{2\pi}\left(\ln\frac1{R_{PQ}} - \ln\frac1{R_{PQ'}R}\right)(?)
+\end{equation}
+#+END_EXPORT
+*Теорема о среднем*:
+#+BEGIN_EXPORT latex
+\begin{equation}
+u(M_0) = \frac1{2\pi a}\int_{C_A}udl
+\end{equation}
+#+END_EXPORT
+** Задача 9.4
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta u = 0, y > 0, x \in \mathbb{R}, \\
+u|_{y = 0} = \varphi(x).
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Конформно отобразим эту область на единичный круг, получим задачу:
+\begin{equation}
+\begin{cases}
+\Delta u = 0, r < R, 0 \leq \varphi \leq 2\pi, \\
+u|_{r = 1} = f(\varphi)
+\end{cases}
+\end{equation}
+Это отображение $w(z, z_0) = \frac{z - z_0}{z - \overline{z_0}} = \rho\cdot e^{i\varphi}$.
+Тогда
+\begin{equation}
+u = \frac1{2\pi}\int_0^{2\pi}f(\varphi)d\varphi
+\end{equation}
+\begin{equation}
+w(z, z_0) = \frac{x - x_0 - iy_0}{x - x_0 + iy_0} = e^{i\varphi}
+\end{equation}
+Продифференцируем:
+\begin{equation}
+\frac{dx(x - x_0 + iy_0) - dx(x - x_0 - iy_0)}{(x - x_0 + iy_0)^2} = ie^{i\varphi}d\varphi
+\Rightarrow
+\frac{2iy_0}{(x - x_0 + iy_0)^2}dx = i\frac{x - x_0 + iy_0}{x - x_0 - iy_0}d\varphi
+\end{equation}
+Соответственно,
+\begin{equation}
+d\varphi = \frac{2y_0}{(x - x_0)^2 + y_0^2}dx
+\end{equation}
+И тогда для $u$:
+\begin{equation}
+u = \frac1{2\pi}\int_0^{2\pi}f(\varphi)d(\varphi) = \frac1{\pi}\int_{-\infty}^{+\infty}\varphi(x)\frac{y_0}{(x - x_0)^2 + y_0^2}dx.
+\end{equation}
+#+END_EXPORT
+*Общий вид функции Грина*:
+#+BEGIN_EXPORT latex
+\begin{equation}
+G = \frac1{2\pi}\ln\frac1{|w(z, z_0)|}
+\end{equation}
+#+END_EXPORT
+В нашей задаче:
+#+BEGIN_EXPORT latex
+\begin{equation}
+G = \frac1{2\pi}\ln\frac1{|w(z, z_0)|} = \frac1{2\pi}\ln\frac{|z - \overline{z_0}|}{|z - z_0|}
+\end{equation}
+#+END_EXPORT
+* Семинар 10
+\zall
+ДЗ: 12.5, 12.7
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = 4u_{xx} + xt, \\
+u(x, 0) = x^2, \\
+u_t(x, 0) = x.
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+u_{tt} = u_{xx} + \sin t, \\
+u(x, 0) = \sin x, \\
+u_t(x, 0) = \cos x.
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+u_{tt} = u_{xx}, \\
+u(x, 0) = \begin{cases}
+\cos x, |x| < \frac{\pi}2, \\
+0, |x| > \frac{\pi}2.
+\end{cases}
+u_t(x, 0) = 0
+\end{cases}
+\end{equation}
+В последнем случае найти $u\left(x, \frac{\pi}4\right)$
+\begin{equation}
+\begin{cases}
+u_{tt} = u_{xx}, \\
+u(x, 0) = 0, \\
+u_t(x, 0) = \begin{cases}
+\cos x, |x| < \frac{\pi}2, \\
+oyes0, |x| > \frac{\pi}2.
+\end{cases}
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Гиперболические уравнения
+*Формула д'Аламбера*:
+#+BEGIN_EXPORT latex
+Задача:
+\begin{equation}
+\begin{cases}
+u_t = a^2u_{xx} + f(x, t), \\
+u(x, 0) = \varphi(x), \\
+u_t(x, 0) = \psi(x).
+\end{cases}
+\end{equation}
+\begin{equation}
+u(x, t) = \frac12(\varphi(x + at) + \varphi(x - at)) + \frac1{2a}\int_{x - at}^{x + at}\varphi(\xi)d\xi
++ \frac1{2a}\int_0^t\int_{x - a(t - \tau)}^{x + a(t - \tau)}f(\xi, \tau)d\xi d\tau
+\end{equation}
+#+END_EXPORT
+#+BEGIN_EXPORT latex
+Простейший случай:
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx} + f(x, t), -\infty < x < +\infty, 0 < t \leq T, \text{ (уравнение струны)}, \\
+u(x, 0) = \varphi(x), \\
+u_t(x, 0) = \psi(x)
+\end{cases}
+\end{equation}
+Граничные условия:
+
+Первого рода:
+\begin{equation}
+u(0, t) = \mu(t), \\
+\end{equation}
+Второго:
+\begin{equation}
+u_x(0, t) = \nu(t), \\
+\end{equation}
+Третьего:
+\begin{equation}
+u_x(0, t) + u(0, T - t_1) = 0.
+\end{equation}
+#+END_EXPORT
+** Задача 12.1
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx}, -\infty < x < +\infty, t > 0, a > 0, \\
+u(x, 0) = \varphi(x), \\
+u_t(x, 0) = \psi(x).
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Приведём к канонической форме:\\
+Характеристическое уравнение:
+\begin{equation}
+dx^2 = a^2dt^2 \Rightarrow
+\begin{cases}
+\xi = x - at, \\
+\eta = x + at.
+\end{cases}
+\end{equation}
+Получим форму:
+\begin{equation}
+v_{\xi\eta} = 0.
+\end{equation}
+Откуда
+\begin{equation}
+v = f_1(\xi) + f_2(\eta) = f_1(x - at) + f_2(x + at)
+\end{equation}
+Подставляем в начальные условия:
+\begin{equation}
+\begin{cases}
+f_1(x) + f_2(x) = \varphi(x), \\
+f_1'(x)\cdot(-a) + f_2'(x)\cdot a = \psi(x)
+\end{cases}
+\end{equation}
+или, интегрируя второе уравнение от $x_0$ до $x$:
+\begin{equation}
+-a\int_{x_0}^xf_1'(\xi)d\xi + a\int_{x_0}^xf_2'(\xi)d\xi = \int_{x_0}^x\psi(\xi)\d\xi
+\Rightarrow
+f_2(x) - f_1(x) = \frac1a\int_{x_0}^x\psi(\xi)d\xi
+\end{equation}
+Отсюда и из первого уравнения получаем:
+\begin{equation}
+\begin{cases}
+f_1(x) = \frac{\varphi(x)}2 + \frac1{2a}\left(\int_{x_0}^x\varphi(\xi)d\xi + C\right), \\
+f_2(x) = \frac{\varphi(x)}2 - \frac1{2a}\left(\int_{x_0}^x\varphi(\xi)d\xi - C\right).
+\end{cases}
+\end{equation}
+Откуда для $u$:
+\begin{equation}
+u(x, t) = \frac12(\varphi(x - at) + \varphi(x + at)) + \frac1{2a}\int_{x - at}^{x + at}\psi(\xi)d\xi \text{- формула д'Аламбера.}
+\end{equation}
+#+END_EXPORT
+** Задача 12.2
+#+BEGIN_EXPORT latex
+Геометрический смысл формулы д'Аламбера?
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Зафиксируем точку $M(x_0, y_0)$. Тогда:
+\begin{equation}
+u(M) = \frac12(\varphi(P) + \varphi(Q)) + \frac1{2a}\int_P^Q\varphi(\xi)d\xi
+\end{equation}
+Прямые $x - at, x + at, x_0 + at_0, x_0 - at_0$ разбивают плоскость на шесть частей. Найдём
+решение в каждой:\\
+Область 1:
+$$u(x, t) \equiv 0$$
+Область 6:
+$$u(x, t) \equiv 0$$
+Область 2:
+$$u(x_1, t_1) = \frac12\varphi(x_1 - at_1) + \frac1{2a}\int_{x_1 - at_1}^{x_1 + at_1}\varphi(\xi)d\xi$$
+Область 3:
+$$u(x_1, t_1) = \frac12\varphi(x_1 - at_1) + \frac1{2a}\int_{x_1 - at_1}^{x_1 + at_1}\varphi(\xi)d\xi$$
+Область 5:
+$$u(x_1, t_1) = \frac12\varphi(x_1 + at_1) + \frac1{2a}\int_{x_1 - at_1}^{x_1 + at_1}\varphi(\xi)d\xi$$
+Область 4:
+$$u(x_1, t_1) = \frac1{2a}\int_{x_1 - at_1}^{x_1 + at_1}\varphi(\xi)d\xi$$
+#+END_EXPORT
+** Задача 12.3
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u(x, 0) = \begin{cases}
+1 - \frac{|x|}c, |x| \leq c, \\
+0, |x| > c.
+\end{cases}
+u_t(x, 0) = 0
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+\begin{equation}
+t = t_i = \frac{c\cdot i}{4a}, i = \overline{0, 5}
+\end{equation}
+\begin{equation}
+x - at = 0 \Rightarrow x = \frac{c}4
+\end{equation}
+#+END_EXPORT
+**** TODO перенести картинки из тетради
+** Задача 12.4
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u(x, 0) = 0, \\
+u_t(x, 0) = \begin{cases}
+V = const \neq 0, |x| < c, \\
+0, |x| > c.
+\end{cases}
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+По формуле д'Аламбера:
+\begin{equation}
+u(x, t) = \Psi(x + at) - \Psi(x - at), \text{ где } \Psi(z) = \frac1{2a}\int_{x_0}^z\varphi(\xi)d\xi =
+\begin{dcases}
+0, z < -c, \\
+\frac{V}{2a}(z + C_0), z \in [-c, c], \\
+\frac{V}{a}, z > c.
+\end{dcases}
+\end{equation}
+#+END_EXPORT
+**** TODO Перенести картинки
+** Задача 12.6
+Найти решение для задачи из условия 12.4.
+*** Решение
+**** TODO Перенести рисунок
+
+Найдём решение в каждой области:
+#+BEGIN_EXPORT latex
+Область 1:
+\begin{equation}
+u(x_0, t_0) = 0
+\end{equation}
+Область 2:
+\begin{equation}
+u(x_0, t_0) = \frac1{2a}\int_{x_0 - at_0}^cVd\xi = \frac{V}{2a}(c - x_0 - at_0)
+\end{equation}
+Область 3:
+\begin{equation}
+u(x_0, t_0) = \frac1{2a}\int_{-c}^cVd\xi = \frac{V}{2a}2c = \frac{Vc}a
+\end{equation}
+Область 4:
+\begin{equation}
+u(x_0, t_0) = \frac1{2a}\int_{x_0 - at_0}^{x_0 + at_0}Vd\xi = \frac{V}{2a}2at_0 = Vt_0
+\end{equation}
+Область 5:
+\begin{equation}
+u(x_0, t_0) = \frac1{2a}\int_{-c}^{x_0 + at_0}Vd\xi = \frac{V}{2a}(x_0 + at_0 + c)
+\end{equation}
+Область 6:
+\begin{equation}
+u(x_0, t_0) = 0
+\end{equation}
+#+END_EXPORT
+** Задача next
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = u_{xx}, \\
+u(x, 0) = \begin{cases}
+\cos x, |x| \leq \frac{\pi}2, \\
+0, |x| > \frac{\pi}2
+\end{cases}
+u_t(x, 0) = 0
+\end{cases}
+\end{equation}
+Найти $u\left(\frac{\pi}4, t\right)$.
+#+END_EXPORT
+*** Решение
+**** TODO Перенести картинку
+#+BEGIN_EXPORT latex
+Найдём решение в каждой области:\\
+Область 1:
+\begin{equation}
+u\left(\frac{\pi}4, t_0\right) = \frac12\left(\cos\left(\frac{\pi}4 - t_0\right) +
+\cos\left(\frac{\pi}4 + t_0\right)\right), t_0 \in \left[0, \frac{\pi}4\right].
+\end{equation}
+Область 2:
+\begin{equation}
+u(\frac{\pi}4, t_0) = \frac12\cos\left(\frac{\pi}4 - t_0\right), t_0 \in \left[\frac{\pi}4, \frac{3\pi}4\right].
+\end{equation}
+Область 3:
+\begin{equation}
+u\left(\frac{\pi}4, t_0\right) = 0, t_0 > \frac{3\pi}4.
+\end{equation}
+#+END_EXPORT
+** Задача next2
+#+BEGIN_EXPORT latex
+Решить задачу
+\begin{equation}
+\begin{cases}
+u_{tt} = u_{xx} + 6, \\
+u(x, 0) = x^2, \\
+u_t(x, 0) = 4x.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+По формуле д'Аламбера:
+\begin{equation}
+u(x, t) = \frac12((x - t)^2 + (x + t)^2) + \frac12\int_{x - t}^{x + t}4\xi d\xi +
+\frac12\int_0^t\int_{x - (t - \tau)}^{x + (t - \tau)}6d\xi d\tau =
+x^2 + t^2 + 4xt + 3\int_0^t2(t - \tau)d\tau = x^2 + t^2 + 4xt + 3t^2 = x^2 + 4xt + 4t^2
+\end{equation}
+#+END_EXPORT
