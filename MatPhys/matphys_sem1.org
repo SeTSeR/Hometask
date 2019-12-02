@@ -2496,3 +2496,385 @@ u(x, t) = \frac12((x - t)^2 + (x + t)^2) + \frac12\int_{x - t}^{x + t}4\xi d\xi 
 x^2 + t^2 + 4xt + 3\int_0^t2(t - \tau)d\tau = x^2 + t^2 + 4xt + 3t^2 = x^2 + 4xt + 4t^2
 \end{equation}
 #+END_EXPORT
+* Семинар 12
+\zall
+** Метод разделения переменных для гиперболических уравнений.
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx}, 0 < x < l, t > 0\\
+u(0, t) = u(l, t) = 0, \\
+u(x, 0) = \varphi(x), \\
+u_t(x, 0) = \psi(x).
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение уравнения в виде
+\begin{equation}
+u(x, t) = X(x)T(t)
+\end{equation}
+Подставляя в уравнение, получим:
+\begin{equation}
+XT'' = a^2X''T \Rightarrow \frac{X''}X = \frac{T''}{a^2T} = -\lambda
+\end{equation}
+Получаем задачи:
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, X(0) = X(l) = 0, \\
+T'' + \lambda a^2T = 0.
+\end{cases}
+\end{equation}
+Решение первой задачи:
+\begin{equation}
+\begin{cases}
+\lambda = \left(\frac{\pi n}l\right)^2, \\
+X_n = \sin\frac{\pi n}lx.
+\end{cases}
+\end{equation}
+Второй:
+\begin{equation}
+\begin{cases}
+T_n = C_{1n}\sin\sqrt{\lambda_n}at + C_{2n}\sin\sqrt{\lambda_n}at
+\end{cases}
+\end{equation}
+Тогда решение задачи (1) имеет вид:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}T_n(t)X_n(x) = \sum_{n = 1}^{\infty}(C_{1n}\sin\sqrt{\lambda_n}at +
+C_{2n}\cos\sqrt{\lambda_n}at)\sin\sqrt{\lambda_n}x
+\end{equation}
+Подставляя в начальные условия, находим:
+\begin{equation}
+u(x, 0) = \sum_{n = 1}^{\infty}C_{2n}\sin\sqrt{\lambda_n}x = \varphi(x) \Rightarrow C_{2n} =
+\frac2l\int_0^l\varphi(\xi)\sin\frac{\pi n}l\xi d\xi, \\
+u_t(x, 0) = \sum_{n = 1}^{\infty}C_{1n}\sqrt{\lambda_n}a\sin\sqrt{\lambda_n}x = \psi(x) =
+\frac2{\sqrt{\lambda_n}al}\int_0^l\psi(\xi)\sin\sqrt{\lambda_n}\xi d\xi.
+\end{equation}
+Пусть теперь задача имеет вид:
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx} + f(x, t), \\
+u(0, t) = u(l, t) = 0, \\
+u(x, 0) = u_t(x, 0) = 0.
+\end{cases}
+\end{equation}
+Ищем решение в виде ряда по собственным функциям ЗШЛ:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}u_n(t)\sin\frac{\pi n}lx,
+f(x, t) = \sum_{n = 1}^{\infty}f_n(t)\sin\frac{\pi n}lx.
+\end{equation}
+Подставив в уравнение, находим:
+\begin{equation}
+\sum_{n = 1}^{\infty}u_n''(t)\sin\frac{\pi n}lx = -a^2\sum_{n = 1}^{\infty}u_n(t)\sin\frac{\pi n}lx\left(\frac{\pi n}l\right)^2 +
+\sum_{n = 1}^{\infty}f_n(t)\sin\frac{\pi n}lx
+\end{equation}
+Получаем систему задач Коши:
+\begin{equation}
+\begin{cases}
+u_n''(t) = -a^2\lambda_nu_n(t) + f_n(t), \\
+u_n(0) = 0, \\
+u_n'(0) = 0.
+\end{cases}
+\end{equation}
+Решение ищем методом вариации постоянной. Решение однородного уравнения имеет вид:
+\begin{equation}
+u_n(t) = C_1\cos(a\sqrt{\lambda_n}t) + C_2\sin(a\sqrt{\lambda_n}t)
+\end{equation}
+Подставляя начальные условия, получим систему:
+\begin{equation}
+\begin{cases}
+C'_1\cos a\sqrt{\lambda_n}t + C'_2\sin a\sqrt{\lambda_n}t = 0, \\
+-C'_1a\sqrt{\lambda_n}\sin a\sqrt{\lambda_n}t + C'_2a\sqrt{\lambda_n}\cos s\sqrt{\lambda_n}t = f_n(t).
+\end{cases}
+\end{equation}
+Окончательно получится:
+\begin{equation}
+\begin{cases}
+u''_n + a^2\lambda_nu_n = f_n, \\
+u_n = \frac1{\sqrt{\lambda_n}a}\int_0^t\sin(a\sqrt{\lambda_n}(t - \tau))f_n(\tau)d\tau
+\end{cases}
+\end{equation}
+#+END_EXPORT
+** Задача 13.1
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx}, \\
+u(0, t) = u(l, t) = 0, \\
+u(x, 0) = \sin\frac{\pi x}l, 0 \leq x \leq l, \\
+u_t(x, 0) = 0, 0 \leq x \leq l.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Собственные значения и собственнные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = \left(\frac{\pi n}l)^2, \\
+X_n = \sin\frac{\pi n}lx, \\
+T_n = C_{1n}\sin\frac{\pi n}lat + C_{2n}\cos\frac{\pi n}lat
+\end{cases}
+\end{equation}
+Тогда $u$ ищем в виде:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}X_n(x)T_n(t) =
+\sum_{n = 1}^{\infty}\sin\frac{\pi n}lx\left(C_{1n}\sin\frac{\pi n}lat + C_{2n}\cos\frac{\pi n}lat\right)
+\end{equation}
+Подставим в начальные условия:
+\begin{equation}
+\begin{cases}
+u(x, 0) = \sum_{n = 1}^{\infty}\frac{\pi n}lxC_{2n} = \sin\frac{\pi x}l, \\
+u_t(x, 0) = \sum_{n = 1}^{\infty}\sin\frac{\pi n}lxC_{1n}\frac{\pi n}la = 0,
+\end{cases}
+\end{equation}
+откуда
+\begin{equation}
+u(x, t) = \sin\frac{\pi x}l\cos\frac{\pi a}lt
+\end{equation}
+#+END_EXPORT
+** Задача 13.2
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx}, \\
+u(0, t) = u_x(\pi, t) = 0, \\
+u(x, 0) = \sin\frac{3x}2 + \sin\frac{5x}2, \\
+u_t(x, 0) = b\sin\frac{7x}2, b = const.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = \left(\frac{(2n + 1)}2\right)^2, \\
+X_n = \sin\frac{2n + 1}2x, \\
+T_n = C_{1n}\sin\frac{2n + 1}2bt + C_{2n}\cos\frac{2n + 1}2bt.
+\end{cases}
+\end{equation}
+Ищем решение в виде:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}\sin\frac{2n + 1}2x\left(C_{1n}\sin\frac{2n + 1}bt +
+C_{2n}\cos\frac{2n + 1}2bt\right)
+\end{equation}
+Подставляем в начальные условия:
+\begin{equation}
+\begin{cases}
+u(x, 0) = \sum_{n = 0}^{\infty}C_{2n} = \sin\frac{3x}2 + \sin\frac{5x}2 \Rightarrow C_{21} = C_{22} = 1, C_{2n} = 0, n \notin \{1, 2\}, \\
+u_t(x, 0) = \sum_{n = 0}^{\infty}\sin\frac{2n + 1}2b\frac{2n + 1}2C_{1n} = b\sin\frac{7x}2 \Rightarrow C_{13} = \frac27, C_{1n} = 0, n \neq 3.
+\end{cases}
+\end{equation}
+Окончательно получаем:
+\begin{equation}
+u(x, t) = \sin\frac{3x}2\cos\frac32bt + \sin\frac{5x}2\cos\frac52bt + \frac27\sin\frac{7x}2\sin\frac72at
+\end{equation}
+#+END_EXPORT
+** Задача 13.4
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = 4u_{xx}, \\
+u_x(0, t) = 0, \\
+u(1, t) = 0, \\
+u(x, 0) = 1 - x, \\
+u_t(x, 0) = 0.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = \left(\frac{\pi(2n + 1)}2\right)^2, \\
+X_n = \cos\sqrt{\lambda_n}x, \\
+T_n = C_{1n}\sin\sqrt{\lambda_n}2t + C_{2n}\cos\sqrt{\lambda_n}2t
+\end{cases}
+\end{equation}
+Ищем решение в виде ряда $u(x, t) = \sum_{n = 0}^{\infty}X_n(x)T_n(t)$. Подставляем в начальные
+условия:
+\begin{equation}
+u(x, 0) = \sum_{n = 0}^{\infty}\cos\frac{\pi (2n + 1)}2xC_{2n} = 1 - x
+\end{equation}
+Откуда
+\begin{equation}
+C_{2n} = 2\int_0^1(1 - x)\cos\frac{\pi (2n + 1)}2xdx = \ldots = \frac8{(\pi(2n + 1))^2}(1 - (-1)^n)
+\end{equation}
+\begin{equation}
+u_t(x, 0) = 0 \Rightarrow C_{1n} = 0 \forall n.
+\end{equation}
+Окончательно имеем:
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}\cos\frac{\pi(2n + 1)}2\cos\pi(2n + 1)t\frac8{(pi(2n + 1))^2}(1 - (-1)^n)
+\end{equation}
+#+END_EXPORT
+** Задача 13.7
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = a^2u_{xx} + f_0, f_0 = const, \\
+u(0, t) = u(l, t) = 0, \\
+u(x, 0) = u_t(x, 0) = 0.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде ряда по собственным функциям ЗШЛ:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}u_n(t)\sin\frac{\pi n}lx
+\end{equation}
+Подставляем в начальные условия, получаем:
+\begin{equation}
+\begin{cases}
+u''_n + \lambda a^2u_n = f_{0n}, \text{ где } f_{0n} = \frac2l\int_0^lf_0\sin\frac{\pi n}lxdx = \frac{2f_0}{\pi n}(1 - (-1)^n) \\
+u(0) = u'(0) = 0.
+\end{cases}
+\end{equation}
+Общее решение однородного уравнения имеет вид:
+\begin{equation}
+Cu_n(t) = C_1\cos\sqrt{\lambda_n}at + C_2\sin\sqrt{\lambda_n}at
+\end{equation}
+Заметим, что частным решением будет $A_n = \frac{f_{0n}}{\lambda a^2}$. Поэтому общее решение
+неоднородного уравения будет:
+\begin{equation}
+u_n(t) = C_{1n}\cos\sqrt{\lambda_n}at + C_{2n}\sin\sqrt{\lambda_n}at + \frac{2l^2}{(\pi na)^2}(1 - (-1)^n)
+\end{equation}
+Обозначив последнее слагаемое через $B_n$, из начальных условий получим систему:
+\begin{equation}
+\begin{cases}
+C_{1n} + B_n = 0, \\
+C_{2n}\sqrt{\lambda_n}a + B_n = 0,
+\end{cases}
+\Rightarrow
+\begin{cases}
+C_{1n} = -B_n, \\
+C_{2n} = -\frac{B}{a\sqrt{\lambda_n}}
+\end{cases}
+\end{equation}
+Окончательное решение имеет вид:
+\begin{equation}
+u(x, t) = \sum_{n = 1}^{\infty}\sin\frac{\pi n}lx\frac{2l^2}{(\pi n a)^2}(1 - (-1)^n)\left(-\cos\frac{\pi n}lat + 1\right)
+\end{equation}
+#+END_EXPORT
+** Задача 13.8
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+u_{tt} = 4u_{xx}, \\
+u(0, t) = t, \\
+u_x\left(\frac{pi}2, x\right) = \pi, \\
+u(x, 0) = 2\sin5x + \pi x, \\
+u_t(x, 0) = 1.
+\end{cases}
+\end{equation}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Ищем решение в виде $u = U + v$, где $U(x, t) = a(t)x + b(t)$. Тогда:
+\begin{equation}
+\begin{cases}
+u(0, t) = t = b(t), 
+u_x\left(\frac{\pi}2\right, t) = a(t) = \pi
+\end{cases}
+\Rightarrow
+\begin{cases}
+a(t) = \pi, \\
+b(t) = t,
+\end{cases}
+\end{equation}
+т. е. $U = \pi x + t$. Подставляя, получаем задачу на $v$:
+\begin{equation}
+\begin{cases}
+v_{tt} = 4v_{xx}, \\
+v(0, t) = v_x\left(\frac{\pi}2, t\right) = 0, \\
+v(x, 0) = 2\sin5x, \\
+v_t(x, 0) = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = (2n + 1)^2, \\
+X_n = \sin(2n + 1)x, \\
+T_n = C_{1n}\sin2(2n + 1)t + C_{2n}\cos2(2n + 1)t.
+\end{cases}
+\end{equation}
+Ищем решение в виде ряда по $X_n(x)T_n(t)$, подставляем в начальные условия:
+\begin{equation}
+u(x, 0) = 2\sin5x = \sum_{n = 0}^{\infty}C_{2n}\sin2(2n + 1)x
+\end{equation}
+Отсюда получаем:
+\begin{equation}
+u(x, t) = \pi x + t + 2\sin5x\cos10t
+\end{equation}
+#+END_EXPORT
+** Задача 13.11
+#+BEGIN_EXPORT latex
+\begin{cases}
+u_{tt} = u_{xx} + 3u + \sin t\cos2x, 0 < x < \pi, t > 0, \\
+u_x(0, t) = u_x(\pi, t) = 0, t > 0, \\
+u(x, 0) = u_t(x, 0) = 0, 0 \leq x \leq \pi.
+\end{cases}
+#+END_EXPORT
+*** Решение
+#+BEGIN_EXPORT latex
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = n^2, \\
+X_n = \cos nx.
+\end{cases}
+\end{equation}
+Ищем решение в виде
+\begin{equation}
+u(x, t) = \sum_{n = 0}^{\infty}\cos nx.
+\end{equation}
+Подставим в задачу, получим систему задач:
+\begin{equation}
+u''_n = -n^2u_n + 3u_n + f_n, \\
+u_n(0) = u'_n(0) = 0.
+\end{equation}
+При $n \neq 2$ решение этой задачи нулевое. При $n = 2$ получаем задачу:
+\begin{equation}
+\begin{cases}
+u_2'' = -u_2 + \sin t, \\
+u_2(0) = u_2'(0) = 0.
+\end{cases}
+\end{equation}
+Ищем частное решение в виде:
+\begin{equation}
+u_p = at\sin t + bt\cos t.
+\end{equation}
+Подставив в уравнение, получим:
+\begin{equation}
+2a\cos t - at\sin t - 2b\sin t - bt\cos t = -at\sin t - bt\cos t + \sin t.
+\end{equation}
+Откуда
+\begin{equation}
+\begin{cases}
+a = 0, \\
+b = -\frac12,
+\end{cases}
+\end{equation}
+поэтому решение уравнения имеет вид:
+\begin{equation}
+u_2(t) = -\frac12t\cos t + C_1\cos t + C_2\sin t
+\end{equation}
+Подставим начальные условия:
+\begin{equation}
+u_2(0) = 0 \Rightarrow C_1 = 0, \\
+u_1(0) = 0 \Rightarrow C_2 = \frac12.
+\end{equation}
+Тогда
+\begin{equation}
+u_2(t) = \frac12(\sin t - t\cos t)
+\end{equation}
+и
+\begin{equation}
+u(x, t) = \frac12(\sin t - t\cos t)\cos2x
+\end{equation}
+#+END_EXPORT
