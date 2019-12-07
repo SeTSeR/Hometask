@@ -6,10 +6,6 @@
 #+OPTIONS: toc:nil
 #+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
 
-#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
-
-\zall
-
 ДЗ: 4.4, 4.6, 4.7, 4.8, 4.11
 
 ** Задача 4.4
@@ -277,7 +273,7 @@ u(x, t) = \sum_{n = 0}^{\infty}u_n(t)\sin nx
 Найдём разложение неоднородности:
 \begin{equation*}
 \cos t = \sum_{n = 0}^{\infty}f_n(t)\sin nx, \text{ где}
-\end{equation}
+\end{equation*}
 \begin{equation*}
 f_n(t) = \int_0^{\pi}\cos t\sin nxdx = -\frac{\cos t}n\cos{nx}|_0^{\pi}
 = \frac{\cos t}n(1 - (-1)^n) = \begin{cases}
