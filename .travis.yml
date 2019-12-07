@@ -7,6 +7,7 @@ before_install:
   texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-base
   texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra pandoc
   zip
+- sudo apt install python-pygments
 script:
 - make pdf
 - zip -r pdfs.zip build/
