@@ -915,7 +915,7 @@ v(M) = v(x, y, z) = \frac1{R_{M_0M}}
 \end{equation}
 Применим к области T вторую формулу Грина, "выкинув" из неё сферу $K_{\varepsilon}$:
 \begin{multline}
-p\iiint_{K_{\varepsilon}(M_o)}\left(u\Delta\frac1{R_{M_0M}}-\frac1{R_{M_0M}}\Delta u\right)d\tau =
+\iiint_{K_{\varepsilon}(M_o)}\left(u\Delta\frac1{R_{M_0M}}-\frac1{R_{M_0M}}\Delta u\right)d\tau =
 \iint_{\Sigma}\left(u\frac{\partial}{\partial n}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}\frac{\partial u}{\partial n}\right)d\sigma + \\
 + \iint_{S_{\varepsilon}}\left(u\frac{\partial}{\partial u}\left(\frac1{R_{M_0M}}\right) - \frac1{R_{M_0M}}\frac{\partial u}{\partial n}\right)d\sigma
 \end{multline}
@@ -1561,4 +1561,232 @@ u_{xx} + u_{yy} = v_{xx} + v_{yy} = 0
 Рассмотрим конформное отображение $w = f(z), f'(z) \neq 0$. При конформном отображении вид
 оператора Лапласа не меняется, поэтому возможно решать задачу Дирихле, отобразив исходное
 множество в "удобное".
+#+END_EXPORT
+* Метод Фурье для решения многомерных уравнений теплопроводности и колебаний
+\zall
+#+BEGIN_EXPORT latex
+Рассмотрим задачи:
+\begin{equation}
+\begin{cases}
+u_t = D\Delta u\text{ в области G}, \\
+u|_{\partial G} = 0, \\
+u|_{t = 0} = u_0(M)
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+u_{tt} = c^2\Delta u\text{ в области G}, \\
+u_{\partial G} = 0, \\
+u|_{t = 0} = \varphi(M), \\
+u_t|_{t = 0} = \psi(M).
+\end{cases}
+\end{equation}
+Рассмотрим трёхмерный случай. Ищем решение в виде $u = v(M)T(t)$. Получим задачи:
+\begin{equation}
+\begin{cases}
+vT'(t) = DT\Delta v, \\
+v|_{\partial G} = 0
+\end{cases}
+\end{equation}
+и
+\begin{equation}
+\begin{cases}
+vT'' = c^2T\Delta v, \\
+v|_{\partial G} = 0,
+\end{cases}
+\end{equation}
+которые приводятся к виду:
+\begin{equation}
+\frac{T'}{DT} = \frac{v}{\Delta v} = -\lambda
+\end{equation}
+и
+\begin{equation}
+\frac{T'}{c^2T} = \frac{v}{\Delta v} = -\lambda
+\end{equation}
+#+END_EXPORT
+** Многомерная задача Штурма-Лиувилля
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\Delta v + \lambda v = 0, \\
+v|_{\partial G} = 0.
+\end{cases}
+\end{equation}
+Свойства:
+\begin{enumerate}
+\item $\exists 0 < \lambda_1 < \ldots < \lambda_n < \ldots, \lim_{n \to \infty}\lambda_n = +\infty$.
+\item $\forall \lambda_k \exists \text{ конечное число} \nu_{k_1}, \ldots\nu_{k_n}$.
+\item $(\nu_k, \nu_j) = 0, \forall k \neq j \in \overline{1, n}$.
+\item \textbf{Теорема разложимости Ильина-Стеклова}: функция разлагается по собственным функциям ЗШЛ.
+\end{enumerate}
+#+END_EXPORT
+*** Поиск собственных функций
+#+BEGIN_EXPORT latex
+Пусть $G$ - куб с ребром $a$. Задача приобретает вид:
+\begin{equation}
+\begin{cases}
+v_{xx} + v_{yy} + v_{zz} = 0, \\
+v|_{x = 0} = v|_{x = a} = v|_{y = 0} = v|_{y = a} = v|_{z = 0} = v|_{z = a}.
+\end{cases}
+\end{equation}
+Положим $v(x, y, z) = X(x)Y(y)Z(z)$, тогда:
+\begin{equation}
+\frac{X''}X + \frac{Y''}Y + \frac{Z''}Z = -\lambda,
+\end{equation}
+откуда
+\begin{equation}
+\begin{cases}
+\alpha_n = \left(\frac{\pi n}a\right)^2, \\
+X_n = \sin\frac{\pi nx}a, \\
+\beta_k = \left(\frac{\pi k}a\right)^2, \\
+Y_k = \sin\frac{\pi ky}a, \\
+\gamma_m = \left(\frac{\pi m}a\right)^2, \\
+z_m = \sin\frac{\pi mz}a.
+\end{cases}
+\end{equation}
+Получаем, что
+\begin{equation}
+\begin{cases}
+\lambda_{n, m, k} = \frac{\pi^2}{a^2}(n^2 + m^2 + k^2), \\
+v_{n, m, k}(x, y, z) = \sin\frac{\pi nx}a\sin\frac{\pi ky}a\sin\frac{\pi mz}a, \\
+\end{cases}
+\end{equation}
+Решим теперь задачу для сферы:
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = D\Delta u, 0 \leq r < R, \\
+u|_{r = R} = 0, \\
+u|_{t = 0} = \varphi(M).
+\end{cases}
+\end{equation}
+\begin{equation}
+\Delta u = \frac1{r^2}\frac{d}{dr}r^2\frac{du}{dr} = \frac1r\frac{d^2}{dr^2}u \Rightarrow \frac{\partial u}{\partial t} = D\frac1r\frac{\partial^2}{\partial r^2}(ru)
+\end{equation}
+Рассмотрим функцию $w = ru$, для неё задача примет вид:
+\begin{equation}
+\begin{cases}
+\frac{\partial w}{\partial t} = D\frac{\partial^2 w}{\partial r^2}, 0 < r < R, \\
+w(0) = w(R) = 0, \\
+w|_{t = 0} = r\varphi(r) , \\
+\lambda_{1, 1, 1} = \frac{3\pi}{a^2}.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\lambda_n = \left(\frac{\pi n}R\right)^2, w_n = \sin\frac{\pi nr}R,
+\end{cases}
+\end{equation}
+Решение имеет вид
+\begin{equation}
+w(r, t) = \sum_{n = 1}^{\infty}\sin\frac{\pi nr}R\tilde{\psi_n}\exp\left\{-\left(\frac{\pi nr}R\right)^2Dt\right\}
+\end{equation}
+#+END_EXPORT
+*** Критический размер реактора
+#+BEGIN_EXPORT latex
+\begin{equation}
+\begin{cases}
+\frac{\partial u}{\partial t} = D\Delta u + \beta u, \\
+u|_{\partial G} = 0, \\
+u|_{t = 0} = \varphi(M).
+\end{cases}
+\end{equation}
+Заменой $u = ve^{\beta t}$ приводим задачу к виду:
+\begin{equation}
+\begin{cases}
+v_t = D\Delta v, \\
+v|_{\partial G} = 0, \\
+v|_{t = 0} = \varphi(M).
+\end{cases}
+\end{equation}
+Решение имеет вид:
+\begin{equation}
+v(M, t) = \varphi_1w_1(M)e^{-D\lambda_1t} + \varphi_2w_2(M)e^{-D\lambda_2t} + \ldots
+\end{equation}
+или
+\begin{equation}
+u(M, t) = \varphi_1w_1(M)e^{(\beta - D\lambda_1)t} + \ldots
+\end{equation}
+Условие устойчивости работы:
+\begin{equation}
+\beta - D\lambda_1 \leq 0 \Rightarrow \lambda_1 \geq \frac{\beta}D
+\end{equation}
+Куб:
+\begin{equation}
+\frac{3\pi^2}{a^2} = \frac{\beta}D, a^2 = 3\pi^2\fracD{\beta}, a = \sqrt{3}\pi\left(\fracD{\beta}\right)^\frac12
+\end{equation}
+Шар:
+\begin{equation}
+\lambda_1 = \frac{\pi^2}{R^2}, \frac{\pi^2}{R^2} = \frac{\beta}D, R = \pi\sqrt{\frac{D}{\beta}}
+\end{equation}
+#+END_EXPORT
+** Цилиндрические функции
+#+BEGIN_EXPORT latex
+Рассмотрим задачу о собственных значениях и собственных функциях для оператора Лапласа
+в круге:
+\begin{equation}
+\begin{cases}
+\Delta v + \lambda v = 0, r < R, 0 \leq \varphi < 2\pi, \\
+v_{r = R} = 0.
+\end{cases}
+\end{equation}
+В полярных координатах оператор Лапласа имеет вид:
+\begin{equation}
+\Delta v = \frac1r\frac{\partial}{\partial r} + \frac1{r^2}\frac{\partial^2 v}{\partial \varphi^2},
+\end{equation}
+т. е.
+\begin{equation}
+\frac1r{\partial}{\partial r}r\frac{\partial v}{\partial r} + \frac1{r^2}\frac{\partial^2v}{\partial\varphi^2} + \lambda v = 0.
+\end{equation}
+Пусть $v = R(r)\Phi(\varphi)$, получим задачу:
+\begin{equation}
+\frac{\frac1r\frac{d}{dr}\left(r\frac{dR}{dr}\right)}R + \frac1{r^2}\frac{\Phi''}{\Phi} + \lambda = 0,
+\end{equation}
+что разбивается а задачи:
+\begin{equation}
+\begin{cases}
+\frac{\Phi''}{\Phi} = -\beta, \\
+\Phi(\varphi + 2\pi) = \Phi(\varphi), \\
+r^2R_n'' + rR'_n + (\lambda_nr^2 - n^2)R_n = 0.
+\end{cases}
+\end{equation}
+Собственные значения и собственные функции ЗШЛ:
+\begin{equation}
+\begin{cases}
+\beta_0 = 0, \Phi_0 = 1, \\
+\beta_n = n^2, \Phi_n = A_n\sin n\varphi + B_n\cos n\varphi.
+\end{cases}
+\end{equation}
+Для последнего уравнения сделаем замену $x = \sqrt{\lambda}r$, получим уравнение:
+\begin{equation}
+x^2y'' + xy' + (x^2 - n^2)y = 0
+\end{equation}
+#+END_EXPORT
+*** Уравнение Бесселя
+#+BEGIN_EXPORT latex
+\begin{equation}
+y'' + \frac1xy' + \left(1 - \frac{\nu^2}{x^2}y\right) = 0, \nu \neq \pm n
+\end{equation}
+\begin{equation}
+x^2y'' + xy' + (x^2 - \nu^2)y = 0,
+\end{equation}
+Ищем решение в виде
+\begin{equation}
+y(x) = x^{\sigma}(a_0 + a_1x + \ldots)
+\end{equation}
+После подстановки в уравнение найдём:
+\begin{equation}
+\begin{cases}
+a_1 = 0, \\
+a_2 = -\frac{a_0}{2^2(\nu + 1)1}, \\
+\ldots
+a_{2p + 1} = 0, \\
+a_{2p} = (-1)^p\frac{a_0}{2^{2p}(\nu + 1)\ldots(\nu + p)\cdot1\cdot2\ldots\cdot p}
+\end{cases}
+\end{equation}
+Положим $a_0 = \frac1{2^{\nu}}\Gamma(\nu + 1)$. Тогда
+\begin{equation}
+J_{\nu}(x) = \sum_{p = 0}^{\infty}(-1)^p\frac{\left(\frac{x}2\right)^{2p + \nu}}{\Gamma(\nu + p + 1)\Gamma(p + 1)}
+\end{equation}
 #+END_EXPORT
