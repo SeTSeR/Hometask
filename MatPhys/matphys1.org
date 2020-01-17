@@ -1793,5 +1793,12 @@ J_{\nu}(x) = \sum_{p = 0}^{\infty}(-1)^p\frac{\left(\frac{x}2\right)^{2p + \nu}}
 \begin{equation}
 J_{-\nu}(x) = \sum_{p = 0}^{\infty}(-1)^p\frac{\left(\frac{x}2\right)^{2p-\nu}}{\Gamma(p - \nu + 1)\Gamma(p + 1)}
 \end{equation}
-- функция Бесселя второго рода $\nu$-го порядка.
+- функция Бесселя второго рода $\nu$-го порядка. Для $\nu = \pm n$ функции Бесселя определяются по непрерывности:
+\begin{equation}
+J_{-n}(x) = (-1)^n\sum_{k' = 0}^{\infty}\frac{(-1)^{k'}}{\Gamma(k' + n + 1)\Gamma(k' + 1)}\left(\frac{x}2\right)^{2k' + n} = (-1)^nJ_n(x)
+\end{equation}
+Другим набором цилиндрических функций, линейно независимым с функциями Бесселя, являются функции Неймана:
+\begin{equation}
+N_{\nu}(x) = \sqrt\frac2{\pi x}\sin\left(x - \frac{\pi}2\nu - \frac{\pi}4\right) + \ldots
+\end{equation}
 #+END_EXPORT
