@@ -1737,13 +1737,13 @@ v_{r = R} = 0.
 \end{equation}
 т. е.
 \begin{equation}
-\frac1r{\partial}{\partial r}r\frac{\partial v}{\partial r} + \frac1{r^2}\frac{\partial^2v}{\partial\varphi^2} + \lambda v = 0.
+\frac1r\frac{\partial v}{\partial r} + \frac1{r^2}\frac{\partial^2v}{\partial\varphi^2} + \lambda v = 0.
 \end{equation}
 Пусть $v = R(r)\Phi(\varphi)$, получим задачу:
 \begin{equation}
 \frac{\frac1r\frac{d}{dr}\left(r\frac{dR}{dr}\right)}R + \frac1{r^2}\frac{\Phi''}{\Phi} + \lambda = 0,
 \end{equation}
-что разбивается а задачи:
+что разбивается на задачи:
 \begin{equation}
 \begin{cases}
 \frac{\Phi''}{\Phi} = -\beta, \\
@@ -1787,6 +1787,11 @@ a_{2p} = (-1)^p\frac{a_0}{2^{2p}(\nu + 1)\ldots(\nu + p)\cdot1\cdot2\ldots\cdot 
 \end{equation}
 Положим $a_0 = \frac1{2^{\nu}}\Gamma(\nu + 1)$. Тогда
 \begin{equation}
-J_{\nu}(x) = \sum_{p = 0}^{\infty}(-1)^p\frac{\left(\frac{x}2\right)^{2p + \nu}}{\Gamma(\nu + p + 1)\Gamma(p + 1)}
+J_{\nu}(x) = \sum_{p = 0}^{\infty}(-1)^p\frac{\left(\frac{x}2\right)^{2p + \nu}}{\Gamma(p + \nu + 1)\Gamma(p + 1)}
 \end{equation}
+- функция Бесселя первого рода $\nu$-го порядка, а
+\begin{equation}
+J_{-\nu}(x) = \sum_{p = 0}^{\infty}(-1)^p\frac{\left(\frac{x}2\right)^{2p-\nu}}{\Gamma(p - \nu + 1)\Gamma(p + 1)}
+\end{equation}
+- функция Бесселя второго рода $\nu$-го порядка.
 #+END_EXPORT
