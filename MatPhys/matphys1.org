@@ -1714,7 +1714,7 @@ u(M, t) = \varphi_1w_1(M)e^{(\beta - D\lambda_1)t} + \ldots
 \end{equation}
 Куб:
 \begin{equation}
-\frac{3\pi^2}{a^2} = \frac{\beta}D, a^2 = 3\pi^2\fracD{\beta}, a = \sqrt{3}\pi\left(\fracD{\beta}\right)^\frac12
+\frac{3\pi^2}{a^2} = \frac{\beta}D, a^2 = 3\pi^2\frac{D}{\beta}, a = \sqrt{3}\pi\left(\frac{D}{\beta}\right)^\frac12
 \end{equation}
 Шар:
 \begin{equation}

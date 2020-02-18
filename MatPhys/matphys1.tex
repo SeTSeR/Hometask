@@ -1,4 +1,4 @@
-% Created 2020-01-18 Sat 01:24
+% Created 2020-02-18 Tue 21:30
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -55,7 +55,7 @@
 \end{enumerate}
 
 \section{Классификация уравнений второго порядка с двумя независимыми переменными}
-\label{sec:orgbaed123}
+\label{sec:org61f6393}
 Это уравнения вида
 \begin{equation}
 F(x, y, u_x, u_y, u_{xx}, u_{xy}, u_{yy}) = 0
@@ -222,7 +222,7 @@ u_{tt} = u_{xx}.
 \end{equation}
 
 \section{Уравнение непрерывности}
-\label{sec:org7e2c80c}
+\label{sec:org4df0732}
 Выведем \textbf{уравнение непрерывности}. Пусть P - плотность некоторой величины, \(\vec j\) - плотность
 её потока, \(f\) - интенсивность её источника. Уравнение баланса для этой величины будет иметь вид:
 \begin{equation}
@@ -237,7 +237,7 @@ u_{tt} = u_{xx}.
 C_{\rho}\frac{\partial u}{\partial t} = \operatorname{div}(k\operatorname{grad}u) + f(x, y, z, t)
 \end{equation}
 \section{Смешанная задача для уравнения в частных производных параболического типа}
-\label{sec:org0c2ba12}
+\label{sec:orgac40f3f}
 Уравнение + граничные условия + начальные условия:
 \begin{equation}
 \begin{cases}
@@ -268,7 +268,7 @@ u_x + h_2u|_{x = l} = \theta_2(t).
 Тогда $f(x, t), \nu_1(t), \nu_2(t), \varphi(x)$ непрерывны.
 Также $\nu_1(0) = \varphi(0), \nu_2(0) = \varphi(l)$.
 \subsection{Метод разделения переменных}
-\label{sec:orgc6c3ebc}
+\label{sec:org83d7fc3}
 Рассмотрим простейший вариант смешанной задачи:
 \begin{equation}
 \begin{cases}
@@ -326,7 +326,7 @@ u(x, t) = \sum_{n = 1}^{\infty}\varphi_ne^{-\left(\frac{\pi na}l\right)^2t}\sin\
 
 Такая схема плохо работает при более общих начальных условиях.
 \subsection{Общая схема метода разделения переменных}
-\label{sec:orge2e8cfd}
+\label{sec:org8bf5cf8}
 Рассмотрим задачу
 \begin{equation}
 \begin{cases}
@@ -413,7 +413,7 @@ v(x, t) = \sum_{n = 1}^{\infty}v_n(t)X_n(x), \\
 \end{equation}
 $$u(x, t) = \sum_{n = 1}^{\infty}v_{n}(t)X(x) + w(x, t)$$
 \subsection{Теорема существования}
-\label{sec:orge984587}
+\label{sec:org2f59487}
 Рассмотрим задачу
 \begin{equation}
 \begin{dcases}
@@ -569,7 +569,7 @@ u_2(x, 0) = \overline{\varphi_1}(x),
 $|u(x, t)| \leq \varepsilon$, т. е. задача (35) устойчива.
 \end{Consequence}
 \subsection{Теорема единственности}
-\label{sec:org7be107d}
+\label{sec:org84a03ff}
 \begin{Theorem}[Теорема единственности]
 Задача (35) имеет одно решение.
 \begin{proof}
@@ -614,7 +614,7 @@ E(0) = 0,
 откуда $E(t) = 0 \Rightarrow u(x, t) = 0$.
 \zall
 \subsection{Задача Коши для уравнения теплопроводности}
-\label{sec:org8e3ad41}
+\label{sec:orgf345aff}
 Рассмотрим задачи
 \begin{equation}
 \begin{cases}
@@ -687,7 +687,7 @@ G(x, \xi, t) = \frac1{2\pi}\int_{-\infty}^{+\infty}e^{-a^2\lambda^2t + i\lambda(
 \end{proof}
 \end{Theorem}
 \subsection{Метод подобия}
-\label{sec:org0c7c532}
+\label{sec:orgbe1084d}
 \begin{equation*}
 u_t = a^2u_{xx}
 \end{equation*}
@@ -722,7 +722,7 @@ $$u(x, t) = u(x', t') = u(kx, k^2t)$$
 
 Ищем решение задачи (12) в виде $u(x, t) = u_0f\left(\frac{x}{2\sqrt{t}}\right)$.
 \section{Уравнения эллиптического типа}
-\label{sec:org5902695}
+\label{sec:org9b4e021}
 \zall
 Уравнение Лапласа имеет вид
 \begin{equation}
@@ -734,7 +734,7 @@ $$u(x, t) = u(x', t') = u(kx, k^2t)$$
 \end{equation}
 называется уравнением Пуассона.
 \subsection{Стационарная теплопроводность}
-\label{sec:org8944413}
+\label{sec:orgd8b798f}
 В нестационарном случае
 \begin{equation}
 c\rho\frac{\partial u}{\partial t} = \operatorname{div}(k\operatorname{grad} u) + f.
@@ -787,7 +787,7 @@ u|_{Sigma} = g(p),
 \frac{\partial u}{\partial n} + hu|_{\Sigma} = p(t).
 \end{equation}
 \subsection{Потенциальное течение жидкости}
-\label{sec:org6b9fbc3}
+\label{sec:org4b482d0}
 \begin{equation}
 \begin{cases}
 \operatorname{div}\vec v = 0, \\
@@ -804,7 +804,7 @@ v_x|+{\pm \infty} = v_0, \frac{\partial u}{\partial x}|_{x = \pm \infty} = v_0.
 \end{cases}
 \end{equation}
 \subsection{Задачи электростатики}
-\label{sec:orgbcdd836}
+\label{sec:org9406ad8}
 Уравнения Максвелла: \\
 Гауссова система:
 \begin{equation}
@@ -827,7 +827,7 @@ rd\vec E = -\frac1c\frac{\partial\vec B}{\partial t}
 \end{cases}
 \end{equation}
 \subsection{Фундаментальные решения уравнения Лапласа}
-\label{sec:org3edc3c7}
+\label{sec:orgcd70e9d}
 В трёхмерном случае $u = u(r), r = \sqrt{x^2 + y^2 + z^2}$, тогда
 \begin{equation}
 \frac1{r^2}\frac{d}{dr}\left(r^2\frac{du}{dr}\right) = 0, r \neq 0.
@@ -854,7 +854,7 @@ u(r) = \ln\frac1r, r = \sqrt{x^2 + y^2}.
 \Delta u = 0, u = u(x), u_{xx} = 0 \Rightarrow u = C_1x + C_2.
 \end{equation}
 \subsection{Формулы Грина}
-\label{sec:org5782ab4}
+\label{sec:org273404a}
 \begin{equation}
 \iiint_T\operatorname{div}\vec Ad\tau = \iint_{\Sigma}A_nd\sigma,
 \vec A \in C^1(T) \cap C(\overline T), \overline T = T \cup \Sigma
@@ -919,7 +919,7 @@ u(M_0) = \frac1{2\pi}\int_C\ln\frac1{R_{M_0P}}\frac{\partial u}{\partial n}dl -
 \frac1{2\pi}\int_Cu\frac{\partial}{\partial n}\ln\frac1{R_{M_0P}}dP.
 \end{equation}
 \subsection{Свойства гармонических функций}
-\label{sec:orgad83afb}
+\label{sec:orgfb3edf7}
 \begin{Theorem}
 Если $\Delta u = 0$ в $T$, $S \subset T$, $S$ - поверхность, то
 \begin{equation}
@@ -988,9 +988,9 @@ $u(M_0) = \frac1{4\pi a^2}\iint_{S_{\rho}(M_0)}u(P)d\sigma < \frac1{4\pi a^2}u(M
 Если $max_{\Sigma}|v| = M$, то $v|_{T} \leq M$.
 \end{Consequence}
 \subsection{Краевые задачи для гармонических функций}
-\label{sec:org2ec6d5d}
+\label{sec:orgc83249b}
 \subsubsection{Внутренняя задача Дирихле}
-\label{sec:org96bfef4}
+\label{sec:org06dabd2}
 \begin{equation}
 \begin{cases}
 \Delta u = 0 \text{ в T}, \\
@@ -1029,7 +1029,7 @@ u|_{r = 1} = \begin{cases}
 \end{equation}
 Тогда нужно дополнительно потребовать, чтобы $u \in C^2(T), |u||_T < M, \lim_{M \to P}u(M) = g(P), P \in \Sigma$.
 \subsubsection{Внутренняя задача Неймана}
-\label{sec:org9d68ed0}
+\label{sec:orgdaba4ab}
 \begin{equation}
 \begin{cases}
 \Delta u = 0 \text{ в T}, \\
@@ -1060,10 +1060,10 @@ u|_{r = 1} = \begin{cases}
 \end{proof}
 \end{Theorem}
 \subsubsection{Внешняя задача Дирихле}
-\label{sec:orgf18d8d2}
+\label{sec:org4bc3296}
 \begin{enumerate}
 \item Трёхмерная задача
-\label{sec:org88dd7f0}
+\label{sec:org45a7e87}
 \begin{equation}
 \begin{cases}
 \Delta u = 0 \text{ вне T}, \\
@@ -1102,7 +1102,7 @@ v|_{\Sigma} = 0, \\
 \end{proof}
 \end{Theorem}
 \item Плоская задача
-\label{sec:org6ad2759}
+\label{sec:org16e69d5}
 \begin{equation}
 \begin{cases}
 \Delta u = 0 \text{ вне D}, \\
@@ -1129,7 +1129,7 @@ $v(M) < U(M) \to_{R_1 \to \infty} 0$.
 \end{Theorem}
 \end{enumerate}
 \subsection{Общее решение уравнения Лапласа в полярных координатах}
-\label{sec:org0540e03}
+\label{sec:org4b06d33}
 Пусть $u = u(r, \varphi), \Delta u = 0$ или
 $\frac1r\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}\right) +
 \frac1{r^2}\frac{\partial^2u}{\partial\varphi^2} = 0$. Воспользуемся методом разделения
@@ -1196,10 +1196,10 @@ u(r, \varphi) = A\ln r + B + \sum_{n = 1}^{\infty}\left(\left(A_nr^n + \frac{C_n
 \left(B_nr^n + \frac{D_n}{r^n}\right)\sin n\varphi\right)
 \end{equation}
 \subsubsection{Задачи для круга}
-\label{sec:orgd665e14}
+\label{sec:orge95279d}
 \begin{enumerate}
 \item Внутренняя
-\label{sec:org7a23aa2}
+\label{sec:org1d9ae18}
 \begin{equation}
 \begin{cases}
 \Delta u = 0, r < a, \\
@@ -1216,7 +1216,7 @@ a_0 = \frac2{\pi}\int_0^{2\pi}f(\varphi)d\varphi, a_n = \frac2{\pi}\int_0^{2\pi}
 b_n = \frac2{\pi}\int_0^{2\pi}f(\varphi)\sin n\varphi d\varphi.
 \end{equation}
 \item Внешняя
-\label{sec:org37d1791}
+\label{sec:org1d3f6fe}
 \begin{equation}
 \begin{cases}
 \Delta u = 0, r > a, \\
@@ -1231,7 +1231,7 @@ b_n\sin n\varphi).
 \end{equation}
 \end{enumerate}
 \subsubsection{Задача Дирихле для прямоугольника}
-\label{sec:org44fdb95}
+\label{sec:orgb7e6e47}
 \begin{equation}
 \begin{cases}
 u_{xx} + u_{yy} = 0, 0 < x < a, 0 < y < b, \\
@@ -1298,7 +1298,7 @@ X_n = C_1\sh\frac{\pi n(a - x)}b.
 u_1(x, y) = \sum_{n = 1}^{\infty}(f_n)_1\frac{\sh\frac{\pi n(a - x)}b}{\sh\frac{\pi na}b}\sin\frac{\pi na}b.
 \end{equation}
 \subsection{Замкнутая форма решения задачи Дирихле для круга}
-\label{sec:org75f32fe}
+\label{sec:org412e147}
 Внутренняя задача Дирихле:
 \begin{equation}
 \begin{cases}
@@ -1349,7 +1349,7 @@ K(r, \varphi, a, \psi) = \frac{a^2 - r^2}{a^2 + r^2 - 2ar\cos{\varphi - \psi}}
 \end{equation}
 называется \textbf{ядром Пуассона}.
 \subsection{Функция Грина}
-\label{sec:org5a14300}
+\label{sec:orgabf0da0}
 Если $u \in C^2(T) \cap C^1(\overline{T})$, то справедлива формула Грина:
 \begin{equation}
 u(M_0) = \frac1{4\pi}\iint_{\Sigma}\frac1{R_{MM_0}}\frac{\partial u}{\partial n}d\sigma -
@@ -1394,7 +1394,7 @@ u|_{\Sigma} = h(P).
 В данном случае надо положить например $\frac{\partial G}{\partial n}|_{\Sigma} = \frac1S$, где $S$ - площадь $\Sigma$
 (условие $\frac{\partial F}{\partial n}|_{\Sigma} = 0$ невыполнимо).
 \subsubsection{Функция Грина для задачи Дирихле}
-\label{sec:org01515ab}
+\label{sec:orgb92a93e}
 Пусть $G(M, M_0) = \frac1{4\pi R_{MM_0}} + v(M)$ и выполнены условия:
 1. $\Delta_Mv = 0$ в T.
 2. $v|_{\Sigma} = -\frac1{4\pi R_{MM_0}}$.
@@ -1415,7 +1415,7 @@ u|_{\Sigma} = g
 u(M_0) = -\iint_{\Sigma}g(p)\frac{\partial G}{\partial n}d\sigma + \iiint_TGFd\tau
 \end{equation}
 \subsubsection{Свойства функции Грина для задачи Дирихле}
-\label{sec:org3d33482}
+\label{sec:org26d30d8}
 \begin{Theorem}
 \begin{equation}
 G(M, M_0) > 0 \text{ в T}
@@ -1470,7 +1470,7 @@ d\sigma = \varepsilon^2d\Omega,
 \end{proof}
 \end{Theorem}
 \subsubsection{Задача Дирихле для полупространства}
-\label{sec:org101c8b8}
+\label{sec:org5b22e4d}
 \begin{equation}
 \begin{cases}
 \Delta u = 0, -\infty < x, y < +\infty, z > 0, \\
@@ -1497,7 +1497,7 @@ G(M, M_0) = \frac1{4\pi}\left(\frac1{\sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)
 u(x_0, y_0, z_0) = \frac1{2\pi}\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\frac{f(x, y)z_0}{((x - x_0)^2 + (y - y_0)^2 + z_0^2)^{\frac32}}dxdy
 \end{equation}
 \subsection{Применение конформных отображений для решения эллиптических уравнений на плоскости}
-\label{sec:org5401039}
+\label{sec:org3b54319}
 Пусть $u = u(x, y)$. Рассмотрим $z = x + iy$, $f(z) = u + iv$. Тогда выполнены условия
 Коши-Римана
 \begin{equation}
@@ -1512,7 +1512,7 @@ u_{xx} + u_{yy} = v_{xx} + v_{yy} = 0
 оператора Лапласа не меняется, поэтому возможно решать задачу Дирихле, отобразив исходное
 множество в "удобное".
 \section{Метод Фурье для решения многомерных уравнений теплопроводности и колебаний}
-\label{sec:orga4a6e76}
+\label{sec:orgff2f2df}
 \zall
 Рассмотрим задачи:
 \begin{equation}
@@ -1554,7 +1554,7 @@ v|_{\partial G} = 0,
 \frac{T'}{c^2T} = \frac{v}{\Delta v} = -\lambda
 \end{equation}
 \subsection{Многомерная задача Штурма-Лиувилля}
-\label{sec:org0c6344d}
+\label{sec:orgf220f43}
 \begin{equation}
 \begin{cases}
 \Delta v + \lambda v = 0, \\
@@ -1569,7 +1569,7 @@ v|_{\partial G} = 0.
 \item \textbf{Теорема разложимости Ильина-Стеклова}: функция разлагается по собственным функциям ЗШЛ.
 \end{enumerate}
 \subsubsection{Поиск собственных функций}
-\label{sec:org65257f4}
+\label{sec:orgd259adf}
 Пусть $G$ - куб с ребром $a$. Задача приобретает вид:
 \begin{equation}
 \begin{cases}
@@ -1630,7 +1630,7 @@ w|_{t = 0} = r\varphi(r) , \\
 w(r, t) = \sum_{n = 1}^{\infty}\sin\frac{\pi nr}R\tilde{\psi_n}\exp\left\{-\left(\frac{\pi nr}R\right)^2Dt\right\}
 \end{equation}
 \subsubsection{Критический размер реактора}
-\label{sec:org21303bd}
+\label{sec:org3a8c4b8}
 \begin{equation}
 \begin{cases}
 \frac{\partial u}{\partial t} = D\Delta u + \beta u, \\
@@ -1660,14 +1660,14 @@ u(M, t) = \varphi_1w_1(M)e^{(\beta - D\lambda_1)t} + \ldots
 \end{equation}
 Куб:
 \begin{equation}
-\frac{3\pi^2}{a^2} = \frac{\beta}D, a^2 = 3\pi^2\fracD{\beta}, a = \sqrt{3}\pi\left(\fracD{\beta}\right)^\frac12
+\frac{3\pi^2}{a^2} = \frac{\beta}D, a^2 = 3\pi^2\frac{D}{\beta}, a = \sqrt{3}\pi\left(\frac{D}{\beta}\right)^\frac12
 \end{equation}
 Шар:
 \begin{equation}
 \lambda_1 = \frac{\pi^2}{R^2}, \frac{\pi^2}{R^2} = \frac{\beta}D, R = \pi\sqrt{\frac{D}{\beta}}
 \end{equation}
 \subsection{Цилиндрические функции}
-\label{sec:org81628dd}
+\label{sec:org4d64a00}
 Рассмотрим задачу о собственных значениях и собственных функциях для оператора Лапласа
 в круге:
 \begin{equation}
@@ -1708,7 +1708,7 @@ r^2R_n'' + rR'_n + (\lambda_nr^2 - n^2)R_n = 0.
 x^2y'' + xy' + (x^2 - n^2)y = 0
 \end{equation}
 \subsubsection{Уравнение Бесселя}
-\label{sec:orgdcf3442}
+\label{sec:org421f5cb}
 \begin{equation}
 y'' + \frac1xy' + \left(1 - \frac{\nu^2}{x^2}y\right) = 0, \nu \neq \pm n
 \end{equation}
