@@ -1,4 +1,4 @@
-% Created 2019-10-28 Mon 22:05
+% Created 2020-02-18 Tue 22:05
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -14,6 +14,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{minted}
 \usepackage{amsmath}
 \usepackage{esint}
 \usepackage[english, russian]{babel}
@@ -44,7 +45,7 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
  pdflang={English}}
 \begin{document}
 
@@ -52,7 +53,7 @@
 
 ДЗ: 6.5, 6.13, 6.14, 7.22, 7.25, 7.26, 7.19, 7.20
 \section{Задача 6.5}
-\label{sec:org8a04a17}
+\label{sec:org681e265}
 Проверить, являются ли функции гармоническими:
 \begin{enumerate}
 \item \(u_5 = e^{\frac{y}x}, x \neq 0\)
@@ -63,7 +64,7 @@
 \item \(u_{10} = \nu^2(x, y)\), где \(\nu(x, y)\) - гармоническая, \(\nu(x, y) \neq const\).
 \end{enumerate}
 \subsection{Решение}
-\label{sec:org516641a}
+\label{sec:orged40c99}
 $$\grad u_5 = \left\{ye^{\frac{y}x}\left(-\frac{y}{x^2}\right); \frac1xe^{\frac{y}x}\right\}$$
 $$\Delta u_5 = \div\grad u_5 = e^{\frac{y}x}\left(-\frac{y}{x^2}\right) + y^2\left(\frac{y}{x^2}\right)^2e^{\frac{y}x} + 2\frac{y^2}{x^3}e^{\frac{y}x} + \frac1{x^2}e^{\frac{y}x} \neq 0$$
 Поэтому $u_5$ не гармоническая.
@@ -79,11 +80,11 @@ $$\grad u_{10} = \{2\nu\nu_x; 2\nu\nu_y\}$$
 $$\Delta u_{10} = \div\grad u = 2\nu_x^2 + 2\nu\nu_{xx} + 2\nu_y^2 + 2\nu\nu_{yy} = 2(\nu_x^2 + \nu_y^2) \neq 0$$
 Поэтому $u_{10}$ не гармоническая.
 \section{Задача 6.13}
-\label{sec:orgbb2ca6c}
+\label{sec:orgd82a5eb}
 Пусть $u(x, y) = u(r(x, y), \varphi(x, y))$. Найти $u_x, u_y, u_{xx}, u_{yy}, \Delta u$ в
 полярных и цилиндрических координатах.
 \subsection{Решение}
-\label{sec:orgbef5810}
+\label{sec:org37d0874}
 $$u_x = u_rr_x + u_{\varphi}\varphi_x$$
 $$u_{xx} = u_{rr}r_x^2 + 2u_{r\varphi}r_x\varphi_x + u_{\varphi\varphi}\varphi_x^2 + u_rr_{xx} + u_{\varphi}\varphi_{xx}$$
 $$u_y = u_rr_y + u_{\varphi}\varphi_y$$
@@ -101,11 +102,11 @@ u_{\varphi\varphi}(\varphi_x^2 + \varphi_y^2) + u_r(r_{xx} + r_{yy}) + u_{\varph
 \Delta u = u_{rr}(r_x^2 + r_y^2) + u_r\Delta r
 \end{equation}
 \section{Задача 6.14}
-\label{sec:orgd95e517}
+\label{sec:orgde4d1d4}
 Пусть $u(x, y, z) = u(r(x, y, z), \varphi(x, y, z), \theta(x, y, z))$. Найти $u_x, u_y, u_z,
 u_{xx}, u_{yy}, u_{zz}, \Delta u$. Найти вид уравнения и общее решение в симметричном случае.
 \subsection{Решение}
-\label{sec:org027e64d}
+\label{sec:orgcec81ea}
 $$u_x = u_rr_x + u_{\varphi}\varphi_x + u_{\theta}\theta_x$$
 \begin{equation*}
 u_{xx} = u_{rr}r_x^2 + u_{\varphi\varphi}\varphi_x^2 + u_{\theta\theta}\theta_x^2 +
@@ -173,7 +174,7 @@ u_r = \frac{C}{r^2} \Rightarrow u = \frac{C_1}r + C_2
 u(x, y, z) = \frac{C_1}{\sqrt{x^2 + y^2 + z^2}} + C_2
 \end{equation}
 \section{Задача 7.22}
-\label{sec:orga26c010}
+\label{sec:org5378a23}
 Решить задачу:
 \begin{equation}
 \begin{cases}
@@ -185,7 +186,7 @@ u|_{x = 0} = 0, 0 \leq y \leq b.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:orgc60cb27}
+\label{sec:org1cc5ae7}
 Ищем решение в виде $u(x, y) = \sum_{n = 0}^{\infty}X_n(x)Y_n(y)$. Получаем задачи:
 \begin{equation}
 \begin{cases}
@@ -233,8 +234,9 @@ u(x, y) = \frac{\sh\frac{\pi(b - y)}a}{\sh\frac{\pi b}a}\sin\frac{\pi x}a +
 \frac{\sh\frac{2\pi y}a}{\sh\frac{2\pi b}a}\sin\frac{2\pi x}a
 \end{equation}
 \section{Задача 7.25}
-\label{sec:org3a6d1af}
+\label{sec:orgea6ebe3}
 Решить задачу
+\begin{equation}
 \begin{cases}
 \Delta u = 0, 0 < x < \pi, 0 < y < \pi, \\
 \frac{\partial u}{\partial y}\bigg|_{y = 0} = \sin2x, 0 < x < \pi, \\
@@ -242,8 +244,9 @@ u|_{x = \pi} = \cos2y, 0 \leq y \leq \pi, \\
 \frac{\partial u}{\partial y}\bigg|_{y = \pi} = \sin3x, 0 < x < \pi, \\
 u|_{x = 0} = 0, 0 \leq y \leq \pi.
 \end{cases}
+\end{equation}
 \subsection{Решение}
-\label{sec:org8622eb9}
+\label{sec:org0f02bad}
 Разобьём задачу на две:
 \begin{equation}
 \begin{cases}
@@ -367,7 +370,7 @@ u(x, y) = u_1(x, y) + u_2(x, y) = \\
 \left(\frac{\ch\pi\sh3y + \sh(\pi - y)}{3\sh^2\pi}\right)\sin3x
 \end{multline}
 \section{Задача 7.26}
-\label{sec:orgb7ad079}
+\label{sec:org7e46cd1}
 Решить задачу:
 \begin{equation}
 \begin{cases}
@@ -378,7 +381,7 @@ u|_{x = \frac{\pi}2} = 0 \leq y < \infty.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:org1b63789}
+\label{sec:org7e5d1a2}
  Положим $u = -\frac14\sin2x + v$. Получим задачу для $v$:
  \begin{equation*}
  \begin{cases}
@@ -434,7 +437,7 @@ A_2 = 0, \text{ т. к. } v(x, y) \text{ ограничена.}
 u(x, y) = -\frac14\sin2x - \frac14e^{-4y}\sin2x + e^{-16y}\sin4x.
 \end{equation}
 \section{Задача 7.19}
-\label{sec:org6d919a7}
+\label{sec:orgda226f8}
 Решить задачу Дирихле для уравнения Лапласа в полуполосе:
 \begin{equation}
 \begin{cases}
@@ -446,7 +449,7 @@ u(x, a) = f(a) = const, 0 \leq x < \infty, \\
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:org22f3121}
+\label{sec:org9a170bc}
 Ищем решение в виде $u = U + v$, где $U = Ay + B$ - гармоническая функция, удовлетворяющая
 краевым условиям:
 \begin{equation*}
@@ -507,7 +510,7 @@ u(0, y) = \sum_{n = 0}^{\infty}C_{2n}\sin\frac{\pi n}ay = \sum_{n = 0}^{\infty}g
 u(x, y) = \frac{f(a) - f(0)}ay + f(0) + \sum_{n = 0}^{\infty}g_n\exp\left(-\left(\frac{\pi n}a\right)^2x\right)\sin\frac{\pi n}ay
 \end{equation}
 \section{Задача 7.20}
-\label{sec:org92883dc}
+\label{sec:orgd58fb3a}
 Решить задачу с непрерывным краевым условием на границе прямоугольника:
 \begin{equation}
 \begin{cases}
@@ -519,7 +522,7 @@ u|_{x = 0} = f_4(y), 0 \leq y \leq b.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:orge496ae7}
+\label{sec:orga3ba72c}
 В силу непрерывности краевого условия $f_1(0) = f_4(0), f_1(a) = f_2(0), f_2(b) = f_3(a), f_3(0) = f_4(b)$.
 
 Будем искать решение в виде $u = U + v$, где $U = A + Bx + Cy + Dxy$ - гармоническая функция,

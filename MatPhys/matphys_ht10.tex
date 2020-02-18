@@ -1,4 +1,4 @@
-% Created 2019-11-18 Mon 11:59
+% Created 2020-02-18 Tue 22:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -14,6 +14,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{minted}
 \usepackage{amsmath}
 \usepackage{esint}
 \usepackage[english, russian]{babel}
@@ -44,7 +45,7 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
  pdflang={English}}
 \begin{document}
 
@@ -90,10 +91,10 @@ u_t(x, 0) = \begin{cases}
 \begin{equation}
 u(x, t) = \frac12(\varphi(x + at) + \varphi(x - at)) +
 \frac1{2a}\int_{x - at}^{x + at}\varphi(\xi)d\xi +
-\frac1{2a}\int_0^l\int_{x - a(t - \tau)}^{x + a(t - \tau)}f(\xi, \tau)d\xid\tau
+\frac1{2a}\int_0^l\int_{x - a(t - \tau)}^{x + a(t - \tau)}f(\xi, \tau)d\xi d\tau
 \end{equation}
 \section{Задача 12.5}
-\label{sec:org5b7b3b7}
+\label{sec:org2e65491}
 \begin{equation}
 \begin{cases}
 u_{tt} = a^2u_{xx}, -\infty < x < +\infty, t > 0, a > 0, \\
@@ -106,7 +107,7 @@ u_t(x, 0) = 0.
 \end{equation}
 $u(x)$ при фиксированном $t > 0$ - ?
 \subsection{Решение}
-\label{sec:org3a8088e}
+\label{sec:orgeab4a70}
 \begin{center}
 \includegraphics[width=.9\linewidth]{img/res.png}
 \end{center}

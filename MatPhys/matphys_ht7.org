@@ -219,6 +219,7 @@ u(x, y) = \frac{\sh\frac{\pi(b - y)}a}{\sh\frac{\pi b}a}\sin\frac{\pi x}a +
 * Задача 7.25
 #+BEGIN_EXPORT latex
 Решить задачу
+\begin{equation}
 \begin{cases}
 \Delta u = 0, 0 < x < \pi, 0 < y < \pi, \\
 \frac{\partial u}{\partial y}\bigg|_{y = 0} = \sin2x, 0 < x < \pi, \\
@@ -226,6 +227,7 @@ u|_{x = \pi} = \cos2y, 0 \leq y \leq \pi, \\
 \frac{\partial u}{\partial y}\bigg|_{y = \pi} = \sin3x, 0 < x < \pi, \\
 u|_{x = 0} = 0, 0 \leq y \leq \pi.
 \end{cases}
+\end{equation}
 #+END_EXPORT
 ** Решение
 #+BEGIN_EXPORT latex

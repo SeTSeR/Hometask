@@ -1,4 +1,4 @@
-% Created 2019-11-04 Mon 17:33
+% Created 2020-02-18 Tue 22:09
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -14,6 +14,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{minted}
 \usepackage{amsmath}
 \usepackage{esint}
 \usepackage[english, russian]{babel}
@@ -44,7 +45,7 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
  pdflang={English}}
 \begin{document}
 
@@ -52,7 +53,7 @@
 
 ДЗ: 7.7, 7.6, 7.8, 7.9, 7.12, 7.14, 7.15
 \section{Задача 7.7}
-\label{sec:org857e419}
+\label{sec:org95f2848}
 Решить задачи Дирихле:
 \begin{equation}
 \begin{cases}
@@ -76,7 +77,7 @@ u|_{r = 1} = \cos^2\varphi.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:orga2f9287}
+\label{sec:org83a8721}
 Ищем решение уравнения Лапласа в виде:
 \begin{equation*}
 u = R(r)\Phi(\varphi)
@@ -164,7 +165,7 @@ u(r, \varphi) = \frac12 - \frac12\cos2\varphi\cdot r^2
 u(r, \varphi) = \frac12 + \frac12\cos2\varphi\cdot r^2
 \end{equation}
 \section{Задача 7.6}
-\label{sec:org62717c2}
+\label{sec:org2ebdbe7}
 Разрешима ли задача:
 \begin{equation}
 \begin{cases}
@@ -173,14 +174,14 @@ u(r, \varphi) = \frac12 + \frac12\cos2\varphi\cdot r^2
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:org64f1f70}
+\label{sec:org6d6ce73}
 Проверим выполнение необходимого условия разрешимости задачи:
 \begin{equation*}
 \int_0^{2\pi}f(\varphi)d\varphi = 2\pi \neq 0,
 \end{equation*}
 следовательно, задача неразрешима.
 \section{Задача 7.8}
-\label{sec:orgfd253f8}
+\label{sec:orged777aa}
 Решить задачи Неймана:
 \begin{equation}
 \begin{cases}
@@ -201,7 +202,7 @@ u(r, \varphi) = \frac12 + \frac12\cos2\varphi\cdot r^2
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:org384f0d9}
+\label{sec:org9d408cf}
 Проверим сначала разрешимость задач:
 \begin{equation*}
 \int_0^{2\pi}f_1(\varphi) = \int_0^{2\pi}\sin\varphi d\varphi = \cos0 - \cos2\pi = 0,
@@ -232,14 +233,14 @@ u(r, \varphi) = C_0 + \sin\varphi\cdot r
 u(r, \varphi) = C_0 + (\sin\varphi + \cos\varphi)r
 \end{equation}
 \section{Задача 7.9}
-\label{sec:org5204541}
+\label{sec:orgf5487f5}
 Решить задачу Дирихле:
 \begin{equation}
 \Delta u = 0, r > 1, \\
 u|_{r = 1} = \cos\varphi.
 \end{equation}
 \subsection{Решение}
-\label{sec:org371cfe1}
+\label{sec:org5cb3cb9}
 Ищем решение в виде (6). Поскольку функция должна быть ограничена на бесконечности, $C_n = 0$.
 Все остальные слагаемые могут быть ненулевыми. Подставим начальное условие:
 \begin{equation*}
@@ -250,7 +251,7 @@ u(1, \varphi) = B_0C_1 + \sum_{n = 1}^{\infty}(A_n\sin n\varphi + B_n\cos n\varp
 u(r, \varphi) = \frac{\cos\varphi}r
 \end{equation}
 \section{Задача 7.12}
-\label{sec:org8d982ae}
+\label{sec:org7216e6c}
 Решить задачу:
 \begin{equation}
 \begin{cases}
@@ -260,7 +261,7 @@ u|_{r = b} = \sin^2\varphi = \frac12 - \frac12\cos2\varphi.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:org29e072f}
+\label{sec:orgef94cf5}
 Ищем решение в виде (6). В данном случае ограничений на коэффициенты нет, поэтому решение
 нужно искать в полном виде. Подставим краевые условия:
 \begin{equation*}
@@ -297,7 +298,7 @@ u(r, \varphi) = \frac{\ln r + \ln a - 3\ln b}{\ln a - \ln b} +
 \frac{(a^{-2} + b^{-2})r^2 + (a^2 + b^2)r^{-2}}{2(a^2b^{-2} - a^{-2}b^2)}\cos2\varphi
 \end{equation}
 \section{Задача 7.14}
-\label{sec:orgb35660f}
+\label{sec:orge2b8e87}
 Решить задачу:
 \begin{equation}
 \begin{cases}
@@ -307,7 +308,7 @@ u(2, \varphi) = \sin3\pi\varphi.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:orgdf5ecab}
+\label{sec:orgaf69506}
 Ищем решение уравнения Лапласа в виде:
 \begin{equation*}
 u = R(r)\Phi(\phi)
@@ -349,7 +350,7 @@ u(2, \varphi) = \tilde{C_1} + \sum_{n = 0}^{\infty}C_n2^n\sin\pi n\varphi = \sin
 u(r, \varphi) = \frac18r^3\sin3\pi\varphi
 \end{equation}
 \section{Задача 7.15}
-\label{sec:orgc5f1dfb}
+\label{sec:org47dcb7e}
 Решить задачу Дирихле:
 \begin{equation}
 \begin{cases}
@@ -359,7 +360,7 @@ u|_{r = a} = f_1(\varphi), u|_{r = b} = f_2(\varphi), 0 < \varphi < \alpha.
 \end{cases}
 \end{equation}
 \subsection{Решение}
-\label{sec:org8559e45}
+\label{sec:orgbcb9ae5}
 Ищем решение уравнения Лапласа в виде
 \begin{equation*}
 u(r, \varphi) = R(r)\Phi(\varphi)

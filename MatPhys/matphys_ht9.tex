@@ -1,4 +1,4 @@
-% Created 2019-11-11 Mon 22:52
+% Created 2020-02-18 Tue 22:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -14,6 +14,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{minted}
 \usepackage{amsmath}
 \usepackage{esint}
 \usepackage[english, russian]{babel}
@@ -44,7 +45,7 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
  pdflang={English}}
 \begin{document}
 
@@ -52,13 +53,13 @@
 
 ДЗ: 8.6, 8.9, 9.1-9.7(прочитать), 9.12, 9.20, 9.13, 9.10, 9.17
 \section{Задача 8.6}
-\label{sec:orgd86bd9c}
+\label{sec:org005edef}
 Найти функцию Грина и решить задачу Дирихле в области:
 \begin{equation}
 y > 0, z > 0
 \end{equation}
 \subsection{Решение}
-\label{sec:org33efbd0}
+\label{sec:org5834be6}
 Рассмотрим точку $Q(x_0, y_0, z_0)$. Введём точки $Q_1(x_0, -y_0, z_0), Q_2(x_0, -y_0, -z_0), Q_3(x_0, y_0, -z_0)$.
 Тогда, поскольку $G(P, Q)$ на границе равна нулю, она имеет вид:
 \begin{multline}
@@ -73,13 +74,13 @@ G(P, Q) = \frac1{4\pi r_{PQ}} - \frac1{4\pi r_{PQ_1}} + \frac1{4\pi r_{PQ_2}} - 
 u(Q) = -\iint_Sf(P)\frac{\partial G}{\partial n_P}dS_P
 \end{equation}
 \section{Задача 8.9}
-\label{sec:org78fab1e}
+\label{sec:orga395a55}
 Найти функцию Грина и решить задачу Дирихле в области:
 \begin{equation}
 x^2 + y^2 + z^2 < 1
 \end{equation}
 \subsection{Решение}
-\label{sec:org54a4554}
+\label{sec:org06df165}
 Рассмотрим точку $Q(x_0, y_0, z_0)$. Рассмотрим симметричную ей относительно окружности точку
 $$Q'\left(\frac{x_0}{x_0^2 + y_0^2 + z_0^2}, \frac{y_0}{x_0^2 + y_0^2 + z_0^2}, \frac{z_0}{x_0^2 + y_0^2 + z_0^2}\right)$$
 Тогда функция Грина будет иметь вид:

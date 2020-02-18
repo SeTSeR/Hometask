@@ -10,6 +10,7 @@ pdf: $(PDFS)
 	rm $(DEST)/*.aux
 	rm $(DEST)/*.out
 	rm $(DEST)/*.log
+	rm $(DEST)/MatPhys/matphys_ht3.tex
 
 $(PDFS): %.pdf: %.tex
 	mkdir -p $(DEST)

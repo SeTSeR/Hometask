@@ -73,7 +73,7 @@ u_t(x, 0) = \begin{cases}
 \begin{equation}
 u(x, t) = \frac12(\varphi(x + at) + \varphi(x - at)) +
 \frac1{2a}\int_{x - at}^{x + at}\varphi(\xi)d\xi +
-\frac1{2a}\int_0^l\int_{x - a(t - \tau)}^{x + a(t - \tau)}f(\xi, \tau)d\xid\tau
+\frac1{2a}\int_0^l\int_{x - a(t - \tau)}^{x + a(t - \tau)}f(\xi, \tau)d\xi d\tau
 \end{equation}
 #+END_EXPORT
 * Задача 12.5
