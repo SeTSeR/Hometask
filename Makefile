@@ -23,5 +23,12 @@ MatPhys/matphys_ht3.pdf: MatPhys/matphys_ht3.tex
 	sed -i 's/img/MatPhys\/img/' $(DEST)/$<
 	$(LATEX) -interaction nonstopmode -shell-escape -output-directory $(DEST) $(DEST)/$<
 
+MatPhys/matphys_ht10.pdf: MatPhys/matphys_ht10.tex
+	mkdir -p $(DEST)/$@
+	rm -r $(DEST)/$@
+	cp $< $(DEST)/$<
+	sed -i 's/img/MatPhys\/img/' $(DEST)/$<
+	$(LATEX) -interaction nonstopmode -shell-escape -output-directory $(DEST) $(DEST)/$<
+
 clean:
 	-rm -r $(DEST)
