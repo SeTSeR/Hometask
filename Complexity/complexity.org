@@ -1,0 +1,211 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+OPTIONS: toc:nil
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+* Задача 1
+Доказать, что $n \in \mathbb{Z} \Leftrightarrow n = \left\lfloor\frac{n}2\right\rfloor + \left\lceil\frac{n}2\right\rceil$.
+** Решение
+Если $n$ целое, то $\left\lfloor\frac{n}2\right\rfloor = \frac{n - 1}2$ и $\left\lceil\frac{n}2\right\rceil = \frac{n + 1}2$, что и даёт достаточность.
+Пусть теперь $n = \left\lfloor\frac{n}2\right\rfloor + \left\lceil\frac{n}2\right\rceil$.
+В этом случае представления для пола и потолка $\frac{n}2$ принимают вид:
+$$\left\lfloor\frac{n}2\right\rfloor = \left\lfloor\frac{n - 1}2\right\rfloor$$
+$$\left\lceil\frac{n}2\right\rceil = \left\lfloor\frac{n + 1}2\right\rfloor$$
+Из этого представления получаем, что если $n$ нецелое, то $\left\lfloor\frac{n}2\right\rfloor + \left\lceil\frac{n}2\right\rceil < \frac{n - 1}2 + \frac{n + 1}2 = n$,
+что противоречит условию.
+* Задача 3
+Пусть $P(n)$ - число простых множителей, входящих в разложение $n$. Показать, что $P(n) = O(\log_2n)$
+** Решение
+ $$P(ab) = P(a) + P(b) \leq C\log_2(a) + C\log_2(b) = C\log_2(ab)$$
+ $$\log_2pn = \log_2p + \log_2n$$
+ В качестве базы индукции возьмём простое число:
+ $$P(p) = 1 \leq \log_2(p)$$
+
+
+Рассмотрим множество входов размера $s$:
+#+begin_export latex
+\begin{equation}
+X_s = \{x | ||x|| = s\} \subset X
+\end{equation}
+#+end_export
+На этом множестве определена вероятность $0 \leq P_s(x) \leq 1$. На пространствах $X_s$
+функции временных и пространственных затрат являются случайными величинами.
+*Сложностью в среднем* будем называть математическое ожидание такой величины.
+
+Задача: построения с помощью циркуля и линейки, затраты -- количество проведённых прямых и кривых.
+Задача: построить $\frac1n$ часть отрезка и найти сложность алгоритма. Это можно сделать со сложностью
+$O(\ln n)$.
+#+begin_export latex
+\begin{equation}
+sum = \frac{q^n - 1}{q - 1}b_0 \equiv q^{n - 1}
+\end{equation}
+#+end_export
+* Задача 4
+Изменим алгоритм Грэхема: по сразу построенному многоугольнику ходим по кругу, "спрямляя"
+"вдавленные" вершины, если они есть. Показать, что алгоритм становится квадратичным.
+* Задача 5
+Есть операция сложения. Нужно проверить, является ли число полным квадратом. Проверяя с
+помощью суммы нечётных чисел, получим сложность $O(\sqrt{N}))$.
+
+Пусть добавилась операция $\left\lfloor\frac{N}2\right\rfloor$. Какой сложности мы добьёмся?
+* Задача 6
+В среднем сложность QuickSort $O(\log N)$, в худшем -- $O(n^2)$. Доказать.
+Худший вариант - обратно отсортированный массив. $(k - 1)^2 + (n - k)^2, k \in \overline{1, n}$.
+* Задача 7
+Есть алгоритм $A$ над натуральным числом $n$. Найти связь между сложностями $T_A(n)$ и $T_A^*(m)$,
+где $m$ - битовая длина $n$. Пусть $T_A(n) \geq f(n)$. Верно ли, что $T_A^*(m) \geq f(2^{m - 1})$?
+* Задача 8
+Есть алгоритм $A$ над числом $n \in \mathbb{N}$. Рассматриваются сложности $T_A(n)$ и $T_A^*(m)$.
+Пусть $T_A^*(m) \geq f(m)$. Верно ли, что $T_A(n) \geq f(\lfloor\log_2n\rfloor)$?
+* Задача 9
+Пусть $l(n)$ - длина кратчайшей аддитивной цепочки для числа $n$ - набора $1 = n_1 \leq n_2 \leq \ldots n_k = 1$
+такого, что $n_s = n_k + n_l$ для любого $s$ и некоторых $k, l$.
+Проверить, что $l(ab) \leq l(a) + l(b)$. Верно ли, что $l(ab) = l(a) + l(b)$?
+* Сложность в среднем
+В задаче сортировок каждую конфигурацию массива длины $n$ соответствует $\Pi_n$ - перестановка массива $1\ldots n$.
+Введём $\Pi_n$ - вероятностное пространство, в котором все перестановки равновероятны.
+Перестановки могут рассматриваться как отображения множества $\{1, 2, \ldots, n\}$ на себя.
+
+*Неподвижной точкой* отображения $f(x)$ будет значение аргумента $x$, такая, что $f(x) = x$.
+Количество неподвижных точек может быть любым числом от 1 до $n$. Сколько их в среднем?
+
+Мастемер "50 занимательных вероятностных задач с решениями".
+
+Рассмотрим событие $B_n^v$ - событие, при котором $v$ - fixpoint. Его вероятность равна
+$\frac{(n - 1)!}{n!} = \frac1n$. Рассмотрим случайную величину $\xi_n$ - количество
+неподвижных точек перестановки и
+#+begin_export latex
+\begin{equation}
+\zeta_n^v = \begin{cases}
+1, \text{ если v - fixpoint}, \\
+0, \text{ иначе.}
+\end{cases}
+\end{equation}
+#+end_export
+Тогда
+#+begin_export latex
+\begin{equation}
+P_n(\zeta_n^v = 1) = \frac1n \Rightarrow \mathbb{E}\zeta_n^v = \frac1n
+\end{equation}
+и, соответственно,
+\begin{equation}
+\mathbb{E}\xi_n = \mathbb{E}\left(\sum_{v = 1}^n\zeta_n^v\right) =
+\sum_{v = 1}^n\mathbb{E}\zeta_n^v = \frac{n}n = 1
+\end{equation}
+#+end_export
+Введём $H_n^{u, v}$ - событие, при котором перед $a_v$ стоит ровно $u$ элементов меньше его.
+Тогда $P_n(H_n^{u, v}) = \frac1v$. Будем обозначать $p(1, 2, \ldots, v)$ все перестановки, у
+которых первые $v$ элементов имеют тот же относительный порядок. Количество таких перестановок
+будет
+#+begin_export latex
+\begin{equation}
+\begin{pmatrix}
+n \\
+v
+\end{pmatrix}(n - v)!
+\end{equation},
+соответственно, количество перестановок, индуцирующих $H_n^{u, v}$:
+\begin{equation}
+\frac{n!}{v!}(v - 1)! = \frac{n!}v
+\end{equation}
+#+end_export
+Пусть $W = W_1 \cup \ldots \cup W_l$ -- полная группа событий. Полное математическое ожидание:
+#+begin_export latex
+\begin{equation}
+\mathbb{E}\xi = \sum_{k = 1}^l\mathbb{E}(\xi | W_k)\mathbb{P}(W_k)
+\end{equation}
+#+end_export
+Для исследования сложности введём случайные величины $\xi_n^i$ - затраты на $i-м$ шаге сортировки,
+применяемой к $a = (a_1, \ldots, a_n) \in \Pi_n$. Тогда
+#+begin_export latex
+\begin{equation}
+\overline{T}_{I_1}(n) = \sum_{i = 1}^{n - 1}\mathbb{E}\xi_n^i
+\end{equation}
+#+end_export
+По формуле полного матожидания имеем:
+#+begin_export latex
+\begin{equation}
+\mathbb{E}\xi_n^i = \frac1{i + 1}\sum_{k = 0}^i\mathbb{E}(\xi_n^i | H_n^{k, i + 1})
+\end{equation}
+\begin{equation}
+\xi_n^i = \begin{cases}
+i - k + 1, k > 0, \\
+i, k = 0.
+\end{cases}
+\end{equation}
+\begin{equation}
+\mathbb{E}(\xi_n^i | H_n^{k, i + 1}) = \begin{cases}
+i - k + 1, k > 0, \\
+i, k = 0.
+\end{cases}
+\end{equation}
+Подставляя в (10), находим:
+\begin{equation}
+\frac1{i + 1}\left(i + \sum_{k = 1}^i(i - k + 1)\right) = \frac{i}2 + 1 - \frac1{i + 1}
+\end{equation}
+Подставляя найденное в (9), получим:
+\begin{equation}
+\overline{T}_{I_1}(n) = \sum_{i = 1}^{n - 1}\left(\frac{i}2 + 1 - \frac1{i + 1}\right)
+= \frac{(n + 4)(n - 1)}4 - \ln n + O(1) = \frac{n^2}4 + O(n)
+\end{equation}
+#+end_export
+Заметим, что в отличие от сложности в худшем случае, сложность в среднем аддитивна.
+** Задача 1
+ Показать, что сложность по числу обменов сортировки выбором $n - 2 + \frac1n$.
+** Задача 2
+   #+begin_src pascal
+ m := x_1;
+ for i := 2 to n do
+   if x_i < m then m := x_i;
+ end;
+   #+end_src
+ Какой рост у количества присваиваний?
+** Задача 3
+ Посчитать сложность в среднем для задачи сортировки вагонов при условии, что все расположения
+ вагонов равновероятны.
+** Сложность в среднем для быстрой сортировки
+   #+begin_export latex
+   \begin{equation}
+\overline{T}_{QS}(n) = n - 1 + \frac1n\sum_{i = 1}^n\left(\overline{T}_{QS}(i - 1) +
+\overline{T}_{QS}(n - i)\right)
+   \end{equation}
+   #+end_export
+Вообще говоря, нужно проверить, что все порядки в левой и правой частях равновероятны.
+#+begin_export latex
+\begin{equation}
+n\overline{T}_{QS}(n) = n(n - 1) + 2\sum_{k = 0}^{n - 1}\overline{T}_{QS}(k)
+\end{equation}
+\begin{equation}
+n\overline{T}_{QS}(n) - (n - 1)\overline{T}_{QS}(n - 1) = 2(n - 1)
+\end{equation}
+Положим $t(n) = \frac{\overline{T_{QS}(n)}}{n + 1}, t(1) = t(0) = 0$. Тогда
+\begin{equation}
+t(n) - t(n - 1) = 2\frac{n - 1}{n(n + 1)}
+\end{equation}
+и
+\begin{equation}
+t(n) = t(n_0) + 2\sum_{k = n_0 + 1}^n\frac{k - 1}{k(k + 1)}
+\end{equation}
+Подставляя $n_0 = 1, t(n_0) = 0$, получаем:
+#+end_export
