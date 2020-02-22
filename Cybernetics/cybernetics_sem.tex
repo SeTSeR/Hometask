@@ -1,0 +1,247 @@
+% Created 2020-02-22 Sat 16:27
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+
+\section{Задача 1}
+\label{sec:org4afbed6}
+Построить СДНФ функции:
+\begin{center}
+\begin{tabular}{rrrr}
+\hline
+\(x_1\) & \(x_2\) & \(x_3\) & f\\
+\hline
+0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0\\
+0 & 1 & 0 & 1\\
+0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0\\
+1 & 0 & 1 & 1\\
+1 & 1 & 0 & 0\\
+1 & 1 & 1 & 1\\
+\hline
+\end{tabular}
+\end{center}
+\subsection{Решение}
+\label{sec:orgd04c2a0}
+   \begin{equation}
+D_f^s(x_1, x_2, x_3) = \overline{x_1}\overline{x_2}\overline{x_3}\vee\overline{x_1}x_2\overline{x_3}
+\vee\overline{x_1}x_2x_3\vee x_1\overline{x_2}x_3
+   \end{equation}
+\begin{equation}
+K_f^s(x_1, x_2, x_3) = (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)
+(\overline{x_1}\vee\overline{x_2}\vee x_3)(\overline{x_1}\vee\overline{x_2}\vee\overline{x_3})
+\end{equation}
+\section{Задача 2}
+\label{sec:org0b7fc0d}
+  \begin{equation}
+f = (00101111). \text{ Найти простые импликанты.}
+  \end{equation}
+\subsection{Решение}
+\label{sec:org1fdb4d2}
+   \begin{equation}
+A = \{x_1, \overline{x_3}, x_1x_2, x_2\overline{x_3}\}\text{ - импликанты $f$.}
+   \end{equation}
+$x_1x_2$ - не простая импликанта.
+\section{Задача 3}
+\label{sec:orgab61f1f}
+Найти простые импликанты функции
+  \begin{equation}
+f = (01111110).
+  \end{equation}
+\subsection{Решение}
+\label{sec:orge4bc60c}
+   \begin{equation}
+A = \{x_1\overline{x_2}, x_2x_3, x_1x_2x_3\}\text{ - импликанты}
+   \end{equation}
+$x_1\overline{x_2}$ - простая импликанта, $x_2x_3$ и $x_1x_2x_3$ - не импликанты.
+\section{Задача 4}
+\label{sec:org0b480dc}
+Построить сокращённую ДНФ функции
+\begin{equation}
+\tilde{\alpha_f} = (1111 1000 0100 1100)
+\end{equation}
+\subsection{Решение}
+\label{sec:org5f8b21e}
+Код максимальной грани: \((0022)\), соответствующая простая импликанта \(\overline{x_1}\overline{x^2}\).
+Далее идёт ребро \((0200)\), соответствующее импликанте \(\overline{x_1}\overline{x_2}\overline{x_3}\).
+Далее идёт ребро \((2100)\), соответствующее импликанте \(x_2\overline{x_3}\overline{x_4}\).
+Следующее ребро \((1102) \rightarrow x_1x_2\overline{x_3}\),
+\((1201) \rightarrow x_1\overline{x_3}x_4\), \((2001) \rightarrow \overline{x_2}\overline{x_3}x_4\).
+\section{Задача 2.6}
+\label{sec:org7304dba}
+Найти сокращённую ДНФ методом карты:
+\begin{equation}
+\tilde{\alpha_f} = (0101 0111)
+\end{equation}
+\subsection{Решение}
+\label{sec:orgadd7e81}
+\begin{center}
+\begin{tabular}{rrr}
+\hline
+x\textsubscript{1x}\textsubscript{2x}\textsubscript{3} & 0 & 1\\
+\hline
+00 & 0 & 1\\
+01 & 0 & 1\\
+11 & 1 & 1\\
+10 & 0 & 1\\
+\hline
+\end{tabular}
+\end{center}
+Откуда \(D_f = x_3\vee x_1x_2\).
+\section{Задача 2.6(5)}
+\label{sec:orgfc1c3b3}
+  \begin{equation}
+\tilde{\alpha_f} = (0001 1011 1101 1111)
+  \end{equation}
+\subsection{Решение}
+\label{sec:org8659f20}
+\begin{center}
+\begin{tabular}{rrrrr}
+\hline
+\(x_1\) & \(x_2\) & \(x_3\) & \(x_4\) & \(f\)\\
+\hline
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0\\
+0 & 0 & 1 & 1 & 1\\
+0 & 1 & 0 & 0 & 1\\
+0 & 1 & 0 & 1 & 0\\
+0 & 1 & 1 & 0 & 1\\
+0 & 1 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 & 1\\
+1 & 0 & 0 & 1 & 1\\
+1 & 0 & 1 & 0 & 0\\
+1 & 0 & 1 & 1 & 1\\
+1 & 1 & 0 & 0 & 1\\
+1 & 1 & 0 & 1 & 1\\
+1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1\\
+\hline
+\end{tabular}
+\end{center}
+Тогда карта Карно будет иметь вид:
+\begin{center}
+\begin{tabular}{rrrrrl}
+\hline
+\(x_1x_2x_3x_4\) & 00 & 01 & 11 & 10 & \\
+\hline
+00 & 0 & 0 & 1 & 0 & \(x_2x_3, x_2\overline{x_4}\)\\
+01 & 1 & 0 & 1 & 1 & \(x_1x_2, x_1\overline{x_3}\)\\
+11 & 1 & 1 & 1 & 1 & \(x_1x_4\)\\
+10 & 1 & 1 & 1 & 0 & \(x_3x_4\)\\
+\hline
+\end{tabular}
+\end{center}
+Тогда сокращённая ДНФ имеет вид:
+\begin{equation}
+D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\overline{x_3}
+\end{equation}
+\section{Задача 2.3(1)}
+\label{sec:org92f7df4}
+Получить сокращённую ДНФ по КНФ:
+\begin{equation}
+(x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)(\overline{x_2}\vee\overline{x_3})
+\end{equation}
+\subsection{Решение}
+\label{sec:org73bf76f}
+\begin{multline}
+   (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)(\overline{x_2}\vee\overline{x_3})
+= (x_1x_2\vee x_1x_3 \vee x_2\overline{x_1}\vee x_2\vee x_2x_3\vee\overline{x_1}\overline{x_3}
+\vee x_2\overline{x_3})(\overline{x_2}\vee\overline{x_3}) = \\
+= (x_2\vee x_1x_3\vee\overline{x_1}\overline{x_3})(\overline{x_2}\vee\overline{x_3})
+= x_2\overline{x_3}\vee x_1\overline{x_2}x_3\vee\overline{x_1}\overline{x_2}\overline{x_3}
+\vee\overline{x_1}\overline{x_3} = x_2\overline{x_3}\vee\overline{x_1}\overline{x_3}\vee x_1\overline{x_2}x_3
+\end{multline}
+\section{Задача 2.2(1)}
+\label{sec:org0ab1b71}
+Построить сокращённую ДНФ по данной ДНФ методом Блейка:
+\begin{equation}
+\overline{x_1}\overline{x_2}\vee x_1\overline{x_2}x_4\vee x_2\overline{x_3}x_4\vee\overline{x_2}x_4|
+\vee\overline{x_1}\overline{x_3}x_4\vee x_1\overline{x_3}x_4|\vee\overline{x_2}\overline{x_3}x_4
+\vee\overline{x_3}x_4 = \overline{x_1}\overline{x_2}\vee\overline{x_2}x_4\vee\overline{x_3}x_4
+\end{equation}
+\section{Задача 2.2(2)}
+\label{sec:orgb59fd51}
+  \begin{equation}
+x_1\overline{x_2}x_3\vee\overline{x_1}x_2\overline{x_4}\vee\overline{x_2}\overline{x_3}x_4|
+\vee x_1\overline{x_2}x_4
+  \end{equation}
+\section{Задача 2.9(1)}
+\label{sec:org8d2a2ee}
+  \begin{equation}
+f(\tilde{x_n}) = x_1\oplus\ldots\oplus x_n
+  \end{equation}
+Длина сокращённой ДНФ - ?
+\subsection{Решение}
+\label{sec:org039b8be}
+   Максимальные грани - точки $\Rightarrow$ длина сокращённой ДНФ, она же длина СДНФ равна
+$2^n - 1$.
+\section{Задача 2.9(2)}
+\label{sec:orgb3cf195}
+Найти длину сокращённой ДНФ функции:
+  \begin{equation}
+f(\tilde{x_n}) = (x_1\vee x_2\vee x_3)(\overline{x_1}\vee\overline{x_2}\overline{x_3})\oplus
+x_4\oplus\ldots\oplus x_n
+  \end{equation}
+\subsection{Решение}
+\label{sec:org3d6364a}
+\begin{equation}
+f(\tilde{\alpha}) = 1 \Leftrightarrow \begin{cases}
+g(\tilde{\alpha}) = 1, \\
+h(\tilde{\alpha}) = 0, \\
+g(\tilde{\alpha}) = 0, \\
+h(\tilde{\alpha}) = 1.
+   \end{cases}
+\end{equation}
+Первому случаю соответствует $2^{n - 4}\cdot6$ максимальных грани, второму - $2\cdot2^{n - 4}$,
+итого длина ДНФ составляет $2^{n - 1}$.
+
+\url{http://mk.cs.msu.ru}, лекционные курсы, ОКи, домашние задания там.
+\end{document}
