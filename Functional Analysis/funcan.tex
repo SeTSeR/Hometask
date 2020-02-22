@@ -1,0 +1,327 @@
+% Created 2020-02-22 Sat 16:39
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+
+\section{Структура курса}
+\label{sec:org7fe6210}
+\begin{enumerate}
+\item Структура множеств на прямой
+\item Мера и измеримые множества
+\item Измеримые функции
+\item Интеграл Лебега
+\item Пространства NP(?)
+\item Метрические пространства
+\item Линейные пространства
+\item Обратный оператор
+\item Линейный функционал в бесконечномерном пространстве
+\item Гильбертово пространство
+\item Сопряжённый оператор(без скалярного произведения)
+\item Вполне непрерывные компактные операторы
+\item Теория Фредгольма
+\item Спектральная теория в бесконечномерном пространстве
+\end{enumerate}
+
+\section{Список литературы}
+\label{sec:orge3ac9c8}
+Капустин "Функциональный анализ".
+
+Зачёт из двух частей: теоретический вопрос и задача из списка.
+Список литературы:
+\begin{enumerate}
+\item В. А. Ильин, Э. Г. Позняк "Основы математического анализа. Часть II".
+\item Л. Н. Королёв, А. Н. Колмогоров, С. В. Фомин "Элементы теории функций и функционального анализа".
+\item Л. А. Люстерник, В. И. Соболев "Элементы функционального анализа".
+\item Ю. С. Очан "Сборник задач по математическому анализу".
+\item Т. А. Леонтьева, А. В. Домрина "Задачи по теории функций и функциональному анализу".
+\end{enumerate}
+\section{Открытые и замкнутые множества на прямой}
+\label{sec:org7f871f4}
+$$E = E_1 \cup E_2 = \{e | e \in E_1 || e \in E_2\}$$
+$$E = E_1 \cap E_2 = \{e | e \in E_1 \&\& e \in E_2\}$$
+$$E = E_1 \backslash E_2 = \{e | e \in E_1 \&\& e \notin E_2\}$$
+$$E_1\triangle E_2 = (E_1 \backslash E_2) \cup (E_2 \backslash E_1)$$
+$$CE = R \backslash E$$
+Предельная точка $x_0$ множества $E$ - точка $x_0$, в любой окрестности которой есть точки $E$.
+Пусть $E'$ - множество предельных точек $E$. Возможны случаи:
+\begin{enumerate}
+\item \(E' \subset E\). Тогда \(E\) замкнуто.
+\item \(E \subset E'\). Тогда \(E\) - плотное в себе.
+\item \(E = E'\). Тогда \(E\) - совершенное.
+\item \(\overline{E} = E \cup E'\)
+\end{enumerate}
+Свойства:
+\begin{enumerate}
+\item $E'$ - замкнутое.
+\item $\overline{E}$ - замкнутое.
+\item конечное объединение замкнутых множеств замкнуто.
+\end{enumerate}
+Бесконечное(и даже счётное) объединение замкнутых множеств может быть незамкнуто.
+
+Точка множества называется \textbf{внутренней}, если она содержится в нём вместе с некоторой
+окрестностью. $\operatorname{int} E$ - множество внутренних точек $E$. Множество, совпадающее
+с множеством своих внутренних точек, называется \textbf{открытым}. Дополнение открытого
+множества является замкнутым и наоборот, дополнение замкнутого множества является открытым.
+Объединение любого числа открытых множеств является открытым.
+Пересечение конечного числа открытых множеств есть множество открытое, для бесконечного числа
+это уже неверно.
+Пересечение любого числа замкнутых множеств замкнуто(доказывается переходом к дополнению).
+Если $A$ замкнутое, а $B$ открытое, то $A\backslash B$ замкнутое.
+Если $A$ открытое, а $B$ замкнутое, то $A\backslash B$ открытое.
+\begin{Theorem}
+Любое открытое множество на прямой представляет собой объединение конечного или счётного числа
+попарно непересекающихся интервалов(в том числе неограниченных).
+\end{Theorem}
+\begin{proof}
+Возьмём $x \in E$ и рассмотрим $V(x)$ - объединение окрестностей $x$, целиком лежащих в $E$.
+Обозначим $a = \inf V(x), b = \sup V(x)$. Обе эти точки лежат вне $V(x)$. Возьмём точку
+$a < y < x$. Тогда $\exists (\alpha, \beta) \in E, x \in (\alpha, \beta), y' \in (\alpha, beta) a < y' < y < x$.
+
+$\forall x_1 \neq x_2 V(x_1) = V(x_2)$, либо $V(x_1) \cap V(x_2) = 0$.
+\end{proof}
+Рассмотрим $I = [0, 1]$. Пусть $G_1 = \left(\frac13, \frac23\right)$. Вырезаем середину, из
+оставшихся сегментов вырезаем середину, и т. д. Остаток называется \textbf{канторовым множеством} K.
+Канторово множество замкнуто как дополнение открытого. Суммарная канторова множества равна нулю.
+
+Исследуем счётность канторова множества. Представим все числа $[0, 1]$ в троичном виде. Тогда
+точки канторова множества - все точки, не содержащие в своём представлении единиц. Множество
+таких точек континуально.
+\section{Измеримые множества. Мера Лебега.}
+\label{sec:orge4089a8}
+Покрытием множества $E$ будем называть счётную систему интервалов, объеднинение которых содержит $E$
+Составим число $\sigma(s)$ - сумму длин отрезков, входящих в покрытие.
+
+\textbf{Внешняя мера} $|E|^* = \inf_{s(E)}\sigma(S)$.
+\textbf{Расстоянием} между множествами назовём минимальное расстояние между их точками.
+Свойства внешней меры:
+\begin{enumerate}
+\item $E_1 \subset E_2 \Rightarrow |E_1|^* \leq |E_2|^*$(\textbf{монотонность}).
+\item $E = U_{n = 1}^{\infty}E_n \Rightarrow |E|^* \leq \sum_{n = 1}^{\infty}|E_n|^*$(\textbf{полу-аддитивность}).
+\item $\rho(E_1, E_2) = d > 0 \Rightarrow |E_1 \cup E_2|^* = |E_1|^* + |E_2|^*$.
+\item $\forall E \forall\varepsilon > 0 \exists\text{ открытое }G E \subset G |G|^* < |E|^* + \varepsilon$
+\end{enumerate}
+\textbf{Доказательство}:\\
+1. \ldots\\
+2. $\forall \varepsilon > 0 \exists \{\Delta^n_k\}_{k = 1}^{\infty} E_n \subset U_{k = 1}^{\infty}\Delta_n^k \sum_{k = 1}^{\infty}|\Delta_k^n| < |E_n|^* + \frac{\varepsilon}{2^n}$.
+Тогда $|E|^* \leq \sum_{n = 1}^{\infty}\sum_{k = 1}^{\infty}|\Delta_k^n| \leq \sum_{n = 1}^{\infty}\left(|E_n|^* + \frac{\varepsilon}{2^n}\right) \leq \sum_{n = 1}^{\infty}|E_n|^* + \varepsilon$.\\
+3. Для любого $\varepsilon > 0$ можно построить покрытие длины меньше $|E|^* + \frac{\varepsilon}2$, такое, что длина каждого интервала
+меньше любого наперёд заданного числа. Для этого нужно "раздробить" отрезок, покрыв точки "склейки" интервалами длины $\frac{\varepsilon}4, \frac{\varepsilon}8, \ldots$, учитывая
+заданную максимальную длину. Такое покрытие можно разделить на два покрытия, одно только для $E_1$,
+другое для $E_2$. Переходя к пределу при $\varepsilon \to 0$, получаем искомое утверждение.
+Спецкурс "Избранные главы функционального анализа" по вторникам в 16:20.
+"Актуальные задачи функционального анализа и математической физики".
+
+Множество $E$ на прямой называется \textbf{измеримым по Лебегу}(измеримым), если
+$\forall \varepsilon > 0 \exists \text{ открытое множество } G: E \subset G, |G \backslash E|^* < \varepsilon: |E| = |E|^*$.
+\begin{Theorem}
+$|E| = 0 \Leftrightarrow |E|^* = 0$
+\end{Theorem}
+\begin{proof}
+Если $|E| = 0$, то по определению $|E|^* = 0$.
+
+Пусть $|E|^* = 0$. Тогда $\forall \varepsilon > 0 \exists G: E \subset G: |G|^* < |E|^* + \varepsilon$
+$G \backslash E \subset G \Rightarrow |G \ E|^* \leq |G|^* < |E|^* + \varepsilon = \varepsilon$.
+\end{proof}
+\begin{Theorem}
+Всякое открытое множество измеримо по Лебегу, и его мера равна сумме мер попарно непересекающихся
+покрывающих его интервалов.
+\end{Theorem}
+\begin{Theorem}
+Объединение конечного или счётного числа измеримых множеств есть множество измеримое.
+\end{Theorem}
+\begin{proof}
+Из измеримости множеств следует, что $\forall \varepsilon \exists G_n \supset E_n$
+$|G_n \backslash E_n|^* < \frac{\varepsilon}{2^n}$. Рассмотрим $G = \cup_{n = 1}^{\infty}G_n$. Тогда
+$E \subset G, G \backslash E \subset \cup_{n = 1}^{\infty}(G_n \backslash E_n)$, откуда
+\begin{equation*}
+|G \backslash E|^* \leq \sum_{n = 1}^{\infty}|G_n \backslash E_n|* \leq \sum_{n = 1}^{\infty}\frac{\varepsilon}{2^n} = \varepsilon
+\end{equation*}
+\end{proof}
+\begin{Theorem}
+Любое замкнутое множество измеримо по Лебегу.
+\end{Theorem}
+\begin{proof}
+Рассмотрим сначала случай ограниченного множества. Пусть $\Delta = (a, b)$. Введём обозначение:
+\begin{equation*}
+\Delta^{\alpha} = \begin{cases}
+(a + \alpha, b - \alpha), \alpha < \frac{b - a}2, \alpha > 0, \\
+\emptyset, \alpha \geq \frac{b - a}2.
+\end{cases}
+\end{equation*}
+$\overline{\Delta^{\alpha}}$ - замыкание $\Delta^{\alpha}$.
+\begin{equation*}
+E_n = \cup_{n = 1}^{\infty}\Delta_k
+\end{equation*}
+\begin{equation*}
+E_n^{\alpha} = \cup_{n = 1}^{\infty}\Delta_k^{\alpha}
+\end{equation*}
+$\overline{E_n}$ и $\overline{E_n^{\alpha}}$ - замыкания $E_n$ и $E_n^{\alpha}$ соответственно.
+
+$G \supset F |G|^* < |F|^* + \varepsilon |G \backslash F| = \cup_{n = 1}^{\infty}\Delta_n$,
+$\Delta_i \cap \Delta_j = \emptyset$ при $i \neq j$. $\overline{E_n^{\alpha}} \subset G \backslash F$,
+поэтому $|\overline{E_n^{\alpha}} \cup F| = |\overline{E_n^{\alpha}}|^* + |F|^* < |G|^* < |F|^* + \varepsilon$,
+откуда $|\overline{E_n^{\alpha}}|^* < \varepsilon$.
+
+Перейдём теперь к неограниченному случаю. Положим в нём $F_n = F \cap [-n, n], F = \cup_{n = 1}^{\infty}F_n$
+и перейдём в предыдущем равенстве к пределу при $n \to \infty$.
+\end{proof}
+\begin{Theorem}
+Если $E$ измеримо, то и $CE$ измеримо.
+\end{Theorem}
+\begin{proof}
+\begin{equation*}
+\forall n \in \mathbb{N} \exists G_n |G_n \backslash E|^* < \frac1n \Rightarrow
+CE \backslash CG_n = G_n \backslash E, F = \cup_{n = 1}^{\infty}F_n.
+\end{equation*}
+\begin{equation*}
+CE \backslash F \subset CE \backslash F_n
+\end{equation*}
+\begin{equation*}
+|CE \backslash F|^* \leq |CE \backslash F_n|^* < \frac1n \Rightarrow
+|CE \backslash F|^* = 0 \Rightarrow |CE \backslash F| = 0.
+\end{equation*}
+\end{proof}
+\begin{Theorem}[Критерий измеримости по Лебегу]
+$E$ измеримо $\Leftrightarrow \forall \varepsilon > 0 \exists F\text{ - замкнутое} \subset E: |E \ F|^* < \varepsilon$.
+\end{Theorem}
+\begin{proof}
+Следует из теоремы 6.
+\end{proof}
+\begin{Theorem}
+Пересечение конечного и счётного числа измеримых множеств измеримо по Лебегу.
+\end{Theorem}
+\begin{proof}
+\begin{equation*}
+CE = \cup_{n = 1}^{\infty}CE_n \Rightarrow \text{ измеримо} \Rightarrow E\text{ также измеримо.}
+\end{equation*}
+\end{proof}
+\begin{Theorem}
+Для измеримых $A$ и $B$ $A \backslash B = A \cap CB$ измеримо.
+\end{Theorem}
+\begin{Theorem}[$\sigma$-аддитивность меры]
+Если множество $E$ представимо в виде объединения не более чем счётного числа попарно
+непересекающихся множеств, его мера равна сумме множеств мер объединения.
+\end{Theorem}
+\begin{proof}
+Рассмотрим случай ограниченных множеств $E_n$. Тогда по критерию
+\begin{equation*}
+\forall \varepsilon \exists F_n \subset E_n |E_n \backslash F_n| < \frac{\varepsilon}{2^n}
+\end{equation*}
+\begin{equation*}
+E_n = (E_n \backslash F_n) \cup F_n \Rightarrow |E_n| < |E_n \backslash F_n| + |F_n|
+\end{equation*}
+Тогда
+\begin{equation*}
+\sum_{k = 1}^n|E_k| < \sum_{k = 1}^n|E_k \backslash F_k| + \sum_{k = 1}^n|F_k| <
+\sum_{k = 1}^n\frac{\varepsilon}{2^k} + |\cup_{k = 1}^nF_k| < |E| + \varepsilon
+\end{equation*}
+Переходя к пределу при $n \to \infty$, получаем, что
+\begin{equation*}
+\sum_{k = 1}^n|E_k| \leq |E| + \varepsilon
+\end{equation*}
+откуда при $\varepsilon \to 0 \sum_{k = 1}^n|E_k| \leq |E|$. Из свойства 3 внешней меры вытекает,
+что $\sum_{k = 1}^n|E_k| \geq |E| \Rightarrow \sum_{k = 1}^n |E_k| = |E|$.
+
+Перейдём теперь к неограниченному случаю. Рассмотрим множества $E_n^k = E_n \cap (-k, k + 1]$.
+Тогда
+\begin{equation}
+E = \cup_{k = -\infty}^{+\infty}\cup_{n = 1}^{\infty}E^k_n,
+\end{equation}
+а для $E^k_n$ уже доказано свойство счётной аддитивности.
+\end{proof}
+Множество $G$ является \textbf{множеством типа $G_\delta$}, если $G = \cap_{n = 1}^{\infty}G_n$
+($G_n$ - открытые). Множество $F$ называется \textbf{множеством типа $F_\sigma$}, если
+$F = \cup_{n = 1}^{\infty}F_n$($F_n$ - замкнутые).
+\begin{Theorem}
+\begin{equation*}
+\forall \text{ измеримого } E \exists G\text{ типа }G_{\delta}, F\text{ типа }F_{\sigma} \text{ такие,
+что } G \supset E \supset F \text{ и } |G| = |E| = |F|.
+\end{equation*}
+\end{Theorem}
+\begin{proof}
+\begin{equation*}
+\forall n \in \mathbb{N} \exists G_n \supset E \supset F_n: |G_n \backslash E| < \frac1n,
+G = \cap_{n = 1}^{\infty}G_n, |E \backslash F_n| < \frac1n F = \cup_{n = 1}^{\infty}F_n
+\end{equation*}
+Тогда
+\begin{equation*}
+G \backslash E \subset G_n \backslash E \Rightarrow |G \backslash E| \leq |G_n \backslash E| < \frac1n
+\Rightarrow |G \backslash E| = 0
+\end{equation*}
+Аналогично для $F$.
+\end{proof}
+Существуют неизмеримые множества. Пусть $\alpha$ - иррациональные, будем выбирать на
+окружности классы точек, совместимые поворотом на $\pi n\alpha, n \in \mathbb{Z}$($\Phi_n$). Тогда
+$C = \cup_{n = -\infty}^{+\infty}\Phi_n$. Но $|C| = 1$, а $\Phi_n$ конгруэтнтны, поэтому не могут
+быть измеримы.
+
+Непустая система множеств называется \textbf{кольцом}, если она замкнута относительно операций
+пересечения и симметрической разности множеств. Множество кольца называется \textbf{единицей},
+если $\forall A E\cap A = A$. Полукольцо.
+
+Общий принцип построения меры Лебега на множестве: строим меру на полукольце, по аддитивности
+продолжаем её на кольцо, затем с помощью аппроксимации продолжаем её на оставшуюся часть.
+
+\textbf{Пример} -- Построение меры Лебега-Стилтьеса:
+Рассмотрим функцию $F(x)$. Построим меру: $\mu([a, b]) = F(b + 0) - F(a)$, $\mu((a, b)) = F(b) - F(a + 0)$.
+На остальные множества мера распространяется по аддитивности и покрытию.
+
+Построим меру Лебега на плоскости:
+Рассмотрим открытые и закрытые прямоугольники на $\mathbb{R}_2$. Мера прямоугольника -- его площадь.
+\textbf{Элементарное} множество - множество, элементы которого получаются объединением
+прямоугольников. Мера вводится как сумма мер множеств объединения. На элементарных множествах
+с помощью леммы Гейне-Бореля можно показать счётную аддитивность меры. Вводим внешнюю меру
+множества как точную нижнюю грань мер элементарных множеств, покрывающих данное.
+
+\textbf{Абстрактная мера} - положительная действительнозначная функция на полукольце,
+обладающая свойством конечной аддитивности.
+\end{document}
