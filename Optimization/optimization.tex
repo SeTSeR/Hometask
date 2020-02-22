@@ -1,0 +1,315 @@
+% Created 2020-02-22 Sat 16:35
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+
+\section{Структура курса}
+\label{sec:orgf20cf89}
+\begin{itemize}
+\item Введение в теорию сложности
+\item Линейное программирование
+\item Методы непрерывной оптимизации
+\item Методы решения переборных задач
+\end{itemize}
+\section{Литература}
+\label{sec:org7ea3676}
+\begin{enumerate}
+\item Новикова Н. М. "Дискретные и непрерывные задачи оптимизации"
+\item М. Гэри, Д. Джонсон "Вычислительные машины и труднорешаемые задачи"
+\item Х. Пападимитриу, К. Стайглиц "Комбинаторные оптимизации"
+\item \url{http://www.ccas.ru/depart/malashen/53kmsu.htm}
+\end{enumerate}
+\section{Введение в теорию сложности}
+\label{sec:org9bdfcea}
+\textbf{Массовая задача} $\Pi = \{I\}$, где $I$ - \textbf{индивидуальная задача}. Массовая задача определяется:
+\begin{enumerate}
+\item списком параметров
+\item требованиями к решению
+\end{enumerate}
+\subsection{Задача коммивояжёра}
+\label{sec:org3ba5b1f}
+Задан взвешенный ориентированный граф: вершины и матрицы. Нужно найти маршрут через все
+вершины графа минимального веса.
+\begin{equation*}
+\text{Найти } \pi^0\{1, \ldots, n\} \rightarrow \pi(1), \ldots, \pi(n), \\
+\pi^0 \in \operatorname{Arg}\min_{\pi}\left\{\sum_{i = 1}^{n - 1}d(C_{\pi_i}, C_{\pi_{i + 1}}) + d(C_{\pi_n}, C_{\pi_1}))\right\}
+\end{equation*}
+Всего порядка \(n!\) маршрутов.
+
+Задача \textbf{бездомного} коммивояжёра - нужно найти гамильтонов путь в графе. Эта задача имеет ту
+же сложность.
+
+Задача построения \textbf{остовного дерева} минимального веса.
+
+С точки зрения сложности задачи делятся на два класса: полиномиальная или экспоненциальная
+зависимость затрат на решения от длины входа.
+\subsection{Задачи распознавания свойств}
+\label{sec:org010a7d8}
+Задачи, в которых требования к решению выражаются предикатом. В этих терминах задача коммивояжёра
+формулируется так:
+\begin{equation*}
+\{n, \{d_{ij} = d(c_i, c_j)\}, B\}
+\end{equation*}
+\begin{equation*}
+\exists? \pi: \left\{\operatorname{Arg}\min_{\pi}\left\{\sum_{i = 1}^{n - 1}d(C_{\pi_i}, C_{\pi_{i + 1}}) + d(C_{\pi_n}, C_{\pi_1})\right\}\right\} \leq B
+\end{equation*}
+С помощью бинарного поиска задача распознавания свойств сводится к оптимизационной задаче,
+класс задачи при этом не меняется.
+\textbf{Кодировка} массовой задачи \(\Pi\) включает в себя:
+\begin{enumerate}
+\item Алфавит \(\Sigma\) - конечное множество символов.
+\item \(\Sigma^*\) - множество слов в алфавите \(\Sigma\). Длину слова \(\sigma\) будем обозначать \(|\sigma|\).
+\item \textbf{Функция кодирования} \(e: \{I\} \Rightarrow \Sigma^*, e(I) = \sigma\), обладающая свойствами:
+\begin{itemize}
+\item Инъективность(однозначность): \(\forall I_1 \neq I_2 e(I_1) \neq e(I_2)\).
+\item Полиноминальность кодирования и декодирования: \(\exists p(\cdot)\text{( --- полином )} \forall I \in \Pi: |e(I)| \leq p(|I|), |e^{-1}(\sigma)| \leq p(|\sigma|)\)
+\item Неизбыточность: \(\forall e'\), обладающей предыдущими двумя свойствами \(\exists p(\cdot): |e(I)| \leq p(|e'(I)|)\) на наборе задач, для которого \(\forall m \exists I |e(I)| \leq m\).
+\end{itemize}
+\end{enumerate}
+\subsection{Задача 1}
+\label{sec:orge60f552}
+Задача построения остовного дерева минимального веса(+задача распознавания свойства):
+\begin{equation*}
+n, d_{ij} \in \mathbb{N}_0
+\end{equation*}
+Предложить неизбыточную кодировку входа, найти длину входа и сравнить её с оценкой для задачи
+коммивояжёра:
+\begin{equation*}
+n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
+\end{equation*}
+\subsection{Язык задачи}
+\label{sec:orgfe6403a}
+Помимо кодировки с задачей связывается \textbf{язык}: \(\alpha(\Pi, e) = \{\sigma \in \Sigma^* | \sigma = e(I), I \in Y(\Pi)\}\),
+где \(Y(\Pi)\) -- это множество индивидуальных задач, на которых ответ является истиной.
+
+Алгоритм - программа для ДМТ, по кодировке задачи выдающая ответ. Алгоритм \(A\) \textbf{применим} к \(\sigma \in \Sigma^*\),
+если на этом слове он останавливается. Алгоритм \(A\) \textbf{принимает} слово \(\sigma\), если он
+останавливается на нём и выдаёт истинный ответ.
+\begin{equation*}
+\alpha(A) = \{\sigma \in \Sigma^* | \Sigma \text{-- алфавит } A, A(\sigma) = true\}
+\end{equation*}
+Алгоритм A \textbf{решает} задачу \(\Pi\) с кодировкой \(e\), если \(\forall \sigma \in \Sigma^* A\)
+останавливается и \(\alpha(A) = \alpha(\Pi, e)\).
+
+\textbf{Функция временной сложности} алгоритма \(A\) решения \(\Pi\) называется функция \(T_A(\cdot)\), обладающая
+свойствами:
+\begin{enumerate}
+\item \(\forall I \in \Pi\) введём \(t_A(\sigma), \sigma = e(I)\) - \textbf{время до остановки} алгоритма \(A\) на входе \(I\) (в числе шагов ДМТ).
+\item \(\forall m \in \mathbb{N}: T_A(m) = \max_{\sigma \in \Sigma^*, |\sigma| \leq m}t_A(\sigma)\)
+\end{enumerate}
+
+Класс \(\mathbb{P}\) - класс \textbf{полиномиально разрешимых} задач:
+\begin{equation*}
+\mathbb{P} = \{\alpha(\Pi, e) | \exists A \text{ -- алгоритм, решающий } \Pi \text{ с кодировкой } e:
+\exists p(\cdot) \text{ -- полином}: T_A(\cdot) \leq p(.)\}
+\end{equation*}
+\textbf{Замечание}: это определение относится только к задачам распознавания свойств.
+\subsection{Задача 2}
+\label{sec:org4681f6b}
+Предложить алгоритм распознавания простоты числа, найти его функцию временной сложности и
+оценить её.
+\subsection{Самая интересная часть}
+\label{sec:orgbb63b33}
+Алгоритмически неразрешимая задача(Матиясевич): по коэффициентам многочлена проверить у него
+наличие целочисленных корней.
+
+\textbf{НМТ} \(\hat{A} = \{A_s\}_{s \in \Sigma^*}\), где \(A_s\) - ДМТ с алфавитом \(\Sigma\).
+\(A(\sigma)\) останавливается тогда, когда останавливается первая из них, принимающая \(\sigma\).
+Множество слов, принимаемых НМТ, совпадает с множеством слов, на которых она применима.
+
+\textbf{Функция временной сложности} НМТ \(\hat{A}\) решения \(\Pi\) -- функция \(\hat{T}_{\hat A}(\cdot)\), для которой:
+\begin{enumerate}
+\item \(\forall I \in \Pi\) вводим \textbf{время до остановки} \(t_{\hat{A}}(\sigma), \sigma = e(I)\) -- время до
+\end{enumerate}
+остановки первой из ДМТ плюс время прочтения её идентификатора: \(t_{\hat{A}} = t_{A_s}(\sigma) + |s|\).
+\begin{enumerate}
+\item \(\forall m \in \mathbb{N}: T_{\hat{A}}(m) = \max_{\sigma \in \alpha(\Pi, e): |\sigma| \leq m}\inf_{s: \sigma \in \alpha(A_s)}(t_{A_s}(\sigma) + |s|)\)
+\end{enumerate}
+
+Класс \(\mathbb{NP}\) - класс \textbf{недетерминированно полиномиально разрешимых} задач:
+\begin{equation*}
+\mathbb{NP} = \{\alpha(\Pi, e) | \exists \hat{A} \text{ -- НМТ, решающая } \Pi \text{ с кодировкой } e:
+\exists p(\cdot) \text{ -- полином}: \hat{T}_{\hat{A}}(\cdot) \leq p(.)\}
+\end{equation*}
+\textbf{Замечание}: как и предыдущее определение, это определение применимо только к задачам
+распознавания свойств.
+\begin{Statement}
+\begin{equation*}
+\mathbb{P} \subseteq \mathbb{NP}
+\end{equation*}
+\end{Statement}
+Пусть \(\Pi\) - массовая задача распознавания свойств. Задача \(\overline{\Pi}\) называется
+\textbf{дополнительной} задачей к \(\Pi\), если \(Y(\overline{\Pi}) = D(\Pi) \backslash Y(\Pi)\).
+Класс co-\(\mathbb{P} = \{\overline{\Pi} | \Pi \in \mathbb{P}\}\).
+Класс co-\(\mathbb{NP} = \{\overline{\Pi} | \Pi \in \mathbb{NP}\}\).
+\begin{Statement}
+\begin{equation*}
+\text{co-}\mathbb{P} = \mathbb{P}
+\end{equation*}
+\end{Statement}
+Задача \(\Pi\) имеет \textbf{хорошую характеризацию}, если \(\Pi \in \mathbb{NP} \cap \textit{co-}\mathbb{NP}\)
+(в частности, \(\mathbb{P} \subseteq \mathbb{NP} \cap \textit{co-}\mathbb{NP}\)).
+
+Рассмотрим все задачи \(\Pi \in \mathbb{NP}\) и введём на нём иерархию задач.
+Будем говорить, что \(\Pi_1 \propto \Pi_2\)(\(\Pi_1\) \textbf{полиномиально сводится} к \(\Pi_2\)), если
+\(\exists f: \forall I_1 \in \Pi_1, e_1(I_1)\overset{f}{\rightarrow}e_2(I_2): I_1 \in Y(\Pi_1) \Leftrightarrow f(e_1(I_1)) \in Y(\Pi_2), \exists \text{ ДМТ, реализующая } f: \exists p(\cdot): T_{A_f} \leq p(\cdot)\).
+В этом случае задача \(\Pi_1\) не сложнее задачи \(\Pi_2\).
+\begin{Statement}
+Если $\Pi_1 \propto \Pi_2$ и $\Pi_2 \in \mathbb{P}$, то $\Pi_1 \in \mathbb{P}$.
+\end{Statement}
+\begin{proof}
+Если $\Pi_2 \in \mathbb{P}$, то $\exists p_2(\cdot): T_{A_2} \leq p_2(\cdot)$. Тогда для
+алгоритма $A_1 = A_2 \circ f \exists p_1(\cdot) = p_2(p_f(\cdot)): T_{A_1} \leq p_1(\cdot)$.
+\end{proof}
+\begin{Statement}
+Если $\Pi_1 \propto \Pi_2$ и $\Pi_2 \in \mathbb{NP}$, то $\Pi_1 \in \mathbb{NP}$.
+\end{Statement}
+\begin{proof}
+Доказательство аналогично предыдущему утверждению.
+\end{proof}
+Класс \textbf{NP-полных задач}: \(\mathbb{NPC} = \{\Pi \in \mathbb{P} \forall \Pi' \in \mathbb{NP}: \Pi' \propto \Pi\}\).
+
+\textbf{Задача выполнимости}: проверить существование набора \(z\) на котором некоторая формула,
+представленная в КНФ, обращается в 1.
+\begin{Theorem}[Теорема Кука]
+$\mathbb{NPC} \neq \emptyset$: задача выполнимости NP-полна.
+\end{Theorem}
+\begin{proof}
+Покажем, что эта задача принадлежит классу $\mathbb{NP}$. Проверка решения -- подстановка
+набора в формулу -- полиномиальна. Формулировку любой задачи класса из $\mathbb{NP}$ можно
+записать в виде булева предиката, что и будет сведением этой задачи к задаче SAT.
+\end{proof}
+\begin{Statement}
+\begin{equation*}
+\Pi_1 \propto \Pi_2, \Pi_2 \propto \Pi_3 \Rightarrow \Pi_1 \propto \Pi_3
+\end{equation*}
+\end{Statement}
+\begin{proof}
+Утверждение следует из того, что суперпозиция полиномов - полином.
+\end{proof}
+\begin{Statement}
+\begin{enumerate}
+\item Если $\exists \Pi \in \mathbb{NPC}: \Pi \in \mathbb{P}$, то $\mathbb{P} = \mathbb{NP}$.
+\item Если для некоторой $\Pi \in \mathbb{NPC}: \Pi \notin \mathbb{P}$, то $\mathbb{NPC} \subseteq \mathbb{NP} \backslash \mathbb{P}$.
+\end{enumerate}
+\end{Statement}
+\begin{Statement}
+Если для некоторой NP-полной задачи $\overline{P} \in \mathbb{NP}$,
+то $\mathbb{NP} = \text{co-}\mathbb{NP}$.
+\end{Statement}
+\begin{proof}
+Пусть $\Pi' \in \mathbb{NP}: \overline{\Pi'} \propto \overline{P}, \overline{\Pi} \in \mathbb{NP}$,
+поэтому $\overline{\Pi'}$ поэтому $\textit{co-}NP \subseteq \mathbb{NP}, \mathbb{NP} \subseteq \textit{co-}\mathbb{NP}$.
+\end{proof}
+Для задачи co-SAT нельзя ли в качестве подсказки дать дизъюнкцию, всегда обращающуся в ноль?
+\begin{Statement}
+Если $\Pi' \in \mathbb{NP}$ и $\exists \Pi \in \mathbb{NPC}: \Pi \propto \Pi'$, то
+$\Pi' \in \mathbb{NPC}$.
+\end{Statement}
+\begin{proof}
+Это следует из транзитивности полиномиальной сводимости.
+\end{proof}
+Задача \textbf{булево линейное неравенство}:\\
+Пусть $A \in \mathbb{R}^{n\times n}, b \in \mathbb{R}^{1\times n}$. Существует ли
+$z \in \mathbb{B}^n:$
+\begin{equation}
+Az \preceq b?
+\end{equation}
+\begin{Statement}
+Задача "булево линейное неравенство" NP-полна.
+\end{Statement}
+\begin{proof}
+Эта задача принадлежит классу $\mathbb{NP}$, так как проверка решения выполняется за линейное
+время.
+
+Задача SAT сводится к задаче на линейное неравенство, откуда следует NP-полнота этой задачи.
+\end{proof}
+Задачи SMT и "целочисленное линейное неравенство" - обобщения задач SAT и
+"булево линейное неравенство" соответственно, также являются NP-полными. Доказательство
+принадлежности задачи линейного программирования классу $\mathbb{NP}$ является нетривиальным.
+\subsection{Задача 3}
+\label{sec:org618f230}
+Доказать, что задача проверки простоты числа принадлежит классу \(\textit{co-}\mathbb{NP}\).
+
+\textbf{Задача 3-выполнимости}: задача КНФ дизъюнкций с ровно тремя слагаемыми. Эта задача
+полиномиально сводится к задаче SAT, и поэтому принадлежит к классу \(\mathbb{NP}\).
+\subsection{Задача 4}
+\label{sec:orgd95e351}
+Разложить конъюкцию одной или двух переменных в произведение конъюкции трёх переменных.
+\begin{Statement}
+Задача 3-выполнимости NP-полна.
+\end{Statement}
+\begin{proof}
+Сведём задачу выполнимости к задаче 3-выполнимости. Разложим все длинные конъюкции в
+произведение концъюкций длины 3: если выполнена конъюкция
+\begin{equation*}
+y_1 \vee y_2 \vee \ldots \vee y_k,
+\end{equation*}
+то выполнено произведение:
+\begin{equation*}
+(y_1 \vee y_2 \vee u_1)(y_3 \vee \overline{u_1} \vee u_2)\ldots(y_{k - 1} \vee y_k \vee \overline{u_{k - 3}})
+\end{equation*}
+для некоторых $u_1, u_2, \ldots, u_{k - 3}$. При этом количество переменных увеличилось не более,
+чем в два раза.
+\end{proof}
+\begin{Theorem}
+$\forall \Pi \in \mathbb{NP} \exists \text{ ДМТ } A \text{, решающая } \Pi, \exists p(\cdot)
+T_A(\cdot) \leq 2^{p(\cdot)}$
+\end{Theorem}
+\begin{proof}
+Так как $\Pi \in \mathbb{NP}$, то $\exists \text{ НМТ } \hat{A}: \forall I \in Y(\Pi) \exists$
+$s: |s| \leq p_1(|I|), z_{A_s} \leq p_2(|I|)$. Будем моделировать НМТ с помощью ДМТ,
+каждому состоянию оригинальной НМТ отвечает множество состояний ДМТ. При переходе между
+состояниями делаем переходы на каждой ДМТ, "входящей" в НМТ. Тогда
+\begin{equation*}
+t_A(\sigma) \leq p_2(|\sigma|)|\Sigma|^{p_1(\sigma)}
+\end{equation*}
+\end{proof}
+\end{document}
