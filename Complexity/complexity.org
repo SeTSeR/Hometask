@@ -3,6 +3,7 @@
 #+LATEX_HEADER:\usepackage[english,russian]{babel}
 #+LATEX_HEADER:\usepackage{mathtools}
 #+LATEX_HEADER:\usepackage{amsthm}
+#+LATEX_HEADER:\usepackage{listings}
 #+OPTIONS: toc:nil
 #+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
 
@@ -174,12 +175,14 @@ i, k = 0.
 ** Задача 1
  Показать, что сложность по числу обменов сортировки выбором $n - 2 + \frac1n$.
 ** Задача 2
-   #+begin_src pascal
+   #+begin_export latex
+\begin{lstlisting}
  m := x_1;
  for i := 2 to n do
    if x_i < m then m := x_i;
  end;
-   #+end_src
+\end{lstlisting}
+   #+end_export
  Какой рост у количества присваиваний?
 ** Задача 3
  Посчитать сложность в среднем для задачи сортировки вагонов при условии, что все расположения
