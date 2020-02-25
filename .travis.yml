@@ -11,6 +11,7 @@ script:
 - make pdf
 - zip -r pdfs.zip build/
 deploy:
+  edge: true
   provider: releases
   file: pdfs.zip
   skip_cleanup: true
