@@ -16,4 +16,5 @@ deploy:
   file: pdfs.zip
   skip_cleanup: true
   on:
+    tags: true
     repo: SeTSeR/Hometask
