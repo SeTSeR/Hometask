@@ -1,4 +1,4 @@
-% Created 2020-02-22 Sat 16:39
+% Created 2020-02-25 Tue 12:03
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -53,7 +53,7 @@
 
 
 \section{Структура курса}
-\label{sec:org7fe6210}
+\label{sec:orgdc0d8aa}
 \begin{enumerate}
 \item Структура множеств на прямой
 \item Мера и измеримые множества
@@ -72,7 +72,7 @@
 \end{enumerate}
 
 \section{Список литературы}
-\label{sec:orge3ac9c8}
+\label{sec:org75991d9}
 Капустин "Функциональный анализ".
 
 Зачёт из двух частей: теоретический вопрос и задача из списка.
@@ -85,7 +85,8 @@
 \item Т. А. Леонтьева, А. В. Домрина "Задачи по теории функций и функциональному анализу".
 \end{enumerate}
 \section{Открытые и замкнутые множества на прямой}
-\label{sec:org7f871f4}
+\label{sec:orgd9ea5be}
+\zall
 $$E = E_1 \cup E_2 = \{e | e \in E_1 || e \in E_2\}$$
 $$E = E_1 \cap E_2 = \{e | e \in E_1 \&\& e \in E_2\}$$
 $$E = E_1 \backslash E_2 = \{e | e \in E_1 \&\& e \notin E_2\}$$
@@ -136,7 +137,8 @@ $\forall x_1 \neq x_2 V(x_1) = V(x_2)$, либо $V(x_1) \cap V(x_2) = 0$.
 точки канторова множества - все точки, не содержащие в своём представлении единиц. Множество
 таких точек континуально.
 \section{Измеримые множества. Мера Лебега.}
-\label{sec:orge4089a8}
+\label{sec:orgf127465}
+\zall
 Покрытием множества $E$ будем называть счётную систему интервалов, объеднинение которых содержит $E$
 Составим число $\sigma(s)$ - сумму длин отрезков, входящих в покрытие.
 
@@ -324,4 +326,185 @@ $C = \cup_{n = -\infty}^{+\infty}\Phi_n$. Но $|C| = 1$, а $\Phi_n$ конгр
 
 \textbf{Абстрактная мера} - положительная действительнозначная функция на полукольце,
 обладающая свойством конечной аддитивности.
+\section{Измеримые функции}
+\label{sec:org7e9d788}
+\zall
+Будем использовать обозначение \(E[f > a] = \{x \in E | f(x) > a\}\).
+
+Функция \(f\), определённая на измеримом множестве \(E\), называется \textbf{измеримой} по Лебегу на нём, если
+\(\forall a \in \mathbb{R} E[f(x) \geq a]\) измеримо.
+
+Свойства измеримых функций:
+\begin{Statement}
+\begin{enumerate}
+\item Функция $f$ измерима тогда и только тогда, когда измеримо одно из множеств $E[f > a], E[f \leq a], E[f < a]$.
+\item Если $E_1 \subset E$ и $f$ измерима на $E$, то $f$ измерима на $E_1$.
+\item Если $f$ измерима на $E_1, E_2, \ldots$, то $f$ измерима на $E = \cup_{n = 1}^{\indty}E_n$.
+\item Любая функция измерима на множестве меры ноль.
+\item Если функция $f$ измерима на $E$ и $f \sim g$, то $g$ измерима на $E$.
+\item Если $f(x)$ почти всюду непрерывна на $E$, то она измерима на $E$.
+\end{enumerate}
+\end{Statement}
+\begin{proof}
+\begin{equation}
+E[f > a] = \cup_{n = 1}^{\infty}E[f \geq a + \frac1n],
+\end{equation}
+\begin{equation}
+E[f \geq a] = \cap_{n = 1}^{\infty}E[f > a - \frac1n],
+\end{equation}
+\begin{equation}
+E[f \leq a] = E \backslash E[f > a]
+\end{equation}
+\begin{equation}
+E[f < a] = E \backslash E[f \geq a]
+\end{equation}
+\begin{equation}
+E_1[f \geq a] = E_1 \cap E[f \geq a]
+\end{equation}
+\begin{equation}
+E[f \geq a] = \cup_{n = 1}^{\infty}E_n[f \geq a]
+\end{equation}
+Заметим, что если множество $F$ замкнуто, то $F[f \geq a]$ также замкнуто. Представим $E$ в
+виде:
+\begin{equation}
+E = E_1 \cup E_2 \cup E_3,
+\end{equation}
+где $E_1$ - множество точек разрыва функции $f$, $E_2$ - множество типа $F_{\sigma}$, $|E_1| = |E_3| = 0$.
+\end{proof}
+\textbf{Эквивалентные функции}:
+$f \sim g$, если $|E[f \neq g]| = 0$.
+Будем говорить, что свойство выполнено \textbf{почти всюду}, если оно выполнено на всём множестве,
+кроме может быть подмножества точек меры ноль.
+\begin{Theorem}
+Пусть $f$ - измеримая функция. Тогда функции $|f|$, $cf$ и $f + c$ также измеримы. Если $g$
+измерима, то множество $E[f > g]$ также измеримо.
+\end{Theorem}
+\begin{proof}
+\begin{equation}
+E[|f| \geq a] = \begin{cases}
+E[f \geq a] \cup E[f \leq -a], a > 0, \\
+E, a \leq 0.
+\end{cases}
+\end{equation}
+\begin{equation}
+E[cf \geq a] = \begin{cases}
+E[f \geq \frac{a}{c}], c > 0, \\
+E[f \leq \frac{a}{c}], c < 0, \\
+E, c = 0, a \geq 0, \\
+\emptyset, c = 0, a < 0.
+\end{cases}
+\end{equation}
+Для доказательства последнего пункта пронумеруем все точки. Тогда
+\begin{equation}
+E[f > g] = \cup_{k = 1}^{\infty}E[f > r_k] \cap E[g < r_k]
+\end{equation}
+\end{proof}
+\begin{Theorem}[Арифметические операции над измеримыми функциями]
+Пусть $E$ -- измеримое множество, $f$ и $g$ -- измеримые функции. Тогда $f \pm g$, $f\cdot g$,
+$\frac{f}g(g \neq 0)$ -- измеримые функции.
+\end{Theorem}
+\begin{proof}
+\begin{equation}
+E[f \pm g \geq a] = E[f \geq \mp g + a]
+\end{equation}
+\begin{equation}
+fg = \frac{(f + g)^2}4 - \frac{(f - g)^2}4
+\end{equation}
+\begin{equation}
+E[\frac1g > a] = \begin{cases}
+E[g > 0] \cap E[g < \frac1a], a > 0, \\
+E[g > 0], a = 0, \\
+E[g > 0] \cup E[g < \frac1a], a < 0.
+\end{cases}
+\end{equation}
+\end{proof}
+\begin{Theorem}
+Пусть $f_1, f_2, \ldots, f_n, \ldots$ -- измеримые функции. Тогда
+$\underline{f}(x) = \underline{\lim}_{n \to \infty}f_n(x)$ и
+$\overline{f}(x) = \overline{\lim}_{n \to \infty}f_n(x)$ -- измеримые функции.
+\end{Theorem}
+\begin{proof}
+Функции $\phi(x) = \inf_nf_n(x)$ и $\psi(x) = \sup_nf_n(x)$ являются измеримыми, что видно из
+следующих соотношений:
+\begin{equation}
+E[\phi > a] = \cup_{n = 1}^{\infty}E[f_n < a],
+\end{equation}
+\begin{equation}
+E[\psi > a] = \cup_{n = 1}^{\infty}E[f_n > a],
+\end{equation}
+Остаётся заметить, что $\underline{f}(x) = \sup_{n \geq 1}\inf_{k \geq n}f_k(x)$ и
+$\overline{f}(x) = \inf_{n \geq 1}\sup_{k \geq n}f_k(x)$.
+\end{proof}
+\begin{Theorem}
+Пусть $f_1(x), \ldots$ -- последовательность измеримых функций, почти всюду сходящаяся к $f(x)$.
+Тогда $f(x)$ -- измеримая функция.
+\end{Theorem}
+\begin{proof}
+Множество $E$ разбивается на две части -- множество сходимости, на котором есть верхний и нижний
+пределы, равные $f(x)$ и остаток меры нуль.
+\end{proof}
+Будем говорить, что последовательность \(f_1(x), \ldots, f_n(x), \ldots\) почти всюду
+ограниченных измеримых функций \textbf{сходится по мере} к почти всюду ограниченной функции \(f(x)\),
+если \(\lim_{n \to \infty}|E[|f_n - f| \geq \varepsilon]| = 0\), т. е.
+\(\forall \varepsilon > 0 \delta > 0 \exists N = N(\varepsilon, \delta) \forall n \geq N: |E[|f_n - f| \geq \varepsilon]| < \delta\).
+\begin{Theorem}
+Пусть $|E| < +\infty$ и $f_n(x)$ сходится почти всюду к $f(x)$. Тогда $f_n(x)$ сходится к
+$f(x)$ по мере.
+\end{Theorem}
+\begin{proof}
+Фиксируем $\varepsilon > 0$. Положим $E_n = E[|f_n - f| \geq \varepsilon]$, $R_n = \cup_{k = 1}^{\infty}E_k$.
+Поскольку $|E_n| \geq |R_n|$, достаточно показать, что $|R_n| \to 0$ при $n \to \infty$.
+Введём множества $A_0 = E[|f| = +\infty]$, $A_n = E[|f_n| = +\infty]$, $A = \cup_{n = 0}^{\infty}A_n$,
+$B = E \backslash E[\lim_{n \to \infty}f_n(x) = f(x)]$, $C = A \cup B$, $|C| = 0$, $R = \cap_{n = 1}^{\infty}$.
+\begin{equation}
+\cup_{k = n}^{\infty}(R_k \backslash R_{k + 1}) = R_n \backslash R
+\end{equation}
+\begin{equation}
+|R_n \backslash R| = \sum_{k = n}^{\infty}|R_k \backslash R_{k + 1}| \Rightarrow |R_n \backslash R|
+\to 0 \Rightarrow |R_n| \to |R|.
+\end{equation}
+Покажем, что $R \subset C$. Возьмём $x_0 \notin C$. Тогда $\lim_{n \to \infty}f_n(x_0) = f(x_0)$,
+т. е. $\forall \varepsilon > 0 \exists N = N(\varepsilon, x_0) \forall n \geq N |f_n(x_0) - f(x_0)| < \varepsilon$,
+соответственно, $x_0 \notin R_n$ и $x_0 \notin E_n \Rightarrow x_0 \notin R$.
+\end{proof}
+Заметим, что в общем случае из сходимости почти всюду сходимость по мере не следует. Рассмотрим
+функцию:
+\begin{equation}
+f_n(x) = \begin{cases}
+1, x \in [n, n + 1],\\
+0, x \notin [n, n + 1],
+\end{cases}
+\end{equation}
+на $E = R$. Эта последовательность сходится к $f(x) \equiv 1$ всюду, но не сходится по мере.
+
+Из сходимости по мере не следует сходимость даже в какой-то одной точке.
+\begin{Theorem}
+Пусть $|E| < +\infty$ и $f_n(x)$ по мере сходится к $f(x)$. Тогда $\exists\{f_{n_k}(x)\}$,
+$f_{n_k}(x) \to f(x)$ почти всюду.
+\end{Theorem}
+\begin{proof}
+Введём множества($k \in \mathbb{N}$):
+\begin{equation}
+E_k = E[|f_{n_k} - f| \geq \frac1k], |E| < \frac1{2^k}
+\end{equation}
+\begin{equation}
+R_n = \cup_{k = n}^{\infty}E_k, |R_n| \leq \sum_{k = n}|E_k| < \frac1{2^{k - 1}}
+\end{equation}
+Тогда $|R_n| \to 0$ и $|R| = 0$, так как $|R_n| \to |R|$.
+
+$\forall x_0 \notin R \exists N = N(x_0) x_0 \notin R_N \Rightarrow x_0 \notin E_k, k \geq N$,
+т. е. $|f_{n_k}(x_0) - f(x_0)| < \frac{1}k$.
+\end{proof}
+\begin{Theorem}[Первая теорема 7]
+Пусть $f_n \to f$ и $f_n \to g$ по мере. Тогда $f \sim g$.
+\end{Theorem}
+\begin{proof}
+\begin{equation}
+\forall \varepsilon > 0 E[|f - g| \geq \varepsilon] \subset E\left[|f_n - f| \geq \frac{\varepsilon}2\right]
+\cup E\left[|f_n - g| \geq \frac{\varepsilon}2\right]
+\end{equation}
+\begin{equation}
+E[f \neq g] \subset \cup_{n = 1}^{\infty}E\left[|f - g| \geq \frac1n\right]
+\end{equation}
+\end{proof}
 \end{document}
