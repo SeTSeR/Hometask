@@ -8,7 +8,7 @@ before_install:
   texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra pandoc
   zip python-pygments
 script:
-- make pdf
+- make pdf || true
 - zip -r pdfs.zip build/
 deploy:
   edge: true
