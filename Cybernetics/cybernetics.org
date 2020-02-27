@@ -518,5 +518,5 @@ $\gamma \leq \delta_t$ единиц.
 если $\forall i = \overline{1, p} \exists \alpha \in \breve{N}: \alpha \in N_i$.
 
 Задача о построении протыкающего множества $\breve{N} = \{\alpha_1, \ldots, \alpha_t\}$
-эквивалентна задаче о построении покрытия \{\breve{N}_{\alpha_1}, \ldots, \breve{N}_{\alpha_t}\}
+эквивалентна задаче о построении покрытия $\{\breve{N}_{\alpha_1}, \ldots, \breve{N}_{\alpha_t}\}$
 множества $\mathfrak{M}$ подмножествами вида $\breve{N}_\alpha = \{N_i | \alpha \in N_i\}$.
