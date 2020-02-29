@@ -1,0 +1,99 @@
+% Created 2020-02-25 Tue 17:27
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\begin{itemize}
+\item Интеграл Лебега без меры
+\item Пространство с обобщёнными производными и обобщённые функции
+\item Задача управления подъёмным краном в штормящем море.
+\item Задача управления колебаниями понтографа. Найти материалы для проводов и перемычек.
+\end{itemize}
+
+\section{Уравнения смешанного типа}
+\label{sec:orgb950b37}
+\begin{itemize}
+\item Трансзвуковая гидродинамка
+\end{itemize}
+Уравнение кого-то-кого-то:
+u = u(x, y)
+\begin{equation}
+yu_{xx} + u_{yy} = 0
+\end{equation}
+В верхней полуплоскости уравнение эллиптическое, в нижней -- гиперболическое. Нужно найти
+решение $u \in C(\overline{D}) \cap C^1(D) \cap C^2(D^+) \cap C^2(D^-)$.
+
+Положим $\nu(x) = \frac{\partial u(x, 0)}{\partial y}$.
+Уравнение Лаврентьева-Бицадзе:
+\begin{equation}
+\operatorname{sgn}(y)u_{xx} + u_{yy} = 0
+\end{equation}
+Метод разделения переменных приводит к уравнениям:
+\begin{equation}
+\begin{cases}
+X''(x) + \lambda X(x) = 0, \\
+X(0) = X(1) = 0
+\end{cases}
+\end{equation}
+\begin{equation}
+X_n(x) = \sin \pi nx, n = 1, 2, 3, \ldots.
+\end{equation}
+Задача нагруженной струны приводит к уравнению вида:
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, \\
+X(0) = 0, X'(1) = d\lambda X(1).
+\end{cases}
+\end{equation}
+\begin{equation}
+X_n = \sin \sqrt{\lambda_n}x, \ctg\sqrt{\lambda} = d\sqrt{\lambda}
+\end{equation}
+\end{document}

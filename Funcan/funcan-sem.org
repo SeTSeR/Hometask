@@ -1,0 +1,77 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{stnmt}\setcounter{stnmt}{0}
+#+LATEX_HEADER:\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+#+LATEX_HEADER:\newtheorem*{Statement}{Утверждение \st}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
++ Интеграл Лебега без меры
++ Пространство с обобщёнными производными и обобщённые функции
++ Задача управления подъёмным краном в штормящем море.
++ Задача управления колебаниями понтографа. Найти материалы для проводов и перемычек.
+
+* Уравнения смешанного типа
++ Трансзвуковая гидродинамка
+Уравнение кого-то-кого-то:
+#+begin_export latex
+u = u(x, y)
+\begin{equation}
+yu_{xx} + u_{yy} = 0
+\end{equation}
+В верхней полуплоскости уравнение эллиптическое, в нижней -- гиперболическое. Нужно найти
+решение $u \in C(\overline{D}) \cap C^1(D) \cap C^2(D^+) \cap C^2(D^-)$.
+
+Положим $\nu(x) = \frac{\partial u(x, 0)}{\partial y}$.
+#+end_export
+Уравнение Лаврентьева-Бицадзе:
+#+begin_export latex
+\begin{equation}
+\operatorname{sgn}(y)u_{xx} + u_{yy} = 0
+\end{equation}
+#+end_export
+Метод разделения переменных приводит к уравнениям:
+#+begin_export latex
+\begin{equation}
+\begin{cases}
+X''(x) + \lambda X(x) = 0, \\
+X(0) = X(1) = 0
+\end{cases}
+\end{equation}
+\begin{equation}
+X_n(x) = \sin \pi nx, n = 1, 2, 3, \ldots.
+\end{equation}
+#+end_export
+Задача нагруженной струны приводит к уравнению вида:
+#+begin_export latex
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, \\
+X(0) = 0, X'(1) = d\lambda X(1).
+\end{cases}
+\end{equation}
+\begin{equation}
+X_n = \sin \sqrt{\lambda_n}x, \ctg\sqrt{\lambda} = d\sqrt{\lambda}
+\end{equation}
+#+end_export
