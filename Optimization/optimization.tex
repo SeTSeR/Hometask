@@ -1,4 +1,4 @@
-% Created 2020-02-22 Sat 16:35
+% Created 2020-02-29 Sat 12:02
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -51,7 +51,7 @@
 
 
 \section{Структура курса}
-\label{sec:orgf20cf89}
+\label{sec:orga2dc9b0}
 \begin{itemize}
 \item Введение в теорию сложности
 \item Линейное программирование
@@ -59,7 +59,7 @@
 \item Методы решения переборных задач
 \end{itemize}
 \section{Литература}
-\label{sec:org7ea3676}
+\label{sec:org812f403}
 \begin{enumerate}
 \item Новикова Н. М. "Дискретные и непрерывные задачи оптимизации"
 \item М. Гэри, Д. Джонсон "Вычислительные машины и труднорешаемые задачи"
@@ -67,14 +67,14 @@
 \item \url{http://www.ccas.ru/depart/malashen/53kmsu.htm}
 \end{enumerate}
 \section{Введение в теорию сложности}
-\label{sec:org9bdfcea}
+\label{sec:org1dee211}
 \textbf{Массовая задача} $\Pi = \{I\}$, где $I$ - \textbf{индивидуальная задача}. Массовая задача определяется:
 \begin{enumerate}
 \item списком параметров
 \item требованиями к решению
 \end{enumerate}
 \subsection{Задача коммивояжёра}
-\label{sec:org3ba5b1f}
+\label{sec:org3484a4f}
 Задан взвешенный ориентированный граф: вершины и матрицы. Нужно найти маршрут через все
 вершины графа минимального веса.
 \begin{equation*}
@@ -91,7 +91,7 @@
 С точки зрения сложности задачи делятся на два класса: полиномиальная или экспоненциальная
 зависимость затрат на решения от длины входа.
 \subsection{Задачи распознавания свойств}
-\label{sec:org010a7d8}
+\label{sec:org5149561}
 Задачи, в которых требования к решению выражаются предикатом. В этих терминах задача коммивояжёра
 формулируется так:
 \begin{equation*}
@@ -114,7 +114,7 @@
 \end{itemize}
 \end{enumerate}
 \subsection{Задача 1}
-\label{sec:orge60f552}
+\label{sec:org0454b4c}
 Задача построения остовного дерева минимального веса(+задача распознавания свойства):
 \begin{equation*}
 n, d_{ij} \in \mathbb{N}_0
@@ -125,7 +125,7 @@ n, d_{ij} \in \mathbb{N}_0
 n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \subsection{Язык задачи}
-\label{sec:orgfe6403a}
+\label{sec:org9f81d03}
 Помимо кодировки с задачей связывается \textbf{язык}: \(\alpha(\Pi, e) = \{\sigma \in \Sigma^* | \sigma = e(I), I \in Y(\Pi)\}\),
 где \(Y(\Pi)\) -- это множество индивидуальных задач, на которых ответ является истиной.
 
@@ -152,11 +152,11 @@ n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \textbf{Замечание}: это определение относится только к задачам распознавания свойств.
 \subsection{Задача 2}
-\label{sec:org4681f6b}
+\label{sec:orgb450fb4}
 Предложить алгоритм распознавания простоты числа, найти его функцию временной сложности и
 оценить её.
 \subsection{Самая интересная часть}
-\label{sec:orgbb63b33}
+\label{sec:org82c26d9}
 Алгоритмически неразрешимая задача(Матиясевич): по коэффициентам многочлена проверить у него
 наличие целочисленных корней.
 
@@ -241,12 +241,12 @@ $\mathbb{NPC} \neq \emptyset$: задача выполнимости NP-полн
 \end{enumerate}
 \end{Statement}
 \begin{Statement}
-Если для некоторой NP-полной задачи $\overline{P} \in \mathbb{NP}$,
-то $\mathbb{NP} = \text{co-}\mathbb{NP}$.
+Если для некоторой NP-полной задачи $\overline{P} \in \mathbb{NPC}$,
+то $\mathbb{NPC} = \text{co-}\mathbb{NPC}$.
 \end{Statement}
 \begin{proof}
 Пусть $\Pi' \in \mathbb{NP}: \overline{\Pi'} \propto \overline{P}, \overline{\Pi} \in \mathbb{NP}$,
-поэтому $\overline{\Pi'}$ поэтому $\textit{co-}NP \subseteq \mathbb{NP}, \mathbb{NP} \subseteq \textit{co-}\mathbb{NP}$.
+поэтому $\overline{\Pi'}$ поэтому $\textit{co-}NPC \subseteq \mathbb{NPC}, \mathbb{NPC} \subseteq \textit{co-}\mathbb{NPC}$.
 \end{proof}
 Для задачи co-SAT нельзя ли в качестве подсказки дать дизъюнкцию, всегда обращающуся в ноль?
 \begin{Statement}
@@ -275,13 +275,13 @@ Az \preceq b?
 "булево линейное неравенство" соответственно, также являются NP-полными. Доказательство
 принадлежности задачи линейного программирования классу $\mathbb{NP}$ является нетривиальным.
 \subsection{Задача 3}
-\label{sec:org618f230}
+\label{sec:org33558fb}
 Доказать, что задача проверки простоты числа принадлежит классу \(\textit{co-}\mathbb{NP}\).
 
 \textbf{Задача 3-выполнимости}: задача КНФ дизъюнкций с ровно тремя слагаемыми. Эта задача
 полиномиально сводится к задаче SAT, и поэтому принадлежит к классу \(\mathbb{NP}\).
 \subsection{Задача 4}
-\label{sec:orgd95e351}
+\label{sec:org6e5f47b}
 Разложить конъюкцию одной или двух переменных в произведение конъюкции трёх переменных.
 \begin{Statement}
 Задача 3-выполнимости NP-полна.
@@ -312,4 +312,78 @@ $s: |s| \leq p_1(|I|), z_{A_s} \leq p_2(|I|)$. Будем моделироват
 t_A(\sigma) \leq p_2(|\sigma|)|\Sigma|^{p_1(\sigma)}
 \end{equation*}
 \end{proof}
+Класс \textbf{NP-трудных} задач(\(\mathbb{NP}-hard\)) -- это:
+\begin{enumerate}
+\item задачи оптимизации, для которых соответствующая задача распознавания свойств NP-полна.
+\item задачи распознавания свойств, для которых есть NP-полная задача, сводимая к ней, но принадлежность которой к классу \(\mathbb{NP}\) не доказана.
+\item все задачи, к которым сводятся(по Тьюрингу) NP-трудные задачи(\(\Pi' \propto_T \Pi\)).
+\end{enumerate}
+Задача \(\Pi\) принадлежит классу \(PSPACE\), если её можно решить за полиномиальное количество
+памяти на ДМТ. Все ранее рассмотренные классы входят в класс \(PSPACE\). Вопрос строгого
+включения класса \(P\) в класс \(PSPACE\) остаётся открытым.
+\subsection{Задача о рюкзаке}
+\label{sec:orgcde3936}
+Найти
+\begin{equation}
+max_{z \in B^n}\sum_{i = 1}^nc_iz_i,
+\end{equation}
+при том, что
+\begin{equation}
+\sum_{i = 1}^nw_iz_i \leq K
+\end{equation}
+Условия: $K, c_i, W_i, B \in \mathbb{N}$.
+Эта задача сводится к задаче булева линейного программирования и является NP-полной.
+
+Задача решается методом динамического программирования. Сложность решения $nKO(\log(c_i, w_i, K))$.
+Если $K \sim p(n)$, то задача, тем не менее, решается полиномиально.
+
+Введём \(num(I)\) -- максимальное по модулю целое число, фигурирующее в записи задачи \(I\). ДМТ
+\(A\) решения задачи \(\Pi\) называется \textbf{псевдополиномиальным}, если
+\(\exists p(\cdot, \cdot): \forall I \in \Pi T_A(I) \leq p(|I|, num(I))\).
+\textbf{Полиномиальным сужением} задачи \(\Pi\) называется задача \(\Pi_{p(\cdot)} = \{I \in \Pi | num(I) \leq p(|I|)\}\).
+
+Задача \(\Pi\) распознавания свойств называется \textbf{сильно-NP-полной, если} её полиномиальное сужение
+NP-полно.
+\begin{Theorem}
+Если $\mathbb{P} \neq \mathbb{NP}$, то ни для какой сильно-NP-полной задачи нет псевдополиномиального
+алгоритма её решения.
+\end{Theorem}
+\begin{proof}
+Пусть для некоторой сильно-NP-полной задачи мы нашли псевдополиномиальное решение. Тогда
+$\exists p(\cdot, \cdot): \exists A: t_A(I)O \leq p(|I|, num(I))$, соответственно,
+$\forall I \in \Pi_{p(\cdot)}: T_A(I) \leq p(|I|, p(|I))$, поэтому $\Pi_{p(\cdot)} \in \mathbb{P}$,
+откуда следует, что $\mathbb{P} = \mathbb{NP}$. Противоречие.
+\end{proof}
+\textbf{Задача оптимизации} -- найти значение и реализацию
+\begin{equation}
+Opt(I) = \max_{z \in S_I}f_I(z)
+\end{equation}
+\section{Задача оптимизации}
+\label{sec:org315edf5}
+\zall
+\(f_I(z)\) называется \textbf{целевой функцией}, значение функции называется \textbf{значением оптимума}, а
+точка, в которой она достигается -- \textbf{реализацией оптимума}.
+\(S_i \subset \mathbb{Z}^{n_I}\) -- \textbf{допустимая область}, \(f_I: S_I \rightarrow \mathbb{Z}\).
+
+Алгоритм \(A\) называется \textbf{приближённым алгоритмом} решения задачи \(\Pi\) оптимизации, если
+\(\forall I \in \Pi A(I) \text{ даёт } z^A(I) \in S_I\). Значение целевой функции в точке \(z^A(I)\)
+называется \textbf{приближённым значением} и обозначается \(A_f(I)\).
+\begin{Statement}
+Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall C \not\exists$ приближённого алгоритма $A$,
+решающего задачу о рюкзаке с $T_a(\cdot) \leq p(\cdot)$ и $|A_f(I) - Opt(I)| < C$.
+\end{Statement}
+\begin{proof}
+Пусть такой алгоритм существует. Построим по нему точный полиномиальный алгоритм решения
+задачи о рюкзаке: от задачи $I$ перейдём к задаче $I'$ с полезностями $c'_i = c_i(C + 1)$.
+Применив алгоритм $A$ на $I'$ и разделив ответ на $C + 1$, получим $A'_f(I)$. Тогда
+$Opt(I') = (C + 1)Opt(I) \Rightarrow |Opt(I) - A'(I)| = |\frac{Opt(I') - A_f(I')}{C + 1}| \leq \frac{C}{C + 1}$
+$\Rightarrow |Opt(I) - A'(I)| = 0 \Rightarrow A'$ -- точный алгоритм, являющийся при этом
+полиномиальным, что входит в противоречие с $\mathbb{P} \neq \mathbb{NP}$.
+\end{proof}
+Приближённый алгоритм \(A\) решения задачи оптимизации \(\Pi\) называется \$\(\varepsilon\)\$-приближённым,
+если \(\forall I \in \Pi: |\frac{Opt(I) - A_f(I)}{Opt(I)}| < \varepsilon\).
+\begin{Statement}
+Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall \varepsilon > 0 \not\exists \varepsilon$-полиномиального
+решения общей задачи коммивояжёра.
+\end{Statement}
 \end{document}

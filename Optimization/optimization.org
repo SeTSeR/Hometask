@@ -219,12 +219,12 @@ $\mathbb{NPC} \neq \emptyset$: задача выполнимости NP-полн
 \end{enumerate}
 \end{Statement}
 \begin{Statement}
-Если для некоторой NP-полной задачи $\overline{P} \in \mathbb{NP}$,
-то $\mathbb{NP} = \text{co-}\mathbb{NP}$.
+Если для некоторой NP-полной задачи $\overline{P} \in \mathbb{NPC}$,
+то $\mathbb{NPC} = \text{co-}\mathbb{NPC}$.
 \end{Statement}
 \begin{proof}
 Пусть $\Pi' \in \mathbb{NP}: \overline{\Pi'} \propto \overline{P}, \overline{\Pi} \in \mathbb{NP}$,
-поэтому $\overline{\Pi'}$ поэтому $\textit{co-}NP \subseteq \mathbb{NP}, \mathbb{NP} \subseteq \textit{co-}\mathbb{NP}$.
+поэтому $\overline{\Pi'}$ поэтому $\textit{co-}NPC \subseteq \mathbb{NPC}, \mathbb{NPC} \subseteq \textit{co-}\mathbb{NPC}$.
 \end{proof}
 Для задачи co-SAT нельзя ли в качестве подсказки дать дизъюнкцию, всегда обращающуся в ноль?
 \begin{Statement}
@@ -292,4 +292,84 @@ $s: |s| \leq p_1(|I|), z_{A_s} \leq p_2(|I|)$. Будем моделироват
 t_A(\sigma) \leq p_2(|\sigma|)|\Sigma|^{p_1(\sigma)}
 \end{equation*}
 \end{proof}
+#+end_export
+Класс *NP-трудных* задач($\mathbb{NP}-hard$) -- это:
+1) задачи оптимизации, для которых соответствующая задача распознавания свойств NP-полна.
+2) задачи распознавания свойств, для которых есть NP-полная задача, сводимая к ней, но принадлежность которой к классу $\mathbb{NP}$ не доказана.
+3) все задачи, к которым сводятся(по Тьюрингу) NP-трудные задачи($\Pi' \propto_T \Pi$).
+Задача $\Pi$ принадлежит классу $PSPACE$, если её можно решить за полиномиальное количество
+памяти на ДМТ. Все ранее рассмотренные классы входят в класс $PSPACE$. Вопрос строгого
+включения класса $P$ в класс $PSPACE$ остаётся открытым.
+** Задача о рюкзаке
+Найти
+#+begin_export latex
+\begin{equation}
+max_{z \in B^n}\sum_{i = 1}^nc_iz_i,
+\end{equation}
+при том, что
+\begin{equation}
+\sum_{i = 1}^nw_iz_i \leq K
+\end{equation}
+Условия: $K, c_i, W_i, B \in \mathbb{N}$.
+Эта задача сводится к задаче булева линейного программирования и является NP-полной.
+
+Задача решается методом динамического программирования. Сложность решения $nKO(\log(c_i, w_i, K))$.
+Если $K \sim p(n)$, то задача, тем не менее, решается полиномиально.
+#+end_export
+
+Введём $num(I)$ -- максимальное по модулю целое число, фигурирующее в записи задачи $I$. ДМТ
+$A$ решения задачи $\Pi$ называется *псевдополиномиальным*, если
+$\exists p(\cdot, \cdot): \forall I \in \Pi T_A(I) \leq p(|I|, num(I))$.
+*Полиномиальным сужением* задачи $\Pi$ называется задача $\Pi_{p(\cdot)} = \{I \in \Pi | num(I) \leq p(|I|)\}$.
+
+Задача $\Pi$ распознавания свойств называется *сильно-NP-полной, если* её полиномиальное сужение
+NP-полно.
+#+begin_export latex
+\begin{Theorem}
+Если $\mathbb{P} \neq \mathbb{NP}$, то ни для какой сильно-NP-полной задачи нет псевдополиномиального
+алгоритма её решения.
+\end{Theorem}
+\begin{proof}
+Пусть для некоторой сильно-NP-полной задачи мы нашли псевдополиномиальное решение. Тогда
+$\exists p(\cdot, \cdot): \exists A: t_A(I)O \leq p(|I|, num(I))$, соответственно,
+$\forall I \in \Pi_{p(\cdot)}: T_A(I) \leq p(|I|, p(|I))$, поэтому $\Pi_{p(\cdot)} \in \mathbb{P}$,
+откуда следует, что $\mathbb{P} = \mathbb{NP}$. Противоречие.
+\end{proof}
+#+end_export
+*Задача оптимизации* -- найти значение и реализацию
+#+begin_export latex
+\begin{equation}
+Opt(I) = \max_{z \in S_I}f_I(z)
+\end{equation}
+#+end_export
+* Задача оптимизации
+\zall
+$f_I(z)$ называется *целевой функцией*, значение функции называется *значением оптимума*, а
+точка, в которой она достигается -- *реализацией оптимума*.
+$S_i \subset \mathbb{Z}^{n_I}$ -- *допустимая область*, $f_I: S_I \rightarrow \mathbb{Z}$.
+
+Алгоритм $A$ называется *приближённым алгоритмом* решения задачи $\Pi$ оптимизации, если
+$\forall I \in \Pi A(I) \text{ даёт } z^A(I) \in S_I$. Значение целевой функции в точке $z^A(I)$
+называется *приближённым значением* и обозначается $A_f(I)$.
+#+begin_export latex
+\begin{Statement}
+Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall C \not\exists$ приближённого алгоритма $A$,
+решающего задачу о рюкзаке с $T_a(\cdot) \leq p(\cdot)$ и $|A_f(I) - Opt(I)| < C$.
+\end{Statement}
+\begin{proof}
+Пусть такой алгоритм существует. Построим по нему точный полиномиальный алгоритм решения
+задачи о рюкзаке: от задачи $I$ перейдём к задаче $I'$ с полезностями $c'_i = c_i(C + 1)$.
+Применив алгоритм $A$ на $I'$ и разделив ответ на $C + 1$, получим $A'_f(I)$. Тогда
+$Opt(I') = (C + 1)Opt(I) \Rightarrow |Opt(I) - A'(I)| = |\frac{Opt(I') - A_f(I')}{C + 1}| \leq \frac{C}{C + 1}$
+$\Rightarrow |Opt(I) - A'(I)| = 0 \Rightarrow A'$ -- точный алгоритм, являющийся при этом
+полиномиальным, что входит в противоречие с $\mathbb{P} \neq \mathbb{NP}$.
+\end{proof}
+#+end_export
+Приближённый алгоритм $A$ решения задачи оптимизации $\Pi$ называется $\varepsilon$-приближённым,
+если $\forall I \in \Pi: |\frac{Opt(I) - A_f(I)}{Opt(I)}| < \varepsilon$.
+#+begin_export latex
+\begin{Statement}
+Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall \varepsilon > 0 \not\exists \varepsilon$-полиномиального
+решения общей задачи коммивояжёра.
+\end{Statement}
 #+end_export
