@@ -1,4 +1,4 @@
-% Created 2020-02-29 Sat 12:02
+% Created 2020-03-05 Thu 15:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -51,7 +51,7 @@
 
 
 \section{Структура курса}
-\label{sec:orga2dc9b0}
+\label{sec:orgba99d8f}
 \begin{itemize}
 \item Введение в теорию сложности
 \item Линейное программирование
@@ -59,7 +59,7 @@
 \item Методы решения переборных задач
 \end{itemize}
 \section{Литература}
-\label{sec:org812f403}
+\label{sec:orgaea3125}
 \begin{enumerate}
 \item Новикова Н. М. "Дискретные и непрерывные задачи оптимизации"
 \item М. Гэри, Д. Джонсон "Вычислительные машины и труднорешаемые задачи"
@@ -67,14 +67,14 @@
 \item \url{http://www.ccas.ru/depart/malashen/53kmsu.htm}
 \end{enumerate}
 \section{Введение в теорию сложности}
-\label{sec:org1dee211}
+\label{sec:org21a760b}
 \textbf{Массовая задача} $\Pi = \{I\}$, где $I$ - \textbf{индивидуальная задача}. Массовая задача определяется:
 \begin{enumerate}
 \item списком параметров
 \item требованиями к решению
 \end{enumerate}
 \subsection{Задача коммивояжёра}
-\label{sec:org3484a4f}
+\label{sec:org9cd92ef}
 Задан взвешенный ориентированный граф: вершины и матрицы. Нужно найти маршрут через все
 вершины графа минимального веса.
 \begin{equation*}
@@ -91,7 +91,7 @@
 С точки зрения сложности задачи делятся на два класса: полиномиальная или экспоненциальная
 зависимость затрат на решения от длины входа.
 \subsection{Задачи распознавания свойств}
-\label{sec:org5149561}
+\label{sec:orgd8e565b}
 Задачи, в которых требования к решению выражаются предикатом. В этих терминах задача коммивояжёра
 формулируется так:
 \begin{equation*}
@@ -114,7 +114,7 @@
 \end{itemize}
 \end{enumerate}
 \subsection{Задача 1}
-\label{sec:org0454b4c}
+\label{sec:org824e70f}
 Задача построения остовного дерева минимального веса(+задача распознавания свойства):
 \begin{equation*}
 n, d_{ij} \in \mathbb{N}_0
@@ -125,7 +125,7 @@ n, d_{ij} \in \mathbb{N}_0
 n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \subsection{Язык задачи}
-\label{sec:org9f81d03}
+\label{sec:org673fb77}
 Помимо кодировки с задачей связывается \textbf{язык}: \(\alpha(\Pi, e) = \{\sigma \in \Sigma^* | \sigma = e(I), I \in Y(\Pi)\}\),
 где \(Y(\Pi)\) -- это множество индивидуальных задач, на которых ответ является истиной.
 
@@ -152,11 +152,11 @@ n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \textbf{Замечание}: это определение относится только к задачам распознавания свойств.
 \subsection{Задача 2}
-\label{sec:orgb450fb4}
+\label{sec:org2309948}
 Предложить алгоритм распознавания простоты числа, найти его функцию временной сложности и
 оценить её.
 \subsection{Самая интересная часть}
-\label{sec:org82c26d9}
+\label{sec:orgbd984e8}
 Алгоритмически неразрешимая задача(Матиясевич): по коэффициентам многочлена проверить у него
 наличие целочисленных корней.
 
@@ -275,13 +275,13 @@ Az \preceq b?
 "булево линейное неравенство" соответственно, также являются NP-полными. Доказательство
 принадлежности задачи линейного программирования классу $\mathbb{NP}$ является нетривиальным.
 \subsection{Задача 3}
-\label{sec:org33558fb}
+\label{sec:org3ae75c8}
 Доказать, что задача проверки простоты числа принадлежит классу \(\textit{co-}\mathbb{NP}\).
 
 \textbf{Задача 3-выполнимости}: задача КНФ дизъюнкций с ровно тремя слагаемыми. Эта задача
 полиномиально сводится к задаче SAT, и поэтому принадлежит к классу \(\mathbb{NP}\).
 \subsection{Задача 4}
-\label{sec:org6e5f47b}
+\label{sec:org00d79e5}
 Разложить конъюкцию одной или двух переменных в произведение конъюкции трёх переменных.
 \begin{Statement}
 Задача 3-выполнимости NP-полна.
@@ -322,7 +322,7 @@ t_A(\sigma) \leq p_2(|\sigma|)|\Sigma|^{p_1(\sigma)}
 памяти на ДМТ. Все ранее рассмотренные классы входят в класс \(PSPACE\). Вопрос строгого
 включения класса \(P\) в класс \(PSPACE\) остаётся открытым.
 \subsection{Задача о рюкзаке}
-\label{sec:orgcde3936}
+\label{sec:org9614ebc}
 Найти
 \begin{equation}
 max_{z \in B^n}\sum_{i = 1}^nc_iz_i,
@@ -359,7 +359,7 @@ $\forall I \in \Pi_{p(\cdot)}: T_A(I) \leq p(|I|, p(|I))$, поэтому $\Pi_{
 Opt(I) = \max_{z \in S_I}f_I(z)
 \end{equation}
 \section{Задача оптимизации}
-\label{sec:org315edf5}
+\label{sec:org4435611}
 \zall
 \(f_I(z)\) называется \textbf{целевой функцией}, значение функции называется \textbf{значением оптимума}, а
 точка, в которой она достигается -- \textbf{реализацией оптимума}.
@@ -380,10 +380,92 @@ $Opt(I') = (C + 1)Opt(I) \Rightarrow |Opt(I) - A'(I)| = |\frac{Opt(I') - A_f(I')
 $\Rightarrow |Opt(I) - A'(I)| = 0 \Rightarrow A'$ -- точный алгоритм, являющийся при этом
 полиномиальным, что входит в противоречие с $\mathbb{P} \neq \mathbb{NP}$.
 \end{proof}
-Приближённый алгоритм \(A\) решения задачи оптимизации \(\Pi\) называется \$\(\varepsilon\)\$-приближённым,
-если \(\forall I \in \Pi: |\frac{Opt(I) - A_f(I)}{Opt(I)}| < \varepsilon\).
+Приближённый алгоритм \(A\) решения задачи оптимизации \(\Pi\) называется \(\varepsilon\)-приближённым,
+если \(\forall I \in \Pi: \Delta_A(I) = |\frac{Opt(I) - A_f(I)}{Opt(I)}| < \varepsilon\).
 \begin{Statement}
-Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall \varepsilon > 0 \not\exists \varepsilon$-полиномиального
-решения общей задачи коммивояжёра.
+Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall \varepsilon > 0 \not\exists \varepsilon$-приближённого
+полиномиального решения общей задачи коммивояжёра.
 \end{Statement}
+Если параметры задачи целые, то длина входа ограничена снизу числом $n$.
+\textbf{Размерность} задачи - размер массива входных данных.
+
+\textbf{Полностью полиномиальной приближённой схемой} решения задачи оптимизации $\Pi$ называется
+$\{A_{\varepsilon}\}$, где $\forall \varepsilon > 0 \forall I A_{\varepsilon}$ приближённо решает
+$I$ с $t_{A_{\varepsilon}}(I) \leq p(|I|, \frac1{\varepsilon})$ и $\Delta_A(I) \leq \varepsilon$.
+Тогда $T_{A_{\varepsilon}}(w) \leq p(w, \frac1{\varepsilon})$.
+
+\begin{Statement}
+Если для задачи оптимизации выполнены условия:
+\begin{enumerate}
+\item Существует псевдополиномиальный алгоритм решения
+\item $\forall I \in \Pi: |Opt(I)| \leq p_1(|I|, num(I))$ и $|num(I)| \leq p_2(|I|, Opt(I))$.
+\item $\sigma$ разбивается на $\sigma_f$, кодирующую $f_I$, и $\sigma_S$, кодирующую $S_I$ и $\forall z \in S_I f_I(z)$ линейна по $\sigma_f$.
+\end{enumerate}
+то существует полностью полиномиальная приближённая схема решения задачи $\Pi$.
+\end{Statement}
+\begin{Statement}
+Если для задачи оптимизации соответствующая ей задача распознавания свойств является сильно
+$NP$-полной и $\exists p'(\cdot): |Opt(I)| \leq p'(num(I)) \forall I \in \Pi$, то если
+$\mathbb{P} \neq \mathbb{NP} \not\exists$ полностью полиномиальной приближённой схемы решения
+$\Pi$.
+\end{Statement}
+\begin{proof}
+Пусть $\exists$ искомая схема $\{A_{\varepsilon}\}$. Тогда построим алгоритм $A': \forall I \in \Pi A'$
+вызывает $A_{\varepsilon}$, где $\varepsilon = \frac1{p'(num(I)) + 1}$. Тогда
+$|Opt(I) - A'_f(I)| \leq \varepsilon Opt(I) \leq \frac{Opt(I)}{p'(num(I)) + 1} \leq \frac{p'(num(I))}{p'(num(I)) + 1} < 1$
+$\Rightarrow |Opt(I) - A'(I)| = 0$, т. е. $A'$ - точный алгоритм, являющийся псевдополиномиальный.
+\end{proof}
+\section{Линейное программирование}
+\label{sec:org8f126fe}
+\subsection{Литература}
+\label{sec:orga32e7e5}
+\begin{enumerate}
+\item Л. Г. Хачиян "Сложность задач ЛП".
+\end{enumerate}
+
+Задача \textbf{линейного программирования} -- решить систему неравенств:
+\zall
+\begin{equation}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n \leq b_1, \\
+a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \leq b_2, \\
+\ldots, \\
+a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
+\end{cases}
+(Ax \leq B), a_{ij}, b_i \in \mathbb{Z}
+\end{equation}
+При условии, что нулевых строк нет.
+
+С этой задачей связана задача \textbf{линейное неравенство} -- существует ли решение (1)?
+Этой задаче соответствует \textbf{основная задача линейного программирования}: найти
+\begin{equation}
+\max_{Ax \leq b}(c, x) = \max_{Ax \leq B}\sum_{i = 1}^mc_ix_i
+\end{equation}
+В этой задаче $x \in \mathbb{R}^n$, а найти нужно (2).
+Оказывается, что задачи ЛН и ЛП полиномиальны.
+
+\textbf{Каноническая форма} задачи ЛП:
+\begin{equation}
+\max_{Ax = b, x \geq 0}(c, x)
+\end{equation}
+Ещё одна форма:
+\begin{equation}
+\max_{Ax \leq b, x \geq 0}(c, x)
+\end{equation}
+\subsection{Задача 5}
+\label{sec:org1bc8b5a}
+Свести (4) к (2).
+
+Ограничения описывают некоторый многогранник(а точнее, полиэдр, поскольку эта фигура не
+обязательно ограничена) в n-мерном пространстве. С точки зрения геометрии, нужно найти
+наиболее удалённую от нуля гиперплоскость уровня, пересекающую полиэдр.
+
+\begin{Statement}[Принцип граничных решений]
+Если задача (2) имеет решения, то $\exists$ подматрица $A_M$ матрицы $A$ такая, что любое
+решение $x^*: A_Mx^* = B_M$ является решением задачи (2), $|M| = n$.
+\end{Statement}
+На этом наблюдении основан метод \textbf{направленного перебора} или \textbf{симплекс-метод} (Фурье).
+Решаем систему, находим угловые точки, от угловой точки переходим к точке максимального роста.
+Вообще говоря, количество вершин экспоненциально, поэтому полиномиальную версию симплекс-метода
+получить не удаётся.
 \end{document}

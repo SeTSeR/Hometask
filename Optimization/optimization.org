@@ -365,11 +365,98 @@ $\Rightarrow |Opt(I) - A'(I)| = 0 \Rightarrow A'$ -- точный алгорит
 полиномиальным, что входит в противоречие с $\mathbb{P} \neq \mathbb{NP}$.
 \end{proof}
 #+end_export
-Приближённый алгоритм $A$ решения задачи оптимизации $\Pi$ называется $\varepsilon$-приближённым,
-если $\forall I \in \Pi: |\frac{Opt(I) - A_f(I)}{Opt(I)}| < \varepsilon$.
+Приближённый алгоритм $A$ решения задачи оптимизации $\Pi$ называется \varepsilon-приближённым,
+если $\forall I \in \Pi: \Delta_A(I) = |\frac{Opt(I) - A_f(I)}{Opt(I)}| < \varepsilon$.
 #+begin_export latex
 \begin{Statement}
-Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall \varepsilon > 0 \not\exists \varepsilon$-полиномиального
-решения общей задачи коммивояжёра.
+Если $\mathbb{P} \neq \mathbb{NP}$, то $\forall \varepsilon > 0 \not\exists \varepsilon$-приближённого
+полиномиального решения общей задачи коммивояжёра.
+\end{Statement}
+Если параметры задачи целые, то длина входа ограничена снизу числом $n$.
+\textbf{Размерность} задачи - размер массива входных данных.
+
+\textbf{Полностью полиномиальной приближённой схемой} решения задачи оптимизации $\Pi$ называется
+$\{A_{\varepsilon}\}$, где $\forall \varepsilon > 0 \forall I A_{\varepsilon}$ приближённо решает
+$I$ с $t_{A_{\varepsilon}}(I) \leq p(|I|, \frac1{\varepsilon})$ и $\Delta_A(I) \leq \varepsilon$.
+Тогда $T_{A_{\varepsilon}}(w) \leq p(w, \frac1{\varepsilon})$.
+
+\begin{Statement}
+Если для задачи оптимизации выполнены условия:
+\begin{enumerate}
+\item Существует псевдополиномиальный алгоритм решения
+\item $\forall I \in \Pi: |Opt(I)| \leq p_1(|I|, num(I))$ и $|num(I)| \leq p_2(|I|, Opt(I))$.
+\item $\sigma$ разбивается на $\sigma_f$, кодирующую $f_I$, и $\sigma_S$, кодирующую $S_I$ и $\forall z \in S_I f_I(z)$ линейна по $\sigma_f$.
+\end{enumerate}
+то существует полностью полиномиальная приближённая схема решения задачи $\Pi$.
+\end{Statement}
+\begin{Statement}
+Если для задачи оптимизации соответствующая ей задача распознавания свойств является сильно
+$NP$-полной и $\exists p'(\cdot): |Opt(I)| \leq p'(num(I)) \forall I \in \Pi$, то если
+$\mathbb{P} \neq \mathbb{NP} \not\exists$ полностью полиномиальной приближённой схемы решения
+$\Pi$.
+\end{Statement}
+\begin{proof}
+Пусть $\exists$ искомая схема $\{A_{\varepsilon}\}$. Тогда построим алгоритм $A': \forall I \in \Pi A'$
+вызывает $A_{\varepsilon}$, где $\varepsilon = \frac1{p'(num(I)) + 1}$. Тогда
+$|Opt(I) - A'_f(I)| \leq \varepsilon Opt(I) \leq \frac{Opt(I)}{p'(num(I)) + 1} \leq \frac{p'(num(I))}{p'(num(I)) + 1} < 1$
+$\Rightarrow |Opt(I) - A'(I)| = 0$, т. е. $A'$ - точный алгоритм, являющийся псевдополиномиальный.
+\end{proof}
+#+end_export
+* Линейное программирование
+** Литература
+1. Л. Г. Хачиян "Сложность задач ЛП".
+
+Задача *линейного программирования* -- решить систему неравенств:
+#+begin_export latex
+\zall
+\begin{equation}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n \leq b_1, \\
+a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \leq b_2, \\
+\ldots, \\
+a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
+\end{cases}
+(Ax \leq B), a_{ij}, b_i \in \mathbb{Z}
+\end{equation}
+При условии, что нулевых строк нет.
+#+end_export
+
+С этой задачей связана задача *линейное неравенство* -- существует ли решение (1)?
+Этой задаче соответствует *основная задача линейного программирования*: найти
+#+begin_export latex
+\begin{equation}
+\max_{Ax \leq b}(c, x) = \max_{Ax \leq B}\sum_{i = 1}^mc_ix_i
+\end{equation}
+В этой задаче $x \in \mathbb{R}^n$, а найти нужно (2).
+#+end_export
+Оказывается, что задачи ЛН и ЛП полиномиальны.
+
+*Каноническая форма* задачи ЛП:
+#+begin_export latex
+\begin{equation}
+\max_{Ax = b, x \geq 0}(c, x)
+\end{equation}
+#+end_export
+Ещё одна форма:
+#+begin_export latex
+\begin{equation}
+\max_{Ax \leq b, x \geq 0}(c, x)
+\end{equation}
+#+end_export
+** Задача 5
+Свести (4) к (2).
+
+Ограничения описывают некоторый многогранник(а точнее, полиэдр, поскольку эта фигура не
+обязательно ограничена) в n-мерном пространстве. С точки зрения геометрии, нужно найти
+наиболее удалённую от нуля гиперплоскость уровня, пересекающую полиэдр.
+
+#+begin_export latex
+\begin{Statement}[Принцип граничных решений]
+Если задача (2) имеет решения, то $\exists$ подматрица $A_M$ матрицы $A$ такая, что любое
+решение $x^*: A_Mx^* = B_M$ является решением задачи (2), $|M| = n$.
 \end{Statement}
 #+end_export
+На этом наблюдении основан метод *направленного перебора* или *симплекс-метод* (Фурье).
+Решаем систему, находим угловые точки, от угловой точки переходим к точке максимального роста.
+Вообще говоря, количество вершин экспоненциально, поэтому полиномиальную версию симплекс-метода
+получить не удаётся.
