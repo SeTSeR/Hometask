@@ -1,4 +1,4 @@
-% Created 2020-02-29 Sat 23:31
+% Created 2020-03-05 Thu 15:16
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -50,9 +50,9 @@
 
 
 \section{Семинар 1}
-\label{sec:orga6cbc83}
+\label{sec:org148f84d}
 \subsection{Задача 1}
-\label{sec:org21e084a}
+\label{sec:orgcc758d8}
 Построить СДНФ функции:
 \begin{center}
 \begin{tabular}{rrrr}
@@ -71,7 +71,7 @@
 \end{tabular}
 \end{center}
 \subsubsection{Решение}
-\label{sec:org973e9d1}
+\label{sec:orgf390ad2}
    \begin{equation}
 D_f^s(x_1, x_2, x_3) = \overline{x_1}\overline{x_2}\overline{x_3}\vee\overline{x_1}x_2\overline{x_3}
 \vee\overline{x_1}x_2x_3\vee x_1\overline{x_2}x_3
@@ -81,49 +81,49 @@ K_f^s(x_1, x_2, x_3) = (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\ve
 (\overline{x_1}\vee\overline{x_2}\vee x_3)(\overline{x_1}\vee\overline{x_2}\vee\overline{x_3})
 \end{equation}
 \subsection{Задача 2}
-\label{sec:org1f5b043}
+\label{sec:org6fa22fe}
   \begin{equation}
 f = (00101111). \text{ Найти простые импликанты.}
   \end{equation}
 \subsubsection{Решение}
-\label{sec:org7eabc6a}
+\label{sec:org83bd08a}
    \begin{equation}
 A = \{x_1, \overline{x_3}, x_1x_2, x_2\overline{x_3}\}\text{ - импликанты $f$.}
    \end{equation}
 $x_1x_2$ - не простая импликанта.
 \subsection{Задача 3}
-\label{sec:org871d2d4}
+\label{sec:orgbf939aa}
 Найти простые импликанты функции
   \begin{equation}
 f = (01111110).
   \end{equation}
 \subsubsection{Решение}
-\label{sec:org4319fd5}
+\label{sec:org0da44ec}
    \begin{equation}
 A = \{x_1\overline{x_2}, x_2x_3, x_1x_2x_3\}\text{ - импликанты}
    \end{equation}
 $x_1\overline{x_2}$ - простая импликанта, $x_2x_3$ и $x_1x_2x_3$ - не импликанты.
 \subsection{Задача 4}
-\label{sec:orgf016445}
+\label{sec:orgc7bae30}
 Построить сокращённую ДНФ функции
 \begin{equation}
 \tilde{\alpha_f} = (1111 1000 0100 1100)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org4e33bf7}
+\label{sec:orgd9e8985}
 Код максимальной грани: \((0022)\), соответствующая простая импликанта \(\overline{x_1}\overline{x^2}\).
 Далее идёт ребро \((0200)\), соответствующее импликанте \(\overline{x_1}\overline{x_2}\overline{x_3}\).
 Далее идёт ребро \((2100)\), соответствующее импликанте \(x_2\overline{x_3}\overline{x_4}\).
 Следующее ребро \((1102) \rightarrow x_1x_2\overline{x_3}\),
 \((1201) \rightarrow x_1\overline{x_3}x_4\), \((2001) \rightarrow \overline{x_2}\overline{x_3}x_4\).
 \subsection{Задача 2.6}
-\label{sec:orge68e1ac}
+\label{sec:org8ffe052}
 Найти сокращённую ДНФ методом карты:
 \begin{equation}
 \tilde{\alpha_f} = (0101 0111)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orga31129b}
+\label{sec:org8ff380b}
 \begin{center}
 \begin{tabular}{rrr}
 \hline
@@ -138,12 +138,12 @@ x\textsubscript{1x}\textsubscript{2x}\textsubscript{3} & 0 & 1\\
 \end{center}
 Откуда \(D_f = x_3\vee x_1x_2\).
 \subsection{Задача 2.6(5)}
-\label{sec:org7588cbe}
+\label{sec:org0dc3338}
   \begin{equation}
 \tilde{\alpha_f} = (0001 1011 1101 1111)
   \end{equation}
 \subsubsection{Решение}
-\label{sec:org444d87e}
+\label{sec:orgdf55963}
 \begin{center}
 \begin{tabular}{rrrrr}
 \hline
@@ -186,13 +186,13 @@ x\textsubscript{1x}\textsubscript{2x}\textsubscript{3} & 0 & 1\\
 D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\overline{x_3}
 \end{equation}
 \subsection{Задача 2.3(1)}
-\label{sec:org5f83d2b}
+\label{sec:org0d6cbcd}
 Получить сокращённую ДНФ по КНФ:
 \begin{equation}
 (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)(\overline{x_2}\vee\overline{x_3})
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org3c9dad9}
+\label{sec:orgf7eff1b}
 \begin{multline}
    (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)(\overline{x_2}\vee\overline{x_3})
 = (x_1x_2\vee x_1x_3 \vee x_2\overline{x_1}\vee x_2\vee x_2x_3\vee\overline{x_1}\overline{x_3}
@@ -202,7 +202,7 @@ D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\over
 \vee\overline{x_1}\overline{x_3} = x_2\overline{x_3}\vee\overline{x_1}\overline{x_3}\vee x_1\overline{x_2}x_3
 \end{multline}
 \subsection{Задача 2.2(1)}
-\label{sec:orgf2770d3}
+\label{sec:orgf55b91b}
 Построить сокращённую ДНФ по данной ДНФ методом Блейка:
 \begin{equation}
 \overline{x_1}\overline{x_2}\vee x_1\overline{x_2}x_4\vee x_2\overline{x_3}x_4\vee\overline{x_2}x_4|
@@ -210,30 +210,30 @@ D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\over
 \vee\overline{x_3}x_4 = \overline{x_1}\overline{x_2}\vee\overline{x_2}x_4\vee\overline{x_3}x_4
 \end{equation}
 \subsection{Задача 2.2(2)}
-\label{sec:org55982d9}
+\label{sec:org4225b4b}
   \begin{equation}
 x_1\overline{x_2}x_3\vee\overline{x_1}x_2\overline{x_4}\vee\overline{x_2}\overline{x_3}x_4|
 \vee x_1\overline{x_2}x_4
   \end{equation}
 \subsection{Задача 2.9(1)}
-\label{sec:org6035a54}
+\label{sec:orga80c153}
   \begin{equation}
 f(\tilde{x_n}) = x_1\oplus\ldots\oplus x_n
   \end{equation}
 Длина сокращённой ДНФ - ?
 \subsubsection{Решение}
-\label{sec:orga3e345a}
+\label{sec:org399baf9}
    Максимальные грани - точки $\Rightarrow$ длина сокращённой ДНФ, она же длина СДНФ равна
 $2^n - 1$.
 \subsection{Задача 2.9(2)}
-\label{sec:orgac0fc14}
+\label{sec:orgcab386b}
 Найти длину сокращённой ДНФ функции:
   \begin{equation}
 f(\tilde{x_n}) = (x_1\vee x_2\vee x_3)(\overline{x_1}\vee\overline{x_2}\overline{x_3})\oplus
 x_4\oplus\ldots\oplus x_n
   \end{equation}
 \subsubsection{Решение}
-\label{sec:org6d145d5}
+\label{sec:orgd78f67e}
 \begin{equation}
 f(\tilde{\alpha}) = 1 \Leftrightarrow \begin{cases}
 g(\tilde{\alpha}) = 1, \\
@@ -247,29 +247,29 @@ h(\tilde{\alpha}) = 1.
 
 \url{http://mk.cs.msu.ru}, лекционные курсы, ОКи, домашние задания там.
 \section{Домашняя работа 1}
-\label{sec:org2618424}
+\label{sec:org667c31a}
 \subsection{Задача 2.3(4)}
-\label{sec:org996ec8d}
+\label{sec:org1609612}
 Представить в виде СДНФ функцию:
 \zall
 \begin{equation}
 f(\tilde{x}^3) = (01010001)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org27b2fd2}
+\label{sec:org586ebd1}
 Функция принимает единичные значения на наборах $001, 011$ и $111$, откуда СДНФ имеет вид:
 \begin{equation}
 f(\tilde{x}^3) = \overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3\vee x_1x_2x_3
 \end{equation}
 \subsection{Задача 2.1(3)}
-\label{sec:org96b7ca1}
+\label{sec:orgb5e0f4e}
 Из множества \(A\) ЭК выделить простые импликанты функции \(f\):
 \begin{equation}
 A = \{x_1, \overline{x_4}, x_2\overline{x_3}, \overline{x_1}\overline{x_2}\overline{x_4}\},
 f(\tilde{x}^4) = (1010 1110 1101 1110)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org39662df}
+\label{sec:orgd2e284f}
 ЭК $x_1$ не является импликантой функции $f$, так как $f(1111) = 0$.
 
 ЭК $\overline{x_4}$ является простой импликантой функции $f$.
@@ -282,7 +282,7 @@ f(\tilde{x}^4) = (1010 1110 1101 1110)
 является простой, так как содержит множитель $\overline{x_4}$, который, как было указано ранее,
 является импликантой $f$.
 \subsection{Задача 2.5(2, 6)}
-\label{sec:orgba1a846}
+\label{sec:orgd1f09de}
 Изобразив множество \(N_f\) функции \(f(\tilde{x}^n)\) в \(B^n\), найти коды максимальных интервалов
 и построить сокращённую ДНФ:
 \begin{equation}
@@ -292,7 +292,7 @@ f(\tilde{x}^4) = (1010 1110 1101 1110)
 \tilde{\alpha}_f = (0001 0111 1110 1111)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgdba724c}
+\label{sec:org4f3e150}
 Для первой функции находим две максимальные грани с кодами \((112)\) и \((021)\), попытки расширить
 которые приводят к выходу из \(N_f\). Отсюда получаем сокращённую ДНФ:
 \begin{equation}
@@ -304,7 +304,7 @@ f(\tilde{x}^3) = \overline{x_1}x_3\vee x_1x_2
 f(\tilde{x}^4) = x_2x_3\vee x_1\overline{x_3}\vee\overline{x_1}x_2x_4\vee\overline{x_1}x_3x_4
 \end{equation}
 \subsection{Задача 2.6(2, 6)}
-\label{sec:org412b794}
+\label{sec:org7f331b8}
 Найти сокращённую ДНФ функции с помощью минимизирующей карты:
 \begin{equation}
 \tilde{\alpha_f} = (1101 1011)
@@ -348,7 +348,7 @@ f(\tilde{x}^3) = \overline{x_1}\overline{x_2}\vee\overline{x_2}\overline{x_3}\ve
 f(\tilde{x}^4) = x_1\overline{x_2}\vee x_2\overline{x_3}\vee x_3x_4\vee\overline{x_2}x_3\overline{x_4}
 \end{equation}
 \subsection{Задача 2.2(3, 4)}
-\label{sec:orgd290ba3}
+\label{sec:orge2fd59a}
 По заданной ДНФ методом Блейка получить сокращённую ДНФ:
 \begin{equation}
 D = x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3x_4
@@ -357,7 +357,7 @@ D = x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1
 D = x_1\overline{x_2}x_4\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_3}\overline{x_4}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgb2026b3}
+\label{sec:org0a8dbe7}
 \begin{multline}
 x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3x_4 = \\
 = x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3x_4
@@ -377,7 +377,7 @@ x_1\overline{x_2}x_4\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_3}\overli
 \vee\overline{x_2}x_3x_4\vee\overline{x_1}\overline{x_2}\overline{x_4}\vee x_1\overline{x_2}\overline{x_3}
 \end{multline}
 \subsection{Задача 2.3(3, 4)}
-\label{sec:orga31e1b8}
+\label{sec:orgd69a3e3}
 Построить сокращённую ДНФ по заданной КНФ:
 \begin{equation}
 (x_1\vee\overline{x_2}\vee\overline{x_3})(\overline{x_1}\vee x_2)(x_1\vee x_2\vee x_3)
@@ -386,7 +386,7 @@ x_1\overline{x_2}x_4\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_3}\overli
 (x_1\vee x_2\vee x_3)(\overline{x_1}\vee\overline{x_2}\vee\overline{x_3})
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org6b8ea13}
+\label{sec:orged8078e}
 \begin{multline}
 (x_1\vee\overline{x_2}\vee\overline{x_3})(\overline{x_1}\vee x_2)(x_1\vee x_2\vee x_3) =
 (x_1x_2\vee\overline{x_1}\overline{x_2}\vee\overline{x_1}\overline{x_3}\vee x_2\overline{x_3})
@@ -400,13 +400,13 @@ x_1x_2\overline{x_3}\vee x_2\overline{x_3} = x_1x_2\vee x_2\overline{x_3}\vee\ov
 \overline{x_1}x_3\vee\overline{x_2}x_3
 \end{equation}
 \subsection{Задача 2.9(6)}
-\label{sec:orgaaa3a41}
+\label{sec:org1ef98fa}
 Найти длину сокращённой ДНФ функции \(f\):
 \begin{equation}
 f(\tilde{x}^n) = (x_1\vee\ldots\vee x_n)(x_1\vee\ldots\vee x_k\vee\overline{x}_{k + 1}\vee\ldots\vee\overline{x}_n)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org5900cfb}
+\label{sec:org67d789c}
 \begin{multline}
 (x_1\vee\ldots\vee x_n)(x_1\vee\ldots\vee x_k\vee\overline{x}_{k + 1}\vee\ldots\overline{x}_n) =
 (\vee_{i = 1}^kx_k)\vee(\vee_{i, j = 1}^{k, n}x_ix_j)\vee(\vee_{i = k + 1, j = 1}^{n}\overline{x}_ix_j) = \\
@@ -417,4 +417,196 @@ f(\tilde{x}^n) = (x_1\vee\ldots\vee x_n)(x_1\vee\ldots\vee x_k\vee\overline{x}_{
 k + 2\frac{(n - k)(n - k + 1)}2 = k + (n - k)(n - k + 1) = n + (n - k)^2 = n^2 - 2nk + n + k^2
 \end{equation}
 слагаемых.
+\section{Семинар 2}
+\label{sec:orgd684705}
+\subsection{Задача 3.1(1, 5)}
+\label{sec:org862d0ac}
+\begin{equation}
+   D = x_1x_2 \vee\overline{x_1}\text{ - не тупиковая, не минимальная, кратчайшая.}
+\end{equation}
+\begin{equation}
+   D = x_1x_2x_3\vee\overline{x_2}x_3\vee x_2\overline{x_3}\text{ - не тупиковая, не минимальная, кратчайшая.}
+\end{equation}
+\subsection{Задача 3.3(1)}
+\label{sec:org1cb7f2c}
+Построить ядро, ДНФ Квайна, ДНФ \(\Sigma T\) по сокращённой ДНФ:
+   \begin{equation}
+D_f = xy\vee\overline{x}\overline{z}\vee y\overline{z}
+   \end{equation}
+\subsubsection{Решение}
+\label{sec:org0bcd37e}
+Таблица Квайна:
+\begin{center}
+\begin{tabular}{lrlrlllrrl}
+\hline
+ & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 & \\
+\hline
+\(xy\) &  & x &  & x & x & x & 1 & 1 & я\\
+\(\overline{x}\overline{z}\) & 1 & x & 1 & x & x & x &  &  & я\\
+\(y\overline{z}\) &  & x & 1 & x & x & x & 1 &  & пя, р\\
+\hline
+\end{tabular}
+\end{center}
+000 и 111 - ядровые грани, 010 и 110 покрыты ядром => \(y\overline{z}\) покрыта ядром.
+Ядро: \(\{N_{xy}, N_{\overline{x}\overline{z}}\}\)
+ДНФ Квайна: \(D_f = xy\vee\overline{x}\overline{z}\)
+Точки 010 и 110 регулярны, поэтому ДНФ \(\Sigma T\) совпадает с ДНФ Квайна.
+\subsection{Задача 3.3(2)}
+\label{sec:orge051508}
+Построить ядро, ДНФ Квайна, ДНФ \(\Sigma t\):
+   \begin{equation}
+D = \overline{z}\overline{w}\vee\overline{y}zw\vee x\overline{y}w\vee \overline{x}\overline{y}z
+\vee x\overline{y}\overline{z}\vee\overline{x}\overline{y}\overline{w}
+   \end{equation}
+\subsubsection{Решение}
+\label{sec:orgccd4406}
+Таблица Квайна:
+\begin{center}
+\begin{tabular}{lrlrrrlllrrlrrlll}
+\hline
+ & 0000 & 0001 & 0010 & 0011 & 0100 & 0101 & 0110 & 0111 & 1000 & 1001 & 1010 & 1011 & 1100 & 1101 & 1110 & 1111\\
+\hline
+\(\overline{z}\overline{w}\) & 1 & x &  &  & 1 & x & x & x & 1 &  & x &  & 1 & x & x & x\\
+\(\overline{y}zw\) &  & x &  & 1 &  & x & x & x &  &  & x & 1 &  & x & x & x\\
+\(x\overline{y}w\) &  & x &  &  &  & x & x & x &  & 1 & x & 1 &  & x & x & x\\
+\(\overline{x}\overline{y}z\) &  & x & 1 & 1 &  & x & x & x &  &  & x &  &  & x & x & x\\
+\(x\overline{y}\overline{z}\) &  & x &  &  &  & x & x & x & 1 & 1 & x &  &  & x & x & x\\
+\(\overline{x}\overline{y}\overline{w}\) & 1 & x & 1 &  &  & x & x & x &  &  & x &  &  & x & x & x\\
+\hline
+\end{tabular}
+\end{center}
+Точки 0100 и 1100 ядровые, точки 0000 и 1000 покрыты ядром и регулярны, откуда ядро: \(\{N_{\overline{z}\overline{w}}\}\),
+и ДНФ Квайна совпадает с ДНФ \(\Sigma T\) и равна исходной.
+\subsection{Задача 3.4(3)}
+\label{sec:org6643eb8}
+   \begin{equation}
+D_f = \overline{x}w\vee\overline{y}w\vee zw\vee xz\vee yz
+   \end{equation}
+\subsubsection{Решение}
+\label{sec:org367dbcc}
+Таблица Квайна:
+\begin{center}
+\begin{tabular}{llrlrlrrrlrrrlrrr}
+\hline
+ & 0000 & 0001 & 0010 & 0011 & 0100 & 0101 & 0110 & 0111 & 1000 & 1001 & 1010 & 1011 & 1100 & 1101 & 1110 & 1111\\
+\hline
+\(\overline{x}w\) & x & 1 & x & 1 & x & 1 &  & 1 & x &  &  &  & x &  &  & \\
+\(\overline{y}w\) & x & 1 & x & 1 & x &  &  &  & x & 1 &  & 1 & x &  &  & \\
+\(zw\) & x &  & x & 1 & x &  &  & 1 & x &  &  & 1 & x &  &  & 1\\
+\(xz\) & x &  & x &  & x &  &  &  & x &  & 1 & 1 & x & 1 & 1 & \\
+\(yz\) & x &  & x &  & x &  & 1 & 1 & x &  &  &  & x &  & 1 & 1\\
+\hline
+\end{tabular}
+\end{center}
+Точки 0101, 0110, 1001, 1010 ядровые, 0001, 0011, 0111, 1011, 1110, 1111 покрыты ядром и регулярны,
+соответственно, ДНФ \(\Sigma M\), ДНФ \(\Sigma T\) и ДНФ Квайна совпадают и равны:
+\begin{equation}
+D_f = \overline{x}w\vee\overline{y}w\vee xz\vee yz
+\end{equation}
+\subsection{Задача 3.6(1)}
+\label{sec:orgfdae10f}
+Построить все тупиковые ДНФ функции
+\begin{equation}
+\tilde{\alpha}_f = (01111100)
+\end{equation}
+\subsubsection{Решение}
+\label{sec:org39c1c43}
+Карта Карно:
+\begin{center}
+\begin{tabular}{rrr}
+\hline
+\(xy\backslash w\) & 0 & 1\\
+\hline
+00 & 0 & 1\\
+01 & 1 & 1\\
+11 & 0 & 0\\
+10 & 1 & 1\\
+\hline
+\end{tabular}
+\end{center}
+Отсюда получаем \(\overline{x}w\vee\overline{x}y\vee x\overline{y}\vee\overline{y}w\). Таблица
+Квайна:
+\begin{center}
+\begin{tabular}{lrrrrrl}
+\hline
+ & 001 & 010 & 011 & 100 & 101 & \\
+\hline
+\(K_1 = \overline{x}w\) & 1 &  & 1 &  &  & \\
+\(K_2 = \overline{x}y\) &  & 1 & 1 &  &  & я\\
+\(K_3 = x\overline{y}\) &  &  &  & 1 & 1 & я\\
+\(K_4 = \overline{y}w\) & 1 &  &  &  & 1 & \\
+\hline
+\end{tabular}
+\end{center}
+Точки 010 и 100 ядровые, точки 011 и 101 покрыты ядром.
+\begin{equation}
+(K_1\vee K_4)\cdot K_2\cdot K_3 = K_1K_2K_3\vee K_2K_3K_4
+\end{equation}
+Все тупиковые ДНФ:
+\begin{equation}
+\overline{x}w\vee\overline{x}y\vee x\overline{y}
+\end{equation}
+\begin{equation}
+\overline{x}y\vee x\overline{y}\vee\overline{y}w
+\end{equation}
+\subsection{Задача 3.6(4)}
+\label{sec:orgb09503e}
+   \begin{equation}
+\tilde{\alpha}_f = (1111 1000 0100 1100)
+   \end{equation}
+\subsubsection{Решение}
+\label{sec:org8b48703}
+Карта Карно:
+\begin{center}
+\begin{tabular}{rrrrr}
+\hline
+\(xy\backslash zw\) & 00 & 01 & 11 & 10\\
+\hline
+00 & 1 & 1 & 1 & 1\\
+01 & 1 & 0 & 0 & 0\\
+11 & 1 & 1 & 0 & 0\\
+10 & 0 & 1 & 0 & 0\\
+\hline
+\end{tabular}
+\end{center}
+Получаем сокращённую ДНФ:
+\begin{equation}
+\overline{x}\overline{y}\vee\overline{x}\overline{z}\overline{w}
+\vee xy\overline{z}\vee x\overline{z}w\vee \overline{y}\overline{z}w
+\end{equation}
+Таблица Квайна:
+\begin{center}
+\begin{tabular}{lrrrrrrrrl}
+\hline
+ & 0000 & 0001 & 0010 & 0011 & 0100 & 1001 & 1100 & 1101 & \\
+\hline
+\(K_1 = \overline{x}\overline{y}\) & 1 & 1 & 1 & 1 &  &  &  &  & я\\
+\(K_2 = \overline{x}\overline{z}\overline{w}\) & 1 &  &  &  & 1 &  &  &  & \\
+\(K_3 = y\overline{z}\overline{w}\) &  &  &  &  & 1 &  & 1 &  & \\
+\(K_4 = xy\overline{z}\) &  &  &  &  &  &  & 1 & 1 & \\
+\(K_5 = x\overline{z}w\) &  &  &  &  &  & 1 &  & 1 & \\
+\(K_6 = \overline{y}\overline{z}w\) &  & 1 &  &  &  & 1 &  &  & \\
+\hline
+\end{tabular}
+\end{center}
+Ядровые точки 0010 и 0011, точки 0000 и 0001 покрыты ядром.
+Функция покрытия для оставшейся таблицы:
+\begin{equation}
+(K_2\vee K_3)(K_5\vee K_6)(K_3\vee K_4)(K_4\vee K_5) =
+(K_3\vee K_2K_4)(K_5\vee K_4K_6) =
+K_3K_5\vee K_3K_4K_6\vee K_2K_4K_5\vee K_2K_4K_6
+\end{equation}
+Получаем 4 тупиковых ДНФ:
+\begin{equation}
+\overline{x}\overline{y}\vee y\overline{z}\overline{w}\vee x\overline{z}w,
+\end{equation}
+\begin{equation}
+\overline{x}\overline{y}\vee y\overline{z}\overline{w}\vee xy\overline{z}\vee\overline{y}\overline{z}w,
+\end{equation}
+\begin{equation}
+\overline{x}\overline{y}\vee \overline{x}\overline{z}\overline{w}\vee xy\overline{z}\vee x\overline{z}w,
+\end{equation}
+\begin{equation}
+\overline{x}\overline{y}\vee\overline{x}\overline{z}\overline{w}\vee xy\overline{z}\vee \overline{y}\overline{z}w
+\end{equation}
 \end{document}

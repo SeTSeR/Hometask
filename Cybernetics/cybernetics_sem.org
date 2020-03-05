@@ -398,3 +398,177 @@ k + 2\frac{(n - k)(n - k + 1)}2 = k + (n - k)(n - k + 1) = n + (n - k)^2 = n^2 -
 \end{equation}
 слагаемых.
     #+end_export
+* Семинар 2
+** Задача 3.1(1, 5)
+   #+begin_export latex
+\begin{equation}
+   D = x_1x_2 \vee\overline{x_1}\text{ - не тупиковая, не минимальная, кратчайшая.}
+\end{equation}
+\begin{equation}
+   D = x_1x_2x_3\vee\overline{x_2}x_3\vee x_2\overline{x_3}\text{ - не тупиковая, не минимальная, кратчайшая.}
+\end{equation}
+   #+end_export
+** Задача 3.3(1)
+   Построить ядро, ДНФ Квайна, ДНФ $\Sigma T$ по сокращённой ДНФ:
+   #+begin_export latex
+   \begin{equation}
+D_f = xy\vee\overline{x}\overline{z}\vee y\overline{z}
+   \end{equation}
+   #+end_export
+*** Решение
+Таблица Квайна:
+|----------------------------+-----+-----+-----+-----+-----+-----+-----+-----+-------|
+|                            | 000 | 001 | 010 | 011 | 100 | 101 | 110 | 111 |       |
+|----------------------------+-----+-----+-----+-----+-----+-----+-----+-----+-------|
+| $xy$                       |     | x   |     | x   | x   | x   |   1 |   1 | я     |
+| $\overline{x}\overline{z}$ |   1 | x   |   1 | x   | x   | x   |     |     | я     |
+| $y\overline{z}$            |     | x   |   1 | x   | x   | x   |   1 |     | пя, р |
+|----------------------------+-----+-----+-----+-----+-----+-----+-----+-----+-------|
+000 и 111 - ядровые грани, 010 и 110 покрыты ядром => $y\overline{z}$ покрыта ядром.
+Ядро: $\{N_{xy}, N_{\overline{x}\overline{z}}\}$
+ДНФ Квайна: $D_f = xy\vee\overline{x}\overline{z}$
+Точки 010 и 110 регулярны, поэтому ДНФ $\Sigma T$ совпадает с ДНФ Квайна.
+** Задача 3.3(2)
+Построить ядро, ДНФ Квайна, ДНФ $\Sigma t$:
+   #+begin_export latex
+   \begin{equation}
+D = \overline{z}\overline{w}\vee\overline{y}zw\vee x\overline{y}w\vee \overline{x}\overline{y}z
+\vee x\overline{y}\overline{z}\vee\overline{x}\overline{y}\overline{w}
+   \end{equation}
+   #+end_export
+*** Решение
+Таблица Квайна:
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+|                                        | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+| $\overline{z}\overline{w}$             |    1 | x    |      |      |    1 | x    | x    | x    |    1 |      | x    |      |    1 | x    | x    | x    |
+| $\overline{y}zw$                       |      | x    |      |    1 |      | x    | x    | x    |      |      | x    |    1 |      | x    | x    | x    |
+| $x\overline{y}w$                       |      | x    |      |      |      | x    | x    | x    |      |    1 | x    |    1 |      | x    | x    | x    |
+| $\overline{x}\overline{y}z$            |      | x    |    1 |    1 |      | x    | x    | x    |      |      | x    |      |      | x    | x    | x    |
+| $x\overline{y}\overline{z}$            |      | x    |      |      |      | x    | x    | x    |    1 |    1 | x    |      |      | x    | x    | x    |
+| $\overline{x}\overline{y}\overline{w}$ |    1 | x    |    1 |      |      | x    | x    | x    |      |      | x    |      |      | x    | x    | x    |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+Точки 0100 и 1100 ядровые, точки 0000 и 1000 покрыты ядром и регулярны, откуда ядро: $\{N_{\overline{z}\overline{w}}\}$,
+и ДНФ Квайна совпадает с ДНФ $\Sigma T$ и равна исходной.
+** Задача 3.4(3)
+   #+begin_export latex
+   \begin{equation}
+D_f = \overline{x}w\vee\overline{y}w\vee zw\vee xz\vee yz
+   \end{equation}
+   #+end_export
+*** Решение
+Таблица Квайна:
+|-----------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+|                 | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
+|-----------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+| $\overline{x}w$ | x    |    1 | x    |    1 | x    |    1 |      |    1 | x    |      |      |      | x    |      |      |      |
+| $\overline{y}w$ | x    |    1 | x    |    1 | x    |      |      |      | x    |    1 |      |    1 | x    |      |      |      |
+| $zw$            | x    |      | x    |    1 | x    |      |      |    1 | x    |      |      |    1 | x    |      |      |    1 |
+| $xz$            | x    |      | x    |      | x    |      |      |      | x    |      |    1 |    1 | x    |    1 |    1 |      |
+| $yz$            | x    |      | x    |      | x    |      |    1 |    1 | x    |      |      |      | x    |      |    1 |    1 |
+|-----------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+Точки 0101, 0110, 1001, 1010 ядровые, 0001, 0011, 0111, 1011, 1110, 1111 покрыты ядром и регулярны,
+соответственно, ДНФ $\Sigma M$, ДНФ $\Sigma T$ и ДНФ Квайна совпадают и равны:
+#+begin_export latex
+\begin{equation}
+D_f = \overline{x}w\vee\overline{y}w\vee xz\vee yz
+\end{equation}
+#+end_export
+** Задача 3.6(1)
+Построить все тупиковые ДНФ функции
+#+begin_export latex
+\begin{equation}
+\tilde{\alpha}_f = (01111100)
+\end{equation}
+#+end_export
+*** Решение
+Карта Карно:
+|------------------+---+---|
+| $xy\backslash w$ | 0 | 1 |
+|------------------+---+---|
+|               00 | 0 | 1 |
+|               01 | 1 | 1 |
+|               11 | 0 | 0 |
+|               10 | 1 | 1 |
+|------------------+---+---|
+Отсюда получаем $\overline{x}w\vee\overline{x}y\vee x\overline{y}\vee\overline{y}w$. Таблица
+Квайна:
+|-----------------------+-----+-----+-----+-----+-----+---|
+|                       | 001 | 010 | 011 | 100 | 101 |   |
+|-----------------------+-----+-----+-----+-----+-----+---|
+| $K_1 = \overline{x}w$ |   1 |     |   1 |     |     |   |
+| $K_2 = \overline{x}y$ |     |   1 |   1 |     |     | я |
+| $K_3 = x\overline{y}$ |     |     |     |   1 |   1 | я |
+| $K_4 = \overline{y}w$ |   1 |     |     |     |   1 |   |
+|-----------------------+-----+-----+-----+-----+-----+---|
+Точки 010 и 100 ядровые, точки 011 и 101 покрыты ядром.
+#+begin_export latex
+\begin{equation}
+(K_1\vee K_4)\cdot K_2\cdot K_3 = K_1K_2K_3\vee K_2K_3K_4
+\end{equation}
+#+end_export
+Все тупиковые ДНФ:
+#+begin_export latex
+\begin{equation}
+\overline{x}w\vee\overline{x}y\vee x\overline{y}
+\end{equation}
+\begin{equation}
+\overline{x}y\vee x\overline{y}\vee\overline{y}w
+\end{equation}
+#+end_export
+** Задача 3.6(4)
+   #+begin_export latex
+   \begin{equation}
+\tilde{\alpha}_f = (1111 1000 0100 1100)
+   \end{equation}
+   #+end_export
+*** Решение
+Карта Карно:
+|-------------------+----+----+----+----|
+| $xy\backslash zw$ | 00 | 01 | 11 | 10 |
+|-------------------+----+----+----+----|
+|                00 |  1 |  1 |  1 |  1 |
+|                01 |  1 |  0 |  0 |  0 |
+|                11 |  1 |  1 |  0 |  0 |
+|                10 |  0 |  1 |  0 |  0 |
+|-------------------+----+----+----+----|
+Получаем сокращённую ДНФ:
+#+begin_export latex
+\begin{equation}
+\overline{x}\overline{y}\vee\overline{x}\overline{z}\overline{w}
+\vee xy\overline{z}\vee x\overline{z}w\vee \overline{y}\overline{z}w
+\end{equation}
+#+end_export
+Таблица Квайна:
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+|                                              | 0000 | 0001 | 0010 | 0011 | 0100 | 1001 | 1100 | 1101 |   |
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+| $K_1 = \overline{x}\overline{y}$             |    1 |    1 |    1 |    1 |      |      |      |      | я |
+| $K_2 = \overline{x}\overline{z}\overline{w}$ |    1 |      |      |      |    1 |      |      |      |   |
+| $K_3 = y\overline{z}\overline{w}$            |      |      |      |      |    1 |      |    1 |      |   |
+| $K_4 = xy\overline{z}$                       |      |      |      |      |      |      |    1 |    1 |   |
+| $K_5 = x\overline{z}w$                       |      |      |      |      |      |    1 |      |    1 |   |
+| $K_6 = \overline{y}\overline{z}w$            |      |    1 |      |      |      |    1 |      |      |   |
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+Ядровые точки 0010 и 0011, точки 0000 и 0001 покрыты ядром.
+Функция покрытия для оставшейся таблицы:
+#+begin_export latex
+\begin{equation}
+(K_2\vee K_3)(K_5\vee K_6)(K_3\vee K_4)(K_4\vee K_5) =
+(K_3\vee K_2K_4)(K_5\vee K_4K_6) =
+K_3K_5\vee K_3K_4K_6\vee K_2K_4K_5\vee K_2K_4K_6
+\end{equation}
+Получаем 4 тупиковых ДНФ:
+\begin{equation}
+\overline{x}\overline{y}\vee y\overline{z}\overline{w}\vee x\overline{z}w,
+\end{equation}
+\begin{equation}
+\overline{x}\overline{y}\vee y\overline{z}\overline{w}\vee xy\overline{z}\vee\overline{y}\overline{z}w,
+\end{equation}
+\begin{equation}
+\overline{x}\overline{y}\vee \overline{x}\overline{z}\overline{w}\vee xy\overline{z}\vee x\overline{z}w,
+\end{equation}
+\begin{equation}
+\overline{x}\overline{y}\vee\overline{x}\overline{z}\overline{w}\vee xy\overline{z}\vee \overline{y}\overline{z}w
+\end{equation}
+#+end_export
