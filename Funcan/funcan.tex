@@ -1,4 +1,4 @@
-% Created 2020-02-27 Thu 09:48
+% Created 2020-03-05 Thu 15:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -53,7 +53,7 @@
 
 
 \section{Структура курса}
-\label{sec:orge219e57}
+\label{sec:org051f5d8}
 \begin{enumerate}
 \item Структура множеств на прямой
 \item Мера и измеримые множества
@@ -72,7 +72,7 @@
 \end{enumerate}
 
 \section{Список литературы}
-\label{sec:orgb70ae0d}
+\label{sec:orge8e827b}
 Капустин "Функциональный анализ".
 
 Зачёт из двух частей: теоретический вопрос и задача из списка.
@@ -85,7 +85,7 @@
 \item Т. А. Леонтьева, А. В. Домрина "Задачи по теории функций и функциональному анализу".
 \end{enumerate}
 \section{Открытые и замкнутые множества на прямой}
-\label{sec:org445b490}
+\label{sec:org730ddbe}
 \zall
 $$E = E_1 \cup E_2 = \{e | e \in E_1 || e \in E_2\}$$
 $$E = E_1 \cap E_2 = \{e | e \in E_1 \&\& e \in E_2\}$$
@@ -137,7 +137,7 @@ $\forall x_1 \neq x_2 V(x_1) = V(x_2)$, либо $V(x_1) \cap V(x_2) = 0$.
 точки канторова множества - все точки, не содержащие в своём представлении единиц. Множество
 таких точек континуально.
 \section{Измеримые множества. Мера Лебега.}
-\label{sec:orgc3a8cd0}
+\label{sec:orgd69e7a4}
 \zall
 Покрытием множества $E$ будем называть счётную систему интервалов, объеднинение которых содержит $E$
 Составим число $\sigma(s)$ - сумму длин отрезков, входящих в покрытие.
@@ -327,7 +327,7 @@ $C = \cup_{n = -\infty}^{+\infty}\Phi_n$. Но $|C| = 1$, а $\Phi_n$ конгр
 \textbf{Абстрактная мера} - положительная действительнозначная функция на полукольце,
 обладающая свойством конечной аддитивности.
 \section{Измеримые функции}
-\label{sec:org27fbb7c}
+\label{sec:orgcc45e06}
 \zall
 Будем использовать обозначение \(E[f > a] = \{x \in E | f(x) > a\}\).
 
@@ -506,5 +506,179 @@ $\forall x_0 \notin R \exists N = N(x_0) x_0 \notin R_N \Rightarrow x_0 \notin E
 \begin{equation}
 E[f \neq g] \subset \cup_{n = 1}^{\infty}E\left[|f - g| \geq \frac1n\right]
 \end{equation}
+\end{proof}
+\begin{Theorem}[Теорема Егорова]
+Пусть $|E| < +\infty$ и $f_n \to f$ почти всюду, все функции почти всюду конечны и измеримы.
+Тогда $\forall\delta > 0 \exists E_{\delta} \subset E$ и $|E_{\delta}| > |E| - \delta$
+$f_n(x) \rightrightarrows f(x)$ на $E_{\delta}$.
+\end{Theorem}
+\begin{Theorem}[Теорема Лузина]
+Пусть
+\begin{equation}
+\forall\varepsilon > 0 \exists \varphi(x) \in C(E) |E[f \neq \varphi]| < \varepsilon
+\end{equation}
+Если $|f| \leq k$, то $|\varphi| \leq k$.
+\end{Theorem}
+\section{Интеграл Лебега}
+\label{sec:orgeb1302c}
+\subsection{Интеграл Лебега от ограниченной функции на множестве конечной меры}
+\label{sec:org1937225}
+Пусть \(|E| < +\infty\). \textbf{Лебеговым разбиением} множества \(E\) назовём совокупность конечного
+числа непересекающихся измеримых множеств, объединение которых даёт \(E\):
+\begin{equation}
+T = \{E_k\}|_{k = 1}^n, \cup_{k = 1}E_k = E, E_i \cap E_j = \emptyset, \forall i, j: i \neq j
+\end{equation}
+\textbf{Верхней} и \textbf{нижней} интегральной суммой назовём суммы:
+\begin{equation}
+S = \sum_{k = 1}^nM_k|E_k|,
+\end{equation}
+\begin{equation}
+s = \sum_{k = 1}^nm_k|E_k|,
+\end{equation}
+где
+\begin{equation}
+M_k = \sup_{E_k}f(x), m_k = \inf_{E_k}f(x)
+\end{equation}
+\textbf{Верхним} и \textbf{нижним} интегралами Лебега называются пределы:
+\begin{equation}
+\overline{I} = \inf_TS_t, \underline{I} = \sup_{T}s_T
+\end{equation}
+\textbf{Интегралом} Лебега называется значение \(I = \overline{I} = \underline{I} = \int_Ef(x)dx\),
+если эти множества совпадают. В этом случае функция \(f(x)\) называется \textbf{интегрируемой по Лебегу}
+на \(E\).
+
+Разбиение \(T^*\) называется \textbf{измельчением} разбиения \(T\), если:
+1. $1 \leq i \leq m \exists \nu(i): 1 \leq \nu(i) \leq n: E_i^* \subset E_{\nu(i)}$
+2. $\cup_{\nu(i) = k}E^*_i = E_k$
+
+\begin{Statement}
+Если $T^*$ - измельчение $T$, то
+\begin{equation}
+S_{T^*} \leq S_T, s_{T^*} \geq S_T.
+\end{equation}
+\end{Statement}
+\begin{proof}
+Докажем только первое неравенство, второе аналогично.
+\begin{equation}
+S_{T^*} = \sum_{i = 1}^mM_i^*|E_i^*| = \sum_{k = 1}^n\sum_{\nu(i) = k}M_i^*|E_i^*| \leq
+\sum_{k = 1}^n\sum_{\nu(i) = k}M_k|E_i^*| = \sum_{k = 1}M_k|E_k| = S_T
+\end{equation}
+\end{proof}
+Разбиение $\hat{T} = T_1\times T_2$ будем называть \textbf{произведением} разбиений $T_1$ и
+$T_2$, если оно состоит из всевозможных пересечений множеств из $T_1$ с множествами из $T_2$.
+\begin{Consequence}
+\begin{equation}
+\forall T_1, T_2 s_{T_1} \leq s_{\hat{T}} \leq S_{\hat{T}} \leq S_{T_2}
+\end{equation}
+\end{Consequence}
+В частности, из этого следует, что $\underline{I} \leq \overline{I}$.
+\begin{Theorem}
+Если функция интегрируема по Риману на $[a, b]$, то она интегрируема по Лебегу на $[a, b]$.
+\end{Theorem}
+\begin{proof}
+Разбиение по Риману есть частный случай разбиения по Лебегу, поэтому:
+\begin{equation}
+\underline{I}_R \leq \underline{I}_L \leq \overline{I}_L \leq \overline{I}_R.
+\end{equation}
+Поскольку функция интегрируема по Риману, $\underline{I}_R = \overline{I}_R = I \Rightarrow$
+$\underline{I}_L = \overline{I}_L = I$.
+\end{proof}
+Пример функции, интегрируемой по Лебегу, но не интегрируемой по Риману - функция Дирихле:
+$$E = [0, 1]$$
+\begin{equation}
+f(x) = \begin{cases}
+1, x \in \mathbb{R} \backslash \mathbb{Q}, \\
+0, x \in \mathbb{Q}
+\end{cases}
+\end{equation}
+Пусть $E_1 = E \cap Q, E_2 = E \backslash E_1$. Рассмотрим $T: {E_1, E_2}$. Тогда
+\begin{equation}
+s_t = 0|E_1| + 1|E_2| = 1 = S_T \Rightarrow I_L = 1
+\end{equation}
+\begin{Theorem}[Теорема Лебега]
+Пусть ограниченная функция $f(x)$ измерима на множестве конечной меры. Тогда эта функция
+интегрируема на нём.
+\end{Theorem}
+\begin{proof}
+\begin{equation}
+m \leq f(x) \leq M
+\end{equation}
+Составим лебегово разбиение $m = y_0 < y_1 < \ldots < y_n = M$. Введём множества
+$E_0 = E[y_0 \leq f(x) \leq y_1], E_k = E[y_{k - 1} < f(x) \leq y_k], k = \overline{2, n}$.
+На них $s_T = \sum_{k = 1}^nM_k|E_k|, S_T = \sum_{k = 1}^nm_k|E_k|, y_{k = 1} \leq m_k \leq M_k \leq y_k$.
+Тогда
+\begin{equation}
+\sum_{k = 1}^ny_{k - 1}|E_k| \leq s_T \leq S_T \leq \sum_{k = 1}^ny_k|E_k|,
+\end{equation}
+соответственно
+\begin{equation}
+0 \leq S_T - s_t \leq \sum_{k = 1}^n(y_k - y_{k - 1})|E_k| \leq \delta|E|,
+\end{equation}
+где $\delta = \max_{1 \leq k \leq n}(y_k - y_{k - 1}) \Rightarrow 0 \leq$
+$0 \leq \overline{I} - \underline{I} \leq S_T - s_T$.
+\end{proof}
+Спецкурс в четверг в 16:20.
+\subsection{Свойства интеграла Лебега}
+\label{sec:orgeed9315}
+\begin{enumerate}
+\item \(\int_Edx = |E|\).
+\item \(\int_E\alpha fdx = \alpha\int_Efdx, \alpha = const\).
+\item \(\int_E(f_1 + f_2)dx = \int_Ef_1dx + \int_Ef_2dx\).
+\item Если \(E_1 \cap E_2 = \emptyset, E = E_1 \cup E_2\), то \(\int_Efdx = \int_{E_1}fdx + \int_{E_2}fdx\).
+\item Если \(f_1 \leq f_2\) почти всюду, то \(\int_Ef_1dx \leq \int_Ef_2dx\).
+\end{enumerate}
+\subsection{Интеграл Лебега от измеримой(вообще говоря, неограниченной), неотрицательной функции на множестве конечной меры}
+\label{sec:org2beb85e}
+Введём \textbf{срез} функции \(f(x)\):
+\zall
+\begin{equation}
+f_N(x) = \begin{cases}
+f(x), f(x) \leq N, \\
+N, f(x) > N.
+\end{cases}
+\end{equation}
+Тогда
+\begin{equation}
+E[f_N(x) > a] = \begin{cases}
+E[f(x) > a] = E[f(x) > a], a < N, \\
+\emptyset, a \geq N
+\end{cases}
+\end{equation}
+По теореме Лебега $\exists I_N = \int_Ef_N(x)dx$. Если
+$\exists I = \lim_{N \to +\infty}I_N = \int_Ef(x)dx$, то функция $f(x)$ называется \textbf{интегрируемой
+по Лебегу}. $E_{\infty} = E[f = +\infty]$. Для интегрируемых функций $|E_{\infty}| = 0$.
+\begin{Theorem}
+Пусть $E = \cup_{n = 1}^{\infty}E_k, E_i \cap E_j = \emptyset, i \neq j$. Тогда:
+\begin{equation}
+\int_Efdx = \sum_{n = 1}^{\infty}\int_{E_k}fdx
+\end{equation}
+Причём если $f$ интегрируема на $E$, то $f$ интегрируема на $E_k$ и выполнено (3). Кроме того,
+если $f$ интегрируема на каждом $E_k$ и ряд в правой части (3) сходится, то $f$ интегрируема
+на $E$ и выполнено (3)
+\end{Theorem}
+\begin{proof}
+Пусть $0 \leq f \leq M$. Тогда
+\begin{equation}
+\int_Efdx - \sum_{k = 1}^N\int_{E_k}fdx = \int_{\cup_{n = N + 1}^{\infty}}fdx \leq M|\cup_{n = N + 1}^{\infty}E_n|
+= M\sum_{n = N + 1}^{\infty}|E_n| \to 0
+\end{equation}
+
+Пусть теперь $f$ не ограничена. Тогда
+\begin{equation}
+\int_{E_k}f_Ndx \leq \int_Ef_Ndx = I_N \leq \int_Efdx \Rightarrow \int_{E_k}fdx \leq \int_Efdx
+\end{equation}
+В силу первой части для среза выполнено равенство
+\begin{equation}
+\int_Ef_Ndx = \sum_{n = 1}^{\infty}\int_{E_n}fdx \leq \sum_{n = 1}^{\infty}\int_{E_n}fdx
+\end{equation}
+С другой стороны,
+\begin{equation}
+\int_Ef_Ndx \geq \sum_{k = 1}^m\int_{E_k}f_Ndx
+\end{equation}
+при переходе к пределу при $N \to +\infty$:
+\begin{equation}
+\int_Efdx \geq \sum_{k = 1}^{\infty}\int_Efdx
+\end{equation}
+Из (6) и (8) получаем (3).
 \end{proof}
 \end{document}
