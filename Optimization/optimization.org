@@ -416,7 +416,7 @@ a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \leq b_2, \\
 \ldots, \\
 a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
 \end{cases}
-(Ax \leq B), a_{ij}, b_i \in \mathbb{Z}
+(Ax \leq b), a_{ij}, b_i \in \mathbb{Z}
 \end{equation}
 При условии, что нулевых строк нет.
 #+end_export
@@ -425,7 +425,7 @@ a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
 Этой задаче соответствует *основная задача линейного программирования*: найти
 #+begin_export latex
 \begin{equation}
-\max_{Ax \leq b}(c, x) = \max_{Ax \leq B}\sum_{i = 1}^mc_ix_i
+\max_{Ax \leq b}(c, x) = \max_{Ax \leq b}\sum_{i = 1}^mc_ix_i
 \end{equation}
 В этой задаче $x \in \mathbb{R}^n$, а найти нужно (2).
 #+end_export
