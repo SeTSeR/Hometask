@@ -1,4 +1,4 @@
-% Created 2020-02-26 Wed 14:25
+% Created 2020-03-05 Thu 15:23
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -49,10 +49,10 @@
 
 
 \section{Задача 1}
-\label{sec:org69c3dc2}
+\label{sec:org777cb9f}
 Доказать, что \(n \in \mathbb{Z} \Leftrightarrow n = \left\lfloor\frac{n}2\right\rfloor + \left\lceil\frac{n}2\right\rceil\).
 \subsection{Решение}
-\label{sec:org3e2f804}
+\label{sec:org49c322f}
 Если \(n\) целое, то \(\left\lfloor\frac{n}2\right\rfloor = \frac{n - 1}2\) и \(\left\lceil\frac{n}2\right\rceil = \frac{n + 1}2\), что и даёт достаточность.
 Пусть теперь \(n = \left\lfloor\frac{n}2\right\rfloor + \left\lceil\frac{n}2\right\rceil\).
 В этом случае представления для пола и потолка \(\frac{n}2\) принимают вид:
@@ -61,10 +61,10 @@ $$\left\lceil\frac{n}2\right\rceil = \left\lfloor\frac{n + 1}2\right\rfloor$$
 Из этого представления получаем, что если \(n\) нецелое, то \(\left\lfloor\frac{n}2\right\rfloor + \left\lceil\frac{n}2\right\rceil < \frac{n - 1}2 + \frac{n + 1}2 = n\),
 что противоречит условию.
 \section{Задача 3}
-\label{sec:org8bdfddb}
+\label{sec:orgda391b2}
 Пусть \(P(n)\) - число простых множителей, входящих в разложение \(n\). Показать, что \(P(n) = O(\log_2n)\)
 \subsection{Решение}
-\label{sec:org400226f}
+\label{sec:orgf0af0e3}
 $$P(ab) = P(a) + P(b) \leq C\log_2(a) + C\log_2(b) = C\log_2(ab)$$
 $$\log_2pn = \log_2p + \log_2n$$
 В качестве базы индукции возьмём простое число:
@@ -86,34 +86,35 @@ X_s = \{x | ||x|| = s\} \subset X
 sum = \frac{q^n - 1}{q - 1}b_0 \equiv q^{n - 1}
 \end{equation}
 \section{Задача 4}
-\label{sec:orgcfff0de}
+\label{sec:orgbe6f2bd}
 Изменим алгоритм Грэхема: по сразу построенному многоугольнику ходим по кругу, "спрямляя"
 "вдавленные" вершины, если они есть. Показать, что алгоритм становится квадратичным.
 \section{Задача 5}
-\label{sec:org1c50281}
+\label{sec:org892a0c1}
 Есть операция сложения. Нужно проверить, является ли число полным квадратом. Проверяя с
 помощью суммы нечётных чисел, получим сложность \(O(\sqrt{N}))\).
 
 Пусть добавилась операция \(\left\lfloor\frac{N}2\right\rfloor\). Какой сложности мы добьёмся?
 \section{Задача 6}
-\label{sec:org7bab6db}
+\label{sec:org456375b}
 В среднем сложность QuickSort \(O(\log N)\), в худшем -- \(O(n^2)\). Доказать.
 Худший вариант - обратно отсортированный массив. \((k - 1)^2 + (n - k)^2, k \in \overline{1, n}\).
 \section{Задача 7}
-\label{sec:org7f7487a}
+\label{sec:org78ddb10}
 Есть алгоритм \(A\) над натуральным числом \(n\). Найти связь между сложностями \(T_A(n)\) и \(T_A^*(m)\),
 где \(m\) - битовая длина \(n\). Пусть \(T_A(n) \geq f(n)\). Верно ли, что \(T_A^*(m) \geq f(2^{m - 1})\)?
 \section{Задача 8}
-\label{sec:orgc59c020}
+\label{sec:org41087fa}
 Есть алгоритм \(A\) над числом \(n \in \mathbb{N}\). Рассматриваются сложности \(T_A(n)\) и \(T_A^*(m)\).
 Пусть \(T_A^*(m) \geq f(m)\). Верно ли, что \(T_A(n) \geq f(\lfloor\log_2n\rfloor)\)?
 \section{Задача 9}
-\label{sec:orgf49d6b3}
-Пусть \(l(n)\) - длина кратчайшей аддитивной цепочки для числа \(n\) - набора \(1 = n_1 \leq n_2 \leq \ldots n_k = 1\)
+\label{sec:org61acb39}
+Пусть \(l(n)\) - длина кратчайшей аддитивной цепочки для числа \(n\) - набора
+\(1 = n_1 \leq n_2 \leq \ldots \leq n_k = n\)
 такого, что \(n_s = n_k + n_l\) для любого \(s\) и некоторых \(k, l\).
-Проверить, что \(l(ab) \leq l(a) + l(b)\). Верно ли, что \(l(ab) = l(a) + l(b)\)?
+Проверить, что \(l(ab) \leq l(a) + l(b) - 1\). Верно ли, что \(l(ab) = l(a) + l(b) - 1\)?
 \section{Сложность в среднем}
-\label{sec:org13388f1}
+\label{sec:org6092c97}
 В задаче сортировок каждую конфигурацию массива длины \(n\) соответствует \(\Pi_n\) - перестановка массива \(1\ldots n\).
 Введём \(\Pi_n\) - вероятностное пространство, в котором все перестановки равновероятны.
 Перестановки могут рассматриваться как отображения множества \(\{1, 2, \ldots, n\}\) на себя.
@@ -191,10 +192,10 @@ i, k = 0.
 \end{equation}
 Заметим, что в отличие от сложности в худшем случае, сложность в среднем аддитивна.
 \subsection{Задача 1}
-\label{sec:org7caefb4}
+\label{sec:org879f0e2}
 Показать, что сложность по числу обменов сортировки выбором \(n - 2 + \frac1n\).
 \subsection{Задача 2}
-\label{sec:org51f8d4a}
+\label{sec:org3bb8508}
 \begin{lstlisting}
  m := x_1;
  for i := 2 to n do
@@ -203,11 +204,11 @@ i, k = 0.
 \end{lstlisting}
 Какой рост у количества присваиваний?
 \subsection{Задача 3}
-\label{sec:org447913c}
+\label{sec:org0eb7b5a}
 Посчитать сложность в среднем для задачи сортировки вагонов при условии, что все расположения
 вагонов равновероятны.
 \subsection{Сложность в среднем для быстрой сортировки}
-\label{sec:orgbd7b587}
+\label{sec:org7334f49}
    \begin{equation}
 \overline{T}_{QS}(n) = n - 1 + \frac1n\sum_{i = 1}^n\left(\overline{T}_{QS}(i - 1) +
 \overline{T}_{QS}(n - i)\right)
@@ -241,16 +242,16 @@ t(n) = 2\sum_{k = 1}^n\frac{k - 1}{k(k + 1)} = 2\sum_{k = 1}^n\frac1{k + 1} - 2\
 учётом рекурсии и стека получается логарифмическая сложность(вообще говоря, это верно только
 при выборе меньшего массива после разбиения, другая стратегия может дать худшую сложность).
 \subsection{Задача 4}
-\label{sec:org503bb2f}
+\label{sec:orgc83fe9c}
 Доказать, что \(\overline{T}_{QS}(n) \leq 2n\ln n\).
 \subsection{Задача 5}
-\label{sec:org54ab27b}
+\label{sec:org5ed10f3}
 Доказать, что \(\overline{T}_{QS}(n) = 2(n + 1)H_n - 4n\).
 \subsection{Задача 6}
-\label{sec:org26fbfd5}
+\label{sec:orgc3fbf54}
 Понять максимальную длину "навесов" из костей домино и сколько для этого понадобится костей?
 \subsection{Рандомизированные алгоритмы}
-\label{sec:orgccdd17a}
+\label{sec:org2de9343}
 Рандомизированные алгоритмы содержат в себе элемент случайности - вызовы генератора случайных
 чисел. Каждому входу сопоставляется вероятностное пространство сценариев выполнения алгоритма,
 а в нём -- случайная величина затрат. Соответственно, размеру входа сопоставляются максимальные
@@ -283,4 +284,81 @@ P_n(s) = P_{n - 1}(s') + P_{n - 1}(s'')
 \begin{equation}
 S_n = S^1_n \cup S^2_n \cup \ldots \cup S^n_n
 \end{equation}
+Заметим, что
+\begin{equation}
+P_n(S_n^1) = P_n(S_n^2) = \ldots = P_n(S_n^n) = \frac1n
+\end{equation}
+Тогда
+\begin{multline}
+\mathbb{E}\chi_n = \sum_{i = 1}^n\mathbb{E}(\chi_n | S_n^i)\frac1n =
+n - 1 + \frac1n\sum_{i = 1}^n(\mathbb{E}(\chi_n' | S_n^i) + \mathbb{E}(\chi_n'' | S_n^i)) =
+n - 1 + \frac1n\sum_{i = 1}^n(\mathbb{E}\chi_{i - 1} + \mathbb{E}\chi_{n - i}) = \\
+= n - 1 + \frac2n\sum_{i = 1}^n\mathbb{E}\chi_{i - 1} =
+n - 1 + \frac2n\sum_{i = 0}^{n - 1}\mathbb{E}\chi_i
+\end{multline}
+Откуда
+\begin{equation}
+\mathbb{E}\chi_n = 2n\ln n + O(n)
+\end{equation}
+Поскольку для всех входов длины $n$ затраты одинаковы, они и составляют сложность.
+\subsection{Задача 7}
+\label{sec:org7451674}
+Найти сложность по числу обращений к генератору случайных чисел.
+Асимптотика \(\frac23n - \frac13\)
+\subsection{Задача 8}
+\label{sec:orgebb2609}
+m-я порядковая статистика
+\subsection{Задача 9}
+\label{sec:org00ff936}
+Восстановление перестановки по инверсионному вектору.
+\section{Оценивание числа шагов (итераций) алгоритма}
+\label{sec:orgac4d056}
+Рассмотрим алгоритм Евклида. Временные затраты этого алгоритма имеют оценку:
+\begin{equation}
+C_E(a_0, a_1) \leq a_1
+\end{equation}
+Пусть
+\begin{equation}
+k, l \in \mathbb{N}, k > l, r \text{ - остаток.}
+\end{equation}
+Тогда
+\begin{equation}
+\lambda(k) > \lambda(r)
+\end{equation}
+\begin{equation}
+L(k, l) = \lambda(k) + \lambda(l) - 2: L(k, l) > L(l, r)
+\end{equation}
+Отсюда следует, что
+\begin{equation}
+C_E(a_0, a_1) \leq \lambda(a_0) + \lambda(a_1) - 2
+\end{equation}
+С другой стороны,
+\begin{equation}
+C_E(a_0, a_1) = C_E(a_1, a_2) + 1 \leq \lambda(a_1) + \lambda(a_2) - 1 \leq 2\lambda(a_1) - 1
+\leq 2\log_2a_1 + 1
+\end{equation}
+Отсюда
+\begin{equation}
+T_E(a_1) = \max_{a_0 \geq a_1}C_E(a_0, a_1) \leq 2\log_2a_1 + 1
+\end{equation}
+Расширенный алгоритм Евклида имеет такую же сложность, как и обычный. Он позволяет найти
+$s$ и $t$ такие, что $sa_0 + ta_1 = d = (a_0, a_01)$. Для них верны неравенства:
+\begin{equation}
+|s_1| \leq |s_2| \leq |s_3|, |t_1| \leq |t_2| < |t_3|
+\end{equation}
+и при $n > 2$:
+\begin{equation}
+|s_3| < |s_4| < \ldots < |s_{n + 1}|, |t_3| < |t_4| < \ldots < |t_{n = 1}|
+\end{equation}
+Отсюда следуют неравенства:
+\begin{equation}
+|s_n| \leq a_1, |t_n| < a_0
+\end{equation}
+\subsection{Задача 10}
+\label{sec:orgddb6d54}
+Алгоритм построния опорных лучей к данному многоугольнику.
+\subsection{Сортировка фон Неймана}
+\label{sec:orgb673729}
+Используется вспомогательный массив дляны \(n\). Уже упорядоченные части сливаются во
+вспомогательном массиве.
 \end{document}

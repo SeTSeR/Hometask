@@ -80,9 +80,10 @@ sum = \frac{q^n - 1}{q - 1}b_0 \equiv q^{n - 1}
 Есть алгоритм $A$ над числом $n \in \mathbb{N}$. Рассматриваются сложности $T_A(n)$ и $T_A^*(m)$.
 Пусть $T_A^*(m) \geq f(m)$. Верно ли, что $T_A(n) \geq f(\lfloor\log_2n\rfloor)$?
 * Задача 9
-Пусть $l(n)$ - длина кратчайшей аддитивной цепочки для числа $n$ - набора $1 = n_1 \leq n_2 \leq \ldots n_k = 1$
+Пусть $l(n)$ - длина кратчайшей аддитивной цепочки для числа $n$ - набора
+$1 = n_1 \leq n_2 \leq \ldots \leq n_k = n$
 такого, что $n_s = n_k + n_l$ для любого $s$ и некоторых $k, l$.
-Проверить, что $l(ab) \leq l(a) + l(b)$. Верно ли, что $l(ab) = l(a) + l(b)$?
+Проверить, что $l(ab) \leq l(a) + l(b) - 1$. Верно ли, что $l(ab) = l(a) + l(b) - 1$?
 * Сложность в среднем
 В задаче сортировок каждую конфигурацию массива длины $n$ соответствует $\Pi_n$ - перестановка массива $1\ldots n$.
 Введём $\Pi_n$ - вероятностное пространство, в котором все перестановки равновероятны.
@@ -272,4 +273,77 @@ P_n(s) = P_{n - 1}(s') + P_{n - 1}(s'')
 \begin{equation}
 S_n = S^1_n \cup S^2_n \cup \ldots \cup S^n_n
 \end{equation}
+Заметим, что
+\begin{equation}
+P_n(S_n^1) = P_n(S_n^2) = \ldots = P_n(S_n^n) = \frac1n
+\end{equation}
+Тогда
+\begin{multline}
+\mathbb{E}\chi_n = \sum_{i = 1}^n\mathbb{E}(\chi_n | S_n^i)\frac1n =
+n - 1 + \frac1n\sum_{i = 1}^n(\mathbb{E}(\chi_n' | S_n^i) + \mathbb{E}(\chi_n'' | S_n^i)) =
+n - 1 + \frac1n\sum_{i = 1}^n(\mathbb{E}\chi_{i - 1} + \mathbb{E}\chi_{n - i}) = \\
+= n - 1 + \frac2n\sum_{i = 1}^n\mathbb{E}\chi_{i - 1} =
+n - 1 + \frac2n\sum_{i = 0}^{n - 1}\mathbb{E}\chi_i
+\end{multline}
+Откуда
+\begin{equation}
+\mathbb{E}\chi_n = 2n\ln n + O(n)
+\end{equation}
+Поскольку для всех входов длины $n$ затраты одинаковы, они и составляют сложность.
 #+end_export
+** Задача 7
+Найти сложность по числу обращений к генератору случайных чисел.
+Асимптотика $\frac23n - \frac13$
+** Задача 8
+m-я порядковая статистика
+** Задача 9
+Восстановление перестановки по инверсионному вектору.
+* Оценивание числа шагов (итераций) алгоритма
+Рассмотрим алгоритм Евклида. Временные затраты этого алгоритма имеют оценку:
+#+begin_export latex
+\begin{equation}
+C_E(a_0, a_1) \leq a_1
+\end{equation}
+Пусть
+\begin{equation}
+k, l \in \mathbb{N}, k > l, r \text{ - остаток.}
+\end{equation}
+Тогда
+\begin{equation}
+\lambda(k) > \lambda(r)
+\end{equation}
+\begin{equation}
+L(k, l) = \lambda(k) + \lambda(l) - 2: L(k, l) > L(l, r)
+\end{equation}
+Отсюда следует, что
+\begin{equation}
+C_E(a_0, a_1) \leq \lambda(a_0) + \lambda(a_1) - 2
+\end{equation}
+С другой стороны,
+\begin{equation}
+C_E(a_0, a_1) = C_E(a_1, a_2) + 1 \leq \lambda(a_1) + \lambda(a_2) - 1 \leq 2\lambda(a_1) - 1
+\leq 2\log_2a_1 + 1
+\end{equation}
+Отсюда
+\begin{equation}
+T_E(a_1) = \max_{a_0 \geq a_1}C_E(a_0, a_1) \leq 2\log_2a_1 + 1
+\end{equation}
+Расширенный алгоритм Евклида имеет такую же сложность, как и обычный. Он позволяет найти
+$s$ и $t$ такие, что $sa_0 + ta_1 = d = (a_0, a_01)$. Для них верны неравенства:
+\begin{equation}
+|s_1| \leq |s_2| \leq |s_3|, |t_1| \leq |t_2| < |t_3|
+\end{equation}
+и при $n > 2$:
+\begin{equation}
+|s_3| < |s_4| < \ldots < |s_{n + 1}|, |t_3| < |t_4| < \ldots < |t_{n = 1}|
+\end{equation}
+Отсюда следуют неравенства:
+\begin{equation}
+|s_n| \leq a_1, |t_n| < a_0
+\end{equation}
+#+end_export
+** Задача 10
+ Алгоритм построния опорных лучей к данному многоугольнику.
+** Сортировка фон Неймана
+Используется вспомогательный массив дляны $n$. Уже упорядоченные части сливаются во
+вспомогательном массиве.
