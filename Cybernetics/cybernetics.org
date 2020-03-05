@@ -610,7 +610,7 @@ $\tilde{\xi} = (\xi_{\tilde{0}^n}, \xi_{(0, \ldots, 0, 1)}, \ldots, \xi_{\tilde{
 \mathbb{D}\eta = \sum_{\alpha \in B^n}\mathbb{D}\xi_{\alpha} = 2^{n - 2}
 \end{equation*}
 Если реализация случайной величины $\tilde{\xi}$ есть БФ $f(\tilde{x}^n)$, то соответствующая
-реализация случайной величины $\eta$ есть $|N_f|$. Положим $m = \lfloor n\cdot2^{n/2}\rfloor$,
+реализация случайной величины $\eta$ есть $|N_f|$. Положим $m = \lceil n\cdot2^{n/2}\rceil$,
 $I(n) = (2^{n - 1} - m; 2^{n + 1} + m)$.
 По неравенству Чебышёва:
 \begin{equation*}
@@ -623,7 +623,234 @@ $I(n) = (2^{n - 1} - m; 2^{n + 1} + m)$.
 \end{equation*}
 Таким образом, для почти всех булевых функций $f(\tilde{x}^n)$:
 \begin{equation*}
-2^{n - 1} - \lfloor n\cdot2^{n/2}\rfloor < |N_f| < 2^{n - 1} + \lfloor n\cdot2^{n/2}\rfloor
+2^{n - 1} - \lceil n\cdot2^{n/2}\rceil < |N_f| < 2^{n - 1} + \lceil n\cdot2^{n/2}\rceil
 \end{equation*}
+Положим $\kappa_{\beta} = \xi_{0, \beta} \wedge \xi_{1, \beta}$. Тогда
+\begin{equation}
+\mathbb{E}\kappa_{\beta} = \frac34, \mathbb{D}\kappa_{\beta} = \frac3{16}
+\end{equation}
+Положим $\tilde{\tau} = \sum_{\beta \in B^n}\kappa_{\beta}$. Поскольку величины $\kappa_{\beta}$
+независимы, то
+\begin{equation}
+\mathbb{E}\tilde{\tau} = 2^{n - 1}\frac34 = 3\cdot2^{n - 3},
+\mathbb{D}\tilde{\tau} = 2^{n - 1}\frac3{16} = 3\cdot2^{n - 5},
+\end{equation}
+Пусть $m = \rceil m\cdot2^{n/2}\lceil, I = I(n) = (3\cdot2^{n - 1}; \frac34\cdot2^{n - 1} + m)$.
+По неравенству Чебышёва:
+\begin{equation}
+\mathbb{P}(\tilde{\tau} \notin I) \leq \frac{\mathbb{D}\tilde{tau}}{m^2} =
+\frac{\frac3{16}\cdot2^{n - 1}}{(\lceil n\cdot2^{n/2}\rceil)^2} \leq \frac{\frac3{32}\cdot2^n}{n^2\cdot2^n}
+= \frac3{32n^2} \to 0
+\end{equation}
+Значение $\lambda$ случайной величины $\tilde{\tau}$ гарантирует существование для реализации
+$f(\tilde{x}^n)$ случайной величины $\tilde{\xi}$ ДНФ длины $\lambda$, т. е. для всех БФ
+\begin{equation}
+\lambda(f) \leq \frac34\cdot2^{n - 1}, R(f) \leq \frac34n\cdot2^{n - 1}
+\end{equation}
 \end{proof}
+#+end_export
+** Алгоритмические трудности минимизации ДНФ и оценки максимальных значений некоторых связанных с ней параметров. Теорема Ю. И. Журавлёва о ДНФ сумма минимальных
+   #+begin_export latex
+\zall
+\begin{Statement}
+Число тупиковых(минимальных) ДНФ у ФАЛ $f \in P_2(n), n \geq 4$, вида
+\begin{equation}
+f(x_1, \ldots, x_n) = g(x_1, x_2, x_3)\cdot(x_4\oplus\ldots\oplus x_n),
+\end{equation}
+где $\overline{N}_g = \{(000), (111)\}$, равно $5^{2^{n - 4}}$(соответственно, $2^{2^{n - 4}}$).
+\end{Statement}
+\begin{proof}
+Введём функционалы:
+\begin{equation}
+\tau(n) = \max_{f \in P_2(n)}\tau(f), \\
+\mu(n) = \max_{f \in P_2(n)}\mu(f),
+\end{equation}
+где $\mu(f)(\tau(f))$ -- количество тупиковых(минимальных) ДНФ БФ $f$.
+\begin{equation}
+f(\tilde{\alpha}^n) = 1 \Leftrightarrow \begin{cases}
+g(\alpha_1, \alpha_2, \alpha_3) = 1, \\
+\alpha_4 \oplus \ldots \oplus \alpha_n = 1.
+\end{cases}
+\end{equation}
+Никакие два набора, соседние по $x_i$, не лежат в одной грани. Поэтому структура
+максимальных граней $f$ представляет собой $2^{n - 4}$ шестиугольника из рёбер.
+У функции $g$ 5 тупиковых ДНФ, две из которых являются минимальными, поэтому
+\begin{equation}
+\mu(f) = 2^{2^{n - 4}}, \tau(f) = 5^{2^{n - 4}}
+\end{equation}
+\end{proof}
+\begin{Consequence}
+\begin{equation}
+\tau(n) \geq 5^{2^{n - 4}}, \mu(n) \geq 2^{2^{n - 4}}
+\end{equation}
+\end{Consequence}
+   #+end_export
+БФ $f(\tilde{x}_n)$ называется *симметрической*, если она инвариантна относительно перестановок
+переменных. Если на любом наборе $\tilde{\alpha}$ веса $k$ симметрическая БФ равна единице, то
+$k$ называется *рабочим числом* симметрической БФ $f$.
+#+begin_export latex
+$s_n^{\{k_1, k_2, \ldots, k_t\}}(\tilde{x}^n)$ - симметрическая БФ с множеством рабочих чисел $\{k_1, k_2, \ldots, k_n\}$.
+#+end_export
+Симметрическая БФ $f(\tilde{x}^n)$ называется *поясковой*, если множество всех её рабочих чисел
+обазует отрезок натурального ряда.
+#+begin_export latex
+\begin{Statement}
+Длина сокращённой ДНФ булевых функций подчиняется неравенству:
+\begin{equation}
+\lambda_s(n) \geq e_1\frac{3^n}n
+\end{equation}
+\end{Statement}
+БФ $f$ называется \textbf{цепной}(\textbf{циклической}), если множество её максимальных граней
+представляет собой простую цепь(простой цикл).
+\begin{equation}
+\mathcal{N} = \{(0, \ldots, 0, 1) = \alpha_1, (0, \ldots, 0, 1, 1), \ldots, (0, 1, \ldots, 1), (1, 1, \ldots, 1),
+(1, \ldots, 1, 0), \ldots, (1, 0, \ldots, 0) = \alpha_2\}
+\end{equation}
+Пусть
+\begin{equation}
+f'(\tilde{x}^n): N_{f'} = \mathcal{N} \backslash \{\alpha_1\},
+\end{equation}
+\begin{equation}
+f''(\tilde{x}^n): N_{f''} = \mathcal{N} \backslash \{\alpha_2\}
+\end{equation}
+Это цепные функции с длиной цепи $2n - 3$. Очевидно, что у каждой из них -- единственная
+минимальная ДНФ, и эти ДНФ не имеют общих граней.
+\begin{Statement}
+$\forall n \in \mathbb{N}, n \geq 3 \exists f', f''$, имеющие общую простую импликанту $K$,
+которая входит в ДНФ $\Sigma M$ одной, но не другой, и для которой $S_{n - 3}(N_K, f') = S_{n - 3}(N_K, f'')$.
+\end{Statement}
+#+end_export
+* Основные классы дискретных управляющих систем, структурные представления схем и оценка их числа. Эквивалентные преобразования управляющих систем
+** Формулы алгебры логики, их эквивалентные преобразования с помощью тождеств. Полнота системы основных тождеств для экивалентных преобразований формул базиса $\{\&, \vee, \neg\}$
+Будем рассматривать формулы в *стандартном базисе* $B_0 = \{x_1, x_2, x_1 \vee x_2, \overline{x}_1\}$.
+Формулы, записи которых идентичны, будем называть *изоморфными*. Всякое вхождение подформулы
+$F_i$ в формулу $F$ называется *позиционной подформулой* вида $F_i$ в $F$. *Ранг* формулы --
+число вхождений символов булевых переменных, её *сложность* -- число функциональных символов,
+*глубина* формулы. Запись вида $t: F' = F''$, где $F'$ и $F''$ -- экивалентные формулы --
+называется *тождеством*. Пусть $x = (x_{i_1}, \ldots, x_{i_n})$, $F'$ и $F''$ -- формулы от
+$x$ ($F' = F'(x), F'' = F''(x)$). Пусть $F_{\nu}$ -- формула, $\nu = \overline{1, n}$.
+
+Пусть формулы $\tilde{F}'$ и $\tilde{F}''$ получены из $F'$ и $F''$ заменой каждого вхождения
+переменной $x_{\nu} \in \overline{1, n}$ на $F_{\nu}$. Тогда о $\tilde{F}'$ и $\tilde{F}''$
+говорят, что они получены из F' и F'' *подстановкой* подформулы $F_{\nu}$ вместо переменной
+$x_{\nu}$ при $\nu = \overline{1, n}$. *Результатом подстановки* будем считать формулы,
+полученные заменой некоторых переменных на подформулы.
+#+begin_export latex
+\begin{Statement}[Принцип эквивалентной замены]
+При замене в формуле $F$ её позиционной подформулы $\tilde{F}'$ на эквивалентную ей подформулу
+$\tilde{F}''$ получается формула, эквивалентная $F$.
+\end{Statement}
+При этом будем считать, что полученная формула возникла в результате однократного эквивалентного
+преобразования на основе тождества $t: F' = F''$, где $\tilde{F}'$ и $\tilde{F}''$ получены из
+$F'$ и $F''$ соответственно как результат подстановки.
+#+end_export
+Последовательность однократных эквивалентных преобразований на основе системы тождеств $\tau$
+назовём *многократным* эквивалентным преобразованием на основе $\tau$.
+
+Введём обозначение $F \mapsto_t \breve{F}$ -- формула $\breve{F}$ выводима из $F$ с помощью
+однократного применения тождества $t$, т. е. $\breve{F}$ получена из $F$ однократным
+элементарным преобразованием на основе тождества $t$, $F \rightrightarrows \breve{F}$ --
+формула $\breve{F}$ выводима из $F$ с помощью системы тождеств, т. е. $\breve{F}$ получена из
+$F$ с помощью эквивалентных преобразований на основе $\tau$.
+
+Система тождеств $\tau$ называется *конечной*, если $\tau$ содержит лишь конечное число попарно
+различных тождеств. Система множеств $\tau$ называется *полной*, если любые эквивалентные формулы
+выводимы друг из друга.
+
+#+begin_export latex
+\begin{equation}
+t_{\&}^M: \overline{x_1x_2} = \overline{x}_1\vee\overline{x}_2,
+t_{\vee}^M: \overline{x_1\vee x_2} = \overline{x}_1\overline{x}_2,
+t_{\neg}^M: \overline{\overline{x_1}} = x_1
+\end{equation}
+\begin{equation}
+t_{\circ}^A: x_1\circ(x_2\circ x_3) = (x_1\circ x_2)\circ x_3, \circ \in \{\&, \vee\}
+\end{equation}
+\begin{equation}
+t_{\circ}^K: x_1\circ x_2 = x_2 \circ x_1
+\end{equation}
+\begin{equation}
+t^D_{\circ, \diamond}: x_1\circ(x_2\diamond x_3) = (x_1\circ x_2)\diamond(x_1\circ x_3),
+(\circ, \diamond) \in \{(\&, \vee), (\vee, \&)\}
+\end{equation}
+\begin{equation}
+t_{1, \&}^{PC}: x_2(x_1\vee\overline{x}_1) = x_2
+\end{equation}
+\begin{equation}
+t_{0, \&}^{PC}: x_2(x_1\overline{x_1}) = x_1\overline{x}_1
+\end{equation}
+\begin{equation}
+t_{1, \vee}^{PC}: x_2\vee(x_1\vee\overline{x_1}) = x_1\vee\overline{x_1}
+\end{equation}
+\begin{equation}
+t_{0, \vee}^{PC}: x_2\vee(x_1\overline{x}_1) = x_2
+\end{equation}
+\begin{equation}
+t^P: x_1\vee x_1x_2
+\end{equation}
+\begin{equation}
+t^{OC}: \overline{x}_1x_2\vee x_1x_3 = \overline{x_1}x_2\vee x_1x_3 \vee x_2x_3
+\end{equation}
+#+end_export
+$\tau^{prim}$ -- *основная система тождеств*, $\tilde{\tau}^{prim}$ -- *расширенная система тождеств*.
+#+begin_export latex
+\begin{Statement}
+Расширенная система тождеств выводима из основной.
+\end{Statement}
+\begin{proof}
+Из одного из законов Моргана можно вывести остальные два.
+
+Закон Моргана и коммутативность конъюкции даёт коммутативность дизъюнкции.
+
+Аналогично выводятся тождества ассоциативности, дистрибутивности, отождествления переменных
+и подстановки.
+
+Выводимость правила поглощения:
+\begin{multline}
+t^{prim} \rightrightarrows t^P: x_1\vee x_1x_2 \mapsto_{t^{PC}_{1, \&}} x_1(x_2\vee\overline{x}_2)
+\vee x_1x_2 \mapsto x_1((x_2\vee\overline{x_2})\vee x_2) \rightrightarrows \\
+\rightrightarrows x_1((x_2\vee x_2)\vee\overline{x}_2) \mapsto x_1(x_2\vee\overline{x}_2) \mapsto x_1
+\end{multline}
+\end{proof}
+#+end_export
+*Обобщённая элементарная конъюкция* -- конъюкция букв БП. *Обобщённая ДНФ* (ОДНФ) -- дизъюнкция
+обобщённых ЭК. *Каноническая* ОЭК -- ЭК или ОЭК вида $x_i\overline{x}_i$. *Каноническая ДНФ* --
+ДНФ или формула вида $x_i\overline{x}_i$. *Совершенная ОДНФ* -- СДНФ или формула вида $x_i\overline{x}_i$.
+Это канонический вид для алгоритма построения эквивалентных преобразований формул над $B_0$.
+#+begin_export latex
+\begin{Statement}
+Любую формулу $F(x_1, \ldots, x_n)$, реализующую ФАЛ $f$, с помощью эквивалентных преобразований
+на основе системы тождеств $\tau^{prim}$ можно преобразовать в совершенную ОДНФ ФАЛ $f$ от БП $X(n)$.
+\end{Statement}
+\begin{proof}
+Пусть $\breve{F}$ - совершенная ОДНФ для $f$. Достаточно показать, что
+$F \rightrightarrows_{\tilde{\tau}^{prim}}\breve{F}$.
+Первый этап:
+\begin{equation}
+F \rightrightarrows_{\tau^M}F', F'\text{ - формула с поднятыми отрицаниями(т. е. отрицания только над БП).}
+\end{equation}
+Второй этап:
+\begin{equation}
+F' \rightrightarrows_{\tau^D, \tau^K} F''\text{ - ОДНФ с раскрытыми скобками.}
+\end{equation}
+Третий этап:
+\begin{equation}
+F'' \rightrightarrows_{\tau^A, \tau^K, \tau^D, \tau^{PC}, \tau^P, \tau^{OP}} \hat{F}\text{ - каноническая ОДНФ.}
+\end{equation}
+Четвёртый этап:
+\begin{equation}
+F'' \rightrightarrows_{\tau^A, \tau^K, \tau^D, \tau^{PC}, \tau^P, \tau^{OP}, \tau^u_0} \breve{F}\text{ - совершенная ОДНФ.}
+\end{equation}
+\end{proof}
+\textbf{Тождество инвариантности нуля}:
+\begin{equation}
+t^u_0: x_2\overline{x}_2 = x_1\overline{x}_2,
+\end{equation}
+\begin{equation}
+x_2\overline{x}_2 \mapsto (x_2\overline{x}_2)(x_1\overline{x}_1) \mapsto (x_1\overline{x}_1)
+(x_2\overline{x}_2) \mapsto x_1\overline{x_1}
+\end{equation}
+\begin{Statement}
+Система $\tau^{prim}$ -- полная система тождеств.
+\end{Statement}
 #+end_export
