@@ -1,4 +1,4 @@
-% Created 2020-03-05 Thu 15:28
+% Created 2020-03-12 Thu 15:15
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -51,7 +51,7 @@
 
 
 \section{Структура курса}
-\label{sec:org536cb87}
+\label{sec:orge215f2f}
 \begin{itemize}
 \item Введение в теорию сложности
 \item Линейное программирование
@@ -59,7 +59,7 @@
 \item Методы решения переборных задач
 \end{itemize}
 \section{Литература}
-\label{sec:org79770b5}
+\label{sec:org1842484}
 \begin{enumerate}
 \item Новикова Н. М. "Дискретные и непрерывные задачи оптимизации"
 \item М. Гэри, Д. Джонсон "Вычислительные машины и труднорешаемые задачи"
@@ -67,14 +67,14 @@
 \item \url{http://www.ccas.ru/depart/malashen/53kmsu.htm}
 \end{enumerate}
 \section{Введение в теорию сложности}
-\label{sec:org57153f5}
+\label{sec:orgc998f3f}
 \textbf{Массовая задача} $\Pi = \{I\}$, где $I$ - \textbf{индивидуальная задача}. Массовая задача определяется:
 \begin{enumerate}
 \item списком параметров
 \item требованиями к решению
 \end{enumerate}
 \subsection{Задача коммивояжёра}
-\label{sec:org248ea28}
+\label{sec:org5b36af7}
 Задан взвешенный ориентированный граф: вершины и матрицы. Нужно найти маршрут через все
 вершины графа минимального веса.
 \begin{equation*}
@@ -91,7 +91,7 @@
 С точки зрения сложности задачи делятся на два класса: полиномиальная или экспоненциальная
 зависимость затрат на решения от длины входа.
 \subsection{Задачи распознавания свойств}
-\label{sec:orgc62a54d}
+\label{sec:orgeded2b5}
 Задачи, в которых требования к решению выражаются предикатом. В этих терминах задача коммивояжёра
 формулируется так:
 \begin{equation*}
@@ -114,7 +114,7 @@
 \end{itemize}
 \end{enumerate}
 \subsection{Задача 1}
-\label{sec:orgdf4ceb8}
+\label{sec:org82c35bc}
 Задача построения остовного дерева минимального веса(+задача распознавания свойства):
 \begin{equation*}
 n, d_{ij} \in \mathbb{N}_0
@@ -125,7 +125,7 @@ n, d_{ij} \in \mathbb{N}_0
 n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \subsection{Язык задачи}
-\label{sec:org73e9de8}
+\label{sec:orge4fc061}
 Помимо кодировки с задачей связывается \textbf{язык}: \(\alpha(\Pi, e) = \{\sigma \in \Sigma^* | \sigma = e(I), I \in Y(\Pi)\}\),
 где \(Y(\Pi)\) -- это множество индивидуальных задач, на которых ответ является истиной.
 
@@ -152,11 +152,11 @@ n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \textbf{Замечание}: это определение относится только к задачам распознавания свойств.
 \subsection{Задача 2}
-\label{sec:org4d63c92}
+\label{sec:orga196dc2}
 Предложить алгоритм распознавания простоты числа, найти его функцию временной сложности и
 оценить её.
 \subsection{Самая интересная часть}
-\label{sec:org104c607}
+\label{sec:org17abd0a}
 Алгоритмически неразрешимая задача(Матиясевич): по коэффициентам многочлена проверить у него
 наличие целочисленных корней.
 
@@ -275,13 +275,13 @@ Az \preceq b?
 "булево линейное неравенство" соответственно, также являются NP-полными. Доказательство
 принадлежности задачи линейного программирования классу $\mathbb{NP}$ является нетривиальным.
 \subsection{Задача 3}
-\label{sec:orge7281f9}
+\label{sec:orga79dc99}
 Доказать, что задача проверки простоты числа принадлежит классу \(\textit{co-}\mathbb{NP}\).
 
 \textbf{Задача 3-выполнимости}: задача КНФ дизъюнкций с ровно тремя слагаемыми. Эта задача
 полиномиально сводится к задаче SAT, и поэтому принадлежит к классу \(\mathbb{NP}\).
 \subsection{Задача 4}
-\label{sec:org9077151}
+\label{sec:orga442f01}
 Разложить конъюкцию одной или двух переменных в произведение конъюкции трёх переменных.
 \begin{Statement}
 Задача 3-выполнимости NP-полна.
@@ -322,7 +322,7 @@ t_A(\sigma) \leq p_2(|\sigma|)|\Sigma|^{p_1(\sigma)}
 памяти на ДМТ. Все ранее рассмотренные классы входят в класс \(PSPACE\). Вопрос строгого
 включения класса \(P\) в класс \(PSPACE\) остаётся открытым.
 \subsection{Задача о рюкзаке}
-\label{sec:orge8f5815}
+\label{sec:org3ba8ec2}
 Найти
 \begin{equation}
 max_{z \in B^n}\sum_{i = 1}^nc_iz_i,
@@ -359,7 +359,7 @@ $\forall I \in \Pi_{p(\cdot)}: T_A(I) \leq p(|I|, p(|I))$, поэтому $\Pi_{
 Opt(I) = \max_{z \in S_I}f_I(z)
 \end{equation}
 \section{Задача оптимизации}
-\label{sec:org53a7a8b}
+\label{sec:org47c52c3}
 \zall
 \(f_I(z)\) называется \textbf{целевой функцией}, значение функции называется \textbf{значением оптимума}, а
 точка, в которой она достигается -- \textbf{реализацией оптимума}.
@@ -416,9 +416,9 @@ $|Opt(I) - A'_f(I)| \leq \varepsilon Opt(I) \leq \frac{Opt(I)}{p'(num(I)) + 1} \
 $\Rightarrow |Opt(I) - A'(I)| = 0$, т. е. $A'$ - точный алгоритм, являющийся псевдополиномиальный.
 \end{proof}
 \section{Линейное программирование}
-\label{sec:orge9648d4}
+\label{sec:org4d5e397}
 \subsection{Литература}
-\label{sec:orga08a010}
+\label{sec:orgbb695c8}
 \begin{enumerate}
 \item Л. Г. Хачиян "Сложность задач ЛП".
 \end{enumerate}
@@ -432,14 +432,14 @@ a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \leq b_2, \\
 \ldots, \\
 a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
 \end{cases}
-(Ax \leq B), a_{ij}, b_i \in \mathbb{Z}
+(Ax \leq b), a_{ij}, b_i \in \mathbb{Z}
 \end{equation}
 При условии, что нулевых строк нет.
 
 С этой задачей связана задача \textbf{линейное неравенство} -- существует ли решение (1)?
 Этой задаче соответствует \textbf{основная задача линейного программирования}: найти
 \begin{equation}
-\max_{Ax \leq b}(c, x) = \max_{Ax \leq B}\sum_{i = 1}^mc_ix_i
+\max_{Ax \leq b}(c, x) = \max_{Ax \leq b}\sum_{i = 1}^mc_ix_i
 \end{equation}
 В этой задаче $x \in \mathbb{R}^n$, а найти нужно (2).
 Оказывается, что задачи ЛН и ЛП полиномиальны.
@@ -453,7 +453,7 @@ a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
 \max_{Ax \leq b, x \geq 0}(c, x)
 \end{equation}
 \subsection{Задача 5}
-\label{sec:org2624472}
+\label{sec:orgd782ddd}
 Свести (4) к (2).
 
 Ограничения описывают некоторый многогранник(а точнее, полиэдр, поскольку эта фигура не
@@ -468,4 +468,147 @@ a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
 Решаем систему, находим угловые точки, от угловой точки переходим к точке максимального роста.
 Вообще говоря, количество вершин экспоненциально, поэтому полиномиальную версию симплекс-метода
 получить не удаётся.
+Входная матрица -- \textbf{симплекс-матрица}:
+\begin{equation}
+D =
+\begin{pmatrix}
+c & \square \\
+A & b
+\end{pmatrix}
+a_{ij}, c_i, b_j \in \mathbb{Z}
+\end{equation}
+\subsection{Задача 5'}
+\label{sec:org7d47af7}
+Свести задачу \(Ax \leq b\) к задаче
+\begin{equation}
+\begin{cases}
+A'y = b', \\
+y \geq 0,
+\end{cases}
+\end{equation}
+и обратно.
+Рассмотрим задачу:
+Существует ли \(x \in \mathbb{R}_n\) такое, что высказывание:
+\begin{equation}
+Q_1\ldots Q_nF(<\overline{a}_1, x> \leq b_1, \ldots, <\overline{a}_m, x> \leq b_m)
+\end{equation}
+истинно?
+Эта задача не лежит в классе \(\mathbb{NP}\).
+
+Введём обозначение \([A | b] = (A\, b)\).
+
+Для матрицы \(H\) с целыми коэффициентами введём обозначение
+\begin{equation}
+\Delta H = \max_{H' - \text{квадратная подматрица }H}{|\det H'|}
+\end{equation}
+\begin{Theorem}[Теорема о границах решений]
+Если задача (2) размера $m\times n$ \textbf{с целыми коэффициентами} имеет решения, то
+существует рациональное решение $x^*$ в шаре $||x|| \leq \sqrt{n}\Delta|[A|b]|$
+и значение $d^* = \frac{t}{s}$ такое, что $|s| \leq \Delta(A)$.
+\end{Theorem}
+\begin{proof}
+$\exists A_M$ -- подматрица $A$, $A_M = \{\overline{a}_i, i \in M\}, M \subseteq \{1, \ldots, m\}$:
+$A_Mx^* = b_M, b_M = \{b_i | i \in M\}$. По формуле Крамера
+\begin{equation}
+\forall j: |x_j^*| = \left|\frac{\det(A_M^j || b_M)}{\det(A_M)}\right| \leq |\det(A_M^j) || b_M| \leq \Delta([A | b])
+\end{equation}
+Откуда
+\begin{equation}
+||x|| \leq \sqrt{n}\Delta([A | b])
+\end{equation}
+Второе условие теоремы следует из того, что $|\det(A_M)| \leq \Delta(A)$.
+\end{proof}
+\subsection{Задача 6}
+\label{sec:orgb5f037f}
+Доказать, что длина входа задачи линейного программирования может быть оценена снизу как:
+\begin{equation}
+\forall I \in \Pi |I| \geq C\ln(n\Delta(D))
+\end{equation}
+Точка \(x_{\varepsilon}\) называется \textbf{\(\varepsilon\)-приближённым} решением системы (1), если для
+неё выполнено условие
+\begin{equation}
+Ax^{\varepsilon} \leq b + \overline{1}\varepsilon.
+\end{equation}
+\begin{Theorem}[теорема о мере несовместности]
+Если система $(1)$ имеет $\varepsilon$-приближённое решение с числом
+$\varepsilon = \varepsilon_1 = \frac1{(n + 2)\Delta(A)}$, то она имеет и точное решение.
+\end{Theorem}
+\begin{proof}
+Найдём минимальное $\varepsilon$ с которым система имеет $\varepsilon$-приближённое решение.
+Тогда $\varepsilon^* = -\max_{Ax - \overline{1}\varepsilon \leq b}-\varepsilon = -\max_{[A|-\overline{1}](x, \varepsilon)^T \leq b}<(0, \ldots, 0, -1),(x, \varepsilon)>$
+По теореме о границе решений $\varepsilon^* = \frac{t}s, s \leq \Delta([A | -1]) \leq \Delta(A)(n + 1)$.
+Тогда или $\varepsilon^* = 0$, или $\varepsilon^* \geq \frac1{\Delta(A)(n + 1)}$.
+\end{proof}
+Точка \(x^{\varepsilon}\) называется \textbf{\(\varepsilon\)-приближённым} решением (2), если
+\(x^{\varepsilon}\) -- \(\varepsilon\)-приближённое (1) и \$<c, x\textsuperscript{\(\varepsilon\)} \(\ge\) d\textsuperscript{*} - \(\varepsilon\).\$
+\begin{Theorem}
+Если (2) имеет $\varepsilon$-приближённое решение с $\varepsilon = \varepsilon_2 = \frac1{2n^2\Delta^3(A)}$,
+то $\exists$ точное решение.
+\end{Theorem}
+Обозначим $\Delta = \Delta(D)$.
+\textbf{Метод эллипсоидов}:
+\begin{enumerate}
+\item На каждой итерации проверяем, принадлежит ли центр текущего эллипсоида $X^*_{\varepsilon}$.
+\item Если да, пробуем сдвинуться в сторону $c$?
+\item Если нет, рассмотрим любое невыполненное ограничение и переносим его в центр. Описываем эллипсоид вокруг него с новым центром, повторяем для него всё то же.
+\item Когда объём эллипсоида окажется достаточно малым, можно остановиться.
+\end{enumerate}
+\begin{equation}
+R = \sqrt{n}\Delta, r = \frac{\varepsilon_2}{\sqrt{n}h}, h = \max{|a_{ij}|, |b_i|}
+\end{equation}
+\begin{Statement}
+\begin{equation}
+X^*_{\varepsilon_2} \supseteq S_{r/2}
+\end{equation}
+\begin{equation}
+X_{\varepsilon}^* = \{x^{\varepsilon} | x \varepsilon \leq \varepsilon_2, ||x^2|| \leq R\}
+\end{equation}
+\end{Statement}
+\begin{proof}
+Пусть $x^*$ -- решение (2). Тогда:
+\begin{equation}
+\forall x \in O_r(x^*): ||x - x^*|| \leq r |<\overline{a}_i, x> - <\overline{a}_i, x^*>|
+\leq ||a_i||\cdot||x - x^*|| \leq \sqrt{n}hr \leq \varepsilon_2
+\end{equation}
+Аналогично для $c$ и $d$.
+\end{proof}
+\begin{equation}
+0: E := S_R, E' \text{ содержит } E^-(g) = E \cap \{x | <g, x - \xi> \leq 0\}, \xi \text{ -- центр E.}
+\end{equation}
+Если $\xi \notin X^*_{\varepsilon_2}$, то
+1. $\exists i: <a_j, \xi> > b_i + \varepsilon_2 \Rightarrow g = a_i$.
+2. иначе $g = -c$.
+\begin{Statement}
+\begin{equation*}
+E^-(g) \supseteq  X^*_{\varepsilon_2}
+\end{equation*}
+\end{Statement}
+\begin{proof}
+\begin{equation}
+<a_i, x - \xi> \leq 0 \Rightarrow <a_i, x> \leq <a_i, \xi> \Rightarrow x \in E^-(a_i)
+\end{equation}
+\begin{equation}
+x^{\varepsilon_2}: <a_i, x^{\varepsilon_2}> \leq b_i + \varepsilon_2 < <a_i, \xi>
+\end{equation}
+Полуэллипсоид $E^-(g) \subset E'$ так, что $\frac{V_{E'}}{V_E} < e^{\frac{-1}{2n + 2}}$.
+$E'$ выписывается по $E$ за $O(n^2)$ итераций.
+\begin{equation}
+E' = \left\{x | \frac{x_1^2 + \ldots + x_{n - 1}^2}{\beta^2} + \frac{(x_n - \frac1{n + 1})^2}{\alpha^2} \leq 1\right\},
+\alpha = 1 - \frac1{n + 1}, \beta = 1 + \frac1{n^2 + 1}
+\end{equation}
+\begin{equation}
+\alpha = 1 - \frac1{n + 1} \leq e^{\frac{-1}{n + 1}}, \beta \leq e^{\frac1{n^2 + 1}}
+\end{equation}
+\begin{equation}
+\frac{V_{E'}}{V_E} = \alpha\beta^{n - 1} \leq \exp\left\{\frac{-1}{n + 1} + \frac{n - 1}{2(n^2 - 1)}\right\} = e^{\frac{-1}{2n + 2}}
+\end{equation}
+\end{proof}
+Найдём $k: \left(\frac{r}{2R}\right)^n \leq \frac{V_{X^*_{\varepsilon}}}{V_{E_1}} \leq \frac{V_{E_k}}{V_{E_1}} \leq e^{\frac{-k}{2n + 2}}$.
+Тогда для $k$ получаем:
+\begin{multline}
+k \leq n(2n + 2)\ln\frac{2R}{r} \leq n(2n + 2)\ln\frac{2\sqrt{n}\Delta}{\varepsilon/(h\sqrt{n})} =
+n(2n + 2)\ln\frac{2n\Delta h}{\varepsilon} = \\
+= n(2n + 2)\ln\frac{4n^3\Delta^4h} \leq 4n^3\Delta^5
+= O(n^2\ln(n\Delta)) = O(n^2|I|)
+\end{multline}
 \end{document}
