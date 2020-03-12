@@ -1,4 +1,4 @@
-% Created 2020-03-05 Thu 15:10
+% Created 2020-03-12 Thu 15:13
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -53,7 +53,7 @@
 
 
 \section{Структура курса}
-\label{sec:org051f5d8}
+\label{sec:org440c52b}
 \begin{enumerate}
 \item Структура множеств на прямой
 \item Мера и измеримые множества
@@ -72,7 +72,7 @@
 \end{enumerate}
 
 \section{Список литературы}
-\label{sec:orge8e827b}
+\label{sec:org9d98929}
 Капустин "Функциональный анализ".
 
 Зачёт из двух частей: теоретический вопрос и задача из списка.
@@ -85,7 +85,7 @@
 \item Т. А. Леонтьева, А. В. Домрина "Задачи по теории функций и функциональному анализу".
 \end{enumerate}
 \section{Открытые и замкнутые множества на прямой}
-\label{sec:org730ddbe}
+\label{sec:org096aac2}
 \zall
 $$E = E_1 \cup E_2 = \{e | e \in E_1 || e \in E_2\}$$
 $$E = E_1 \cap E_2 = \{e | e \in E_1 \&\& e \in E_2\}$$
@@ -137,7 +137,7 @@ $\forall x_1 \neq x_2 V(x_1) = V(x_2)$, либо $V(x_1) \cap V(x_2) = 0$.
 точки канторова множества - все точки, не содержащие в своём представлении единиц. Множество
 таких точек континуально.
 \section{Измеримые множества. Мера Лебега.}
-\label{sec:orgd69e7a4}
+\label{sec:org2f47bb3}
 \zall
 Покрытием множества $E$ будем называть счётную систему интервалов, объеднинение которых содержит $E$
 Составим число $\sigma(s)$ - сумму длин отрезков, входящих в покрытие.
@@ -327,7 +327,7 @@ $C = \cup_{n = -\infty}^{+\infty}\Phi_n$. Но $|C| = 1$, а $\Phi_n$ конгр
 \textbf{Абстрактная мера} - положительная действительнозначная функция на полукольце,
 обладающая свойством конечной аддитивности.
 \section{Измеримые функции}
-\label{sec:orgcc45e06}
+\label{sec:org05aab66}
 \zall
 Будем использовать обозначение \(E[f > a] = \{x \in E | f(x) > a\}\).
 
@@ -520,9 +520,9 @@ $f_n(x) \rightrightarrows f(x)$ на $E_{\delta}$.
 Если $|f| \leq k$, то $|\varphi| \leq k$.
 \end{Theorem}
 \section{Интеграл Лебега}
-\label{sec:orgeb1302c}
+\label{sec:org68aa73b}
 \subsection{Интеграл Лебега от ограниченной функции на множестве конечной меры}
-\label{sec:org1937225}
+\label{sec:orgc078779}
 Пусть \(|E| < +\infty\). \textbf{Лебеговым разбиением} множества \(E\) назовём совокупность конечного
 числа непересекающихся измеримых множеств, объединение которых даёт \(E\):
 \begin{equation}
@@ -619,7 +619,7 @@ $0 \leq \overline{I} - \underline{I} \leq S_T - s_T$.
 \end{proof}
 Спецкурс в четверг в 16:20.
 \subsection{Свойства интеграла Лебега}
-\label{sec:orgeed9315}
+\label{sec:org74ba3ae}
 \begin{enumerate}
 \item \(\int_Edx = |E|\).
 \item \(\int_E\alpha fdx = \alpha\int_Efdx, \alpha = const\).
@@ -628,7 +628,7 @@ $0 \leq \overline{I} - \underline{I} \leq S_T - s_T$.
 \item Если \(f_1 \leq f_2\) почти всюду, то \(\int_Ef_1dx \leq \int_Ef_2dx\).
 \end{enumerate}
 \subsection{Интеграл Лебега от измеримой(вообще говоря, неограниченной), неотрицательной функции на множестве конечной меры}
-\label{sec:org2beb85e}
+\label{sec:org913abcc}
 Введём \textbf{срез} функции \(f(x)\):
 \zall
 \begin{equation}
@@ -681,4 +681,168 @@ $\exists I = \lim_{N \to +\infty}I_N = \int_Ef(x)dx$, то функция $f(x)$
 \end{equation}
 Из (6) и (8) получаем (3).
 \end{proof}
+\begin{Theorem}[абсолютная непрерывность интеграла Лебега]
+Пусть $|E| < \infty, f(x) > 0$ и интегрируема на $E$. Тогда $\forall \varepsilon > 0$
+$\exists \delta > 0 \forall e \subset E |e| < \delta \Rightarrow \int_ef(x)dx < \varepsilon$.
+\end{Theorem}
+\begin{proof}
+По определению $\forall \varepsilon > 0 \exists N \in \mathbb{N} \int_E[f - f_N]dx < \frac{\varepsilon}2$.
+Тогда
+\begin{equation}
+\int_efdx = \int_e[f - f_N]dx + \int_ef_Ndx \leq \int_E[f - f_N]dx + N|e| < \frac{\varepsilon}2 +
+\frac{\varepsilon}2 < \varepsilon
+\end{equation}
+при $\delta < \frac{\varepsilon}{2N}$.
+\end{proof}
+\begin{Theorem}
+Пусть $|E| < \infty, f(x) \geq 0$ и $\int_Ef(x)dx = 0$. Тогда $f(x) \approx 0$.
+\end{Theorem}
+\begin{proof}
+\begin{equation}
+\forall a > 0 E_a = E[f \geq a].
+\end{equation}
+Тогда
+\begin{equation}
+\int_Efdx \geq \int_{E_a}fdx \geq a|E_a| \Rightarrow |E_a| \leq \frac1a\int_Efdx,
+\end{equation}
+\begin{equation}
+E[f > 0] = \cup_{n = 1}^{\infty}E_{1/n}, E[f > 0] \leq \sum_{n = 1}^{\infty}|E_{1/n}| = 0 \Rightarrow
+|E[f \neq 0]| = 0
+\end{equation}
+\end{proof}
+\begin{Theorem}[мажорантный признак]
+Если $0 \leq f_1(x) \leq f_2(x)$ для почти всех $x$ из множества конечной меры $E$, то
+из интегрируемости $f_2(x)$ следует интегрируемость $f_1(x)$.
+\end{Theorem}
+\begin{proof}
+Для срезок $f_{1N} \leq f_{2N} \Rightarrow \int_Ef_{1N}dx \leq \int_Ef_{2N}dx \leq \int_E f_2dx$.
+\end{proof}
+\subsection{Интеграл Лебега от измеримой функции произвольного знака на множестве конечной меры}
+\label{sec:org3cdf4c8}
+Введём функции
+\zall
+\begin{equation}
+f^+(x) = \frac{f(x) + |f(x)|}2, f^-(x) = \frac{|f(x)| - f(x)}2, f^{\pm} \geq 0.
+\end{equation}
+Будем говорить, что функция \(f(x)\) \textbf{интегрируема по Лебегу} на \(E\), если функции \(f^{\pm}\)
+интегрируемы по Лебегу на нём. Тогда
+\begin{equation}
+\int_Ef(x)dx = \int_Ef^+(x)dx - \int_Ef^-(x)dx
+\end{equation}
+\begin{Statement}
+Для интегрируемости $f(x)$ необходимо и достаточно интегрируемости $|f(x)|$.
+\end{Statement}
+\begin{proof}
+Если $f(x)$ интегрируема, то $f^{\pm}(x)$ интегрируемы $\Rightarrow |f(x)|$ интегрируема по
+Лебегу.
+
+Если $|f(x)|$ интегрируема, то $f^{\pm}(x) \leq |f(x)|$, поэтому $f(x)$ также интегрируема.
+\end{proof}
+Замечание: функция $f(x) = x^{-3/2}\sin\frac1x$ на (0, 1) неабсолютно интегрируема по Риману и
+не интегрируема по Лебегу.
+\begin{Theorem}[Абсолютная аддитивность интеграла Лебега]
+Звучит аналогично теореме 1, только теперь рассматривается ряд $\sum_{n = 1}^{\infty}\int_E|f|dx$.
+\end{Theorem}
+Обозначим $L_E$ -- множество интегрируемых на $E$ функций. Будем говорить, что $f_n(x)$
+\textbf{сходится в} $L_E$ к $f(x)$, если $\lim_{n \to \infty}|f_n(x) - f(x)|dx = 0$.
+Свойства сходимости в $L_E$:
+\begin{enumerate}
+\item Сходимость в $L_E$ влечёт за собой возможность почленного интегрирования последовательности
+\item Сходимость в $L_E$ влечёт за собой сходимость по мере. Обратное вообще говоря неверно.
+\end{enumerate}
+Пусть
+\begin{equation}
+f_n(x) = \begin{cases}
+n^2, x \in (0, \frac1n), \\
+0, x \in [\frac1n, 1).
+\end{cases}
+\end{equation}
+$f_n(x) \to 0 = f$, но $\int_E|f_n - f|dx = n$.
+\begin{Theorem}[Теорема Лебега]
+Пусть $|E| < \infty$, $f_n(x) \to f(x)$ по мере и для почти всех $x |f_n(x)| \leq F(x)$, где
+$F(x)$ интегрируема. Тогда $f_n(x)$ сходится к $f(x)$ в $L(E)$.
+\end{Theorem}
+\begin{proof}
+Существует $f_{n_k}(x) \to f(x)$ почти всюду, причём $|f_{n_k}(x)| \leq F(x)$. Тогда
+$|f(x)| \leq F(x)$. Пусть $\forall \varepsilon_1 > 0 E_n = E[|f_n - f| \geq \varepsilon_1]$.
+Тогда:
+\begin{equation}
+\int_E|f_n - f|dx = \int_{E_n}|f_n - f|dx + \int_{E\backslash E_n}|f_n - f|dx \leq 2\int_{E_n}F(x)dx +
+\varepsilon_1|E\backslash E_n| \leq 2\int_{E_n}F(x) + \varepsilon_1|E| < \varepsilon
+\end{equation}
+при $\varepsilon_1 > \frac{\varepsilon}{2|E|}$
+\end{proof}
+\begin{Theorem}[Теорема Леви]
+Пусть $|E| < \infty f_n(x) \leq f_{n + 1}(x)$ почти всюду на $E$. Пусть также $|\int_Ef_n(x)dx| \leq M$.
+Тогда $f_n(x)$ почти всюду сходится к $f(x) \in L(E)$, причём $\int_E|f_n - f|dx \to 0$ при $n \to \infty$.
+Знак $\leq$ можно заменить на $\geq$, утверждение останется верным.
+\end{Theorem}
+\begin{proof}
+Будем считать, что все функции почти всюду неотрицательны. Если это не так, можно вычесть из
+всех функций $f_1(x)$. Тогда $\int_Ef_ndx \leq M$. Достаточно показать интегрируемость $f(x)$.
+Для этого рассмотрим срезки. $f_nN(x) \to f_N(x)$ почти всюду, поэтому
+$\int_Ef_{nN}(x)dx \to \int_Ef_n(x)dx$ при $N \to \infty$. Тогда $\int_Ef_{nN}(x)dx \leq \int_Ef_n(x)dx \leq M$,
+откуда $\int_Ef_N(x)dx \leq M$.
+\end{proof}
+\begin{Consequence}
+Пусть $|E| < \infty, u_n(x) \geq 0$ и $\sum_{n = 1}^{\infty}\int_Eu_n(x)$ сходится. Тогда почти
+всюду $\exists s(x) = \sum_{n = 1}u_n(x)$ и $\int_Es(x)dx = \sum_{n = 1}^{\infty}\int_Eu_n(x)dx$.
+\end{Consequence}
+\begin{Theorem}[Теорема Фату]
+Пусть $|E| < \infty$, $f_n(x) \to f(x)$ почти всюду и $\int_E|f_n(x)|dx \leq A$. Тогда
+$f(x) \in L(E)$ и $\int_E|f(x)| \leq A$.
+\end{Theorem}
+\begin{proof}
+Пусть $g_n(x) = \inf_{k \geq n}|f_k(x)|$. $g_n(x) \to |f(x)|$ почти всюду. Тогда
+\begin{equation}
+\int_Eg_n(x)dx \leq A \Rightarrow \int_Efdx \leq A.
+\end{equation}
+\end{proof}
+\begin{Theorem}[Теорема Лебега]
+Для того, чтобы ограниченная функция на множестве конечной меры была интегрируема по Лебегу,
+необходимо и достаточно, чтобы она была измерима.
+\end{Theorem}
+\begin{proof}
+Достаточность следует из теоремы 2(?).
+
+Покажем необходимость. Рассмотрим $T_n: \{E_k^n\}_{k = 1}^{m(n)}$, $T_{n + 1}$ есть измельчение $T_n$.
+Положим $M_k^n = \sup_{E_k}f(x), m_k^n = \inf_{E_k}f(x), S_n = \sum_{k = 1}^{m(n)}M_k^n|E_k^n|$,
+$s_n = \sum_{k = 1}m_k^n|E_k^n|$. Покажем, что $S_n - s_n < \frac1n$.
+
+Введём функции
+\begin{equation}
+\overline{f}_n(x) = M_k^n\text{ на }E_k^n
+\end{equation}
+и
+\begin{equation}
+\underline{f}_n(x) = m_k^n\text{ на }E_k^n.
+\end{equation}
+Тогда выполнены неравенства
+\begin{equation}
+\underline{f}_n(x) \leq f(x) \overline{f}_n(x).
+\end{equation}
+$\overline{f}_n(x) \to \overline{f}(x)$ и $\underline{f}_n(x) \to \underline{f}(x)$ почти
+всюду и
+\begin{equation}
+S_n - s_n = \int_E[\overline{f}_n(x) - \underline{f}_n(x)]dx \to \int_E[\overline{f}(x) - \underline{f}(x)]dx = 0.
+\end{equation}
+\end{proof}
+\subsection{Интеграл Лебега от измеримой функции на множестве бесконечной меры}
+\label{sec:orga5ca2b1}
+   \zall
+Пусть множества $E_n \subset E, |E_n| < +\infty, E_n \subset E_{n + 1}$ и $\cup_{k = 1}^{\infty}E_k = E$.
+Определим интеграл $f(x)$ на $E$: $\lim_{n \to \infty}\int_{\cup_{k = 1}^nE_k}f(x)dx = \int_Ef(x)dx$.
+\begin{Theorem}[Теорема Фубини]
+Рассмотрим прямоугольник $\Pi = \{(x, y) | a \leq x \leq b, c \leq y \leq d\}$. Пусть почти для
+всех точек $I(y) = \int_a^bf(x, y)dx, J(x) = \int_c^df(x, y)dy, f(x, y) \in L(E)$. Если
+$I(y) \in L(c, d)$ и $J(x) \in L(a, b)$, то верно равенство:
+\begin{equation}
+\iint_{\Pi}f(x, y)d\pi = \int_a^bdx\int_c^df(x, y)dy = \int_c^ddy\int_a^bf(x, y)dx
+\end{equation}
+\end{Theorem}
+\begin{equation}
+f(x, y) = \frac{xy}{(x^2 + y^2)^2} \text{ на } [-1, 1]^2.
+\end{equation}
+В обратную сторону утверждение этой теоремы неверно, но будет верно, если сходится хотя бы
+один из интегралов $\int_c^d\int_a^b|f(x, y)|dx, \int_a^b\int_c^d|f(x, y)|dy$.
 \end{document}
