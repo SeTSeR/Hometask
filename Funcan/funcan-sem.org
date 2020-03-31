@@ -189,3 +189,110 @@ $\operatorname{supp} f(x) = \{x \in Q: f(x) \neq 0\}$ - \textbf{носитель
 Класс $L^+(Q)$ - класс функций, для которых есть последовательность финитных на Q функций $f_n(x)$,
 сходящихся почти всюду к $f(x)$, таких, что $\lim_{n \to \infty}\int_Qf_n(x)dx = \int_Qf(x)dx$.
 #+end_export
+* Задача о нагруженной струне
+Уравнение колебаний струны:
+#+begin_export latex
+\begin{equation}
+(k(x)u_x(x, t))_x = \rho(x)u_{tt}(x, t)
+\end{equation}
+Предположим, что концы струны закреплены, а в точках $0 < x_1 < x_2 < \ldots < x_n < l$
+закреплены грузы массы $M_i$.
+Условие непрерывности струны:
+\begin{equation}
+u(x_i - 0, t) = u(x_i + 0, t)
+\end{equation}
+\begin{equation}
+k(x_i)u_x|^{x_i + 0}_{x_i - 0} = -F_i(x_i)
+\end{equation}
+Из второго закона Ньютона:
+\begin{equation}
+F(x_i) = -M_iu_{tt}(x_i, t),
+\end{equation}
+что даёт граничные условия:
+\begin{equation}
+\begin{cases}
+u(0, t) = u(l, t) = 0, \\
+k_i(x_i)u_x|^{x_i + 0}_{x_i - 0} = M_iu_{tt}(x_i, t), i = \overline{1, n}, \\
+u(x, 0) = \varphi(x), \\
+u_t(x, 0) = \psi(x).
+\end{cases}
+\end{equation}
+Ищем решение в виде $u(x, t) = X(x)T(t)$, что приводит к уравнениям
+\begin{equation}
+T'' + \lambda T = 0, \\
+\frac{d}{dx}\left(k(x)\frac{dX}{dx}\right) + \lambda\rho(x)X(x) = 0, \\
+X(0) = X(l), \\
+k(x_i)[X'(x_i + 0) - X'(x_i - 0)] + \lambda M_iX(x_i) = 0, i = \overline{1, n}.
+\end{equation}
+\begin{equation}
+\int_0^l\rho(x)X_n(x)X_m(x) + \sum_{i = 1}^mM_iX_n(x_i)X_m(x_i) = 0
+\end{equation}
+Пусть $E$ - произвольное измеримое множество. Множество функций, для которых существует интеграл
+\begin{equation}
+\int_E|f(x)|^pdx, p \geq 1,
+\end{equation}
+обозначается $L_p(E)$. Норма на этом пространстве:
+\begin{equation}
+||f||_p \equiv ||f||_{L(E)} \equiv \left(\int_E|f(x)|^pdx\right)^{1/p}
+\end{equation}
+Равенство нужно понимать в смысле эквивалентности. Неравенство треугольника в этом пространстве
+называется \textbf{неравенством Минковского} и следует из \textbf{неравенства Гёльдера}.
+Пространство $L_p$ является полным.
+Полное линейное пространство называется \textbf{банаховым}. Линейное пространство называется
+\textbf{гильбертовым}, если на нём определено скалярное произведение, обладающее свойствами:
+\begin{enumerate}
+\item $(x, y) = \overline{(y, x)}$
+\item $(\lambda x, y) = \lambda(x, y)$
+\item $(x, x) \geq 0 \text{ и } (x, x) = 0 \Leftrightarrow x = 0$
+\end{enumerate}
+Норма в гильбертовом пространстве определяется как $||x|| = \sqrt{(x, x)}$. Гильбертово
+пространство является полным и бесконечномерным.
+\textbf{Неравенство Коши-Буняковского}:
+\begin{equation}
+|(x, y)| \leq ||x||\cdot||y||
+\end{equation}
+\textbf{Неравенство параллелограмма}:
+\begin{equation}
+||x + y||^2 + ||x - y||^2 = 2(||x||^2 + ||y||^2)
+\end{equation}
+$L_p$ является гильбертовым только при $p = 2$. Скалярное произведение: $\int_Efgdx = (f, g)$.
+Пусть $X_i$ -- конечное линейное пространство. Система $\{\Psi_i\}^{\infty}_{i = 1}$ называется
+\textbf{линейно независимой}, если любая её конечная подсистема линейно независима. Система
+называется \textbf{замкнутой}, если $\forall \varepsilon > 0 \forall f \in X \exists$
+$\sum_{i = 1}^n\alpha_i\Psi_i: ||f - \sum_{i = 1}^n\alpha_i\Psi_i|| < \varepsilon$. Система
+называется \textbf{базисом}, если для любой функции справедливо представление:
+\begin{equation}
+f = \sum_{i = 1}^{\infty}\alpha_i\Psi_i
+\end{equation}
+В $L_2$ тригонометрическая система является базисом.
+
+В пространстве $L_2(0, l)\times\mathbb{R}^n$ система решений ЗШЛ является ортогональной.
+
+\begin{equation}
+\begin{cases}
+X'' + \lambda X = 0, \\
+X(0) = 0, X'(1) = d\lambda X(1).
+\end{cases}
+\end{equation}
+\begin{equation}
+\int_0^lX_nX_m(x) + dX_n(1)X_m(1) = 0
+\end{equation}
+Система $\Psi_i$ называется \textbf{минимальной}, если никакой её элемент нельзя с наперёд
+заданной точностью приблизить конечными комбинациями других элементов системы.
+\begin{equation}
+\begin{cases}
+X_n(x) = \sin\sqrt{\lambda_n}x, \\
+\ctg\sqrt{\lambda} = d\sqrt{\lambda}
+\end{cases}
+\end{equation}
+Из этой системы для минимальности нужно выкинуть одну функцию.
+
+Если выкинуть $\sin(\sqrt{\lambda} lx)x$, то функция раскладывается в ряд если и только если:
+\begin{equation}
+\int_0^lf(x)\sin(\sqrt{\lambda}lx)dx + df(1)\sin\sqrt{\lambda}l = 0
+\end{equation}
+А если $d$ комплексное?
+
+Если $d = \frac{\ctg z}z$, где $\sin z\cos z + z = 0$, то вся система является базисом, и
+появляется корень кратности 2.
+#+end_export
