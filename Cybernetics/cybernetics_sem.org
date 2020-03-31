@@ -401,6 +401,7 @@ k + 2\frac{(n - k)(n - k + 1)}2 = k + (n - k)(n - k + 1) = n + (n - k)^2 = n^2 -
 * Семинар 2
 ** Задача 3.1(1, 5)
    #+begin_export latex
+\zall
 \begin{equation}
    D = x_1x_2 \vee\overline{x_1}\text{ - не тупиковая, не минимальная, кратчайшая.}
 \end{equation}
@@ -570,5 +571,244 @@ K_3K_5\vee K_3K_4K_6\vee K_2K_4K_5\vee K_2K_4K_6
 \end{equation}
 \begin{equation}
 \overline{x}\overline{y}\vee\overline{x}\overline{z}\overline{w}\vee xy\overline{z}\vee \overline{y}\overline{z}w
+\end{equation}
+#+end_export
+* Домашняя работа 2
+** Задача 3.1(4, 6)
+Выяснить, является ли ДНФ D тупиковой, кратчайшей, минимальной:
+#+begin_export latex
+\zall
+\begin{equation}
+D = x_1\overline{x}_2 \vee \overline{x}_1x_2
+\end{equation}
+\begin{equation}
+D = x_1x_2 \vee \overline{x}_1x_3\overline{x}_4 \vee \overline{x}_2x_3x_4
+\end{equation}
+#+end_export
+*** Решение
+#+begin_export latex
+4) $D$ является тупиковой, кратчайшей и минимальной.\\
+6) $D$ является тупиковой, кратчайшей и минимальной.
+#+end_export
+** Задача 3.3(3, 4 -- ядро, ДНФ Квайна и \Sigma T)
+Построить ядро, ДНФ Квайна и $\Sigma T$ по сокращённой ДНФ:
+   #+begin_export latex
+   \begin{equation}
+D = x\overline{y}z \vee x\overline{y}\overline{w} \vee \overline{x}y\overline{w} \vee
+\overline{x}\overline{z}\overline{w} \vee \overline{y}\overline{z}\overline{w}
+   \end{equation}
+\begin{equation}
+D = \overline{z}\overline{w} \vee \overline{x}\overline{y}\overline{w} \vee
+\overline{x}\overline{y}\overline{z} \vee xyz \vee xy\overline{w}
+\end{equation}
+   #+end_export
+*** Решение
+Строим таблицу Квайна:
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+|                                        | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |      |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+| $x\overline{y}z$                       |      | x    | x    | x    |      | x    |      |      |      | x    |    1 |    1 | x    | x    | x    |      | я    |
+| $x\overline{y}\overline{w}$            |      | x    | x    | x    |      | x    |      |      |    1 | x    |    1 |      | x    | x    | x    |      | я    |
+| $\overline{x}y\overline{w}$            |      | x    | x    | x    |    1 | x    |    1 |      |      | x    |      |      | x    | x    | x    |      | я    |
+| $\overline{x}\overline{z}\overline{w}$ |    1 | x    | x    | x    |    1 | x    |      |      |      | x    |      |      | x    | x    | x    |      | я    |
+| $\overline{y}\overline{z}\overline{w}$ |      | x    | x    | x    |      | x    |      |    1 |      | x    |      |      | x    | x    | x    |    1 | я    |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+|                                        |    я |      |      |      |    р |      |    я |    я |    я |      |    р |    я |      |      |      |    я |      |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+Таким образом, ядро: $\{N_{x\overline{y}z}, N_{x\overline{y}\overline{w}}, N_{\overline{x}y\overline{w}}, N_{\overline{x}\overline{z}\overline{w}}, N_{\overline{y}\overline{z}\overline{w}}\}$,
+соответственно, ДНФ Квайна и ДНФ $\Sigma T$ совпадают с ДНФ $(3)$
+
+Таблица Квайна для второй ДНФ(наборы, где все слагаемые обращаются в ноль, опущены для краткости):
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------|
+|                                        | 0000 | 0001 | 0010 | 0100 | 1000 | 1100 | 1101 | 1110 | 1111 |      |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------|
+| $\overline{z}\overline{w}$             |    1 |      |      |    1 |    1 |    1 |      |      |      | я    |
+| $\overline{x}\overline{y}\overline{w}$ |    1 |      |    1 |      |      |      |      |      |      | я    |
+| $\overline{x}\overline{y}\overline{z}$ |    1 |    1 |      |      |      |      |      |      |      | я    |
+| $xyz$                                  |      |      |      |      |      |      |      |    1 |    1 | я    |
+| $xy\overline{w}$                       |      |      |      |      |      |      |    1 |      |    1 | я    |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------|
+|                                        |    р |    я |    я |    я |    я |    я |    я |    я |    р |      |
+|----------------------------------------+------+------+------+------+------+------+------+------+------+------|
+Таким образом, ядро: $\{N_{\overline{z}\overline{w}}, N_{\overline{x}\overline{y}\overline{w}}, N_{\overline{x}\overline{y}\overline{z}}, N_{xyz}, N_{xy\overline{w}}\}$.
+Соответственно, ДНФ Квайна и ДНФ $\Sigma T$ совпадают с (4)
+** Задача 3.4(4)
+По сокращённой ДНФ построить ДНФ $\Sigma M$:
+#+begin_export latex
+\begin{equation}
+D = \overline{x}z \vee yz \vee \overline{x}\overline{y}w \vee xy \vee \overline{y}zw \vee xzw
+\end{equation}
+#+end_export
+*** Решение
+Таблица Квайна:
+|-----------------------------+------+------+-------+-------+-------+------+------+------+-------+-------+----|
+|                             | 0001 | 0010 |  0011 |  0110 |  0111 | 1011 | 1100 | 1101 |  1110 |  1111 |    |
+|-----------------------------+------+------+-------+-------+-------+------+------+------+-------+-------+----|
+| $\overline{x}z$             |      |    1 |     1 |     1 |     1 |      |      |      |       |       | я  |
+| $yz$                        |      |      |       |     1 |     1 |      |      |      |     1 |     1 | пя |
+| $\overline{x}\overline{y}w$ |    1 |      |     1 |       |       |      |      |      |       |       | я  |
+| $xy$                        |      |      |       |       |       |      |    1 |    1 |     1 |     1 | я  |
+| $\overline{y}zw$            |      |      |     1 |       |       |    1 |      |      |       |       |    |
+| $xzw$                       |      |      |       |       |       |    1 |      |      |       |     1 |    |
+|-----------------------------+------+------+-------+-------+-------+------+------+------+-------+-------+----|
+|                             |    я |    я | пя, р | пя, р | пя, р |      |    я |    я | пя, р | пя, р |    |
+|-----------------------------+------+------+-------+-------+-------+------+------+------+-------+-------+----|
+Получаем две тупиковые ДНФ:
+#+begin_export latex
+\begin{equation}
+D_1 = \overline{x}z \vee \overline{x}\overline{y}w \vee xy \vee \overline{y}zw
+\end{equation}
+и
+\begin{equation}
+D_2 = \overline{x}z \vee \overline{x}\overline{y}w \vee xy \vee xzw
+\end{equation}
+Обе ДНФ являются минимальными, поэтому ДНФ $\Sigma M$ имеет вид:
+\begin{equation}
+D = \overline{x}z \vee yz \vee \overline{x}\overline{y}w \vee xy \vee \overline{y}zw \vee xzw
+\end{equation}
+#+end_export
+** Задача 3.6(3, 6, 8)
+С помощью таблицы Квайна построить все тупиковые ДНФ функции:
+#+begin_export latex
+\begin{equation}
+\tilde{\alpha}_f = (0001 1111)
+\end{equation}
+\begin{equation}
+\tilde{\alpha}_f = (1110 0110 0001 0101)
+\end{equation}
+\begin{equation}
+\tilde{\alpha}_f = (0001 1011 1110 0111)
+\end{equation}
+#+end_export
+*** Решение
+Карта Карно:
+|------------------+---+---|
+| $xy\backslash z$ | 0 | 1 |
+|------------------+---+---|
+|               00 |   |   |
+|               01 |   | 1 |
+|               11 | 1 | 1 |
+|               10 | 1 | 1 |
+|------------------+---+---|
+Получаем сокращённую ДНФ:
+#+begin_export latex
+\begin{equation}
+D = x \vee yz
+\end{equation}
+#+end_export
+Строим таблицу Квайна:
+|------------+-----+-------+-----+-----+-----+---|
+|            | 011 |   100 | 101 | 110 | 111 |   |
+|------------+-----+-------+-----+-----+-----+---|
+| $K_1 = x$  |     |     1 |   1 |   1 |   1 | я |
+| $K_2 = yz$ |   1 |     1 |     |     |     | я |
+|------------+-----+-------+-----+-----+-----+---|
+|            |   я | пя, р |   я |   я |   я |   |
+|------------+-----+-------+-----+-----+-----+---|
+Получили, что все грани ядровые, т. е. единственной тупиковой днф является (10).
+
+Карта Карно для (10)
+|-------------------+----+----+----+----|
+| $xy\backslash zw$ | 00 | 01 | 11 | 10 |
+|-------------------+----+----+----+----|
+|                00 |  1 |  1 |    |  1 |
+|                01 |    |  1 |    |  1 |
+|                11 |    |  1 |  1 |    |
+|                10 |    |    |  1 |    |
+|-------------------+----+----+----+----|
+Получаем сокращённую ДНФ:
+#+begin_export latex
+\begin{equation}
+D = \overline{x}\overline{y}\overline{z} \vee \overline{x}\overline{z}w \vee y\overline{z}w \vee
+xyw \vee xzw \vee \overline{x}z\overline{w} \vee \overline{x}\overline{y}\overline{w}
+\end{equation}
+#+end_export
+Таблица Квайна:
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+|                                              | 0000 | 0001 | 0010 | 0101 | 0110 | 1011 | 1101 | 1111 |   |
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+| $K_1 = \overline{x}\overline{y}\overline{z}$ |    1 |    1 |      |      |      |      |      |      |   |
+| $K_2 = \overline{x}\overline{z}w$            |      |    1 |      |    1 |      |      |      |      |   |
+| $K_3 = y\overline{z}w$                       |      |      |      |    1 |      |      |    1 |      |   |
+| $K_4 = xyw$                                  |      |      |      |      |      |      |    1 |    1 |   |
+| $K_5 = xzw$                                  |      |      |      |      |      |    1 |      |    1 | я |
+| $K_6 = \overline{x}z\overline{w}$            |      |      |    1 |      |    1 |      |      |      | я |
+| $K_7 = \overline{x}\overline{y}\overline{w}$ |    1 |      |    1 |      |      |      |      |      |   |
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+|                                              |      |      |   пя |      |    я |    я |      |   пя |   |
+|----------------------------------------------+------+------+------+------+------+------+------+------+---|
+Построим покрытие таблицы:
+#+begin_export latex
+\begin{multline}
+(K_1 \vee K_7)(K_1 \vee K_2)(K_2 \vee K_3)(K_3 \vee K_4)K_5K_6 = (K_1 \vee K_2K_7)(K_3 \vee K_2K_4)K_5K_6 = \\
+= K_1K_3K_5K_6 \vee K_1K_2K_4K_5K_6 \vee K_2K_3K_5K_6K_7 \vee K_2K_4K_5K_6K_7
+\end{multline}
+Откуда получаем 4 тупиковых ДНФ:
+\begin{equation}
+D_1 = \overline{x}\overline{y}\overline{z} \vee y\overline{z}w \vee xzw \vee \overline{x}z\overline{w}
+\end{equation}
+\begin{equation}
+D_2 = \overline{x}\overline{y}\overline{z} \vee \overline{x}\overline{z}w \vee xzw \vee
+\overline{x}z\overline{w} \vee \overline{x}\overline{y}\overline{w}
+\end{equation}
+\begin{equation}
+D_3 = \overline{x}\overline{z}w \vee y\overline{z}w \vee xzw \vee \overline{x}z\overline{w} \vee
+\overline{x}\overline{y}\overline{w}
+\end{equation}
+\begin{equation}
+D_4 = \overline{x}\overline{z}w \vee xyw \vee xzw \vee \overline{x}z\overline{w} \vee
+\overline{x}\overline{y}\overline{w}
+\end{equation}
+#+end_export
+
+Карта Карно для (11):
+|-------------------+----+----+----+----|
+| $xy\backslash zw$ | 00 | 01 | 11 | 10 |
+|-------------------+----+----+----+----|
+|                00 |    |    |  1 |    |
+|                01 |  1 |    |  1 |  1 |
+|                11 |  1 |  1 |    |  1 |
+|                10 |    |  1 |  1 |  1 |
+|-------------------+----+----+----+----|
+Получаем сокращённую ДНФ:
+#+begin_export latex
+\begin{equation}
+D = y\overline{w} \vee xy\overline{z} \vee x\overline{z}w \vee x\overline{y}w \vee
+x\overline{y}z \vee xz\overline{w} \vee \overline{x}yz \vee \overline{x}zw
+\end{equation}
+#+end_export
+Таблица Квайна:
+|------------------------+------+------+------+------+------+------+------+------+------+------+----|
+|                        | 0011 | 0100 | 0110 | 0111 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 |    |
+|------------------------+------+------+------+------+------+------+------+------+------+------+----|
+| $K_1 = y\overline{w}$  |      |    1 |    1 |      |      |      |      |    1 |      |    1 | я  |
+| $K_2 = xy\overline{z}$ |      |      |      |      |      |      |      |    1 |    1 |      |    |
+| $K_3 = x\overline{z}w$ |      |      |      |      |    1 |      |      |      |    1 |      |    |
+| $K_4 = x\overline{y}w$ |      |      |      |      |    1 |      |    1 |      |      |      |    |
+| $K_5 = x\overline{y}z$ |      |      |      |      |      |    1 |    1 |      |      |      |    |
+| $K_6 = xz\overline{w}$ |      |      |      |      |      |    1 |      |      |      |    1 |    |
+| $K_7 = \overline{x}yz$ |      |      |    1 |    1 |      |      |      |      |      |      | пя |
+| $K_8 = \overline{x}zw$ |    1 |      |      |    1 |      |      |      |      |      |      | я  |
+|------------------------+------+------+------+------+------+------+------+------+------+------+----|
+|                        |    я |    я |   пя |   пя |      |      |      |   пя |      |   пя |    |
+|------------------------+------+------+------+------+------+------+------+------+------+------+----|
+Покрытие таблицы:
+#+begin_export latex
+\begin{multline}
+(K_3 \vee K_4)(K_5 \vee K_6)(K_4 \vee K_5)(K_2 \vee K_3)K_1K_8 = (K_3 \vee K_2K_4)(K_5 \vee K_6K_4)K_1K_8 = \\
+= K_1K_3K_5K_8 \vee K_1K_2K_4K_5K_8 \vee K_1K_3K_4K_6K_8 \vee K_1K_2K_4K_6K_8
+\end{multline}
+Получаем 4 тупиковых ДНФ:
+\begin{equation}
+D_1 = y\overline{w} \vee x\overline{z}w \vee x\overline{y}z \vee \overline{x}zw
+\end{equation}
+\begin{equation}
+D_2 = y\overline{w} \vee xy\overline{z} \vee x\overline{y}w \vee x\overline{y}z \vee \overline{x}zw
+\end{equation}
+\begin{equation}
+D_3 = y\overline{w} \vee x\overline{z}w \vee xz\overline{w} \vee \overline{x}zw
+\end{equation}
+\begin{equation}
+D_4 = y\overline{w} \vee xy\overline{z} \vee x\overline{y}w \vee xz\overline{w} \vee \overline{x}zw
 \end{equation}
 #+end_export
