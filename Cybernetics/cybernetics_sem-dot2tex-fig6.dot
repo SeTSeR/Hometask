@@ -1,0 +1,18 @@
+graph {
+    rankdir=LR
+    node[style=pole, label=" "];
+    1[xlabel="1"];
+    f1[xlabel="f_1"];
+    f2[xlabel="f_2"];
+    node[style=inner];
+    f110; f20; f10; f11; f21;
+    1 -- f110 [label="x_3"];
+    1 -- f20 [label=" " texlbl="$\overline{x}_3$"];
+    1 -- f21 [label=" " texlbl="$\overline{x}_2$"];
+    f110 -- f11 [label=" " texlbl="$\overline{x}_2$"];
+    f20 -- f10 [label="x_2"];
+    f10 -- f1 [label=" " texlbl="$\overline{x}_1$"];
+    f11 -- f1 [label="x_1"];
+    f20 -- f2 [label=" " texlbl="$\overline{x}_2$"];
+    f21 -- f2 [label="x_2"];
+}

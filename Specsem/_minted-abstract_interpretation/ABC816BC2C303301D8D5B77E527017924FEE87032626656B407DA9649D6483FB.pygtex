@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+op add\PYGZlt{}T: Integer\PYGZgt{}(a: T, b: T) \PYGZhy{}\PYGZgt{} (default result: T,
+                                   cf: bool, of: bool)
+where
+    result = \PYGZsq{}add(a, b);
+    cf = \PYGZsq{}adduo(a, b);
+    of = \PYGZsq{}addso(a, b);
+\end{Verbatim}

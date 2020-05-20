@@ -1,0 +1,7 @@
+    graph G {
+        rankdir="LR";
+        node [style="pole", label=""];
+        1[xlabel="1"];
+        0[xlabel="0"];
+    }
+    

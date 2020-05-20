@@ -1,0 +1,129 @@
+% Created 2020-05-15 Fri 20:42
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.3.6)}, 
+ pdflang={English}}
+\begin{document}
+
+
+\section{Задача 109}
+\label{sec:org15ea6cc}
+Дать конструктивное доказательство \emph{китайской теоремы об остатках}:
+
+Пусть \(k_1, \ldots, k_n\) -- взаимно простые натуральные числа. Тогда
+\(\forall b_1, \ldots, b_n \in \mathbb{Z}\, \exists f \in \mathbb{N}: f \equiv b_i (\text{mod}\, k_i), i = \overline{1, n}\)
+\subsection{Решение}
+\label{sec:orgbc5eb05}
+Положим \(k = \Pi_{i = 1}^nk_i\) и \(g_i = \frac{k}{k_i}, i = \overline{1, n}\).
+\((k_i, g_i) = 1 \Rightarrow \exists h_i: h_ig_i \equiv 1 (\text{mod}\, k_i)\). \(h_i\) строится,
+исходя из равенства \(h_ig_i - \lambda_ik_i = 1\)  с помощью расширенного алгоритма Евклида.
+Рассмотрим число \(f = \sum_{j = 1}^nb_jh_jg_j\). Разность
+\(f - b_i = \sum_{j = 1}^{i - 1}b_jh_jg_j + \sum_{j = i + 1}^nb_jh_jg_j + b_j(h_jg_j - 1)\)
+делится на \(k_i\), поскольку:
+\begin{enumerate}
+\item \(g_j \vdots k_i\) при \(i \neq j\) по построению.
+\item \(b_ih_ig_i \equiv b_i(\text{mod}\, k_i)\), поскольку \(h_ig_i \equiv 1(\text{mod}\, k_i)\).
+\end{enumerate}
+\section{Задача 131}
+\label{sec:orga0c31ec}
+Назовём перестановку \(z_1, \ldots, z_n\) чисел \(1, \ldots, n\) \emph{критической} длины \(n\), если на
+ней достигается максимум числа сравнений, требуемых рекурсивной сортировкой слиянием для
+массивов длины \(n\). Пусть \(n > 1\), а \(x_1, \ldots, x_{\lfloor n/2\rfloor}\) и
+\(y_1, \ldots, y_{\lceil n/2\rceil}\) есть некоторые критические перестановки соответствующей
+длины. Показать, что тогда числа
+\(2x_1, \ldots, 2x_{\lfloor n/2\rfloor}, 2y_1 - 1, \ldots, 2y_{\lceil n/2\rceil} - 1\) также
+образуют критическую перестановку.
+\subsection{Решение}
+\label{sec:orgfdd146e}
+Поскольку перестановки \(x_i\) и \(y_i\) критические, сортировка частей массива потребует
+максимального числа сравнений. Остаётся показать, что слияние массивов потребует максимального
+числа сравнений. Но слияние подмассивов требует ровно \(n - 1\) сравнений: для выбора следующего
+элемента в "слитом" массиве нужно сравнить текущие элементы половин для всех элементов, кроме
+последнего.
+\section{Задача 132}
+\label{sec:org539b773}
+С помощью подхода из предыдущей задачи построить критические перестановки длины 6, 7, 8 и 9.
+\subsection{Решение}
+\label{sec:org060f733}
+Для перестановки длины 6 нужно построить две критические перестановки длины 3(возможно,
+совпадающие). Для перестановки длины 3 нужно построить критические перестановки длины 1 и 2.
+Построим критические перестановки разных длин, используя предыдущую задачу:
+$$1: (1)$$
+$$2: (2, 1)$$
+$$3: (2, 3, 1)$$
+$$6: (4, 6, 2, 3, 5, 1)$$
+$$4: (4, 2, 3, 1)$$
+$$7: (4, 6, 2, 7, 3, 5, 1)$$
+$$8: (8, 4, 6, 2, 7, 3, 5, 1)$$
+$$5: (4, 2, 3, 5, 1)$$
+$$9: (8, 4, 6, 2, 7, 3, 5, 9, 1)$$
+\section{Задача 142}
+\label{sec:orgb99ce31}
+Доказать соотношение:
+\begin{equation}
+T_{KM}(m) > G(m) \forall m > 1,
+\end{equation}
+где
+\begin{equation*}
+G(m) = G(2^{\lceil\log_2m\rceil}) \forall m \in \mathbb{N}^+
+\end{equation*}
+и
+\begin{equation*}
+G(2^k) = \begin{cases}
+1, \text{ если } k = 0, \\
+3G(2^{k - 1}), \text{ если } k > 0.
+\end{cases}
+\end{equation*}
+\subsection{Решение}
+\label{sec:orgb40fecd}
+Поскольку число произвольной длины дополняется нулями слева до длины степени двойки, можно
+считать, что \(T_{KM}(m) = T(2^{\lceil\log_2m\rceil}) \forall m \in \mathbb{N}^+\), поэтому
+соотношение (1) можно доказать только для \(m = 2^k\). При \(k = 0 T_{KM}(m) = G(m) = 1\). Пусть
+теперь известно, что при \(m = 2^{k - 1} T_{KM}(m) \geq G(m), k \geq 1\). Покажем, что при \(m = 2^k T_{KM}(m) > G(m)\).
+Поскольку для умножения чисел длины \(m\) нужно выполнить три умножения чисел половинной длины и
+некоторое количество сложений, то \(T_{KM}(m) > 3T_{KM}\left(\frac{m}2\right) \geq 3G(2^{k - 1}) = G(2^k) = G(m)\).
+Таким образом, \(T_{KM}(m) > G(m) \forall m = 2^k, k > 0\). Вспоминая замечания, сделанные в
+начале, получаем, что \(T_{KM}(m) > G(m) \forall m > 1\), что и требовалось показать.
+\end{document}

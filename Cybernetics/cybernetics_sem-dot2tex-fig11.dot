@@ -1,0 +1,13 @@
+graph G {
+    rankdir=LR;
+    node[style=pole, label=""] a[xlabel="a"]; b[xlabel="b"];
+    node[style=inner];
+    a  -- v1 [label=" ", texlbl="$x$"];
+    a  -- v2 [label=" ", texlbl="$\overline{x}$"];
+    v1 -- v3 [label=" ", texlbl="$y$"];
+    v1 -- v4 [label=" ", texlbl="$\overline{y}$"];
+    v2 -- v3 [label=" ", texlbl="$\overline{y}$"];
+    v2 -- v4 [label=" ", texlbl="$y$"];
+    v3 -- b  [label=" ", texlbl="$\overline{z}$"];
+    v4 -- b  [label=" ", texlbl="$z$"];
+}

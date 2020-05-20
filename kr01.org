@@ -1,0 +1,79 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+LATEX_HEADER:\usepackage{listings}
+#+OPTIONS: toc:nil
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+* Задача 1
+Выписать 3 шага градиентного спуска с постоянным шагом для задачи поиска минимума функции
+#+begin_export latex
+\begin{equation}
+f(x_1, x_2) = x_1^2 + 2x_2^2
+\end{equation}
+при начальном приближении $(x_1, x_2) = (-1, 1)$ и шаге $a = 1$. При каком значении шага метод сойдётся?
+#+end_export
+** Решение
+   #+begin_export latex
+Аналитическая формула для градиента:
+\begin{equation}
+\operatorname{grad} f = \left\{\frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}\right\} = \{2x_1, 4x_2\}
+\end{equation}
+\begin{equation}
+M_0 = (-1, 1)
+\end{equation}
+\begin{equation}
+M_1 = M_0 - \operatorname{grad}f(M_0) = (-1, 1) - (-2, 4) = (1, -3)
+\end{equation}
+\begin{equation}
+M_2 = M_1 - \operatorname{grad}f(M_1) = (1, -3) - (2, -12) = (-1, 9)
+\end{equation}
+\begin{equation}
+M_3 = M_2 - \operatorname{grad}f(M_2) = (-1, 9) - (-2, 36) = (1, -27)
+\end{equation}
+   #+end_export
+
+Чтобы найти значение $a$, при котором метод сойдётся, рассмотрим шаг при произвольном $M_n(x_0, x_1)$
+#+begin_export latex
+\begin{equation}
+M_{n + 1} = M_n - a\operatorname{grad}f(M_n) \Rightarrow |M_{n + 1} - M_n| = a|\operatorname{grad}(M_n)| = a\sqrt{4x_0^2 + 16x_1^2}
+\end{equation}
+#+end_export
+При $a < 1$ метод сходится.
+
+#+begin_export latex
+\begin{multline}
+|M_{n + 1} - M_n| = a|\operatorname{grad}f(M_n)| = a|\operatorname{grad}f(M_n) - \operatorname{grad}f(M_0) + \operatorname{grad}f(M_0)| \leq \\
+a(|\operatorname{grad}f(M_n) - \operatorname{grad}f(M_{n + 1})| + |\operatoname{grad}|f(M_{n + 1})) \leq \\
+aL|M_n - M_{n + 1}| + a|\operatorname{grad}f(M_{n + 1})| \Rightarrow (1 - aL)|M_{n} - M_{n + 1}| \leq a|\operatorname{grad}f(M_{n + 1})|
+\end{multline}
+\begin{equation}
+|M_{n} - M_{n + 1}| \leq \frac{a}{1 - aL}|\operatorname{grad}f(M_{n + 1})|
+\end{equation}
+\begin{equation}
+|M_n - M| = |M_n - M + M - M_{n + 1}| \leq |M_n - M| + ||
+\end{equation}
+\begin{equation}
+f(M_n) = f(M) + \grad f(M)|M_n - M|
+\end{equation}
+#+end_export

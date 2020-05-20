@@ -1,0 +1,93 @@
+% Created 2020-04-30 Thu 10:17
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\newcommand{\grad}{\operatorname{grad}}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={Russian}}
+\begin{document}
+
+
+\section{Задача 1}
+\label{sec:orgd3ef870}
+Построить двойственную к задаче линейного программирования:
+\begin{equation}
+\max_{-1 \leq x \leq 1} (x + 1)
+\end{equation}
+Найти значения оптимума для прямой и двойственной задачи, проверить, что они совпадают.
+\subsection{Решение}
+\label{sec:org20095c9}
+Запишем задачу в форме озЛП:
+\begin{equation}
+(\max_{Ax \leq b}(c, x)) + 1,
+\end{equation}
+где
+\begin{equation}
+\begin{cases}
+A = \begin{pmatrix}
+1 \\
+-1
+\end{pmatrix}\\
+b = \begin{pmatrix}
+1 \\
+1
+\end{pmatrix}\\
+c = 1
+\end{cases}
+\end{equation}
+Соответственно, двойственная задача имеет вид:
+\begin{equation}
+(\min_{\lambda A = c, \lambda \geq 0}(\lambda, b)) + 1,
+\end{equation}
+или
+\begin{equation}
+\min_{\lambda_1 - \lambda_2 = 1, \lambda_1 \geq 0, \lambda_2 \geq 0}(\lambda_1 + \lambda_2) + 1 = 
+\min_{\lambda_1 \geq 1}(2\lambda_1 - 1) + 1 = 2\min_{\lambda_1 \geq 1}\lambda_1
+\end{equation}
+
+Максимум для прямой задачи достигается при $x = 1$, значение этого максимума равно 2.
+Для двойственной задачи оптимум достигается при $\lambda_1 = 2, \lambda_2 = 0$ и равен так же 2.
+\end{document}

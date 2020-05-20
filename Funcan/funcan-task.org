@@ -1,0 +1,94 @@
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage[english,russian]{babel}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{stnmt}\setcounter{stnmt}{0}
+#+LATEX_HEADER:\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+#+LATEX_HEADER:\newtheorem*{Statement}{Утверждение \st}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+* Задача
+Применить лемму Брэмбла-Гильберта к изучению скорости сходимости квадратурной формулы Симпсона.
+** Решение
+Для начала рассмотрим функционал
+#+begin_export latex
+\begin{equation}\label{eq:1}
+L(u) = \int_0^hu(x)dx - \frac{h}6\left(u(0) + 4u\left(\frac{h}2\right) + u(h)\right)
+\end{equation}
+#+end_export
+на $W_2^4(0, h)$. Перейдём от интервала $(0, h)$ к интервалу $(0, 1)$ путём замены $t = \frac{x}{h}$:
+#+begin_export latex
+\begin{equation*}
+\widetilde{u}(t) = u(x) = u(th) \Rightarrow \widetilde{u} = u, \widetilde{u}_t = hu_x, \widetilde{u}_{tt} = h^2u_{xx}, \widetilde{u}_{ttt} = h^3u_{xx}, \widetilde{u}_{tttt} = h^4u_{xxxx}
+\end{equation*}
+\begin{multline*}
+|\widetilde{u}|_{W_2^3(0, 1)} = |\widetilde{u}|_2 + |\widetilde{u}_t|_2 + |\widetilde{u}_{tt}|_2 +
+|\widetilde{u}_{ttt}|_2 + |\widetilde{u}_{tttt}|_2 = \\
+= \left(\int_0^1\widetilde{u}^2(t)dt\right)^{\frac12} + \left(\int_0^1\widetilde{u'}^2(t)dt\right)^{\frac12} +
+\left(\int_0^1\widetilde{u''}^2(t)dt\right)^{\frac12} + \left(\int_0^1\widetilde{u'''}^2(t)dt\right)^{\frac12} +
+\left(\int_0^1\widetilde{u''''}^2(t)dt\right)^{\frac12} = \\
+= \left(\frac1h\int_0^hu^2(x)dx\right)^{\frac12} + \left(h\int_0^hu'^2(x)dx\right)^{\frac12} +
+\left(h^3\int_0^hu''^2(x)dx\right)^{\frac12} + \left(h^5\int_0^hu'''^2(x)dx\right)^{\frac12} +
+\left(h^7\int_0^hu''''^2(x)dx\right)^{\frac12} = \\
+= h^{-\frac12}|u|_2 + h^{\frac12}|u_x|_2 + h^{\frac32}|u_{xx}|_2 +
+h^{\frac52}|u_{xxx}|_2 + h^{\frac72}|u_{xxxx}|_2 \leq h^{\frac72}|u|_{W_2^4(0, h)}
+\end{multline*}
+
+Подставим $\widetilde{u}$ в \ref{eq:1}, получим:
+\begin{equation}
+L(\widetilde{u}) = L(u) = \int_0^1u(th)d(th) - \frac{h}6\left(u(0) + 4u\left(\frac{h}2\right) + f(h)\right) =
+h\int_0^1\widetilde{u}(t)dt - \frac{h}6\left(\widetilde{u}(0) + 4\widetilde{u}\left(\frac12\right) +
+\widetilde{u}(1)\right)
+\end{equation}
+Пусть $0 \leq t < s \leq 1, v \in W_2^3(0, 1)$. Тогда:
+\begin{multline}
+v(t) = v(s) + \int_s^tv'(\phi)d\phi = v(s) + \int_s^t\left(v'(s) + \int_s^{\phi}v''(\tau)d\tau\right)d\phi = \\
+= v(s) + (t - s)v'(s) + \int_s^t\int_s^{\phi}\left(v''(s) + \int_s^{\tau}v'''(\zeta)d\zeta\right) = \ldots = \\
+= v(s) + (t - s)v'(s) + \frac{(t - s)^2}{2!}v''(s) + \frac{(t - s)^3}{3!}v'''(s) +
+\int_s^t\int_s^{\phi}\int_s^{\tau}\int_s^{\xi}v^{(IV)}(\xi)d\xi
+\end{multline}
+Возведя в квадрат и учтя, что $2xy \leq x^2 + y^2$, получим:
+\begin{equation}
+v^2(t) \leq 2v^2(s) + 2(t - s)^2(v'(s))^2 + 2\frac{(t - s)^4}{(2!)^2}(v''(s))^2 +
+2\frac{(t - s)^6}{(3!)^2}(v'''(s))^2 +
+2\left(\int_s^t\int_s^{\phi}\int_s^{\tau}\int_s^{\xi}v^{IV}(\xi)d\xi\right)^2
+\end{equation}
+...здесь проверка применимости леммы...
+Можно проверить, что $L(u)$ обращается в ноль на всех многочленах степени не выше 3.
+
+По лемме Брэмбла-Гильберта для $L(u)$ получим:
+\begin{equation}
+|L(u)| \leq Mh|\widetilde{u}|_{W_2^4(0, 1)} \leq Mh^{\frac92}|u|_{W_2^4(0, h)}
+\end{equation}
+
+Теперь оценим ошибку приближения для метода Симпсона:
+\begin{equation}
+L(f) = \int_0^1f(x)dx - \frac{h}3\sum_{k=1,2}^{N - 1}[f(x_{k - 1}) + 4f(x_k) + f(x_{k + 1})] =
+\sum_{k = 1, 2}^{N - 1}\left(\int_{x_{k - 1}}^{x_{k + 1}}f(x)dx - \frac{h}3[f(x_{k - 1}) + 4f(x_k) + f(x_{k + 1})]\right)
+\end{equation}
+Тогда для $L(u)$:
+\begin{equation}
+|L(f)| = \left|\sum_{k = 1, 2}^{N - 1}L_k(f)\right| \leq \sum_{k = 1, 2}^{N - 1}|L_k(f)| \leq
+Mh^{\frac92}\sum_{k = 1, 2}^{N - 1}|f|_{W_2^2(x_{k - 1}, x_{k + 1})} \leq Mh^4|f|_{W_2^2(0, 1)}
+\end{equation}
+#+end_export

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{char} \PYG{n}{look}\PYG{p}{;}
+
+\PYG{k+kt}{void} \PYG{n+nf}{parseS}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{parseA}\PYG{p}{();}
+    \PYG{n}{parseB}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{parseA}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{((}\PYG{n}{look} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{())} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n}{parseA}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{parseB}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{((}\PYG{n}{look} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{())} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n}{parseB}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

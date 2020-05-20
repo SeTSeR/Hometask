@@ -4,6 +4,7 @@
 #+LATEX_HEADER:\usepackage{mathtools}
 #+LATEX_HEADER:\usepackage{amsthm}
 #+OPTIONS: toc:nil
+#+LANGUAGE: ru
 #+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
 
 #+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
@@ -614,4 +615,92 @@ n(2n + 2)\ln\frac{2n\Delta h}{\varepsilon} = \\
 = n(2n + 2)\ln\frac{4n^3\Delta^4h} \leq 4n^3\Delta^5
 = O(n^2\ln(n\Delta)) = O(n^2|I|)
 \end{multline}
+#+end_export
+Прямая и двойственная задача ЛП:
+#+begin_export latex
+\begin{equation}
+\max_{Ax \leq b}(c, x) = \min_{\substack{\lambda A = c \\ \lambda \geq 0}}(\lambda, b)
+\end{equation}
+Если $b_i$ увеличить на 1, то $d^*$ увеличится на $\lambda_i$.\\
+#+end_export
+
+*Следствие теоремы двойственности*:
+#+begin_export latex
+Если $\lambda_i = 0$, то ограничение $b_i$ является несущественным.
+
+\begin{Statement}
+Задача линейного программирования эквивалентна задаче решения линейного неравенства:
+\begin{equation}
+Ax \leq b, (c, x) = (b, \lambda), \lambda A = c, \lambda \geq 0.
+\end{equation}
+В свою очередь, эта задача эквивалентна решению системы линейных уравнений в неотрицательных
+переменных.
+\end{Statement}
+\begin{Consequence}
+Задача ЛП эквивалентна поиску неотрицательного ненулевого решения однородной системы линейных
+алгебраических уравнений.
+\end{Consequence}
+#+end_export
+* Математическое программирование
+  #+begin_export latex
+  \zall
+  #+end_export
+** Литература
+1. Поляк Б. Т. Введение в оптимизацию.
+2. Сухарев А. Г., Тимохов А. В., Федоров В. В. Курс методов оптимизации.
+3. Мину М. Математическое программирование.
+4. Ю. Нестеров. Введение в выпуклую оптимизацию.
+
+Задача математического программирования:
+#+begin_export latex
+Найти $\min_{x \in X} f(x), \operatorname{arg}\min_{x \in X}f(x) \in \operatorname{Arg}\min_{x \in X}f(x)$.
+Задачи математического программирования делятся на дискретные(в частности, целочисленные
+и булевы), непрерывные и бесконечномерные. Задачи условной
+и безусловной оптимизации. Локальная и глобальная оптимизация.
+
+Задача математической оптимизации является $NP$-трудной, так как задача ЦЛН есть подзадача задачи
+математического программирования.
+#+end_export
+
+Функция называется *выпуклой* на $X$, если её надграфик на $X$ является выпуклым множеством.
+#+begin_export latex
+\begin{Statement}
+Любая точка локального минимума выпуклой функции есть точка её глобального минимума.
+\end{Statement}
+#+end_export
+** Методы локального спуска
+*** Градиентный метод
+     #+begin_export latex
+  Вектор $h \in \mathbb{R}^n$ называется \textbf{направлением убывания} функции $f$ в точке $x$, если $f(x + \alpha h) < f(x)$
+  для всех достаточно малых $\alpha > 0$.
+  \begin{Statement}
+  Пусть $f$ дифференцируема в точке $x$. Тогда если $(\operatorname{grad} f(x), h) < 0$, то $h$ -- направление
+  убывания функции $f$ в точке $x$, а если $h$ -- направление убывания функции $f$ в точке $x$, то $(\operatorname{grad} f(x), h) \leq 0$.
+  \end{Statement}
+  Спуск при оптимизации происходит в направлении \textbf{антиградиента}. Метод градиентного спуска:
+  \begin{equation}
+  x^{t + 1} = x^t - \alpha_t\operatorname{grad} f(x^t), t = 1, 2, \ldots, \forall x^i \in \mathbb{R}
+  \end{equation}
+  Для этого метода справедлива \textit{линейная оценка сходимости}:
+\begin{equation}
+||x^{t + 1} - x^*|| \leq q||x^* - x^t||, 0 < q < 1
+\end{equation}
+     #+end_export
+*** Метод Ньютона
+Разложим $f(x)$ в ряд Тейлора до второго слагаемого:
+#+begin_export latex
+\begin{equation}
+f(x) - f(x^t) = (\operatorname{grad}f(x^t), x - x^t) + \frac12(f''(x)(x - x^t), x - x^t) + o(||x - x^t||^2),
+\end{equation}
+где $f''(x)$ -- матрица из вторых производных $f(x)$(\textbf{гессиан}). Метод Ньютона:
+\begin{equation}
+x^{t + 1} = x^t - (f''(x^t))^{-1}\operatorname{grad} f(x^t), t = 1, 2, \ldots,
+\end{equation}
+где начальное приближение должно находиться достаточно близко к $x^*$.
+
+В некоторых случаях для метода Ньютона справедлива \textit{квадратичная оценка скорости сходимости}:
+\begin{equation}
+||x^{t + 1} - x^*|| \leq Q||x^t - x^*||^2 \leq \ldots \leq \frac1Q(Q||x^1 - x^*||)^{2^t},
+\end{equation}
+если $||x^1 - x^*|| < \frac1Q$.
 #+end_export

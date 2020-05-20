@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sequence = \PYGZsq{}(\PYGZsq{} sequence \PYGZsq{})\PYGZsq{} | sequence sequence | \PYGZbs{}varepsilon
+\end{Verbatim}

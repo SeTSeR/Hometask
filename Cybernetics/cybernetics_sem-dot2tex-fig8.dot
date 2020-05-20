@@ -1,0 +1,11 @@
+graph {
+    rankdir=LR;
+    node[style=pole, label=""]; 1[xlabel="1"];
+    node[style=inner];
+    1 -- v1  [label=" ", texlbl="$x_1$"];
+    1 -- v2  [label=" ", texlbl="$\overline{x}_1$"];
+    v1 -- v3 [label=" ", texlbl="$x_2$"];
+    v1 -- v4 [label=" ", texlbl="$\overline{x}_2$"];
+    v2 -- v5 [label=" ", texlbl="$x_2$"];
+    v2 -- v6 [label=" ", texlbl="$\overline{x}_2$"];
+}

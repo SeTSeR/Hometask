@@ -1,0 +1,24 @@
+%%
+\node (1xl) at (69.0bp,99.0bp) [] {$1$};
+  \node (1) at (37.0bp,99.0bp) [draw,ellipse,pole] {$$};
+  \node (v1) at (132.0bp,126.0bp) [draw,ellipse,inner] {$$};
+  \node (v2) at (132.0bp,72.0bp) [draw,ellipse,inner] {$$};
+  \node (v3) at (227.0bp,180.0bp) [draw,ellipse,inner] {$$};
+  \node (v4) at (227.0bp,126.0bp) [draw,ellipse,inner] {$$};
+  \node (v5) at (227.0bp,72.0bp) [draw,ellipse,inner] {$$};
+  \node (v6) at (227.0bp,18.0bp) [draw,ellipse,inner] {$$};
+  \draw [] (1) -- (v1);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0}
+  \pgfsetstrokecolor{strokecol}
+  \draw (84.5bp,119.5bp) node {$x_1$};
+  \draw [] (v1) -- (v3);
+  \draw (179.5bp,160.5bp) node {$x_2$};
+  \draw [] (v1) -- (v4);
+  \draw (179.5bp,133.5bp) node {$\overline{x}_2$};
+  \draw [] (v2) -- (v6);
+  \draw (179.5bp,52.5bp) node {$\overline{x}_2$};
+  \draw [] (v2) -- (v5);
+  \draw (179.5bp,79.5bp) node {$x_2$};
+  \draw [] (1) -- (v2);
+  \draw (84.5bp,92.5bp) node {$\overline{x}_1$};
+%

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+space registers: local[u8];
+space iomem: remote[i8] \PYGZti{}\PYGZgt{} i4;
+\end{Verbatim}

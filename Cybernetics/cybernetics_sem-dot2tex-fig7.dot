@@ -1,0 +1,19 @@
+digraph {
+    node [style=pole, label=" "];
+    x1[xlabel="x_1"]; x2[xlabel="x_2"]; x3[xlabel="x_3"];
+    f1[xlabel="f_1"]; f2[xlabel="f_2"];
+    node [shape=triangle, style="thick, rotate=180", lblstyle="rotate=180"];
+    f20[label="\neg"]; f21[label="\neg"];
+    f10[label="\&"]; f11[label="\&"];
+    nx1[label="\neg"];
+    v1[label="\&"]; v2[label="\&"]; v3[label="\vee"];
+    v4[label="\&"]; v5[label="\&"]; v6[label="\vee"];
+    x3 -> f20; x2 -> f21; x2 -> f10;
+    f20 -> f10; x3 -> f11; f21 -> f11;
+    x1 -> nx1; nx1 -> v1; f10 -> v1;
+    x1 -> v2; f11 -> v2;
+    v1 -> v3; v2 -> v3; v3 -> f1;
+    nx1 -> v4; f20 -> v4;
+    x1 -> v5; f21 -> v5;
+    v4 -> v6; v5 -> v6; v6 -> f2
+}

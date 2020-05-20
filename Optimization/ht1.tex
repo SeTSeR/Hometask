@@ -1,0 +1,127 @@
+% Created 2020-04-24 Fri 17:32
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\newcommand{\grad}{\operatorname{grad}}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={Russian}}
+\begin{document}
+
+
+\section{Домашняя работа}
+\label{sec:orgca0c065}
+Выписать три шага метода Ньютона с постоянным шагом для задачи поиска минимума функции
+\begin{equation}
+f(x_1, x_2) = x_1^2 + 2x_2^2
+\end{equation}
+и начальном приближении $(x_1, x_2) = (-1, 1)$ и шаге $a = 1$. Найти максимальный шаг,
+при котором метод градиентного спуска сойдётся.
+\subsection{Решение}
+\label{sec:org2359f54}
+По формуле Тейлора:
+\begin{equation*}
+f(M) - f(M_0) = (\grad f(M_0), M - M_0) + \frac12(H(f)(M - M_0), M - M_0) + o(||M - M_0||^2),
+\end{equation*}
+где
+\begin{equation*}
+H(f) = \begin{bmatrix}
+\dfrac{\partial^2 f}{\partial x_1^2} & \dfrac{\partial^2 f}{\partial x_1\partial x_2} \\
+\dfrac{\partial^2 f}{\partial x_1\partial x_2} & \dfrac{\partial^2 f}{\partial x_2^2}.
+\end{bmatrix}
+\end{equation*}
+Выберем точку $M_1$ так, чтобы минимизировать квадратичную часть разницы $f(M_1) - f(M_0)$:
+\begin{equation}
+(\grad f(M_0) - H(f)(M_1 - M_0), M_1 - M_0) \rightarrow \min \Rightarrow
+M_1 = M_0 - (H(f))^{-1}\grad f(M_0)
+\end{equation}
+
+Выпишем градиент и гессиан функции (1):
+\begin{equation*}
+\grad f = (2x_1, 4x_2)^T,
+H(f) = \begin{bmatrix}
+2 & 0 \\
+0 & 4
+\end{bmatrix}
+\Rightarrow H^{-1}(f) =
+\begin{bmatrix}
+\frac12 & 0 \\
+0 & \frac14
+\end{bmatrix}
+\end{equation*}
+
+Первые приближения метода Ньютона:
+\begin{equation*}
+M_0 = (-1, 1)^T, M_1 = M_0 - (H(f))^{-1}\grad f(M_0) = (-1, 1)^T - \begin{bmatrix}
+\frac12 & 0 \\
+0 & \frac14
+\end{bmatrix}
+\cdot\begin{bmatrix}
+-2 \\
+4
+\end{bmatrix} = \begin{bmatrix}
+-1 \\
+1
+\end{bmatrix} - \begin{bmatrix}
+-1 \\
+1
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0
+\end{bmatrix}
+\end{equation*}
+Поскольку градиент функции в точке $M_1$ равен нулю, считать дальнейшие приближения нет смысла --
+они все будут равны нулю, т. е. метод сошёлся за один шаг.
+
+Пусть $M_n = (x_1, x_2)$, тогда $M_{n + 1} = (x_3, x_4)$, где:
+\begin{equation}
+x_3 = x_1 - 2ax_1 = (1 - 2a)x_1, x_4 = x_2 - 4ax_2 = (1 - 4a)x_2
+\end{equation}
+Таким образом, последовательности координат образуют геометрическую прогрессию со знаменателем
+$(1 - 2a)$ для первой координаты и $(1 - 4a)$ для второй. Соответственно, последовательность
+первых координат сходится при $0 < a < 1$, а последовательность вторых -- при $0 < a < \frac12$.
+Таким образом, последовательность точек, получаемая методом градиентного спуска, сходится при
+$0 < a < \frac12$. При граничном значении $a = \frac12$ последовательность расходится.
+\end{document}

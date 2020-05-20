@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+fn g(a: u8, b: u8) \PYGZhy{}\PYGZgt{} (result: bits(13))
+\PYGZob{}
+        let result: bits(13) = if \PYGZlt{}a, b\PYGZgt{}[0:0] \PYGZob{}
+            \PYGZlt{}a, b\PYGZgt{}[1:13]
+        \PYGZcb{} else \PYGZob{}
+            \PYGZlt{}a, b\PYGZgt{}[2:14]
+        \PYGZcb{};
+\PYGZcb{}
+\end{Verbatim}

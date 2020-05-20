@@ -1,0 +1,26 @@
+%%
+\node (fxl) at (352.0bp,72.0bp) [] {$f$};
+  \node (f) at (322.0bp,72.0bp) [draw,ellipse,pole] {$$};
+  \node (1xl) at (69.0bp,45.0bp) [] {$1$};
+  \node (1) at (37.0bp,45.0bp) [draw,ellipse,pole] {$$};
+  \node (v1) at (132.0bp,72.0bp) [draw,ellipse,inner] {$$};
+  \node (v2) at (132.0bp,18.0bp) [draw,ellipse,inner] {$$};
+  \node (v4) at (227.0bp,72.0bp) [draw,ellipse,inner] {$$};
+  \node (v6) at (227.0bp,18.0bp) [draw,ellipse,inner] {$$};
+  \draw [] (1) ..controls (75.727bp,55.953bp) and (92.99bp,60.965bp)  .. (v1);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0}
+  \pgfsetstrokecolor{strokecol}
+  \draw (84.5bp,65.5bp) node {$x_1$};
+  \draw [] (v2) ..controls (172.07bp,18.0bp) and (187.21bp,18.0bp)  .. (v6);
+  \draw (179.5bp,25.5bp) node {$\overline{x}_2$};
+  \draw [] (v1) ..controls (166.64bp,89.257bp) and (183.8bp,96.263bp)  .. (200.0bp,99.0bp) .. controls (223.66bp,103.0bp) and (230.34bp,103.0bp)  .. (254.0bp,99.0bp) .. controls (264.67bp,97.197bp) and (266.91bp,94.926bp)  .. (277.0bp,91.0bp) .. controls (284.29bp,88.163bp) and (292.16bp,84.848bp)  .. (f);
+  \draw (227.0bp,108.5bp) node {$x_2$};
+  \draw [] (v1) ..controls (172.07bp,72.0bp) and (187.21bp,72.0bp)  .. (v4);
+  \draw (179.5bp,79.5bp) node {$\overline{x}_2$};
+  \draw [] (v4) ..controls (267.07bp,72.0bp) and (282.21bp,72.0bp)  .. (f);
+  \draw (274.5bp,79.5bp) node {$\overline{x}_3$};
+  \draw [] (v6) ..controls (263.89bp,38.837bp) and (285.57bp,51.425bp)  .. (f);
+  \draw (274.5bp,52.5bp) node {$x_3$};
+  \draw [] (1) ..controls (75.727bp,34.047bp) and (92.99bp,29.035bp)  .. (v2);
+  \draw (84.5bp,38.5bp) node {$\overline{x}_1$};
+%

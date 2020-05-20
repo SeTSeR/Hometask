@@ -1,0 +1,6 @@
+graph {
+    rankdir=LR;
+    node[style=pole, label=""];
+    1 -- 3 [label=" ", texlbl="$x_3$"];
+    2 -- 3 [label=" ", texlbl="$\overline{x}_3$"];
+}

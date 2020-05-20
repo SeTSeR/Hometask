@@ -1,0 +1,540 @@
+% Created 2020-04-26 Sun 13:36
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={Russian}}
+\begin{document}
+
+
+\section{Задача 1}
+\label{sec:org9b70f6d}
+Вычислить функции FIRST и FOLLOW для всех нетерминалов грамматики `Even`:
+\begin{equation}
+\begin{cases}
+S \rightarrow BaBaS | B, \\
+B \rightarrow bB | \varepsilon.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org19baf43}
+Найдём FIRST(B). Первое правило даёт нам, что $b \in$ FIRST(B), второе -- что $\varepsilon \in$ FIRST(B),
+таким образом, $FIRST(B) = \{\varepsilon, b\}$. Второе правило для S даёт нам, что $\varepsilon, b \in$ FIRST(S),
+первое -- то же самое и вдобавок, $a \in$ FIRST(S), поскольку из первого нетерминала этого
+правила $B$ выводима пустая цепочка.
+
+Вычислим FOLLOW(S). Поскольку в грамматике нет правил, в которых за S следует какой-либо символ грамматики, но
+есть правило $S \rightarrow BaBaS$, в котором S -- самый правый символ, то FOLLOW(S) = $\{\$\}$. Теперь вычислим
+FOLLOW(B). В грамматике есть правило $S \rightarrow B$, из которого следует, что $\$ \in$ FOLLOW(B). Из правила
+$S \rightarrow BaBaS$ следует также, что $a \in$ FOLLOW(B). Таким образом:
+\begin{equation}
+\begin{cases}
+FIRST(S) = \{\varepsilon, a, b\}, \\
+FIRST(B) = \{\varepsilon, b\}, \\
+FOLLOW(S) = \{\$\}, \\
+FOLLOW(B) = \{a, \$\}.
+\end{cases}
+\end{equation}
+\section{Задача 2}
+\label{sec:orga83ce67}
+Привести грамматику `Even` к LL(1)-грамматике и построить для этой грамматики LL(1)-анализатор.
+\subsection{Решение}
+\label{sec:org9a9ff93}
+Грамматика `Even` не является LL(1)-грамматикой, поскольку находясь в начальном состоянии и видя,
+что входной символ \(b\), автомат не сможет выбрать из двух правил для \(S\) нужное. Приведём эту
+грамматику к LL(1)-грамматике, добавив новое правило:
+\begin{equation}
+\begin{cases}
+S \rightarrow BC, \\
+B \rightarrow bB | \varepsilon, \\
+C \rightarrow aBaS | \varepsilon.
+\end{cases}
+\end{equation}
+Пересчитаем множества FIRST и FOLLOW:
+\begin{equation*}
+\begin{cases}
+FIRST(S) = \{\varepsilon, a, b\}, \\
+FIRST(B) = \{\varepsilon, b\}, \\
+FIRST(C) = \{\varepsilon, a\}, \\
+FOLLOW(S) = \{\$\}, \\
+FOLLOW(B) = \{a, \$\}, \\
+FOLLOW(C) = \{\$\}.
+\end{cases}
+\end{equation*}
+Проверим, что получившаяся грамматика действительно будет LL(1)-грамматикой. Рассмотрим пару
+продукций \(B \rightarrow bB | \varepsilon\). Для этой пары продукций:
+\begin{enumerate}
+\item Не существует терминала, с которого бы начинались строки, порождаемые правыми частями обеих продукций.
+\item Только одна из этих продукций порождает пустую строку.
+\item Строка \(bB\) не порождает ни одной строки, начинающейся с символа из FOLLOW(B).
+\end{enumerate}
+Аналогичные три условия выполняются и для продукций \(C \rightarrow aBaS | \varepsilon\).
+
+Построим таблицу разбора для полученной грамматики:
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Нетерминал & Входной символ &  & \\
+ & \(a\) & \(b\) & \$\\
+\hline
+\(S\) & \(S \rightarrow BC\) & \(S \rightarrow BC\) & \(S \rightarrow BC\)\\
+\(B\) & \(B \rightarrow \varepsilon\) & \(B \rightarrow bB\) & \(B \rightarrow \varepsilon\)\\
+\(C\) & \(C \rightarrow aBaS\) &  & \(C \rightarrow \varepsilon\)\\
+\hline
+\end{tabular}
+\end{center}
+Здесь и далее пустые ячейки таблицы означают состояние ошибки.
+\section{Задача 3}
+\label{sec:orge2821fa}
+Привести грамматику
+\begin{equation}
+\begin{cases}
+S \rightarrow aAB | ac, \\
+A \rightarrow Aa | b, \\
+B \rightarrow Bb | c | \varepsilon
+\end{cases}
+\end{equation}
+к LL(1)-грамматике, построить LL(1)-анализатор и продемонстрировать его работу на слове
+\(\omega = abaa\).
+\subsection{Решение}
+\label{sec:orgfc8ec73}
+Входная грамматика не является LL(1)-грамматикой, поскольку:
+\begin{enumerate}
+\item Содержит леворекурсивные правила для нетерминалов \(A\) и \(B\).
+\item Содержит пару продукций \(S \rightarrow aAB | ac\), правые части которых начинаются с одного и того же символа.
+\end{enumerate}
+Преобразуем эту грамматику к LL(1)-грамматике:
+\begin{equation}
+\begin{cases}
+S \rightarrow aC, \\
+C \rightarrow AB | c, \\
+A \rightarrow bD, \\
+B \rightarrow cE | E, \\
+D \rightarrow aD | \varepsilon, \\
+E \rightarrow bE | \varepsilon.
+\end{cases}
+\end{equation}
+Рассчитаем множества FIRST и FOLLOW для символов грамматики:
+\begin{equation*}
+\begin{cases}
+FIRST(S) = \{a\}, \\
+FIRST(C) = \{b, c\}, \\
+FIRST(A) = \{b\}, \\
+FIRST(B) = \{b, c, \varepsilon\}, \\
+FIRST(D) = \{a, \varepsilon\}, \\
+FIRST(E) = \{b, \varepsilon\}, \\
+FOLLOW(S) = \{\$\}, \\
+FOLLOW(C) = \{\$\}, \\
+FOLLOW(A) = \{b, c, \$\}, \\
+FOLLOW(B) = \{\$\}, \\
+FOLLOW(D) = \{b, c, \$\}, \\
+FOLLOW(E) = \{\$\}.
+\end{cases}
+\end{equation*}
+Используя эти множества, можно построить таблицу разбора:
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Нетерминал & Входной символ &  &  & \\
+ & \(a\) & \(b\) & \(c\) & \$\\
+\hline
+\(S\) & \(S \rightarrow aC\) &  &  & \\
+\(C\) &  & \(C \rightarrow AB\) & \(C \rightarrow c\) & \\
+\(A\) &  & \(A \rightarrow bD\) &  & \\
+\(B\) &  & \(B \rightarrow E\) & \(B \rightarrow cE\) & \(B \rightarrow E\)\\
+\(D\) & \(D \rightarrow aD\) & \(D \rightarrow \varepsilon\) & \(D \rightarrow \varepsilon\) & \(D \rightarrow \varepsilon\)\\
+\(E\) &  & \(E \rightarrow bE\) &  & \(E \rightarrow \varepsilon\)\\
+\hline
+\end{tabular}
+\end{center}
+
+Рассмотрим работу этого автомата на примере строки \(\omega = abaa\):
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Прочитанная часть входа & Стек & Вход & Действие\\
+\hline
+ & S\$ & abaa\$ & \\
+ & aC\$ & abaa\$ & вывести \(S \rightarrow aC\)\\
+a & C\$ & baa\$ & прочитать \(a\)\\
+a & AB\$ & baa\$ & вывести \(C \rightarrow AB\)\\
+a & bDB\$ & baa\$ & вывести \(A \rightarrow bD\)\\
+ab & DB\$ & aa\$ & прочитать \(b\)\\
+ab & aDB\$ & aa\$ & вывести \(D \rightarrow aD\)\\
+aba & DB\$ & a\$ & прочитать \(a\)\\
+aba & aDB\$ & a\$ & вывести \(D \rightarrow aD\)\\
+abaa & DB\$ & \$ & прочитать \(a\)\\
+abaa & B\$ & \$ & вывести \(D \rightarrow \varepsilon\)\\
+abaa & E\$ & \$ & вывести \(B \rightarrow E\)\\
+abaa & \$ & \$ & вывести \(E \rightarrow \varepsilon\)\\
+\hline
+\end{tabular}
+\end{center}
+\section{Задача 4}
+\label{sec:org5ca31a9}
+Построить по грамматике LR(1)-анализатор и продемонстрировать его работу на слове \(\omega = abab\):
+\begin{equation}
+S \rightarrow SaSb | \varepsilon,
+\end{equation}
+\subsection{Решение}
+\label{sec:org4dc1cd1}
+Введём в грамматику новый стартовый символ \(S'\) и дополним её правилом \(S' \rightarrow S\), получим грамматику:
+\begin{equation}
+\begin{cases}
+S' \rightarrow S \\
+S \rightarrow SaSb \\
+S \rightarrow \varepsilon.
+\end{cases}
+\end{equation}
+Вычислим множества FIRST:
+\begin{equation*}
+FIRST(S') = FIRST(S) = \{\varepsilon, a\}.
+\end{equation*}
+Вычислим множество ситуаций для дополненной грамматики:
+\begin{equation*}
+CLOSURE(\{[S' \rightarrow \cdot S, \$]\}) = \{[S' \rightarrow \cdot S, \$],
+[S \rightarrow \cdot SaSb, \$], [S \rightarrow \cdot, \$],
+[S \rightarrow \cdot SaSb, a], [S \rightarrow \cdot, a]\} = I_1
+\end{equation*}
+\begin{equation*}
+GOTO(I_1, a) = GOTO(I_1, b) = \emptyset
+\end{equation*}
+\begin{multline*}
+GOTO(I_1, S) = CLOSURE(\{[S' \rightarrow S\cdot, \$], [S \rightarrow S\cdot aSb, \$],
+[S \rightarrow S\cdot aSb, a]\}) = \\
+= \{[S' \rightarrow S\cdot, \$], [S \rightarrow S\cdot aSb, \$],
+[S \rightarrow S\cdot aSb, a]\} = I_2
+\end{multline*}
+\begin{equation*}
+GOTO(I_2, S) = GOTO(I_2, b) = \emptyset
+\end{equation*}
+\begin{multline*}
+GOTO(I_2, a) = CLOSURE(\{[S \rightarrow Sa\cdot Sb, \$], [S \rightarrow Sa\cdot Sb, a]\}) = \\
+= \{[S \rightarrow Sa\cdot Sb, \$], [S \rightarrow Sa\cdot Sb, a],
+[S \rightarrow \cdot SaSb, b], [S \rightarrow \cdot, a], [S \rightarrow \cdot, b],
+[S \rightarrow \cdot SaSb, a]\} = I_3
+\end{multline*}
+\begin{equation*}
+GOTO(I_3, a) = GOTO(I_3, b) = \emptyset
+\end{equation*}
+\begin{multline*}
+GOTO(I_3, S) = CLOSURE(\{[S \rightarrow SaS\cdot b, \$], [S \rightarrow SaS\cdot b, a],
+[S \rightarrow S\cdot aSb, a], [S \rightarrow S\cdot aSb, b]\}) = \\
+= \{[S \rightarrow SaS\cdot b, \$], [S \rightarrow SaS\cdot b, a],
+[S \rightarrow S\cdot aSb, a], [S \rightarrow S\cdot aSb, b]\} = I_4
+\end{multline*}
+\begin{equation*}
+GOTO(I_4, S) = \emptyset
+\end{equation*}
+\begin{multline*}
+GOTO(I_4, a) = CLOSURE(\{[S \rightarrow Sa\cdot Sb, a], [S \rightarrow Sa\cdot Sb, b]\}) = \\
+= \{[S \rightarrow Sa\cdot Sb, a], [S \rightarrow Sa\cdot Sb, b],
+[S \rightarrow \cdot SaSb, b], [S \rightarrow \cdot a], [S \rightarrow \cdot, b],
+[S \rightarrow \cdot SaSb, a]\} = I_5
+\end{multline*}
+\begin{equation*}
+GOTO(I_4, b) = CLOSURE(\{[S \rightarrow SaSb\cdot, a], [S \rightarrow SaSb\cdot, \$]\})
+= \{[S \rightarrow SaSb\cdot, b], [S \rightarrow SaSb\cdot, \$]\} = I_6
+\end{equation*}
+\begin{equation*}
+GOTO(I_5, a) = GOTO(I_5, b) = \emptyset
+\end{equation*}
+\begin{multline*}
+GOTO(I_5, S) = CLOSURE(\{[S \rightarrow SaS\cdot b, a], [S \rightarrow SaS\cdot b, b],
+[S \rightarrow S\cdot aSb, a], [S \rightarrow S\cdot aSb, b]\}) = \\
+= \{[S \rightarrow SaS\cdot b, a], [S \rightarrow SaS\cdot b, b],
+[S \rightarrow S\cdot aSb, a], [S \rightarrow S\cdot aSb, b]\} = I_7
+\end{multline*}
+\begin{equation*}
+GOTO(I_6, S) = GOTO(I_6, a) = GOTO(I_6, b) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_7, S) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_7, a) = CLOSURE(\{[S \rightarrow Sa\cdot Sb, a], [S \rightarrow Sa\cdot Sb, b]\}) = I_5
+\end{equation*}
+\begin{equation*}
+GOTO(I_7, b) = CLOSURE(\{[S \rightarrow SaSb\cdot, a], [S \rightarrow SaSb\cdot, b]\}) = I_8
+\end{equation*}
+\begin{equation*}
+GOTO(I_8, S) = GOTO(I_8, a) = GOTO(I_8, b) = \emptyset
+\end{equation*}
+
+Теперь можно построить таблицы ACTION и GOTO LR(1)-автомата:
+\begin{center}
+\begin{tabular}{rlllr}
+\hline
+Состояние & ACTION &  &  & GOTO\\
+\hline
+ & a & b & \$ & S\\
+\hline
+1 & r2 &  & r2 & 2\\
+2 & s3 &  & acc & \\
+3 & r2 & r2 &  & 4\\
+4 & s5 & s6 &  & \\
+5 & r2 & r2 &  & 7\\
+6 & r1 &  & r1 & \\
+7 & s5 & s8 &  & \\
+8 & r1 & r1 &  & \\
+\hline
+\end{tabular}
+\end{center}
+Здесь \(ri\) обозначает свёртку по правилу c номером \(i\), \(sj\) обозначает сдвиг символа на стек
+с переходом в состояние с номером \(j\)(и правила, и состояния нумеруются с единицы,
+добавленное правило не учитывается), \(acc\) обозначает принятие слова автоматом. Пустые клетки
+означают состояние ошибки.
+
+Рассмотрим работу автомата на слове \(\omega = abab\):
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Стек & Прочитанная часть входа & Вход & Действие\\
+\hline
+1 &  & abab\$ & свёртка по правилу \(S \rightarrow \varepsilon\)\\
+1 2 &  & abab\$ & считывание {}<<a>>{}\\
+1 2 3 & a & bab\$ & свёртка по правилу \(S \rightarrow \varepsilon\)\\
+1 2 3 4 & a & bab\$ & считывание {}<<b>>{}\\
+1 2 3 4 6 & ab & ab\$ & свёртка по правилу \(S \rightarrow SaSb\)\\
+1 2 & ab & ab\$ & считывание {}<<a>>{}\\
+1 2 3 & aba & b\$ & свёртка по правилу \(S \rightarrow \varepsilon\)\\
+1 2 3 4 & aba & b\$ & считывание {}<<b>>{}\\
+1 2 3 4 6 & abab & \$ & свёртка по правилу \(S \rightarrow SaSb\)\\
+1 & abab & \$ & свёртка по правилу \(S \rightarrow \varepsilon\)\\
+1 2 & abab & \$ & принятие строки\\
+\hline
+\end{tabular}
+\end{center}
+\section{Задача 5}
+\label{sec:orgc70028f}
+Построить по грамматике LR(1)-анализатор и продемонстрировать его работу на слове \(\omega = abab\):
+\begin{equation}
+\begin{cases}
+S \rightarrow Ab | Ac, \\
+A \rightarrow aA | b.
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org18d8e6a}
+Дополним грамматику новым стартовым символом \(S'\) и правилом \(S' \rightarrow S\):
+\begin{equation}
+\begin{cases}
+S' \rightarrow S \\
+S \rightarrow Ab \\
+S \rightarrow Ac \\
+A \rightarrow aA \\
+A \rightarrow b.
+\end{cases}
+\end{equation}
+Вычислим множества FIRST для нетерминалов:
+\begin{equation}
+\begin{cases}
+FIRST(S') = FIRST(S) = \{a, b\}, \\
+FIRST(A) = \{a, b\}, \\
+\end{cases}
+\end{equation}
+Вычислим множество ситуаций:
+\begin{multline*}
+I_1 = CLOSURE(\{[S' \rightarrow \cdot S, \$]\}) = \\
+= \{[S' \rightarrow \cdot S, \$],
+[S \rightarrow \cdot Ab, \$], [S \rightarrow \cdot Ac, \$], [A \rightarrow \cdot aA, b],
+[A \rightarrow \cdot b, b], [A \rightarrow \cdot aA, c], [A \rightarrow \cdot b, c]\}
+\end{multline*}
+\begin{equation*}
+GOTO(I_1, c) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_1, S) = CLOSURE(\{[S' \rightarrow S\cdot, \$]\}) = \{[S'\rightarrow S\cdot, \$]\} = I_2
+\end{equation*}
+\begin{equation*}
+GOTO(I_1, A) = CLOSURE(\{[S \rightarrow A\cdot b, \$], [S \rightarrow A\cdot c, \$]\}) =
+\{[S \rightarrow A\cdot b, \$], [S \rightarrow A\cdot c, \$]\} = I_3
+\end{equation*}
+\begin{multline*}
+GOTO(I_1, a) = CLOSURE(\{[A \rightarrow a\cdot A, b], [A \rightarrow a\cdot A, c]\}) = \\
+= \{[A \rightarrow a\cdot A, b], [A \rightarrow a\cdot A, c],
+[A \rightarrow \cdot aA, b], [A \rightarrow \cdot b, b],
+[A \rightarrow \cdot aA, c], [A \rightarrow \cdot b, c]\} = I_4
+\end{multline*}
+\begin{equation*}
+GOTO(I_1, b) = CLOSURE(\{[A \rightarrow b\cdot, b], [A \rightarrow b\cdot, c]\}) =
+\{[A \rightarrow b\cdot, b], [A \rightarrow b\cdot, c]\} = I_5
+\end{equation*}
+\begin{equation*}
+GOTO(I_2, S) = GOTO(I_2, A) = GOTO(I_2, a) = GOTO(I_2, b) = GOTO(I_2, c) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_3, S) = GOTO(I_3, A) = GOTO(I_3, a) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_3, b) = CLOSURE(\{[S \rightarrow Ab\cdot, \$]\}) = \{[S \rightarrow Ab\cdot, \$]\} = I_6
+\end{equation*}
+\begin{equation*}
+GOTO(I_3, c) = CLOSURE(\{[S \rightarrow Ac\cdot, \$]\}) = \{[S \rightarrow Ac\cdot, \$]\} = I_7
+\end{equation*}
+\begin{equation*}
+GOTO(I_4, S) = GOTO(I_4, c) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_4, A) = CLOSURE(\{[A \rightarrow aA\cdot, b], [A \rightarrow aA\cdot, c]\}) =
+\{[A \rightarrow aA\cdot, b], [A \rightarrow aA\cdot, c]\} = I_8
+\end{equation*}
+\begin{equation*}
+GOTO(I_4, a) = CLOSURE(\{[A \rightarrow a\cdot A, b], [A \rightarrow a\cdot A, c]\}) = I_4
+\end{equation*}
+\begin{equation*}
+GOTO(I_4, b) = CLOSURE(\{[A \rightarrow b\cdot, b], [A \rightarrow b\cdot, c]\}) = I_5
+\end{equation*}
+\begin{equation*}
+GOTO(I_5, S) = GOTO(I_5, A) = GOTO(I_5, a) = GOTO(I_5, b) = GOTO(I_5, c) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_6, S) = GOTO(I_6, A) = GOTO(I_6, a) = GOTO(I_6, b) = GOTO(I_6, c) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_7, S) = GOTO(I_7, A) = GOTO(I_7, a) = GOTO(I_7, b) = GOTO(I_7, c) = \emptyset
+\end{equation*}
+\begin{equation*}
+GOTO(I_8, S) = GOTO(I_8, A) = GOTO(I_8, a) = GOTO(I_8, b) = GOTO(I_8, c) = \emptyset
+\end{equation*}
+Построим таблицы ACTION и GOTO:
+\begin{center}
+\begin{tabular}{rllllrr}
+\hline
+Состояние & ACTION &  &  &  & GOTO & \\
+ & a & b & c & \$ & S & A\\
+\hline
+1 & s4 & s5 &  &  & 2 & 3\\
+2 &  &  &  & acc &  & \\
+3 &  & s6 & s7 &  &  & \\
+4 & s4 & s5 &  &  &  & 8\\
+5 &  & r4 & r4 &  &  & \\
+6 &  &  &  & r1 &  & \\
+7 &  &  &  & r2 &  & \\
+8 &  & r3 & r3 &  &  & \\
+\hline
+\end{tabular}
+\end{center}
+Рассмотрим работу автомата на слове \(\omega = abab\):
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Стек & Прочитанная часть входа & Вход & Действие\\
+\hline
+1 &  & abab\$ & Считать {}<<a>>{}\\
+1 4 & a & bab\$ & Считать {}<<b>>{}\\
+1 4 5 & ab & ab\$ & Выдать ошибку\\
+\hline
+\end{tabular}
+\end{center}
+\section{Задача 6}
+\label{sec:org5fb1620}
+Заполнить таблицу Кока-Янгера-Касами для языка, заданного грамматикой \(G\) и выяснить, может
+ли \(G\) порождать цепочку \(a + b * c\).
+\begin{equation}
+G = \{\{A, C, D\}, \{a, b, c, +, *\}, P, D\},
+\end{equation}
+где
+\begin{equation}
+\begin{cases}
+D \rightarrow D + A | A \\
+A \rightarrow A * C | C \\
+C \rightarrow a | b | c
+\end{cases}
+\end{equation}
+\subsection{Решение}
+\label{sec:org14d41b9}
+Для начала приведём грамматику к нормальной форме Хомского. Исходная грамматика уже не
+содержит epsilon-продукций, но содержит цепные продукции \(D \rightarrow A\) и \(A \rightarrow C\).
+Удалим эти продукции:
+\begin{equation*}
+\begin{cases}
+D \rightarrow D + A | A \\
+A \rightarrow A * C | C \\
+C \rightarrow a | b | c
+\end{cases}
+\rightarrow
+\begin{cases}
+D \rightarrow D + A | A \\
+A \rightarrow A * C | a | b | c \\
+C \rightarrow a | b | c
+\end{cases}
+\rightarrow
+\begin{cases}
+D \rightarrow D + A | A * C | a | b | c \\
+A \rightarrow A * C | a | b | c \\
+C \rightarrow a | b | c
+\end{cases}
+\end{equation*}
+Полученная грамматика не содержит бесполезных символов, поэтому путём введения новых переменных
+получем нормальную форму Хомского для неё:
+\begin{equation*}
+\begin{cases}
+D \rightarrow DR_D \\
+D \rightarrow AR_A \\
+D \rightarrow a \\
+D \rightarrow b \\
+D \rightarrow c \\
+R_D \rightarrow PA \\
+P \rightarrow + \\
+R_A \rightarrow MC \\
+M \rightarrow * \\
+A \rightarrow AR_A \\
+A \rightarrow a \\
+A \rightarrow b \\
+A \rightarrow c \\
+C \rightarrow a \\
+C \rightarrow b \\
+C \rightarrow c
+\end{cases}
+\end{equation*}
+Построим таблицу Кока-Янгера-Касами размера 5x5 для цепочки \(a+b*c\):
+\begin{center}
+\begin{tabular}{rlllll}
+\hline
+\(i\backslash j\) & 1 & 2 & 3 & 4 & 5\\
+\hline
+1 & \(\{D, A, C\}\) & \(\emptyset\) & \(\{D\}\) & \(\emptyset\) & \(\{D\}\)\\
+2 &  & \(\{P\}\) & \(\{R_D\}\) & \(\emptyset\) & \(\{R_D\}\)\\
+3 &  &  & \(\{D, A, C\}\) & \(\emptyset\) & \(\{A, D\}\)\\
+4 &  &  &  & \(\{M\}\) & \(\{R_A\}\)\\
+5 &  &  &  &  & \(\{D, A, C\}\)\\
+\hline
+\end{tabular}
+\end{center}
+В этой таблице \(T_{ij}\) -- множество нетерминалов, порождающих подцепочку цепочки \(a+b*c\),
+начинающуюся с индекса \(i\) и заканчивающуюся индексом \(j\). Порядок заполнения таблицы:
+\begin{enumerate}
+\item Сначала заполняются диагональные ячейки: \(T_{ii}\) -- множество левых частей продукций вида \(P \rightarrow a_i\).
+\item Далее заполняются ячейки \(T_{ij}, i < j\). Пусть заполнены ячейки \(T_{kj}, i < k \leq j\) и \(T_{im}, i \leq m < j\). Тогда построим множество \(L = \{PQ | P \in T_{ik}, Q \in T_{(k + 1)j}, k \in \overline{i, (j - 1)}\}\). Тогда \(T_{ij}\) -- множество левых частей продукций, правые части которых совпадают с элементами \(L\).
+\end{enumerate}
+
+Поскольку \(D \in T_{15}\), цепочка \(a+b*c\) принадлежит языку, порождаемому \(G\).
+\end{document}

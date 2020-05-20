@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+let z = 1, a = 0;
+if z \PYGZob{}
+    a = 2;
+\PYGZcb{} else \PYGZob{}
+    a = 1;
+\PYGZcb{}
+\end{Verbatim}

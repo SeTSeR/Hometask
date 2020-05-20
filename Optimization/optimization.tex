@@ -1,4 +1,4 @@
-% Created 2020-03-14 Sat 11:13
+% Created 2020-05-07 Thu 12:11
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -45,13 +45,13 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
- pdflang={English}}
+ pdfcreator={Emacs 28.0.50 (Org mode 9.3)}, 
+ pdflang={Russian}}
 \begin{document}
 
 
 \section{Структура курса}
-\label{sec:org1467908}
+\label{sec:org5490f6c}
 \begin{itemize}
 \item Введение в теорию сложности
 \item Линейное программирование
@@ -59,7 +59,7 @@
 \item Методы решения переборных задач
 \end{itemize}
 \section{Литература}
-\label{sec:org64d559e}
+\label{sec:orgc0e4c47}
 \begin{enumerate}
 \item Новикова Н. М. "Дискретные и непрерывные задачи оптимизации"
 \item М. Гэри, Д. Джонсон "Вычислительные машины и труднорешаемые задачи"
@@ -67,14 +67,14 @@
 \item \url{http://www.ccas.ru/depart/malashen/53kmsu.htm}
 \end{enumerate}
 \section{Введение в теорию сложности}
-\label{sec:org64025f6}
+\label{sec:orgaf5837f}
 \textbf{Массовая задача} $\Pi = \{I\}$, где $I$ - \textbf{индивидуальная задача}. Массовая задача определяется:
 \begin{enumerate}
 \item списком параметров
 \item требованиями к решению
 \end{enumerate}
 \subsection{Задача коммивояжёра}
-\label{sec:org5d89680}
+\label{sec:org32092a3}
 Задан взвешенный ориентированный граф: вершины и матрицы. Нужно найти маршрут через все
 вершины графа минимального веса.
 \begin{equation*}
@@ -91,7 +91,7 @@
 С точки зрения сложности задачи делятся на два класса: полиномиальная или экспоненциальная
 зависимость затрат на решения от длины входа.
 \subsection{Задачи распознавания свойств}
-\label{sec:org6803bad}
+\label{sec:orgba23d86}
 Задачи, в которых требования к решению выражаются предикатом. В этих терминах задача коммивояжёра
 формулируется так:
 \begin{equation*}
@@ -114,7 +114,7 @@
 \end{itemize}
 \end{enumerate}
 \subsection{Задача 1}
-\label{sec:orgc4cd1e7}
+\label{sec:org40c0ce5}
 Задача построения остовного дерева минимального веса(+задача распознавания свойства):
 \begin{equation*}
 n, d_{ij} \in \mathbb{N}_0
@@ -125,7 +125,7 @@ n, d_{ij} \in \mathbb{N}_0
 n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \subsection{Язык задачи}
-\label{sec:org485d65a}
+\label{sec:org64cac1a}
 Помимо кодировки с задачей связывается \textbf{язык}: \(\alpha(\Pi, e) = \{\sigma \in \Sigma^* | \sigma = e(I), I \in Y(\Pi)\}\),
 где \(Y(\Pi)\) -- это множество индивидуальных задач, на которых ответ является истиной.
 
@@ -152,11 +152,11 @@ n + \lceil\log_2B\rceil + \max_{ij}\lceil\log_2d_{ij}\rceil
 \end{equation*}
 \textbf{Замечание}: это определение относится только к задачам распознавания свойств.
 \subsection{Задача 2}
-\label{sec:org2650f7c}
+\label{sec:orgde739d2}
 Предложить алгоритм распознавания простоты числа, найти его функцию временной сложности и
 оценить её.
 \subsection{Самая интересная часть}
-\label{sec:org776b008}
+\label{sec:orgfca9275}
 Алгоритмически неразрешимая задача(Матиясевич): по коэффициентам многочлена проверить у него
 наличие целочисленных корней.
 
@@ -275,13 +275,13 @@ Az \preceq b?
 "булево линейное неравенство" соответственно, также являются NP-полными. Доказательство
 принадлежности задачи линейного программирования классу $\mathbb{NP}$ является нетривиальным.
 \subsection{Задача 3}
-\label{sec:orge2e1bb6}
+\label{sec:orga1e4035}
 Доказать, что задача проверки простоты числа принадлежит классу \(\textit{co-}\mathbb{NP}\).
 
 \textbf{Задача 3-выполнимости}: задача КНФ дизъюнкций с ровно тремя слагаемыми. Эта задача
 полиномиально сводится к задаче SAT, и поэтому принадлежит к классу \(\mathbb{NP}\).
 \subsection{Задача 4}
-\label{sec:org6fcb4bf}
+\label{sec:org120b837}
 Разложить конъюкцию одной или двух переменных в произведение конъюкции трёх переменных.
 \begin{Statement}
 Задача 3-выполнимости NP-полна.
@@ -322,7 +322,7 @@ t_A(\sigma) \leq p_2(|\sigma|)|\Sigma|^{p_1(\sigma)}
 памяти на ДМТ. Все ранее рассмотренные классы входят в класс \(PSPACE\). Вопрос строгого
 включения класса \(P\) в класс \(PSPACE\) остаётся открытым.
 \subsection{Задача о рюкзаке}
-\label{sec:org4272ebb}
+\label{sec:orgff36025}
 Найти
 \begin{equation}
 max_{z \in B^n}\sum_{i = 1}^nc_iz_i,
@@ -359,7 +359,7 @@ $\forall I \in \Pi_{p(\cdot)}: T_A(I) \leq p(|I|, p(|I))$, поэтому $\Pi_{
 Opt(I) = \max_{z \in S_I}f_I(z)
 \end{equation}
 \section{Задача оптимизации}
-\label{sec:org9bd4ffe}
+\label{sec:org60f38b9}
 \zall
 \(f_I(z)\) называется \textbf{целевой функцией}, значение функции называется \textbf{значением оптимума}, а
 точка, в которой она достигается -- \textbf{реализацией оптимума}.
@@ -416,9 +416,9 @@ $|Opt(I) - A'_f(I)| \leq \varepsilon Opt(I) \leq \frac{Opt(I)}{p'(num(I)) + 1} \
 $\Rightarrow |Opt(I) - A'(I)| = 0$, т. е. $A'$ - точный алгоритм, являющийся псевдополиномиальный.
 \end{proof}
 \section{Линейное программирование}
-\label{sec:orgb34db5e}
+\label{sec:orgbc6e8d3}
 \subsection{Литература}
-\label{sec:orgee5f8d8}
+\label{sec:org967a7c1}
 \begin{enumerate}
 \item Л. Г. Хачиян "Сложность задач ЛП".
 \end{enumerate}
@@ -453,7 +453,7 @@ a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \leq b_m,
 \max_{Ax \leq b, x \geq 0}(c, x)
 \end{equation}
 \subsection{Задача 5}
-\label{sec:org09f0f33}
+\label{sec:org43c1cb5}
 Свести (4) к (2).
 
 Ограничения описывают некоторый многогранник(а точнее, полиэдр, поскольку эта фигура не
@@ -478,7 +478,7 @@ A & b
 a_{ij}, c_i, b_j \in \mathbb{Z}
 \end{equation}
 \subsection{Задача 5'}
-\label{sec:orgbb4236f}
+\label{sec:org269a9d1}
 Свести задачу \(Ax \leq b\) к задаче
 \begin{equation}
 \begin{cases}
@@ -519,7 +519,7 @@ $A_Mx^* = b_M, b_M = \{b_i | i \in M\}$. По формуле Крамера
 Второе условие теоремы следует из того, что $|\det(A_M)| \leq \Delta(A)$.
 \end{proof}
 \subsection{Задача 6}
-\label{sec:orgb40a858}
+\label{sec:orgbf50abb}
 Доказать, что длина входа задачи линейного программирования может быть оценена снизу как:
 \begin{equation}
 \forall I \in \Pi |I| \geq C\ln(n\Delta(D))
@@ -611,4 +611,85 @@ n(2n + 2)\ln\frac{2n\Delta h}{\varepsilon} = \\
 = n(2n + 2)\ln\frac{4n^3\Delta^4h} \leq 4n^3\Delta^5
 = O(n^2\ln(n\Delta)) = O(n^2|I|)
 \end{multline}
+Прямая и двойственная задача ЛП:
+\begin{equation}
+\max_{Ax \leq b}(c, x) = \min_{\substack{\lambda A = c \\ \lambda \geq 0}}(\lambda, b)
+\end{equation}
+Если $b_i$ увеличить на 1, то $d^*$ увеличится на $\lambda_i$.\\
+
+\textbf{Следствие теоремы двойственности}:
+Если $\lambda_i = 0$, то ограничение $b_i$ является несущественным.
+
+\begin{Statement}
+Задача линейного программирования эквивалентна задаче решения линейного неравенства:
+\begin{equation}
+Ax \leq b, (c, x) = (b, \lambda), \lambda A = c, \lambda \geq 0.
+\end{equation}
+В свою очередь, эта задача эквивалентна решению системы линейных уравнений в неотрицательных
+переменных.
+\end{Statement}
+\begin{Consequence}
+Задача ЛП эквивалентна поиску неотрицательного ненулевого решения однородной системы линейных
+алгебраических уравнений.
+\end{Consequence}
+\section{Математическое программирование}
+\label{sec:orgf2e46f6}
+\zall
+\subsection{Литература}
+\label{sec:orgd630f92}
+\begin{enumerate}
+\item Поляк Б. Т. Введение в оптимизацию.
+\item Сухарев А. Г., Тимохов А. В., Федоров В. В. Курс методов оптимизации.
+\item Мину М. Математическое программирование.
+\item Ю. Нестеров. Введение в выпуклую оптимизацию.
+\end{enumerate}
+
+Задача математического программирования:
+Найти $\min_{x \in X} f(x), \operatorname{arg}\min_{x \in X}f(x) \in \operatorname{Arg}\min_{x \in X}f(x)$.
+Задачи математического программирования делятся на дискретные(в частности, целочисленные
+и булевы), непрерывные и бесконечномерные. Задачи условной
+и безусловной оптимизации. Локальная и глобальная оптимизация.
+
+Задача математической оптимизации является $NP$-трудной, так как задача ЦЛН есть подзадача задачи
+математического программирования.
+
+Функция называется \textbf{выпуклой} на \(X\), если её надграфик на \(X\) является выпуклым множеством.
+\begin{Statement}
+Любая точка локального минимума выпуклой функции есть точка её глобального минимума.
+\end{Statement}
+\subsection{Методы локального спуска}
+\label{sec:orgbacf8b6}
+\subsubsection{Градиентный метод}
+\label{sec:org30cc344}
+  Вектор $h \in \mathbb{R}^n$ называется \textbf{направлением убывания} функции $f$ в точке $x$, если $f(x + \alpha h) < f(x)$
+  для всех достаточно малых $\alpha > 0$.
+  \begin{Statement}
+  Пусть $f$ дифференцируема в точке $x$. Тогда если $(\operatorname{grad} f(x), h) < 0$, то $h$ -- направление
+  убывания функции $f$ в точке $x$, а если $h$ -- направление убывания функции $f$ в точке $x$, то $(\operatorname{grad} f(x), h) \leq 0$.
+  \end{Statement}
+  Спуск при оптимизации происходит в направлении \textbf{антиградиента}. Метод градиентного спуска:
+  \begin{equation}
+  x^{t + 1} = x^t - \alpha_t\operatorname{grad} f(x^t), t = 1, 2, \ldots, \forall x^i \in \mathbb{R}
+  \end{equation}
+  Для этого метода справедлива \textit{линейная оценка сходимости}:
+\begin{equation}
+||x^{t + 1} - x^*|| \leq q||x^* - x^t||, 0 < q < 1
+\end{equation}
+\subsubsection{Метод Ньютона}
+\label{sec:orgcf3325d}
+Разложим \(f(x)\) в ряд Тейлора до второго слагаемого:
+\begin{equation}
+f(x) - f(x^t) = (\operatorname{grad}f(x^t), x - x^t) + \frac12(f''(x)(x - x^t), x - x^t) + o(||x - x^t||^2),
+\end{equation}
+где $f''(x)$ -- матрица из вторых производных $f(x)$(\textbf{гессиан}). Метод Ньютона:
+\begin{equation}
+x^{t + 1} = x^t - (f''(x^t))^{-1}\operatorname{grad} f(x^t), t = 1, 2, \ldots,
+\end{equation}
+где начальное приближение должно находиться достаточно близко к $x^*$.
+
+В некоторых случаях для метода Ньютона справедлива \textit{квадратичная оценка скорости сходимости}:
+\begin{equation}
+||x^{t + 1} - x^*|| \leq Q||x^t - x^*||^2 \leq \ldots \leq \frac1Q(Q||x^1 - x^*||)^{2^t},
+\end{equation}
+если $||x^1 - x^*|| < \frac1Q$.
 \end{document}
