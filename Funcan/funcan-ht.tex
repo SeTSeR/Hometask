@@ -1,0 +1,245 @@
+% Created 2020-05-25 Mon 20:01
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[english, russian]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+
+\section{Вопрос 1}
+\label{sec:org2e45d3d}
+Исследовать на скорость сходимости с помощью леммы Брэмбла-Гильберта квадратурную формулу Симпсона.
+
+\begin{Lemma}[Брэмбла-Гильберта]
+Пусть оператор $L(u)$ ограничен на $W_2^k(\Omega)$, т. е.
+\begin{equation*}
+|L(u)| \leq C||u||_{W_2^k} \forall u \in W_2^k(\Omega)
+\end{equation*}
+Пусть, кроме того, $L(u)$ обращается в ноль на всех многочленах степени не более $k$.
+Тогда существует такая постоянная $m^*$, зависящая только от вида области $\Omega$, что
+\begin{equation*}
+|L(u)| \leq m^*C|u|_{W_2^k(\Omega)}
+\end{equation*}
+Здесь
+\begin{equation*}
+||u||_{W_2^k(\Omega)} = \left(\sum_{|\alpha| \leq k}\int_{\Omega}|D^{\alpha}u|^2d\Omega\right)^{\frac12},
+\end{equation*}
+\begin{equation*}
+|u|_{W_2^k(\Omega)} = \left(\sum_{|\alpha| = k}\int_{\Omega}|D^{\alpha}u|^2d\Omega\right)^{\frac12}.
+\end{equation*}
+\end{Lemma}
+\subsection{Решение}
+\label{sec:org5b7169b}
+Для начала рассмотрим функционал
+\begin{equation*}
+L(u) = \int_0^{h}u(x)dx - \frac{h}6\left(u(0) + 4u\left(h\right) + u(h)\right)
+\end{equation*}
+на $W_2^4(0, h)$. Перейдём от интервала $(0, h)$ путём замены $t = \frac{x}{h}$. Тогда функционал запишется как:
+\begin{equation*}
+L(\widetilde{u}) = h\int_0^1\widetilde{u}(t)dt - \frac{h}3(\widetilde{u}(0) + 4\widetilde{u}(1) + \widetilde{u}(2)) = h\left(\int_0^1\widetilde{u}(t) - \frac16(\widetilde{u}(0) + 4\widetilde{u}(1) + \widetilde{u}(2))\right)
+\end{equation*}
+Проверим ограниченность функционала:
+\begin{equation}\label{eq:2}
+|L(\widetilde(u))| = h\left|\left|\int_0^1\widetilde{u}(t)dt - \frac16(\widetilde{u}(0) + 4\widetilde{u}(1) + \widetilde{u}(2))\right|\right| \leq h(\max_{t \in [0, 1]}|\widetilde{u}(t)| + \max_{t \in [0, 1]}|\widetilde{u}(t)|)\right) = 2h\max_{t \in [0, 1]}|\widetilde{u}(t)|
+\end{equation}
+Теперь воспользуемся неравенством:
+\begin{equation}\label{eq:3}
+\max_{t \in [0, 1]}|\widetilde{u}(t)| \leq \sqrt{2}\left(\int_0^1(\widetilde{u}^2 + \widetilde{u}_t^2)dt\right) \leq \sqrt{2}\left(\int_0^1(\widetilde{u}^2 + \widetilde{u}_t^2 + \widetilde{u}_{tt}^2 + \widetilde{u}_{ttt}^2 + \widetilde{u}_{tttt}^2)dt\right)^{\frac12} \leq \sqrt{2}||\widetilde{u}||_{W_2^4(0, 1)}
+\end{equation}
+Сопоставляя \eqref{eq:2} и \eqref{eq:3}, получим:
+\begin{equation*}
+|L(\widetilde{u})| \leq 2\sqrt{2}h||\widetilde{u}||_{W_2^4(0, 1)}
+\end{equation*}
+Можно проверить, что $L(at^3 + bt^2 + ct + d) = 0$, поэтому по лемме Брэмбла-Гильберта $\exists m^*$:
+\begin{multline}
+\label{eq:4}
+|L(\widetilde{u})| \leq 2\sqrt{2}m^*h|u|_{W_2^4(0, 1)} = 2\sqrt{2}m^*h\left(\int_0^1|\widetilde{u}_{tttt}|^2dt\right)^{\frac12} = \\ 2\sqrt{2}m^*h\left(h^7\int_0^{h}u_{xxxx}^2dx\right)^{\frac12} = Mh^{\frac92}\left(\int_0^{h}u_{xxxx}^2dx\right)^{\frac12} =
+Mh^{\frac92}|u|_{W_2^4(0, h)}
+\end{multline}
+
+Теперь воспользуемся этой оценкой, чтобы оценить погрешность квадратурной формулы Симпсона. Для этого разобьём отрезок интегрирования $[0, 1]$ на $N$ частей точками $0 = x_0, x_k = x_0 + \frac{k}{N}, k \in \overline{1, N}$ и применим на каждом из отрезков $[x_{k - 1}, x_{k + 1}]$ формулу Симпсона. Длина каждого отрезка равна $\frac2N$. Погрешность интегрирования в этом случае равна:
+\begin{equation*}
+L'(f) = \int_0^1f(x)dx - \frac1{3N}\sum_{k = 1, 2}^{N - 1}[f(x_{k - 1}) + 4f(x_k) + f(x_{k + 1})]
+= \sum_{k = 1, 2}^{N - 1}\left(\int_{x_{k - 1}}^{x_{k + 1}}f(x)dx - \frac1{3N}[f(x_{k - 1}) + 4f(x_k) + f(x_{k + 1})]\right).
+\end{equation*}
+Здесь $k = 1, 2$ означает, что суммирование происходит, начиная с индекса 1, с шагом 2. Воспользуемся теперь оценкой \eqref{eq:4} при $h = \frac2N$:
+\begin{multline*}
+|L'(f)| = \left|\sum_{k = 1, 2}^{N - 1}\left(\int_{x_{k - 1}}^{x_{k + 1}}f(x)dx - \frac1{3N}[f(x_{k - 1}) + 4f(x_k) + f(x_{k + 1})]\right)\right| \leq \\
+\sum_{k = 1, 2}^{N - 1}\left|\int_{x_{k - 1}}^{x_{k + 1}}f(x)dx - \frac1{3N}[f(x_{k - 1}) + f(x_k) + f(x_{k + 1})]\right| \leq \sum_{k = 1, 2}^{N - 1}M\left(\frac2N\right)^{\frac92}|u|_{W_2^4(x_{k - 1}, x_{k + 1})} = \\
+= M\left(\frac2N\right)^{\frac92}\frac{N}2\frac{\sum_{k = 1, 2}^{N - 1}|u|_{W_2^4(x_{k - 1}, x_{k + 1})}}{\frac{N}2} \leq M\left(\frac{2}N\right)^{\frac92}\sqrt{\frac{N}2}\left(\sum_{k = 1, 2}^{N - 1}|u|^2_{W_2^4(x_{k - 1}, x_{k + 1})}\right)^{\frac12} = M'\frac1{N^4}|u|^2_{W_2^4(0, 1)}
+\end{multline*}
+Таким образом, формула Симпсона имеет четвёртый порядок сходимости.
+\section{Вопрос 2}
+\label{sec:org95cf8fe}
+Дать определение обобщённой производной и пространства Соболева \(W_p^m\).
+\subsection{Решение}
+\label{sec:org7e1da08}
+Функция \(v(x) \in L_1(\Omega)\) называется \emph{обобщённой производной} порядка \(\alpha\) в области \(\Omega\) функции \(f(x) \in L_1(\Omega)\), если для любой функции \(\varphi \in D(\Omega)\) выполнено равенство:
+\begin{equation*}
+\int_{\Omega}v(x)\varphi(x)dx = (-1)^{\alpha}\int_{\Omega}f(x)D^{\alpha}\varphi(x)dx.
+\end{equation*}
+В таком случае \(v(x) = D^{\alpha}f(x)\).
+
+Здесь \(L_1(\Omega)\) -- множество интегрируемых на \(\Omega\) функций, \(D(\Omega)\) -- множество бесконечно дифференцируемых функций, финитных в \(\Omega\).
+
+Пусть теперь множество \(\Omega\) имеет непрерывную по Липшицу границу, т. е. граница разбивается на конечное число частей, каждая из которых в некоторой системе координат представляется уравнением \(x_i = \varphi(x_1, \ldots, x_{i - 1}, x_{i + 1}, \ldots, x_m)\), где функция \(\varphi\) непрерывна по Липшицу. Для всякого \(m \in \mathbb{Z}, m \geq 0\) и \(p \in \mathbb{R}, 1 \leq p < \infty\) \emph{пространство Соболева} \(W^m_p(\Omega)\) определяется как пространство, состоящее из функций \(u \in L_p(\Omega)\), все обобщённые производные которых вида \(D^{\alpha}u(x), |\alpha| \leq m\) принадлежат \(L_p(\Omega)\). Норма на этом пространстве вводится следующим образом:
+\begin{equation*}
+||u||_{m, p, \Omega} = ||u||_{W_p^m(\Omega)} = \left(\sum_{|\alpha| \leq m}||D^{\alpha}u||^p_{0, p, \Omega}\right)^{\frac1p},
+\end{equation*}
+Альтернативное определение: пространство Соболева \(W_p^m(\Omega)\) -- это замыкание пространства \(C^m(\Omega)\) по норме \(||\cdot||_{m, p, \Omega}\), если \(\Omega\) -- звёздная область относительно некого шара.
+\section{Задача 1}
+\label{sec:org391b14f}
+Пусть функция \(f(x)\) на отрезке \([0, 1]\) удовлетворяет условиям \(0 \leq f(x) \leq 1, 0 \leq f'(x) \leq \frac12\). Имеет ли уравнение \(x = f(x)\) решения?
+\subsection{Решение}
+\label{sec:orga8b0e15}
+Положим \(g(x) = f(x) - x\). Тогда \(g(0) = f(0) \geq 0, g(1) = f(1) - 1 \leq 0\). Если хотя бы одно из значений \(g(0)\) и \(g(1)\) равно нулю, то соответствующее значение аргумента и будет решением. В противном случае \(\exists \xi \in (0, 1): g(\xi) = 0\), которое и будет решением.
+\subsection{Решение 2}
+\label{sec:org1e224d7}
+Пусть \(x, y \in [0, 1]\). Тогда \(|f(x) - f(y)| = |f'(\xi)||x - y| \leq \frac12|x - y|\) для некоторого \(\xi\) между \(x\) и \(y\), т. е. отображение \(f(x)\) является сжимающим на \([0, 1]\). Это означает, что у него есть ровно одна неподвижная точка на этом отрезке.
+\section{Задача 2}
+\label{sec:orgfc008f0}
+Найти ортогональное дополнение к подпространству \(M\) пространства \(L_2(0, 1)\), если \(M = \{x(t) \in L_2(0, 1), x(t) = 0 \text{ почти всюду на отрезке }[0; \frac12]\}\).
+\subsection{Решение}
+\label{sec:org5717f02}
+Построим множество \(M^* = \{x(t) \in L_2(0, 1), x(t) = 0 \text{ почти всюду на отрезке } [\frac12; 1]\}\). Тогда \(\forall x(t) \in M, y(t) \in M^* x(t)y(t) = 0\) почти всюду на \([0, 1] \Rightarrow \int_0^1x(t)y(t)dt = 0\). Пусть теперь \(y(t)\) не равна нулю на множестве \(X \subset [\frac12; 1], \mu(X)\). Тогда рассмотрим функцию
+\begin{equation}
+x(t) = \begin{cases}
+0, t \in [0; \frac12], \\
+1, t \in [\frac12; 1].
+\end{cases}
+\end{equation}
+Для этой функции \((x, y) = \int_0^1x(t)y(t)dt = |X| > 0\), т. е. такая функция неортогональна \(M\). Таким образом, построенное множество \(M^*\) есть ортогональное дополнение \(M\).
+\section{Задача 3}
+\label{sec:org35cab7f}
+Является ли компактным оператор \(A \in L(C[0, 1] \rightarrow C[0, 1])\), если:
+\begin{enumerate}
+\item \(Ax(t) = x(0) + tx(1)\);
+\item \(Ax(t) = t^2x(t)\);
+\end{enumerate}
+Оператор называется \emph{компактным}, если от отображает каждое ограниченное множество в предкомпактное. Множество называется \emph{предкомпактным}, если его замыкание является компактом.
+\subsection{Решение}
+\label{sec:orga185839}
+Покажем, что для компактности достаточно проверить предкомпактность образа единичного шара. В самом деле, если образ единичного шара является предкомпактным множеством, то в силу линейности образ любого шара с центром в начале координат является предкомпактным множеством. Поскольку любое ограниченное множество в \(C[0, 1]\) содержится в некотором шаре, предкомпактности образов шаров достаточно. Если же образ единичного шара предкомпактным множеством не является, то оператор не является компактным по определению.
+
+\begin{enumerate}
+\item Рассмотрим образ единичного шара \(S = \{x(t) \in C[0, 1] | \max_{0 \leq t \leq 1}|x(t)| \leq 1\}\). По теореме Арцела компактность оператора \(A\) равносильна тому, что множество \(Ax(t)\) равномерно ограниченно и равностепенно непрерывно.
+\end{enumerate}
+
+Покажем равномерную ограниченность \(Ax(t)\):
+\begin{equation*}
+|Ax(t)| = \max_{0 \leq t \leq 1}|x(0) + tx(1)| \leq |x(0)| + \max_{0 \leq t \leq 1}t|x(1)| = |x(0)| + |x(1)| \leq 2.
+\end{equation*}
+Равностепенная непрерывность:
+\begin{multline*}
+\forall \varepsilon > 0 \exists \delta > 0 \forall t_1, t_2: |t_1 - t_2| < \delta \forall x(t) \in C[0, 1]: \\
+|Ax(t_1) - Ax(t_2)| = |x(0) + t_1x(1) - x(0) - t_2x(1)| = |t_1 - t_2||x(1)| < \delta|x(1)| < \delta < \varepsilon
+\end{multline*}
+Таким образом, если выбрать $\delta = \varepsilon$, условие равностепенной непрерывности выполнено, и оператор является компактным.
+\begin{enumerate}
+\item Как и в предыдущем случае, нужно проверить равномерную ограниченность и равностепенную непрерывность \(Ax(t)\).
+\end{enumerate}
+
+Равномерная ограниченность, в самом деле, имеет место:
+\begin{equation*}
+|Ax(t)| = \max_{0 \leq t \leq 1}|t^2x(t)| \leq 1.
+\end{equation*}
+А вот равностепенной непрерывности нет:
+\begin{equation*}
+\exists \varepsilon > 0 \forall \delta > 0 \exists t_1, t_2: |t_1 - t_2| < \delta: \exists x(t) \in C[0; 1]: |Ax(t_1) - Ax(t_2)| \geq \varepsilon
+\end{equation*}
+Из непрерывности показательной функции следует, что $\exists n \in \mathbb{N}: |1 - 2^{-\frac1{m + 2}}| < \delta$. Положим тогда $x(t) = t^m, t_1 = 1, t_2 = 2^{-\frac1{m + 2}}$. Получим:
+\begin{equation*}
+|Ax(t_1) - Ax(t_2)| = |t_1^2x(t_1) - t_2^2x(t_2)| = |t_1^{m + 2} - t_2^{m + 2}| = \frac12
+\end{equation*}
+
+Из него следует, что множество функций $Ax(t)$ не является равностепенно непрерывным, а значит, и предкомпактным, что, в свою очередь, влечёт некомпактность оператора $A$.
+\section{Задача 4}
+\label{sec:org17967b7}
+Найти спектр оператора \(Ax = (x_1, \frac{x_2}2, \ldots, \frac{x_n}n, \ldots)\) в пространстве \(l_2\).
+
+Оператор \(R_{\lambda} = (A - \lambda I)^{-1}\) -- \emph{резольвента} оператора \(A\). Число \(\lambda\) называется \emph{регулярным} числом оператора \(A\), определённого на \(E\), если резольвента определена на всём \(E\). \emph{Спектром} оператора \(A\) называется совокупность всех значений \(\lambda\), не являющихся регулярными.
+\subsection{Решение}
+\label{sec:org160b67c}
+\begin{equation*}
+||Ax|| \leq ||x|| \forall x \in l_2.
+\end{equation*}
+С другой стороны, $||Ax|| = ||x||$ при $x = (1, 0, \ldots, 0, \ldots)$. Поэтому ||A|| = 1.
+Поскольку ||A|| = 1, спектр оператора \(A\) содержится внутри единичного круга. Рассмотрим оператор \(B = A - \lambda I, |\lambda| \leq 1\):
+\begin{equation}
+Bx = \left\{\left(\frac1n - \lambda\right)x_n\right\} = \left\{\frac{1 - \lambda n}nx_n\right\}
+\end{equation}
+При $\lambda \neq \frac1n$ оператор обратим, поскольку из равенства $Bx = 0$ следует равенство $x = 0$(все коэффициенты перед элементами последовательности ненулевые).
+
+При $\lambda = \frac1n$ обратный оператор, задаваемый формулой $Cx = \{\frac{n}{1 - \lambda n}x_n\}$, не определён на последовательностях с $x_n \neq 0$ и не ограничен.
+
+При $\lambda = 0$ обратный оператор задаётся формулой $Cx = \{nx_n\}$ и не является неограниченным, поэтому это точка непрерывного спектра
+
+Таким образом, спектр имеет вид $\{0\} \cup\{\frac1n | n \in \mathbb{N}\}$.
+\section{Задача 4'}
+\label{sec:orgd7f9d52}
+Показать, что для любого компакта \(K \subset \mathbb{C}\) существует оператор \(A \in L(l_2 \rightarrow l_2)\) такой, что его спектр \(\sigma(A) = K\).
+
+Показать, что если \(K \subset \mathbb{R}\), такой оператор можно выбрать самосопряжённым.
+\subsection{Решение}
+\label{sec:orgffbe838}
+Поскольку \(K\) -- компакт, в нём можно выбрать счётное подмножество \(a = \{a_n\} \in K, \overline{\{a_n\}} = K\)(например, все точки вида \(a + bi \in K, a, b \in \mathbb{Q}\)).
+Рассмотрим оператор \(Ax = (a_1x_1, \ldots, a_nx_n, \ldots)\).
+
+Оценим его норму. Положим \(C = \sup_n |a_n|\). Тогда
+\begin{equation*}
+||Ax|| = \left(\sum_{i = 1}^{\infty}|a_ix_i|^2\right)^{\frac12} \leq c\left(\sum_{i = 1}^{\infty}|x_i|^2\right)^{\frac12} = c||x||.
+\end{equation*}
+С другой стороны, при $x = e_n ||Ax|| = |a_n| \Rightarrow ||A|| = c$:
+
+Поскольку \(K\) - компакт, \(||a|| < \infty\). Теперь рассмотрим резольвенту оператора \(A\) -- оператор \(R_{\lambda} = (A - \lamdba I)^{-1}\). Оператор \(B = (A - \lambda I) = (a - \lambda e, x)\), где \(e = (1, 1, \ldots)\). При \(\lambda\), равном одному из \(a_n\), обратный оператор не определён, поэтому эти точки принадлежат точечному спектру. При \(\lambda \in K \backslash \{a_n\}\) в \(\{a_n\}\) можно выделить подпоследовательность, сходящуюся к \(\lambda\), и поэтому обратный оператор, задаваемый формулой \(R_{\lambda}x = \{\frac{x_n}{a_n - \lambda}\}\) будет не ограничен. При \(\lambda \notin K\) коэффициенты \((a_n - \lambda)\) отделены от нуля, и потому резольвента при этих \(\lambda\) определена и ограничена, т. е. это регулярные точки и \(\sigma(A) = K\).
+
+Покажем, что при \(K \subset \mathbb{R}\) оператор \(A\) будет самосопряжённым. Поскольку \(l_2\) -- гильбертово пространство, достаточно проверить, что \((x, Ay) = (Ax, y)\). Поскольку \(K \subset \mathbb{R}\), то \(a_n^* = a_n \forall n \in \mathbb{N}\), поэтому:
+\begin{equation*}
+(x, Ay) = \sum_{i = 1}^{\infty}x_i(Ay)_i^* = \sum_{i = 1}^nx_ia_i^*y_i^* = \sum_{i = 1}^na_ix_iy_i^* = (Ax, y),
+\end{equation*}
+что и означает самосопряжённость оператора \(A\).
+\end{document}
