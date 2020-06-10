@@ -6,7 +6,7 @@ before_install:
 - sudo apt install -y --no-install-recommends texlive-fonts-recommended texlive-generic-recommended
   texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-base
   texlive-pictures texlive-lang-cyrillic texlive-science texlive-generic-extra pandoc
-  zip python-pygments
+  zip python-pygments dot2tex
 script:
 - make pdf
 - zip -r pdfs.zip build/
