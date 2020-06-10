@@ -1,6 +1,7 @@
 #+LATEX_COMPILER: pdflatex
 #+LANGUAGE: ru
 
+#+LATEX_HEADER:\usepackage{float}
 #+LATEX_HEADER:\usepackage{esint}
 #+LATEX_HEADER:\usepackage{mathtools}
 #+LATEX_HEADER:\usepackage{amsthm}

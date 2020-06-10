@@ -1,4 +1,4 @@
-% Created 2020-06-10 Wed 14:56
+% Created 2020-06-10 Wed 15:14
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -15,6 +15,7 @@
 \usepackage{capt-of}
 \usepackage{hyperref}
 \usepackage[russian]{babel}
+\usepackage{float}
 \usepackage{esint}
 \usepackage{mathtools}
 \usepackage{amsthm}
@@ -52,9 +53,9 @@
 
 
 \section{Семинар 1}
-\label{sec:orga89ef2a}
+\label{sec:orgc59ebd9}
 \subsection{Задача 1}
-\label{sec:org7f99d47}
+\label{sec:orgedb690a}
 Построить СДНФ функции:
 \begin{center}
 \begin{tabular}{rrrr}
@@ -73,7 +74,7 @@
 \end{tabular}
 \end{center}
 \subsubsection{Решение}
-\label{sec:org2e193ee}
+\label{sec:org32b25af}
    \begin{equation}
 D_f^s(x_1, x_2, x_3) = \overline{x_1}\overline{x_2}\overline{x_3}\vee\overline{x_1}x_2\overline{x_3}
 \vee\overline{x_1}x_2x_3\vee x_1\overline{x_2}x_3
@@ -83,49 +84,49 @@ K_f^s(x_1, x_2, x_3) = (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\ve
 (\overline{x_1}\vee\overline{x_2}\vee x_3)(\overline{x_1}\vee\overline{x_2}\vee\overline{x_3})
 \end{equation}
 \subsection{Задача 2}
-\label{sec:org1257466}
+\label{sec:org96c25c4}
   \begin{equation}
 f = (00101111). \text{ Найти простые импликанты.}
   \end{equation}
 \subsubsection{Решение}
-\label{sec:orgcca7e8a}
+\label{sec:org6fda43d}
    \begin{equation}
 A = \{x_1, \overline{x_3}, x_1x_2, x_2\overline{x_3}\}\text{ - импликанты $f$.}
    \end{equation}
 $x_1x_2$ - не простая импликанта.
 \subsection{Задача 3}
-\label{sec:org044ad5f}
+\label{sec:org11a6ff0}
 Найти простые импликанты функции
   \begin{equation}
 f = (01111110).
   \end{equation}
 \subsubsection{Решение}
-\label{sec:orga226780}
+\label{sec:org6fa9823}
    \begin{equation}
 A = \{x_1\overline{x_2}, x_2x_3, x_1x_2x_3\}\text{ - импликанты}
    \end{equation}
 $x_1\overline{x_2}$ - простая импликанта, $x_2x_3$ и $x_1x_2x_3$ - не импликанты.
 \subsection{Задача 4}
-\label{sec:orgf8c9a94}
+\label{sec:org008ab74}
 Построить сокращённую ДНФ функции
 \begin{equation}
 \tilde{\alpha_f} = (1111 1000 0100 1100)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org025ec69}
+\label{sec:orgb8ac9db}
 Код максимальной грани: \((0022)\), соответствующая простая импликанта \(\overline{x_1}\overline{x^2}\).
 Далее идёт ребро \((0200)\), соответствующее импликанте \(\overline{x_1}\overline{x_2}\overline{x_3}\).
 Далее идёт ребро \((2100)\), соответствующее импликанте \(x_2\overline{x_3}\overline{x_4}\).
 Следующее ребро \((1102) \rightarrow x_1x_2\overline{x_3}\),
 \((1201) \rightarrow x_1\overline{x_3}x_4\), \((2001) \rightarrow \overline{x_2}\overline{x_3}x_4\).
 \subsection{Задача 2.6}
-\label{sec:org4c12753}
+\label{sec:org59d95ef}
 Найти сокращённую ДНФ методом карты:
 \begin{equation}
 \tilde{\alpha_f} = (0101 0111)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org776342e}
+\label{sec:orgfe3424d}
 \begin{center}
 \begin{tabular}{rrr}
 \hline
@@ -140,12 +141,12 @@ x\textsubscript{1x}\textsubscript{2x}\textsubscript{3} & 0 & 1\\
 \end{center}
 Откуда \(D_f = x_3\vee x_1x_2\).
 \subsection{Задача 2.6(5)}
-\label{sec:orgb062816}
+\label{sec:org610f6ba}
   \begin{equation}
 \tilde{\alpha_f} = (0001 1011 1101 1111)
   \end{equation}
 \subsubsection{Решение}
-\label{sec:org9b0bb5f}
+\label{sec:org7ff8a13}
 \begin{center}
 \begin{tabular}{rrrrr}
 \hline
@@ -188,13 +189,13 @@ x\textsubscript{1x}\textsubscript{2x}\textsubscript{3} & 0 & 1\\
 D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\overline{x_3}
 \end{equation}
 \subsection{Задача 2.3(1)}
-\label{sec:orgdc0d78b}
+\label{sec:org5af8355}
 Получить сокращённую ДНФ по КНФ:
 \begin{equation}
 (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)(\overline{x_2}\vee\overline{x_3})
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgb9b7a31}
+\label{sec:orgd7c36a1}
 \begin{multline}
    (x_1\vee x_2\vee\overline{x_3})(\overline{x_1}\vee x_2\vee x_3)(\overline{x_2}\vee\overline{x_3})
 = (x_1x_2\vee x_1x_3 \vee x_2\overline{x_1}\vee x_2\vee x_2x_3\vee\overline{x_1}\overline{x_3}
@@ -204,7 +205,7 @@ D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\over
 \vee\overline{x_1}\overline{x_3} = x_2\overline{x_3}\vee\overline{x_1}\overline{x_3}\vee x_1\overline{x_2}x_3
 \end{multline}
 \subsection{Задача 2.2(1)}
-\label{sec:org3a008e0}
+\label{sec:org1e2a394}
 Построить сокращённую ДНФ по данной ДНФ методом Блейка:
 \begin{equation}
 \overline{x_1}\overline{x_2}\vee x_1\overline{x_2}x_4\vee x_2\overline{x_3}x_4\vee\overline{x_2}x_4|
@@ -212,30 +213,30 @@ D_f = x_2\overline{x_4}\vee x_2x_3\vee x_1x_2\vee x_1x_4\vee x_3x_4\vee x_1\over
 \vee\overline{x_3}x_4 = \overline{x_1}\overline{x_2}\vee\overline{x_2}x_4\vee\overline{x_3}x_4
 \end{equation}
 \subsection{Задача 2.2(2)}
-\label{sec:orgd8b79d9}
+\label{sec:orgb930aaf}
   \begin{equation}
 x_1\overline{x_2}x_3\vee\overline{x_1}x_2\overline{x_4}\vee\overline{x_2}\overline{x_3}x_4|
 \vee x_1\overline{x_2}x_4
   \end{equation}
 \subsection{Задача 2.9(1)}
-\label{sec:org3238355}
+\label{sec:org733a386}
   \begin{equation}
 f(\tilde{x_n}) = x_1\oplus\ldots\oplus x_n
   \end{equation}
 Длина сокращённой ДНФ - ?
 \subsubsection{Решение}
-\label{sec:org7cddfa6}
+\label{sec:org91cf8e2}
    Максимальные грани - точки $\Rightarrow$ длина сокращённой ДНФ, она же длина СДНФ равна
 $2^n - 1$.
 \subsection{Задача 2.9(2)}
-\label{sec:orgf267a24}
+\label{sec:orgf9b5ca5}
 Найти длину сокращённой ДНФ функции:
   \begin{equation}
 f(\tilde{x_n}) = (x_1\vee x_2\vee x_3)(\overline{x_1}\vee\overline{x_2}\overline{x_3})\oplus
 x_4\oplus\ldots\oplus x_n
   \end{equation}
 \subsubsection{Решение}
-\label{sec:org046eb96}
+\label{sec:org8c2da22}
 \begin{equation}
 f(\tilde{\alpha}) = 1 \Leftrightarrow \begin{cases}
 g(\tilde{\alpha}) = 1, \\
@@ -249,29 +250,29 @@ h(\tilde{\alpha}) = 1.
 
 \url{http://mk.cs.msu.ru}, лекционные курсы, ОКи, домашние задания там.
 \section{Домашняя работа 1}
-\label{sec:orgd401dfe}
+\label{sec:org9b611a8}
 \subsection{Задача 2.3(4)}
-\label{sec:orgac98ee5}
+\label{sec:org74234c7}
 Представить в виде СДНФ функцию:
 \zall
 \begin{equation}
 f(\tilde{x}^3) = (01010001)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgb350572}
+\label{sec:orgbb1218c}
 Функция принимает единичные значения на наборах $001, 011$ и $111$, откуда СДНФ имеет вид:
 \begin{equation}
 f(\tilde{x}^3) = \overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3\vee x_1x_2x_3
 \end{equation}
 \subsection{Задача 2.1(3)}
-\label{sec:orgcd16370}
+\label{sec:org1770c8b}
 Из множества \(A\) ЭК выделить простые импликанты функции \(f\):
 \begin{equation}
 A = \{x_1, \overline{x_4}, x_2\overline{x_3}, \overline{x_1}\overline{x_2}\overline{x_4}\},
 f(\tilde{x}^4) = (1010 1110 1101 1110)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgd31578b}
+\label{sec:org146e149}
 ЭК $x_1$ не является импликантой функции $f$, так как $f(1111) = 0$.
 
 ЭК $\overline{x_4}$ является простой импликантой функции $f$.
@@ -284,7 +285,7 @@ f(\tilde{x}^4) = (1010 1110 1101 1110)
 является простой, так как содержит множитель $\overline{x_4}$, который, как было указано ранее,
 является импликантой $f$.
 \subsection{Задача 2.5(2, 6)}
-\label{sec:org1f42a29}
+\label{sec:orgdb48eb7}
 Изобразив множество \(N_f\) функции \(f(\tilde{x}^n)\) в \(B^n\), найти коды максимальных интервалов
 и построить сокращённую ДНФ:
 \begin{equation}
@@ -294,7 +295,7 @@ f(\tilde{x}^4) = (1010 1110 1101 1110)
 \tilde{\alpha}_f = (0001 0111 1110 1111)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org41be572}
+\label{sec:org1acad4d}
 Для первой функции находим две максимальные грани с кодами \((112)\) и \((021)\), попытки расширить
 которые приводят к выходу из \(N_f\). Отсюда получаем сокращённую ДНФ:
 \begin{equation}
@@ -306,7 +307,7 @@ f(\tilde{x}^3) = \overline{x_1}x_3\vee x_1x_2
 f(\tilde{x}^4) = x_2x_3\vee x_1\overline{x_3}\vee\overline{x_1}x_2x_4\vee\overline{x_1}x_3x_4
 \end{equation}
 \subsection{Задача 2.6(2, 6)}
-\label{sec:org9d0b80e}
+\label{sec:orgfad2a77}
 Найти сокращённую ДНФ функции с помощью минимизирующей карты:
 \begin{equation}
 \tilde{\alpha_f} = (1101 1011)
@@ -350,7 +351,7 @@ f(\tilde{x}^3) = \overline{x_1}\overline{x_2}\vee\overline{x_2}\overline{x_3}\ve
 f(\tilde{x}^4) = x_1\overline{x_2}\vee x_2\overline{x_3}\vee x_3x_4\vee\overline{x_2}x_3\overline{x_4}
 \end{equation}
 \subsection{Задача 2.2(3, 4)}
-\label{sec:orgad63368}
+\label{sec:orgfb331dc}
 По заданной ДНФ методом Блейка получить сокращённую ДНФ:
 \begin{equation}
 D = x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3x_4
@@ -359,7 +360,7 @@ D = x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1
 D = x_1\overline{x_2}x_4\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_3}\overline{x_4}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgf4c32f5}
+\label{sec:orga4b685b}
 \begin{multline}
 x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3x_4 = \\
 = x_1\vee\overline{x_1}x_2\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_1}x_2x_3x_4
@@ -379,7 +380,7 @@ x_1\overline{x_2}x_4\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_3}\overli
 \vee\overline{x_2}x_3x_4\vee\overline{x_1}\overline{x_2}\overline{x_4}\vee x_1\overline{x_2}\overline{x_3}
 \end{multline}
 \subsection{Задача 2.3(3, 4)}
-\label{sec:org024b43d}
+\label{sec:org1250fd3}
 Построить сокращённую ДНФ по заданной КНФ:
 \begin{equation}
 (x_1\vee\overline{x_2}\vee\overline{x_3})(\overline{x_1}\vee x_2)(x_1\vee x_2\vee x_3)
@@ -388,7 +389,7 @@ x_1\overline{x_2}x_4\vee\overline{x_1}\overline{x_2}x_3\vee\overline{x_3}\overli
 (x_1\vee x_2\vee x_3)(\overline{x_1}\vee\overline{x_2}\vee\overline{x_3})
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org30ce44a}
+\label{sec:org4c83524}
 \begin{multline}
 (x_1\vee\overline{x_2}\vee\overline{x_3})(\overline{x_1}\vee x_2)(x_1\vee x_2\vee x_3) =
 (x_1x_2\vee\overline{x_1}\overline{x_2}\vee\overline{x_1}\overline{x_3}\vee x_2\overline{x_3})
@@ -402,13 +403,13 @@ x_1x_2\overline{x_3}\vee x_2\overline{x_3} = x_1x_2\vee x_2\overline{x_3}\vee\ov
 \overline{x_1}x_3\vee\overline{x_2}x_3
 \end{equation}
 \subsection{Задача 2.9(6)}
-\label{sec:org1f93b8f}
+\label{sec:orgd867801}
 Найти длину сокращённой ДНФ функции \(f\):
 \begin{equation}
 f(\tilde{x}^n) = (x_1\vee\ldots\vee x_n)(x_1\vee\ldots\vee x_k\vee\overline{x}_{k + 1}\vee\ldots\vee\overline{x}_n)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org140099e}
+\label{sec:org5822cf6}
 \begin{multline}
 (x_1\vee\ldots\vee x_n)(x_1\vee\ldots\vee x_k\vee\overline{x}_{k + 1}\vee\ldots\overline{x}_n) =
 (\vee_{i = 1}^kx_k)\vee(\vee_{i, j = 1}^{k, n}x_ix_j)\vee(\vee_{i = k + 1, j = 1}^{n}\overline{x}_ix_j) = \\
@@ -420,9 +421,9 @@ k + 2\frac{(n - k)(n - k + 1)}2 = k + (n - k)(n - k + 1) = n + (n - k)^2 = n^2 -
 \end{equation}
 слагаемых.
 \section{Семинар 2}
-\label{sec:org96cf30c}
+\label{sec:orgd4f6a90}
 \subsection{Задача 3.1(1, 5)}
-\label{sec:orga6a8ee2}
+\label{sec:org74eb97e}
 \zall
 \begin{equation}
    D = x_1x_2 \vee\overline{x_1}\text{ - не тупиковая, не минимальная, кратчайшая.}
@@ -431,13 +432,13 @@ k + 2\frac{(n - k)(n - k + 1)}2 = k + (n - k)(n - k + 1) = n + (n - k)^2 = n^2 -
    D = x_1x_2x_3\vee\overline{x_2}x_3\vee x_2\overline{x_3}\text{ - не тупиковая, не минимальная, кратчайшая.}
 \end{equation}
 \subsection{Задача 3.3(1)}
-\label{sec:org2ae0d95}
+\label{sec:orgdae8ac0}
 Построить ядро, ДНФ Квайна, ДНФ \(\Sigma T\) по сокращённой ДНФ:
    \begin{equation}
 D_f = xy\vee\overline{x}\overline{z}\vee y\overline{z}
    \end{equation}
 \subsubsection{Решение}
-\label{sec:org2cf79a8}
+\label{sec:orgf85395b}
 Таблица Квайна:
 \begin{center}
 \begin{tabular}{lrlrlllrrl}
@@ -455,14 +456,14 @@ D_f = xy\vee\overline{x}\overline{z}\vee y\overline{z}
 ДНФ Квайна: \(D_f = xy\vee\overline{x}\overline{z}\)
 Точки 010 и 110 регулярны, поэтому ДНФ \(\Sigma T\) совпадает с ДНФ Квайна.
 \subsection{Задача 3.3(2)}
-\label{sec:org1cd9d8c}
+\label{sec:org9266c1f}
 Построить ядро, ДНФ Квайна, ДНФ \(\Sigma t\):
    \begin{equation}
 D = \overline{z}\overline{w}\vee\overline{y}zw\vee x\overline{y}w\vee \overline{x}\overline{y}z
 \vee x\overline{y}\overline{z}\vee\overline{x}\overline{y}\overline{w}
    \end{equation}
 \subsubsection{Решение}
-\label{sec:org5431e36}
+\label{sec:orgfa70d2e}
 Таблица Квайна:
 \begin{center}
 \begin{tabular}{lrlrrrlllrrlrrlll}
@@ -481,12 +482,12 @@ D = \overline{z}\overline{w}\vee\overline{y}zw\vee x\overline{y}w\vee \overline{
 Точки 0100 и 1100 ядровые, точки 0000 и 1000 покрыты ядром и регулярны, откуда ядро: \(\{N_{\overline{z}\overline{w}}\}\),
 и ДНФ Квайна совпадает с ДНФ \(\Sigma T\) и равна исходной.
 \subsection{Задача 3.4(3)}
-\label{sec:orgdf13347}
+\label{sec:orga1a6202}
    \begin{equation}
 D_f = \overline{x}w\vee\overline{y}w\vee zw\vee xz\vee yz
    \end{equation}
 \subsubsection{Решение}
-\label{sec:org5548a54}
+\label{sec:orgabedd18}
 Таблица Квайна:
 \begin{center}
 \begin{tabular}{llrlrlrrrlrrrlrrr}
@@ -507,13 +508,13 @@ D_f = \overline{x}w\vee\overline{y}w\vee zw\vee xz\vee yz
 D_f = \overline{x}w\vee\overline{y}w\vee xz\vee yz
 \end{equation}
 \subsection{Задача 3.6(1)}
-\label{sec:org00eef92}
+\label{sec:orgcd0c377}
 Построить все тупиковые ДНФ функции
 \begin{equation}
 \tilde{\alpha}_f = (01111100)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgdcbbb7e}
+\label{sec:orgc099004}
 Карта Карно:
 \begin{center}
 \begin{tabular}{rrr}
@@ -553,12 +554,12 @@ D_f = \overline{x}w\vee\overline{y}w\vee xz\vee yz
 \overline{x}y\vee x\overline{y}\vee\overline{y}w
 \end{equation}
 \subsection{Задача 3.6(4)}
-\label{sec:orgaf15661}
+\label{sec:org092805d}
    \begin{equation}
 \tilde{\alpha}_f = (1111 1000 0100 1100)
    \end{equation}
 \subsubsection{Решение}
-\label{sec:org35370f4}
+\label{sec:orgda97596}
 Карта Карно:
 \begin{center}
 \begin{tabular}{rrrrr}
@@ -613,9 +614,9 @@ K_3K_5\vee K_3K_4K_6\vee K_2K_4K_5\vee K_2K_4K_6
 \overline{x}\overline{y}\vee\overline{x}\overline{z}\overline{w}\vee xy\overline{z}\vee \overline{y}\overline{z}w
 \end{equation}
 \section{Домашняя работа 2}
-\label{sec:org66924e1}
+\label{sec:org2b32380}
 \subsection{Задача 3.1(4, 6)}
-\label{sec:orga696934}
+\label{sec:org0823bee}
 Выяснить, является ли ДНФ D тупиковой, кратчайшей, минимальной:
 \zall
 \begin{equation}
@@ -625,11 +626,11 @@ D = x_1\overline{x}_2 \vee \overline{x}_1x_2
 D = x_1x_2 \vee \overline{x}_1x_3\overline{x}_4 \vee \overline{x}_2x_3x_4
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org8204418}
+\label{sec:orgd27c10f}
 4) $D$ является тупиковой, кратчайшей и минимальной.\\
 6) $D$ является тупиковой, кратчайшей и минимальной.
 \subsection{Задача 3.3(3, 4 -- ядро, ДНФ Квайна и \(\Sigma\) T)}
-\label{sec:org1f445fb}
+\label{sec:orgaa905ba}
 Построить ядро, ДНФ Квайна и \(\Sigma T\) по сокращённой ДНФ:
    \begin{equation}
 D = x\overline{y}z \vee x\overline{y}\overline{w} \vee \overline{x}y\overline{w} \vee
@@ -640,7 +641,7 @@ D = \overline{z}\overline{w} \vee \overline{x}\overline{y}\overline{w} \vee
 \overline{x}\overline{y}\overline{z} \vee xyz \vee xy\overline{w}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org8aa0b9a}
+\label{sec:org214e63f}
 Строим таблицу Квайна:
 \begin{center}
 \begin{tabular}{lrlllrlrrrlrrlllrl}
@@ -679,13 +680,13 @@ D = \overline{z}\overline{w} \vee \overline{x}\overline{y}\overline{w} \vee
 Таким образом, ядро: \(\{N_{\overline{z}\overline{w}}, N_{\overline{x}\overline{y}\overline{w}}, N_{\overline{x}\overline{y}\overline{z}}, N_{xyz}, N_{xy\overline{w}}\}\).
 Соответственно, ДНФ Квайна и ДНФ \(\Sigma T\) совпадают с (4)
 \subsection{Задача 3.4(4)}
-\label{sec:org8860f94}
+\label{sec:org76a3a4e}
 По сокращённой ДНФ построить ДНФ \(\Sigma M\):
 \begin{equation}
 D = \overline{x}z \vee yz \vee \overline{x}\overline{y}w \vee xy \vee \overline{y}zw \vee xzw
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orga62e5de}
+\label{sec:orgd5100de}
 Таблица Квайна:
 \begin{center}
 \begin{tabular}{lrrrrrrrrrrl}
@@ -716,7 +717,7 @@ D_2 = \overline{x}z \vee \overline{x}\overline{y}w \vee xy \vee xzw
 D = \overline{x}z \vee yz \vee \overline{x}\overline{y}w \vee xy \vee \overline{y}zw \vee xzw
 \end{equation}
 \subsection{Задача 3.6(3, 6, 8)}
-\label{sec:org9c3083e}
+\label{sec:orgb27b786}
 С помощью таблицы Квайна построить все тупиковые ДНФ функции:
 \begin{equation}
 \tilde{\alpha}_f = (0001 1111)
@@ -728,7 +729,7 @@ D = \overline{x}z \vee yz \vee \overline{x}\overline{y}w \vee xy \vee \overline{
 \tilde{\alpha}_f = (0001 1011 1110 0111)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgb773849}
+\label{sec:org2e50130}
 Карта Карно:
 \begin{center}
 \begin{tabular}{rrr}
@@ -875,7 +876,7 @@ D_3 = y\overline{w} \vee x\overline{z}w \vee xz\overline{w} \vee \overline{x}zw
 D_4 = y\overline{w} \vee xy\overline{z} \vee x\overline{y}w \vee xz\overline{w} \vee \overline{x}zw
 \end{equation}
 \section{Домашняя работа 3}
-\label{sec:org8aaaa9a}
+\label{sec:orge2e8bd1}
 Необходимые тождества:
 \zall
 \begin{equation}
@@ -921,19 +922,19 @@ x \vee x = x
 x_1 \cdot \overline{x}_1 = x_2 \cdot \overline{x}_2
 \end{equation}
 \subsection{Задача 3.1(2)}
-\label{sec:org1705e95}
+\label{sec:org579f122}
 Используя только ассоциативность конъюкции(тождество (6)), вывести тождество:
 \begin{equation}
 x_1\cdot((x_2\cdot x_3)\cdot x_4) = ((x_1\cdot x_2)\cdot x_3) \cdot x_4
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgcf711a5}
+\label{sec:org0bcd4b5}
 \begin{equation}
 x_1 \cdot ((x_2 \cdot x_3) \cdot x_4) = (x_1 \cdot (x_2 \cdot x_3)) \cdot x_4 =
 ((x_1 \cdot x_2) \cdot x_3) \cdot x_4
 \end{equation}
 \subsection{Задача 3.3(3, 6)}
-\label{sec:orgbecb1af}
+\label{sec:orge2e84ba}
 Используя тождества (1) - (14) преобразовать в СДНФ или \(x \cdot \overline{x}\) формулы:
 \begin{equation}
 \overline{x}
@@ -942,14 +943,14 @@ x_1 \cdot ((x_2 \cdot x_3) \cdot x_4) = (x_1 \cdot (x_2 \cdot x_3)) \cdot x_4 =
 xyz \vee \overline{x \vee y \vee z}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org49c9261}
+\label{sec:org5db8f5a}
 Формула (17) уже является СДНФ. Для формулы (18):
 \begin{equation}
 xyz \vee \overline{x \vee y \vee z} \stackrel{(1)}{=} xyz \vee \overline{x} \cdot \overline{y \vee z}
 \stackrel{(1)}{=} xyz \vee \overline{x}\cdot\overline{y}\cdot\overline{z}
 \end{equation}
 \subsection{Задача 3.8(5-9)}
-\label{sec:org136f1c7}
+\label{sec:org2444def}
 Построить эквивалентные преобразования с помощью (1) - (14) для \(F_1\) и \(F_2\), где:
 \begin{equation}
 F_1 = \overline{((x \vee \overline{y})\cdot(\overline{x} \vee y))} \cdot xy \vee
@@ -972,7 +973,7 @@ F_1 = (x \vee \overline{(\overline{y} \vee \overline{z})})\cdot(y \vee z),
 F_2 = (x \vee y)(z \vee \overline{\overline{x} \vee \overline{y}})(x \vee y \vee z)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgba4fd8f}
+\label{sec:org254c749}
 5)
 \begin{multline}
 F_1 = \overline{((x \vee \overline{y})\cdot(\overline{x}\vee y))}\cdot xy \vee
@@ -1078,9 +1079,9 @@ xy\vee xz\vee yzy\vee yzz \stackrel{2\cdot(4)}{=} x(y\vee z)\vee yz(y\vee z) \st
 (x\vee\overline{\overline{y}\vee\overline{z}})(y\vee z) = F_1
 \end{multline}
 \section{Домашняя работа 5}
-\label{sec:org5e413b6}
+\label{sec:org2e21112}
 \subsection{Задача 1.1(5-7)}
-\label{sec:org2ffe5f7}
+\label{sec:org21f0328}
 Для заданной функции \(f(\widetilde{x}_n)\) построить СФЭ в стандартном базисе сложности, не превосходящей \(m\):
 \zall
 \begin{equation}
@@ -1093,7 +1094,7 @@ f(\widetilde{x}_3) = (1000 1101), m = 4,
 f(\widetilde{x}_3) = (0110 1001), m = 8.
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org9dd0c09}
+\label{sec:orge676b73}
 Сокращённая ДНФ для функции (1) имеет вид:
 \begin{equation}
 f(\widetilde{x}_3) = x \vee \overline{x}yz = x\vee xyz\vee \overline{x}yz = x\vee yz
@@ -1139,13 +1140,13 @@ x(\overline{y}\overline{z}\vee yz) = \overline{x}(\overline{\overline{y \vee z}\
 \includegraphics[height=300px]{scheme3.png}
 \end{center}
 \subsection{Задача 2.4(2)}
-\label{sec:orgee693ba}
+\label{sec:orgff77d75}
 Построить контактную схему сложности, не превышающей \(l\), реализующую функцию \(f\):
 \begin{equation}
 f(\widetilde{x}_3) = x_1\overline{x}_2 \oplus \overline{x}_2x_3 \oplus x_3x_1 \oplus 1, l = 5
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org1db1190}
+\label{sec:orga7fae63}
 Преобразуем \(f\) к удобному виду:
 \begin{multline}
 f(\widetilde{x}_3) = \overline{x}_1f|_{x_1 = 0}\vee x_1f|_{x_1 = 1} = \overline{x}_1(x_2\vee\overline{x}_3)\vee
@@ -1159,9 +1160,9 @@ x_1(\overline{x}_2\oplus \overline{x}_2x_3\oplus x_3\oplus1) = \overline{x}_1(x_
 \includegraphics[height=100px]{scheme4.png}
 \end{center}
 \section{Домашняя работа 6}
-\label{sec:org3be7945}
+\label{sec:org836e996}
 \subsection{Задача 2.13(2, 6)}
-\label{sec:orgd768481}
+\label{sec:orgc76521d}
 С использованием метода каскадов построить контактную схему для функции \(f\):
 \zall
 \begin{equation}
@@ -1171,7 +1172,7 @@ f(\widetilde{x}^3) = x_1x_2 \vee x_2x_3 \vee x_3x_1
 f(\widetilde{x}^3) = (0110 1101)
 \end{equation}
 \subsubsection{Решение}
-\label{sec:orgd8d67a1}
+\label{sec:org74c6d1e}
 Построим разложение Шеннона функции \(f\):
 \begin{equation*}
 \begin{cases}
@@ -1377,13 +1378,13 @@ G_4 = \widehat{G}_4 = \{f_{000}, f_{001}, f_{010}, f_{011}, f_{110}, f_{111}\} \
 \end{tikzpicture}
 \end{figure}
 \subsection{Задача 2.14(2)}
-\label{sec:org9524677}
+\label{sec:org75fc511}
 С использованием метода каскадов построить контактную схему для системы функций \(\Phi\):
 \begin{equation}
 \Phi = \{x_2 \oplus x_3, x_1 \oplus x_2 \oplus x_3, \overline{x}_2\}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org2ca2ebd}
+\label{sec:org9824dc8}
 Строим разложение Шеннона для функций системы:
 \begin{equation*}
 \begin{cases}
@@ -1548,13 +1549,13 @@ graph G {
 \end{tikzpicture}
 \end{figure}
 \subsection{Задача 2.14(6, КС и СФЭ)}
-\label{sec:org6efb86e}
+\label{sec:org4e7326d}
 С использованием метода каскадов построить КС и СФЭ для системы функций \(\Phi\):
 \begin{equation}
 \Phi = \{f_1 = x_1\overline{x}_2x_3\vee\overline{x}_1x_2\overline{x}_3, f_2 = x_1\overline{x}_3\vee\overline{x}_2\}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org2084d8d}
+\label{sec:org18a7708}
 Строим разложение Шеннона:
 \begin{equation*}
 \begin{cases}
@@ -1632,11 +1633,11 @@ digraph {
 \end{tikzpicture}
 \end{figure}
 \subsection{Задача}
-\label{sec:orgae2eb33}
+\label{sec:org74c1c3f}
 С помощью метода Шеннона, разлагая ФАЛ \(f(x_1, x_2, x_3)\), заданную столбцом значений
 \((0100 1011)\), по переменным \(x_1\) и \(x_2\), построить КС, реализующую эту функцию.
 \subsubsection{Решение}
-\label{sec:orgeedc8eb}
+\label{sec:org112b81e}
 Разложим функцию $f$ по первым двум переменным:
 \begin{equation}
 \begin{cases}
@@ -1705,9 +1706,9 @@ graph {
 \end{tikzpicture}
 \end{figure}
 \section{Домашняя работа 7}
-\label{sec:org4c00539}
+\label{sec:org4bcd5d2}
 \subsection{Задача 5.1(5, 6)}
-\label{sec:org075138a}
+\label{sec:org9d1e96f}
 Построить все тупиковые диагностические тесты для матрицы
 \begin{equation}
 M = \begin{pmatrix}
@@ -1729,7 +1730,7 @@ M = \begin{pmatrix}
 \end{pmatrix}
 \end{equation}
 \subsubsection{Решение}
-\label{sec:org2c0f59b}
+\label{sec:org397390a}
 Цель контроля для задачи диагностики матрицы \(M\) имеет вид \(\mathcal{N} = \{(i, j) | 1 \leq i < j \leq 5\}\).
 Сопоставим i-й строке матрицы \(M\) переменную \(y_i\) и построим матрицу \(\mathcal{M}\),
 состоящую из покоординатных сумм по модулю 2 столбцов входящих, в \(\mathcal{N}\):
@@ -1778,7 +1779,7 @@ y_1y_2\lor y_2y_3y_5\lor y_1y_4\lor y_3y_4y_5
 что все тупиковые проверяющие тесты матрицы \(M\) соответствуют множествам наборов строк \(M\):
 \(\{1, 2\}, \{1, 4\}, \{2, 3, 5\}, \{3, 4, 5\}\).
 \subsection{Задача 6.3}
-\label{sec:org604321e}
+\label{sec:org7407fb3}
 Построить все тупиковые
 \begin{enumerate}
 \item проверяющие
@@ -1810,7 +1811,7 @@ graph G {
 \end{figure}
 и источника, допускающего обрыв одного контакта переменных \(x\), \(z\).
 \subsubsection{Решение}
-\label{sec:orga823d46}
+\label{sec:org428b9f2}
 Вычислим таблицу контроля для заданной схемы и источника неисправностей:
 \begin{center}
 \begin{tabular}{rrrrrrl}
@@ -1880,7 +1881,7 @@ F(y_1, y_2, y_3, y_4) = y_4(y_1\lor y_3)y_3(y_1\lor y_4) = y_3y_4
 Соответствующий набор тупиковых проверяющих тестов:
 $\{(011), (101)\}, \{(011), (110)\}$.
 \subsection{Задача 6.5}
-\label{sec:org39fd614}
+\label{sec:org423b408}
 Построить все тупиковые:
 \begin{enumerate}
 \item проверяющие
@@ -1912,7 +1913,7 @@ graph G {
 с единичным источником неисправностей, допускающим обрыв контактов вида \(z, \overline{z}\), или
 замыкание контакта вида \(y\).
 \subsubsection{Решение}
-\label{sec:org49529b6}
+\label{sec:orga436369}
 Вычислим таблицу контроля для заданной схемы и заданного источника неисправностей:
 \begin{center}
 \begin{tabular}{rrrrrrl}
@@ -1976,7 +1977,7 @@ F(y_1, y_2, y_3, y_4) = y_4y_1(y_1\lor y_4)y_3 = y_1y_3y_4
 \end{equation*}
 Что даёт тот же набор тестов, что и для диагностики.
 \subsection{Задача 6.14}
-\label{sec:org08437f8}
+\label{sec:orgd648f8d}
 \emph{Единичной сферой} с центром в точке \(\alpha, \alpha \in B^n\), называется множество всех
 наборов куба \(B^n\), отличающихся от набора \(\alpha\) только в одной координате.
 
@@ -1984,7 +1985,7 @@ F(y_1, y_2, y_3, y_4) = y_4y_1(y_1\lor y_4)y_3 = y_1y_3y_4
 характеристическую функцию единичной сферы куба \(B^n\), не меньше \(n\). Показать, что указанная
 оценка достижима.
 \subsubsection{Решение}
-\label{sec:org34f1a7d}
+\label{sec:org1453f2e}
 Предположим, что существует тест размыкания длины меньше \(n\). Тогда существует некоторый набор
 \(\beta\), принадлежащий единичной сфере, но не входящий в тест. Кроме того, нет смысла
 использовать в тестах наборы, не входящие в сферу, поскольку они не различают исходную схему
@@ -1997,12 +1998,12 @@ F(y_1, y_2, y_3, y_4) = y_4y_1(y_1\lor y_4)y_3 = y_1y_3y_4
 Если же в качестве множества тестов рассмотреть всю сферу(содержащую ровно \(n\) наборов), то
 легко заметить, что исходная КС на всех тестах выдаст 1, а разомкнутая выдаст на одном из них 0.
 \section{Домашняя работа 8}
-\label{sec:org4b7a7ff}
+\label{sec:org18cbf84}
 \subsection{Задача 1}
-\label{sec:org141008d}
+\label{sec:org9acfcd7}
 Установить асимптотику функции Шеннона для сложности КС класса всех ФАЛ, равных 0 при \(x_1 = x_2 = 0\).
 \subsubsection{Решение}
-\label{sec:org92f5434}
+\label{sec:org6fc2e6f}
 Требуется выяснить поведение \(L^K(\mathcal{Q}(n))\) для \(\mathcal{Q}(n) = \{f(x_1, \ldots, x_n): f(0, 0, x_3, \ldots, x_n) = 0\}\).
 
 \pagebreak
@@ -2036,11 +2037,11 @@ x_2g_3(x_3, \ldots, x_n))
 
 Сопоставляя верхнюю и нижнюю оценки, получаем, что \(L^K(\mathcal{Q}(n)) \sim \frac{3\cdot2^{n - 2}}n\).
 \subsection{Задача 2}
-\label{sec:org383591a}
+\label{sec:orga2d4e90}
 Установить асимптотику функции Шеннона для сложности СФЭ класса \(L(n)\), состоящего из всех тех ФАЛ, у
 которых любая подфункция от первых трёх переменных линейна.
 \subsubsection{Решение}
-\label{sec:org10ceb44}
+\label{sec:org102fb1b}
 Любая функция класса \(L\) может быть представлена в виде
 \(f(x_1, \ldots, x_n) = C_1x_1 \oplus C_2x_2 \oplus C_3x_3 \oplus g(x_4, \ldots, x_n)\),
 \(C_1, C_2, C_3 \in \{0, 1\}\).
