@@ -1,9 +1,7 @@
 #+LATEX_COMPILER: pdflatex
 #+LANGUAGE: ru
 
-#+LATEX_HEADER:\usepackage{amsmath}
 #+LATEX_HEADER:\usepackage{esint}
-#+LATEX_HEADER:\usepackage[english,russian]{babel}
 #+LATEX_HEADER:\usepackage{mathtools}
 #+LATEX_HEADER:\usepackage{amsthm}
 #+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
@@ -2122,7 +2120,7 @@ L^K(L(n)) \geq \frac{\log|L(n)|}{\log\log|L(n)|} = \frac{3 + 2^{n - 3}}{\log (3 
 \end{equation*}
 #+end_export
 Рассмотрим представление
-$f(x_1, \ldots, x_n) = C_1x_1\oplusC_2x_2\oplusC_3x_3\oplus g(x_4, \ldots, x_n)$. Поскольку
+$f(x_1, \ldots, x_n) = C_1x_1\oplus C_2x_2\oplus C_3x_3\oplus g(x_4, \ldots, x_n)$. Поскольку
 $g(x_4, \ldots, x_n) \in P(n - 3)$, то $\exists \Sigma_g: L(\Sigma_g) \leq 2^{n - 3}n$. Отсюда
 $L(\Sigma_f) \leq 3C + \frac{2^{n - 3}}n \leq \frac{2^{n - 3}}n$.
 
