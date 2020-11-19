@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+entries = CFG.entry;
+
+while entries is not empty \PYGZob{}
+    current\PYGZus{}entry = entries.pop();
+    visit any node from current\PYGZus{}entry in depth\PYGZhy{}first order, stopping at join nodes;
+    add any found join node in entries;
+\PYGZcb{}
+\end{Verbatim}

@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{fn} \PYG{n+nf}{fact}\PYG{p}{(}\PYG{n}{n}\PYG{o}{:} \PYG{l+s}{\PYGZsq{}32) \PYGZhy{}\PYGZgt{} \PYGZsq{}}\PYG{l+m}{32} \PYG{p}{\PYGZob{}}
+    \PYG{n}{v0} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{INIT}\PYG{p}{(}\PYG{l+m}{1}\PYG{p}{);}
+    \PYG{n}{OUTPUT} \PYG{n}{n}\PYG{p}{;}
+    \PYG{n}{OUTPUT} \PYG{n}{v0}\PYG{p}{;}
+\PYG{n}{L1}\PYG{o}{:} \PYG{n}{INPUT} \PYG{n}{v1}\PYG{p}{;}
+    \PYG{n}{INPUT} \PYG{n}{v2}\PYG{p}{;}
+    \PYG{n}{v3} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{INIT}\PYG{p}{(}\PYG{l+m}{0}\PYG{p}{);}
+    \PYG{n}{v4} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{APPLY}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}ne, v1, v3);}
+\PYG{l+s}{    IF v4 JMP L2;}
+\PYG{l+s}{    v5 \PYGZlt{}\PYGZhy{} APPLY(\PYGZsq{}}\PYG{n}{mul}\PYG{p}{,} \PYG{n}{v2}\PYG{p}{,} \PYG{n}{v1}\PYG{p}{);}
+    \PYG{n}{v6} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{INIT}\PYG{p}{(}\PYG{l+m}{1}\PYG{p}{);}
+    \PYG{n}{v7} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{APPLY}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{err}{sub, v1, v6);}
+    \PYG{n}{OUTPUT} \PYG{n}{v7}\PYG{p}{;}
+    \PYG{n}{OUTPUT} \PYG{n}{v5}\PYG{p}{;}
+    \PYG{n}{JMP} \PYG{n}{L1}\PYG{p}{;}
+\PYG{n}{L2}\PYG{o}{:} \PYG{n}{OUTPUT} \PYG{n}{v1}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+дед(X, Y) \PYGZlt{}\PYGZhy{} отец(X, Z), родитель(Z, Y)
+\end{Verbatim}

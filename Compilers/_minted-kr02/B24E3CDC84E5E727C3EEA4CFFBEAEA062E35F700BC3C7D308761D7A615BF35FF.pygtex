@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+i\PYGZus{}2 = ϕ(i, i)
+j = i\PYGZus{}2
+i\PYGZus{}3 = i\PYGZus{}2 \PYGZhy{} j
+\end{Verbatim}

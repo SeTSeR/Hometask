@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+r = (r PROJECT \PYGZob{}A, B\PYGZcb{}) NATURAL JOIN (r PROJECT \PYGZob{}A, C\PYGZcb{})
+\end{Verbatim}

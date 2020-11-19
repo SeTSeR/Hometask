@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+let y = 2;
+let x = if y \PYGZob{}
+    \PYGZsq{}add(1, 2)
+\PYGZcb{} else \PYGZob{}
+    \PYGZsq{}sub(2, 1)
+\PYGZcb{};
+\end{Verbatim}

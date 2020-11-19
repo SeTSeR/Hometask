@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{space} \PYG{n+no}{regs}\PYG{p}{(}\PYG{n+no}{v32}\PYG{p}{)}\PYG{c+c1}{;}
+
+\PYG{n+nf}{fn} \PYG{n+no}{fact}\PYG{p}{(}\PYG{n+no}{n}\PYG{p}{:} \PYG{n+no}{v32}\PYG{p}{)} \PYG{p}{\PYGZhy{}}\PYG{err}{\PYGZgt{}} \PYG{n+no}{v32} \PYG{err}{\PYGZob{}}
+    \PYG{n+nf}{INIT}\PYG{p}{(}\PYG{n+no}{v0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{INIT}\PYG{p}{(}\PYG{n+no}{v1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{STORE}\PYG{p}{(}\PYG{n+no}{regs}\PYG{p}{,} \PYG{n+no}{v1}\PYG{p}{,} \PYG{n+no}{v0}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{n}\PYG{c+c1}{;}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{v0}\PYG{c+c1}{;}
+\PYG{n+nl}{L1:} \PYG{n+nf}{INPUT} \PYG{n+no}{v2}\PYG{c+c1}{;}
+    \PYG{n+nf}{INPUT} \PYG{n+no}{v3}\PYG{c+c1}{;}
+    \PYG{n+nf}{APPLY}\PYG{p}{(}\PYG{n+no}{v5}\PYG{p}{,} \PYG{n+no}{ne}\PYG{p}{,} \PYG{n+no}{v2}\PYG{p}{,} \PYG{n+no}{v1}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{IF} \PYG{n+no}{v5} \PYG{n+no}{JMP} \PYG{n+no}{L2}\PYG{c+c1}{;}
+    \PYG{n+nf}{APPLY}\PYG{p}{(}\PYG{n+no}{v6}\PYG{p}{,} \PYG{n+no}{mul}\PYG{p}{,} \PYG{n+no}{v3}\PYG{p}{,} \PYG{n+no}{v2}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{APPLY}\PYG{p}{(}\PYG{n+no}{v8}\PYG{p}{,} \PYG{n+no}{sub}\PYG{p}{,} \PYG{n+no}{v2}\PYG{p}{,} \PYG{n+no}{v7}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{v8}\PYG{c+c1}{;}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{v6}\PYG{c+c1}{;}
+    \PYG{n+nf}{JMP} \PYG{n+no}{L1}\PYG{c+c1}{;}
+\PYG{n+nl}{L2:} \PYG{n+nf}{OUTPUT} \PYG{n+no}{v2}
+\PYG{err}{\PYGZcb{}}
+\end{Verbatim}

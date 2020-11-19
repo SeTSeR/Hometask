@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+i\PYGZus{}4 = ϕ(i, i)
+b\PYGZus{}4 = ϕ(b, b)
+a\PYGZus{}2 = a\PYGZus{}1 + b\PYGZus{}3
+i\PYGZus{}5 = 1 + i\PYGZus{}4
+\end{Verbatim}

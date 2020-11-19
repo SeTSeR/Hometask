@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+a = 1
+b\PYGZus{}2 = a + i\PYGZus{}1
+\end{Verbatim}

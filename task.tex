@@ -1,0 +1,1279 @@
+% Created 2020-07-31 Fri 14:03
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{pgf, tikz, pgfplots}
+\usetikzlibrary{arrows}
+\pgfplotset{compat=1.15}
+\newcommand{\degre}{\ensuremath{^\circ}}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.3)}, 
+ pdflang={Russian}}
+\begin{document}
+
+
+\section{Задача 1}
+\label{sec:org4e38a95}
+\zall
+Найти все функции из \(\mathbb{Q}_{>0}\) на \(\mathbb{Q}_{>0}\), удовлетворяющие уравнению:
+\begin{equation}
+\label{eq:1}
+f(x^2f(y)^2) = f(x)^2f(y)
+\end{equation}
+\subsection{Решение}
+\label{sec:org7e93cac}
+Подставим в \eqref{eq:1} \(x = f(z)\), получим:
+\begin{equation*}
+f(f(z)^2f(y)^2) = f(f(z))^2f(y) \forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Поменяв местами в последнем уравнении \(y\) и \(z\), получим:
+\begin{equation*}
+f(f(y)^2f(z)^2) = f(f(y))^2f(z) \,\forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Сопоставляя последние два равенства, получаем:
+\begin{equation*}
+f(f(z))^2f(y) = f(f(y))^2f(z), \,\forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Поскольку \(f(y)\) и \(f(z)\), можно разделить обе части уравнения на \(f(y)f(z)\), что даст:
+\begin{equation*}
+\frac{f(f(z))^2}{f(z)} = \frac{f(f(y))^2}{f(y)} \,\forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+или
+\begin{equation}\label{eq:simpleq}
+\frac{f(f(x))^2}{f(x)} = C\, \forall x \in \mathbb{Q}_{>0},
+\end{equation}
+где \(C\) -- некоторое не зависящее от \(x\) положительное рациональное число.
+
+Подставим вместо \(x\) в последнее уравнение \(f(x)\), получим:
+\begin{equation*}
+\frac{f(f(f(x)))^2}{f(f(x))} = C
+\end{equation*}
+Отсюда и из \eqref{eq:simpleq} можно получить соотношение:
+\begin{equation*}
+\frac{f(f(f(x)))^4}{f(x)} = \frac{f(f(f(x)))^4}{f(f(x))^2}\cdot\frac{f(f(x))^2}{f(x)} = C^3
+\end{equation*}
+Следующая лемма обобщает это соотношение:
+\begin{Lemma}
+Введём $f^n(x)$ как функцию вида:
+\begin{equation*}
+\begin{cases}
+f^1(x) = f(x), \\
+f^{n + 1}(x) = f(f^n(x))
+\end{cases}
+\end{equation*}
+при $n \in \mathbb{N}$. Для данной функции справедливо соотношение:
+\begin{equation}\label{eq:lemeq}
+\frac{f^{n + 1}(x)^{2^n}}{f(x)} = C^{2^n - 1}\, \forall n \in \mathbb{N}.
+\end{equation}
+\end{Lemma}
+\begin{proof}
+\textbf{База индукции}. При $n = 1$ соотношение \eqref{eq:lemeq} выполнено в силу \eqref{eq:simpleq}:
+\begin{equation*}
+\frac{f(f(x))^2}{f(x)} = C
+\end{equation*}
+\textbf{Индуктивный переход}. Пусть для всех $n \leq k$ утверждение доказано, в частности, выполнено соотношение:
+\begin{equation*}
+\frac{f^{k + 1}(x)^{2^k}}{f(x)} = C^{2^k - 1}.
+\end{equation*}
+Подставим в это соотношение вместо $x f(x)$, получим:
+\begin{equation*}
+\frac{f^{k + 1}(f(x))^{2^k}}{f(f(x))} = \frac{f^{k + 2}(x)^{2^k}}{f(f(x))} = C^{2^k - 1}.
+\end{equation*}
+Возведя последнее соотношение в квадрат и умножив на \eqref{eq:simpleq}, получим:
+\begin{equation*}
+\frac{f^{k + 2}(x)^{2^{k}\cdot 2}}{f(f(x))^2}\cdot\frac{f(f(x))^2}{f(x)} = C^{2\cdot2^{k} - 2}\cdot C
+\end{equation*}
+или
+\begin{equation*}
+\frac{f^{k + 2}(x)^{2^{k + 1}}}{f(x)} = C^{2^{k + 1} - 1},
+\end{equation*}
+что совпадает с утверждением \eqref{eq:lemeq} при $n = k + 1$. Индуктивный переход обоснован и лемма доказана.
+\end{proof}
+Используя соотношение \eqref{eq:lemeq}, можно представить \(f(x)\) в виде:
+\begin{equation*}
+f(x) = \frac{f(f(x))^2}C = \frac{f(f(f(x)))^4}{C^3} = \ldots = \frac{f^{n + 1}(x)^{2^n}}{C^{2^n - 1}} = \ldots \forall x \in \mathbb{Q}_{>0}
+\end{equation*}
+или
+\begin{equation*}
+Cf(x) = \left(\frac{f(f(x))}C\right)^2 = \ldots = \left(\frac{f^{n + 1}(x)}C\right)^{2^n} = \ldots \forall x \in \mathbb{Q}_{>0}
+\end{equation*}
+Поскольку \(Cf(x)\) является рациональным числом, его можно представить в виде \(Cf(x) = \frac{p}q, (p, q) = 1\). Разложив \(p\) и \(q\) на простые множители, получаем представление:
+\begin{equation}\label{eq:funcrepr}
+Cf(x) = p_1^{\alpha_1}\ldots p_n^{\alpha_n}, \alpha_1, \ldots, \alpha_n \in \mathbb{Z}.
+\end{equation}
+Аналогичное представление имеет место и для \(\frac{f^{n + 1}(x)}C \forall n \in \mathbb{N}\):
+\begin{equation*}
+\frac{f^{n + 1}(x)}C = q_1^{\beta_1}\ldots q_n^{\beta_n}, \beta_1, \ldots, \beta_n \in \mathbb{Z}.
+\end{equation*}
+Пусть \(q_i\) входит в \(f^{n + 1}(x)\) с показателем степени \(\beta_i, |\beta_i| > 1\). Тогда в представление для \(\frac{f^{n + 1}(x)^{2^n}}{C^{2^n}}\) этот множитель входит с показателем по модулю не меньшим, чем \(|\beta_i|\cdot2^{n}\). Это означает, что при достаточно большом \(n\) показатели степеней множителей числа \(\left(\frac{f^{n + 1}(x)}C\right)^{2^n}\) станут по модулю больше любого из показателей \(\alpha_1, \ldots, \alpha_n\), т. е. равенства \eqref{eq:funcrepr} выполняться не могут. Это значит, что все части этого равенства равны \(1\), т. е. \(f(x) = const\).
+
+Подставим \(f(x) = C\) в уравнение \eqref{eq:1}:
+\begin{equation*}
+C = C^2C \Rightarrow \begin{cases}C = 0, \\
+C = \pm 1.
+\end{cases}
+\end{equation*}
+Поскольку рассматриваются функции $\mathbb{Q}_{>0} \to \mathbb{Q}_{>0}$, то остаётся только вариант $f(x) \equiv 1$.
+
+\pagebreak
+\section{Задача 2}
+\label{sec:org5b4482c}
+\zall
+Найти все функции из \(\mathbb{Q}_{>0}\) на \(\mathbb{Q}_{>0}\), удовлетворяющие уравнению:
+\begin{equation}\label{eq:2}
+f(x^2f(y)^2) = f(x^2)f(y)
+\end{equation}
+\subsection{Решение}
+\label{sec:orgab53656}
+Как и в прошлой задаче, подставим вместо \(x\, f(z)\):
+\begin{equation*}
+f(f(z)^2f(y)^2) = f(f(z)^2)f(y)\, \forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Поменяв местами \(y\) и \(z\), получим:
+\begin{equation*}
+f(f(y)^2f(z)^2) = f(f(y)^2)f(z)\, \forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Приравнивая правые части последних двух уравнений, получаем:
+\begin{equation*}
+f(f(z)^2)f(y) = f(f(y)^2)f(z)\, \forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Разделим обе части на \(f(y)f(z)\):
+\begin{equation*}
+\frac{f(f(z)^2)}{f(z)} = \frac{f(f(y)^2)}{f(y)} \, \forall y, z \in \mathbb{Q}_{>0}
+\end{equation*}
+Последнее соотношение можно переписать в виде:
+\begin{equation}\label{eq:repr2}
+\frac{f(f(x)^2)}{f(x)} = C\, \forall x \in \mathbb{Q}_{>0},
+\end{equation}
+где $C = \frac{f(f(1)^2)}{f(1)}$.
+Подставим в последнее представление вместо \(x\) \(f(x)^2\), получим:
+\begin{equation*}
+\frac{f(f(f(x)^2)^2)}{f(f(x)^2)} = C\, \forall x \in \mathbb{Q}_{>0},
+\end{equation*}
+Тогда
+\begin{equation*}
+\frac{f(f(f(x)^2)^2)}{f(x)} = \frac{f(f(f(x)^2)^2)}{f(f(x)^2)}\cdot\frac{f(f(x)^2)}{f(x)} = C^2
+\end{equation*}
+По аналогии с предыдущей задачей можно доказать следующую лемму:
+\begin{Lemma}
+Введём семейство функций:
+\begin{gather*}
+F_1(x) = f(x), \\
+F_{n + 1}(x) = f(F_n(x)^2).
+\end{gather*}
+Для этого семейства выполнено соотношение:
+\begin{equation}\label{eq:repr3}
+\frac{F_n(x)}{f(x)} = C^{n - 1}
+\end{equation}
+\end{Lemma}
+В отличие от предыдущей задачи, здесь не удаётся выделить последовательности вида \(y^n\), поэтому соображения оттуда здесь не проходят. Вместо этого можно попытаться выделить некую структуру в множестве \(E(f)\).
+
+Из \eqref{eq:repr3} в частности следует, что \(C^nf(x) \in E(f) \forall n \in \mathbb{N}_0, \forall x \in \mathbb{Q}_{>0}\).
+
+Из \eqref{eq:2} следует, что \(f(x)f(y) \in E(f)\), если \(x = t^2\) или \(y = t^2\) при некотором \(t\).
+
+Из \eqref{eq:repr3} также следует, что значение \(f\) в точке \(x\) однозначно определяет значения в точках \(F_n(x) \forall n \in \mathbb{N}\), а именно \(f(F_n(x)) = C^nf(x)\). Поскольку каждое значение \(F_n(x)\) однозначно определяется предыдущим, то если \(F_i(x) = F_j(y)\), то \(F_{i + n}(x) = F_{j + n}(y) \forall n \in \mathbb{N}\), т. е. \(F_n(x)\) вложено в \(F_n(y)\), если \(i > j\) и наоборот. Таким образом, \(D(f)\) разбивается на не более чем счётное множество подмножеств вида \(\{x_i, F_n(x_i)\}, i, n \in \mathbb{N}\), которым соответствуют значения \(\{C^{n - 1}f(x_i), i, n \in \mathbb{N}\}\).
+
+Что дальше?
+
+\pagebreak
+\section{Задача 3}
+\label{sec:org50770f4}
+\zall
+Найти все функции из \(\mathbb{Q}\) на \(\mathbb{Q}\), удовлетворяющие уравнению:
+\begin{equation}\label{eq:3}
+f(2f(x) + f(y)) = 2x + y
+\end{equation}
+\subsection{Решение}
+\label{sec:org10b9b95}
+Подставим \(y \to 2y\) в \eqref{eq:3}:
+\begin{equation*}
+f(2f(x) + f(2y)) = 2x + 2y
+\end{equation*}
+Поменяем местами \(x\) и \(y\)
+\begin{equation*}
+f(2f(y) + f(2x)) = 2x + 2y
+\end{equation*}
+Откуда следует, что
+\begin{equation*}
+f(2f(x) + f(2y)) = f(2f(y) + f(2x))\, \forall x, y \in \mathbb{Q}
+\end{equation*}
+Подставим \(y \to x\) в \eqref{eq:3}:
+\begin{equation*}
+f(3f(x)) = 3x \forall x \in \mathbb{Q}
+\end{equation*}
+При \(x = y = 0\) получим:
+\begin{equation*}
+f(3f(0)) = 0
+\end{equation*}
+Подставим теперь \(x = y = 3f(0)\):
+\begin{equation*}
+f(3f(3f(0))) = 9f(0)
+\end{equation*}
+или
+\begin{equation}\label{eq:zeroval}
+f(0) = 9f(0) \Rightarrow f(0) = 0
+\end{equation}
+Подставим теперь \(x = 0\):
+\begin{equation}\label{eq:composition}
+f(2f(0) + f(y)) = y \Rightarrow f(f(y)) = y \forall y \in \mathbb{Q}
+\end{equation}
+Так как \(f(f(y)) = y\), то \(f = f^{-1}\), т. е. \(f\) -- биективное отображение.
+
+Применим к обеим частям \eqref{eq:3} отображение \(f\):
+\begin{equation*}
+f(f(2f(x) + f(y))) = f(2x + y)
+\end{equation*}
+С другой стороны, $f(f(2f(x) + f(y))) = 2f(x) + f(y)$, поэтому:
+\begin{equation}\label{eq:purple}
+f(2x + y) = 2f(x) + f(y) \forall x, y \in \mathbb{Q}
+\end{equation}
+Подставим в \eqref{eq:1} \(y = 0\):
+\begin{equation*}
+f(2f(x)) = 2x
+\end{equation*}
+Применим $f$ к обеим частям последнего равенства:
+\begin{equation}\label{eq:blue}
+f(f(2f(x))) = f(2x) \Rightarrow 2f(x) = f(2x) \forall x \in \mathbb{Q}
+\end{equation}
+Из \eqref{eq:purple} и \eqref{eq:blue} следует, что:
+\begin{equation*}
+f(2x + y) = f(2x) + f(y) \forall x, y \in \mathbb{Q}
+\end{equation*}
+или, после подстановки $x \to \frac{x}2$:
+\begin{equation}\label{eq:maineq}
+f(x + y) = f(x) + f(y) \forall x, y \in \mathbb{Q}
+\end{equation}
+\begin{Theorem}
+Функция из $\mathbb{Q}$ на $\mathbb{Q}$, удовлетворяющая уравнениям \eqref{eq:zeroval} и \eqref{eq:maineq}, имеет вид
+\begin{equation}\label{eq:funcrepr}
+f(x) = ax
+\end{equation}
+для некоторого $a \in \mathbb{Q}$.
+\end{Theorem}
+\begin{proof}
+Для начала покажем это для $x = n \in \mathbb{N}$. Подставим в \eqref{eq:maineq} $x = 1, y = 0$:
+\begin{equation*}
+f(1) = f(1) = f(1)\cdot1,
+\end{equation*}
+т. е. для $x = 1$ представление \eqref{eq:funcrepr} справедливо. Пусть теперь для $x = n$ $f(x) = f(1)x$. Тогда для $x = n + 1$:
+\begin{equation*}
+f(x) = f(n + 1) = f(n) + f(1) = f(1)n + f(1) = f(1)(n + 1),
+\end{equation*}
+т. е. в силу принципа математической индукции $f(n) = f(1)n \forall n \in \mathbb{N}$.
+
+Используя аналогичные рассуждения, можно показать, что $f(nx) = nf(x) \forall n \in \mathbb{N}, x \in \mathbb{Q}$.
+
+Любое положительное рациональное число можно представить в виде $x = \frac{p}q, p, q \in \mathbb{Q}$. Это означает, что справедливо равенство:
+\begin{equation*}
+f(1)p = f(p) = f(qx) = qf(x),
+\end{equation*}
+откуда следует, что
+\begin{equation*}
+f(x) = \frac{f(p)}q = f(1)\frac{p}q = f(1)x,
+\end{equation*}
+т. е. представление \eqref{eq:funcrepr} справедливо для всех $x \in \mathbb{Q}_{+}$.
+
+Для $x = 0$ представление \eqref{eq:funcrepr} верно в силу \eqref{eq:zeroval} а его справедливость для отрицательных $x$ следует из следующего частного случая соотношения \eqref{eq:maineq}:
+\begin{equation*}
+f(x) + f(-x) = x + (-x) = 0 \Rightarrow f(-x) = -f(x)
+\end{equation*}
+Таким образом, представление \eqref{eq:funcrepr} обосновано для всех $x \in \mathbb{Q}$.
+\end{proof}
+
+Таким образом, искомая функция имеет вид $f(x) = f(1)x$. Подставив это представление в \eqref{eq:composition}, получим:
+\begin{equation*}
+f(f(x)) = f(1)^2x = x \Rightarrow f(1)^2 = 1 \Rightarrow f(1) = \pm1
+\end{equation*}
+Таким образом, существуют ровно две функции из $\mathbb{Q}$ на $\mathbb{Q}$, удовлетворяющие уравнению \eqref{eq:3}: $f(x) = \pm x$.
+\pagebreak
+\section{Задача 4}
+\label{sec:org7fa8563}
+\zall
+Найти функции, удовлетворяющие уравнению:
+\begin{equation}\label{eq:4}
+f'(x) = f^{-1}(x)
+\end{equation}
+\subsection{Решение}
+\label{sec:org5e41513}
+Для того, чтобы найти решение, выберем класс функций \(C\) таких, что \(f'(x) \in C\) и \(f^{-1}(x) \in C\). Из классов элементарных функций таким свойством обладает только класс \(C = \{Ax^r, A, r \in \mathbb{R}\}\). Найдём решение в виде \(y = Ax^r \Rightarrow x = (\frac1Ax)^{\frac1r} = A^{-\frac1r}x^{\frac1r}\). Подставив эту функцию в \eqref{eq:4}, получим:
+\begin{equation*}
+Arx^{r - 1} = A^{-\frac1r}x^{\frac1r}
+\end{equation*}
+Степенные функции равны тогда и только тогда, когда равны коэффициенты и показатели степени, что приводит нас к системе:
+\begin{equation*}
+\begin{cases}
+Ar = A^{-\frac1r}, \\
+r - 1 = \frac1r.
+\end{cases}
+\end{equation*}
+Второе уравнение имеет два корня $r = \varphi$ и $r = \Phi$. Из первого уравнения можно выразить $A$:
+\begin{equation*}
+A = r^{1 + \frac1r} = r^r
+\end{equation*}
+Таким образом, $f(x) = (rx)^r$, где $r = \varphi$ или $r = \Phi$.
+
+Чтобы ответить на вопрос о наличии других решений, применим \(f(x)\) к обеим частям \eqref{eq:4}:
+\begin{equation*}
+f(f'(x)) = x \forall x \in D(f)
+\end{equation*}
+или
+\begin{equation*}
+f\circ f' = id
+\end{equation*}
+Зафиксируем некоторую точку \(x_0\) и рассмотрим уравнение в точке \(x_0 + \Delta x\):
+\begin{equation}
+f(f'(x_0 + \Delta x)) = x_0 + \Delta x
+\end{equation}
+\begin{multline}
+f(f'(x_0 + \Delta x)) = f(f'(x_0) + f''(x_0)\Delta x + o(\Delta x)) =
+f(f'(x_0)) + f'(f'(x_0))f''(x_0)\Delta x + f''(x_0)o(\Delta x) = \\
+= x_0 + f'(f'(x_0))f''(x_0)\Delta x + f''(x_0)o(\Delta x)
+\end{multline}
+Возможно, с общим случаем повезёт больше.
+
+\pagebreak
+\section{Задача 5}
+\label{sec:org8a9d01a}
+\zall
+Найти функции, удовлетворяющие уравнению:
+\begin{equation}\label{eq:task5}
+f'(x) = f^t(x), t \in \mathbb{Z}, \text{ где}
+\end{equation}
+\begin{equation*}
+f^0(x) = x, f^{t + 1}(x) = f(f^{t}(x)), f^{t - 1}(x) = f^{-1}(f^{t}(x))
+\end{equation*}
+\subsection{Решение}
+\label{sec:org1e55f47}
+Как и в прошлой задаче, попробуем найти решение в виде степенной функции \(f(x) = Ax^r\). Для этого нужно для начала выяснить общий вид \(f^t\).
+
+\begin{Lemma}
+\begin{equation*}
+f^t(x) = \begin{dcases}
+\exp\left\{\ln A\sum_{k = 0}^{t - 1}r^k\right\}x^{r^t}\, t \geq 1, \\
+x, t = 0, \\
+\exp\left\{\ln A\sum_{k = 1}^{-t}-r^{-k}\right\}x^{r^t}\, t \leq -1.
+\end{dcases}
+\end{equation*}
+\end{Lemma}
+\begin{proof}
+\textbf{База индукции}. При $t = 0\, f(x) = x$ по определению. Подставив $t = \pm 1$, можно убедиться, что для них утверждение леммы также выполнено:
+\begin{equation*}
+f^1(x) = A^{r^0}x^{r^1} = Ax^r
+\end{equation*}
+\begin{equation*}
+f^{-1}(x) = A^{-r^{-1}}x^{r^{-1}} = A^{-\frac1r}x^{\frac1r} \text{ -- см. предыдущую задачу.}
+\end{equation*}
+\textbf{Переход индукции}. Пусть для $t = n \geq 1$ утверждение доказано, т. е.
+\begin{equation*}
+f^n(x) = \exp\left\{\ln A\sum_{k = 0}^{n - 1}r^k\right\}x^{r^n}.
+\end{equation*}
+Тогда для $t = n + 1$ имеем:
+\begin{equation*}
+f^{n + 1}(x) = f(f^n(x)) = A\left(\exp\left\{\ln A\sum_{k = 0}^{n - 1}r^k\right\}x^{r^n}\right)^r = \exp\left\{\ln A + \ln Ar\sum_{k = 0}^{n - 1}r^k\right\}x^{r^{n + 1}} = \exp\left\{\ln A\sum_{k = 0}^nr^k\right\}x^{r^{n + 1}},
+\end{equation*}
+что в точности совпадает с утверждением леммы при $t = n + 1$.
+
+Пусть теперь для $t = -n \leq -1$ утверждение доказано, т. е.
+\begin{equation*}
+f^{-n}(x) = \exp\left\{-\ln A\sum_{k = 1}^nr^{-k}\right\}x^{r^{-n}}.
+\end{equation*}
+Тогда при $t = -n - 1$ имеем:
+\begin{multline*}
+f^{-n - 1}(x) = A^{-\frac1r}\left(\exp\left\{-\ln A\sum_{k = 1}^nr^{-k}\right\}x^{r^{-n}}\right)^\frac1r = \\
+= \exp\left\{-\ln A\frac1r - \ln A\sum_{k = 2}^{n + 1}r^{-k}\right\}x^{r^{-n + 1}}
+= \exp\left\{-\ln A\sum_{k = 1}^{n + 1}r^{-k}\right\}x^{r^{-n - 1}},
+\end{multline*}
+что совпадает с утверждением леммы при $t = -n - 1$. Таким образом, утверждение леммы выполнено при $\forall t \in \mathbb{Z}$.
+\end{proof}
+Таким образом, уравнение \eqref{eq:task5} распадается на три:
+\begin{equation*}
+\begin{dcases}
+Arx^{r - 1} = \exp\left\{\ln A\sum_{k = 0}^{t - 1}r^k\right\}x^{r^t}, t \geq 1, \\
+Arx^{r - 1} = x, t = 0, \\
+Arx^{r - 1} = \exp\left\{-\ln A\sum_{k = 1}^{-t}r^{-k}\right\}x^{r^t}, t \leq -1.
+\end{dcases}
+\end{equation*}
+Рассмотрим каждое из этих уравнений отдельно.
+\begin{enumerate}
+\item $Arx^{r - 1} = x$. Аналогично предыдущей задаче, это уравнение приводит к системе:
+\begin{equation*}
+\begin{cases}
+Ar = 1, \\
+r - 1 = 1,
+\end{cases}
+\end{equation*}
+откуда получаем решение $y = x^2$.
+\item \begin{equation*}
+Arx^{r - 1} = \exp\left\{\ln A\sum_{k = 0}^{t - 1}r^k\right\}x^{r^t}
+\end{equation*}
+Из этого уравнения получаем систему:
+\begin{equation*}
+\begin{cases}
+Ar = \exp\left\{\ln A\sum_{k = 0}^{t - 1}r^k\right\}, \\
+r - 1 = r^t
+\end{cases}
+\end{equation*}
+Второе уравнение имеет ровно $t$ корней в $\mathbb{C}$. Выбрав любой из этих корней, можно выразить $A$ через $r$:
+\begin{equation*}
+r = \exp\left\{\ln A\left(\sum_{k = 0}^{t - 1}r^k - 1\right)\right\} = \exp\left\{\ln A\sum_{k = 1}^{t - 1}r^k\right\} \Rightarrow A = \exp\left\{-\ln r\sum_{k = 1}^{t - 1}r^k\right\}
+\end{equation*}
+Таким образом, в этом случае решение имеет вид:
+\begin{equation*}
+f(x) = \exp\left\{-\ln r\sum_{k = 1}^{t - 1}r^k\right\}x^r,
+\end{equation*}
+где $r$ -- корень уравнения $r - 1 = r^t$. Заметим, что в этом случае функция $f(x) \equiv 0$ также является решением, в чём можно убедиться непосредственной проверкой.
+\item \begin{equation*}
+Arx^{r - 1} = \exp\left\{-\ln A\sum_{k = 1}^{-t}r^{-k}\right\}x^{r^t}
+\end{equation*}
+Из этого уравнения получаем систему:
+\begin{equation*}
+\begin{dcases}
+Ar = \exp\left\{-\ln A\sum_{k = 1}^{-t}r^{-k}\right\}, \\
+r - 1 = r^t.
+\end{dcases}
+\end{equation*}
+После домножения второго уравнения на $r^{-t}$ получаем уравнение степени $r^{1 - t}$, которое имеет в $\mathbb{C}$ ровно $1 - t$ корней. Выбрав любой из них, можно выразить $A$ через $r$:
+\begin{equation*}
+r = \exp\left\{-\ln A\left(1 + \sum_{k = 1}^{-t}r^{-k}\right)\right\} = \exp\left\{-\ln A\sum_{k = 0}^{-t}r^{-k}\right\} \Rightarrow A = \exp\left\{\ln r\sum_{k = 0}^{-t}r^{-k}\right\}
+\end{equation*}
+Таким образом, в этом случае решение имеет вид:
+\begin{equation*}
+f(x) = \exp\left\{\ln r\sum_{k = 0}^{-t}r^{-k}\right\}x^r,
+\end{equation*}
+где $r$ -- один из корней уравнения $r - 1 = r^t$.
+\end{enumerate}
+
+\textbf{Замечания насчёт других решений}:
+
+Множество решений не обладает какими-либо простыми симметриями даже в простейшем случае уравнения $f'(x) = f^{-1}(x)$. В частности, сумма решений вообще говоря не является решением, умножение решения на число не приводит к решению, можно также показать, что переход к обратной функции тоже не приводит решению. Можно попытаться доказать, что класс степенных функций является единственным инвариантным классом относительно операций обращения и взятия производной.
+
+\pagebreak
+\section{Задача 6}
+\label{sec:org42dadd6}
+\zall
+Решить в неотрицательных целых числах уравнение:
+\begin{equation}\label{eq:eq6}
+7^y + 2 = 3^x
+\end{equation}
+\subsection{Решение}
+\label{sec:org25fff4f}
+Будем называть \textbf{порядком} числа \(m\) по модулю \(n\) минимальное такое \(r\), что \(m^r \equiv 1 (\mod n)\). Обозначение: \(r = \operatorname{ord}_n(m)\).
+\begin{Lemma}
+\begin{gather*}
+\operatorname{ord}_7(3) = 6, \\
+\operatorname{ord}_{13}(7) = 12, \\
+\operatorname{ord}_{19}(3) = 18, \\
+\operatorname{ord}_{37}(7) = 9.
+\end{gather*}
+\end{Lemma}
+\begin{proof}
+Утверждения проверяются по определению.
+\end{proof}
+Сначала рассмотрим решения при $x, y \leq 2$:
+При $x = 0$ решений не будет, т. к. $7^y + 2 \geq 2 \forall y \in \mathbb{N}_0$.\\
+При $x = 1$ единственным решением будет $x = 1, y = 0: 7^0 + 2 = 3^1$.\\
+При $x = 2$ единственным решением будет $x = 2, y = 1: 7^1 + 2 = 3^2$.\\
+При $y = 2$ решений не будет, т. к. число $7^2 + 2 = 51$ не является степенью тройки. 
+
+Пусть теперь $x, y \geq 3$. Тогда уравнение \eqref{eq:eq6} переписывается в виде:
+\begin{equation}\label{eq:repr}
+7^y + 2 - 9 = 3^x - 9 \Rightarrow 7(7^{y - 1} - 1) = 9(3^{x - 2} - 1)
+\end{equation}
+Из этого представления видно, что $(3^{x - 2} - 1)$ делится на 7, т. е. $3^{x - 2} \equiv 1(\mod 7)$. Это означает, что $x - 2 = 6k$ для некоторого целого $k$. Подставим это представление в \eqref{eq:repr}:
+\begin{equation*}
+9(3^{x - 2} - 1) = 9(3^{6k} - 1) = 9(3^6 - 1)(3^{6(k - 1)} + 3^{6(k - 2)} + \ldots + 3^6 + 1)
+\end{equation*}
+Заметим, что $3^6 - 1 = 728 = 13\cdot56 \Rightarrow 7^{y - 1} \equiv 1(\mod 13)$. Из этого можно заключить, что $y - 1 = 12l$. Подставим полученное представление в \eqref{eq:repr}:
+\begin{equation*}
+7(7^{y - 1} - 1) = 7(7^{12l} - 1) = 7(7^{12} - 1)(7^{12(l - 1)} + 7^{12(l - 2)} + \ldots + 7^{12} + 1)
+\end{equation*}
+Разложим $7^{12} - 1$:
+\begin{equation*}
+7^{12} - 1 = (7^6 - 1)(7^6 + 1) = (7^3 - 1)(7^3 + 1)(7^6 + 1) = (7 - 1)(7^2 + 7 + 1)(7^6 + 1) = 6\cdot 57(7^6 + 1) = 19\cdot 18(7^6 + 1)
+\end{equation*}
+Это значит, что $3^{x - 2} \equiv 1(\mod 19)$, откуда следует, что $x - 2 = 18d$. Подставляя в \eqref{eq:repr}, найдём:
+\begin{equation*}
+7(7^{18d} - 1) = 7(7^{18} - 1)(7^{18(d - 1)} + 7^{18(d - 2)} + \ldots + 7^{18} + 1)
+\end{equation*}
+Разложим $7^{18} - 1$:
+\begin{equation*}
+7^{18} - 1 = (7^9 - 1)(7^9 + 1) = (7^3 - 1)(7^6 + 7^3 + 1)(7^9 + 1) = 37m
+\end{equation*}
+Отсюда следует, что $3^{x - 2} \equiv 1(\mod 37)$, что означает, что $x - 2 = 9f$. Подставляя в \eqref{eq:repr}, мы не найдём никаких новых множителей, т. к. $7^9 - 1\mid7^{18} - 1$. При этом $7^9 - 1$ делится на 27, т. е. левая часть \eqref{eq:repr} делится на 27. Но тогда правая часть также должна делиться на 27, т. е. $3^{x - 2} - 1$ должно делиться на 3, что невозможно. Таким образом, при $x, y \geq 3$ решений нет.
+\pagebreak
+\section{Задача 7}
+\label{sec:orgcae466d}
+\zall
+Из чисел \(1, 2, \ldots, 2n\) произвольно выбирают \(n + 1\) число. Какова вероятность того, что среди выбранных будут 2 взаимно простых числа?
+\subsection{Решение}
+\label{sec:org822e847}
+Подход 1: рассмотреть функцию \(F^k_n\) -- количество подмножеств размера \(k\) множества \(1, \ldots, n\) таких, что среди них есть два взаимно простых числа.
+
+Подход 2: рассмотреть случайную величину \(\xi_k, k = \overline{1, 2n}\) -- количество чисел выборки \(m\), таких, что \((m, k) = 1\). В выборке есть два взаимно простых числа тогда и только тогда, когда для некоторого \(k\) \(\xi_k \geq 1\).
+
+Предположим, что для любых двух чисел \(k, d \in m\) \((k, d) \geq 2\).
+
+\begin{Lemma}
+\begin{equation*}
+\forall k = \overline{1, 2n} \exists d \in m: k\nmid d
+\end{equation*}
+\end{Lemma}
+\begin{proof}
+Среди чисел $1, \ldots, 2n$ существует ровно $\lfloor\frac{2n}k\rfloor$ чисел, делящихся на $k$. Для любого $k \geq 2$ $\lfloor\frac{2n}k\rfloor \leq n < n + 1 = |m|$, т. е. в выборке $m$ всегда найдётся число, не делящееся на $k$.
+\end{proof}
+\begin{Lemma}[Постулат Бертрана]\label{lem:Bertran}
+Для любого натурального $n \geq 2$ в интервале $(n + 1, 2n)$ найдётся простое число.
+\end{Lemma}
+Этот постулат даёт возможность строить множества, в которых два взаимно простых числа гарантированно будут: если в выборке присутствует простое число $p: n + 1 < p < 2n$, то какими бы ни были оставшиеся $n$ чисел, все они будут взаимно просты с $p$. Это даёт оценку снизу для искомой вероятности $P$:
+\begin{Theorem}
+\begin{equation}
+P \geq \frac{C^{2n - 1}_n}{C^{2n}_{n + 1}} = \frac{\frac{(2n - 1)!}{n!(n - 1)!}}{\frac{(2n)!}{(n - 1)!(n + 1)!}} = \frac{(2n - 1)!(n - 1)!(n + 1)!}{(2n)!n!(n - 1)!} = \frac{n + 1}{2n}
+\end{equation}
+\end{Theorem}
+Заметим также, что если в выборку входит число $2$, то в выборке также обязательно взаимно простое с ним число, что позволяет улучшить оценку:
+\begin{Theorem}
+\begin{equation}
+P(n) \geq \frac{2C^{2n - 1}_n - C^{2n - 2}_{n - 1}}{C^{2n}_{n + 1}} = \frac1n + \frac3{4 - 8n} + \frac34 = \frac{4 - 2n + 3n + 3n(1 - 2n)}{4n(1 - 2n)} = \frac{3n^2 - 2n - 2}{4n^2 - 2n}
+\end{equation}
+\end{Theorem}
+\pagebreak
+\section{Задача 8}
+\label{sec:org45e826e}
+\zall
+Вычислить интеграл
+\begin{equation}\label{eq:eq8}
+\int_0^{\infty}\frac{\ln(1 + x)\ln(1 + \frac1{x^2})}xdx
+\end{equation}
+\subsection{Решение}
+\label{sec:orge5acfb2}
+\begin{Lemma}\label{lem:8-1}
+\begin{equation}\label{eq:lem8-1-eq}
+\int_0^1\frac1{1 + xy}dy = \frac{\ln(1 + x)}x
+\end{equation}
+\end{Lemma}
+\begin{proof}
+\begin{equation*}
+\int_0^1\frac{dy}{1 + xy} = \frac1x\int_0^1\frac{d(1 + xy)}{1 + xy} = \frac1x(\ln|1 + x| - \ln 1) = \frac{\ln|1 + x|}x = \frac{\ln(1 + x)}x \text{ при } x > 0
+\end{equation*}
+\end{proof}
+\begin{Lemma}\label{lem:8-2}
+\begin{equation}\label{eq:lem8-2-eq}
+\int_0^1\frac{2z}{z^2 + x^2}dz = \ln\left(1 + \frac1{x^2}\right)
+\end{equation}
+\end{Lemma}
+\begin{proof}
+\begin{equation*}
+\int_0^1\frac{2z}{z^2 + x^2}dz = \int_0^1\frac{d(z^2 + x^2)}{z^2 + x^2} = \ln|x^2 + 1| - \ln|x^2| = \ln\left|1 + \frac1{x^2}\right| = \ln\left(1 + \frac1{x^2}\right)
+\end{equation*}
+\end{proof}
+\begin{Lemma}\label{lem:8-3}
+\begin{equation}\label{eq:lem8-3-eq}
+\int_0^1t^m\ln tdt = -\frac1{(m + 1)^2}
+\end{equation}
+\end{Lemma}
+\begin{proof}
+\begin{equation*}
+\int_0^1t^m\ln tdt = \int_0^1\ln t\frac{d(t^{m + 1})}{m + 1} = \frac1{m + 1}\left(t^{m + 1}\ln t\bigg|_0^1 - \int_0^1t^{m + 1}\frac1tdt\right) = -\frac1{m + 1}\int_0^1t^mdt = -\frac1{(m + 1)^2}
+\end{equation*}
+\end{proof}
+\begin{Lemma}\label{lem:8-4}
+\begin{equation}\label{eq:lem8-4-eq}
+\mu(s) = \sum_{n = 1}^{\infty}\frac{(-1)^{n - 1}}{n^s} = (1 - 2^{1 - s})\zeta(s)
+\end{equation}
+\end{Lemma}
+\begin{proof}
+\begin{multline*}
+\mu(s) = 1 - \frac1{2^s} + \frac1{3^s} - \ldots - \frac1{(2n)^s} + \frac1{(2n + 1)^s} - \ldots = 1 + \frac1{2^s} + \frac1{3^s} + \ldots + \frac1{n^s} - 2\left(\frac1{2^s} + \frac1{4^s} + \ldots + \frac1{(2n)^s}\right) = \\
+= \zeta(s) - \frac2{2^s}\left(1 + \frac1{2^s} + \ldots + \frac1{n^s}\right) = (1 - 2^{1 - s})\zeta(s)
+\end{multline*}
+\end{proof}
+Используя \ref{eq:lem8-1-eq} и \ref{eq:lem8-2-eq}, перепишем интеграл \eqref{eq:eq8} в виде:
+\begin{equation*}
+\int_0^{\infty}\frac{\ln(1 + x)\ln\left(1 + \frac1{x^2}\right)}xdx = \int_0^{\infty}\frac{\ln(1 + x)}x\ln\left(1 + \frac1{x^2}\right)dx = \int_0^{\infty}\int_0^1\frac{dy}{1 + xy}\int_0^1\frac{2zdz}{z^2 + x^2}dx
+\end{equation*}
+Перенесём дробь $\frac{dy}{1 + xy}$ под нижний интеграл, получим:
+\begin{equation*}
+\int_0^{\infty}\frac{\ln(1 + x)\ln\left(1 + \frac1{x^2}\right)}xdx = \int_0^{\infty}\int_0^1\int_0^1\frac{2zdzdydx}{(1 + xy)(z^2 + x^2)} = \iiint_R\frac{2dxdydz}{(1 + xy)(z^2 + x^2)},
+\end{equation*}
+где
+\begin{equation*}
+R = \{(x, y, z), x \in (0, +\infty), y \in (0, 1), z \in (0, 1)\}
+\end{equation*}
+Поменяем порядок интегрирования так, чтобы интегрирование по $x$ шло последним:
+\begin{equation}\label{eq:eq8-6}
+\int_0^{\infty}\frac{\ln(1 + x)\ln\left(1 + \frac1{x^2}\right)}xdx = \int_0^1\int_0^1\int_0^{\infty}\frac{2zdxdydz}{(1 + xy)(z^2 + x^2)}
+\end{equation}
+Разложим подынтегральную функцию:
+\begin{equation*}
+\frac{2z}{(1 + xy)(z^2 + x^2)} = \frac{A}{1 + xy} + \frac{Bx + C}{z^2 + x^2}
+\end{equation*}
+Домножим обе части на $(1 + xy)(z^2 + x^2)$:
+\begin{equation*}
+2z = Az^2 + Ax^2 + (Bx + C)(1 + xy) = Az^2 + Ax^2 + Bx^2y + Cxy + Bx + C
+\end{equation*}
+Приравнивая коэффициенты при степенях $x$, получаем систему:
+\begin{equation*}
+\begin{cases}
+A + By = 0, \\
+B + Cy = 0, \\
+Az^2 + C = 2z.
+\end{cases}
+\end{equation*}
+Из первых двух уравнений $A = Cy^2$, подставляя во второе уравнение, получаем:
+\begin{equation*}
+Cy^2z^2 + C = 2z \rightarrow C = \frac{2z}{1 + y^2z^2}, B = -Cy = -\frac{2yz}{1 + y^2z^2}, A = Cy^2 = \frac{2y^2z}{1 + y^2z^2}
+\end{equation*}
+Подставим найденное разложение в \eqref{eq:eq8-6}:
+\begin{multline}\label{eq:eq8-7}
+\int_0^{\infty}\frac{\ln(1 + x)\ln\left(1 + \frac1{x^2}\right)}xdx = \int_0^1\int_0^1\int_0^{\infty}\frac1{1 + y^2z^2}\left(\frac{2y^2z}{1 + xy} - \frac{2xyz}{z^2 + x^2} + \frac{2y^2z}{z^2 + x^2}\right)dxdydz = \\
+= \int_0^1\int_0^1\frac1{1 + y^2z^2}\left(2yz\ln(1 + xy) - yz\ln(z^2 + x^2) + 2\arctan{\frac{x}z}\right)\bigg|_0^{\infty}dydz = \\
+= \int_0^1\int_0^1\frac1{1 + y^2z^2}\left(yz\ln\frac{(1 + xy)^2}{z^2 + x^2} + 2\arctan{\frac{x}z}\right)\bigg|_0^{\infty}dydz = \int_0^1\int_0^1\frac1{1 + y^2z^2}\left(yz\ln y^2 - yz\ln\frac1{z^2} + \pi\right)dydz = \\
+= \int_0^1\int_0^1\frac{2yz\ln yz + \pi}{1 + y^2z^2}dydz = \int_0^1\int_0^1\frac{2yz\ln yz}{1 + y^2z^2}dydz + \pi\int_0^1\int_0^1\frac{dydz}{1 + y^2z^2}
+\end{multline}
+Рассмотрим оба слагаемых отдельно:
+\begin{equation}\label{eq:eq8-8}
+\int_0^1\int_0^1\frac{dydz}{1 + y^2z^2} = \int_0^1\int_0^1\sum_{n = 0}^{\infty}(-1)^n(y^2z^2)^ndydz = \sum_{n = 0}^{\infty}(-1)^n\int_0^1y^{2n}dy\int_0^1z^{2n}dz = \sum_{n = 0}^{\infty}\frac{(-1)^n}{(2n + 1)^2} = G,
+\end{equation}
+где $G$ -- постоянная Каталана.
+
+Рассмотрим теперь второе слагаемое:
+\begin{equation*}
+\int_0^1\int_0^1\frac{2yz\ln yz}{1 + y^2z^2}dydz = \int_0^1\int_0^1\frac{2yz\ln y}{1 + y^2z^2}dydz + \int_0^1\int_0^1\frac{2yz\ln z}{1 + y^2z^2}dydz
+\end{equation*}
+Заметим, что оба слагаемых правой части равны, т. к. их подынтегральные выражения совпадут, если поменять местами $y$ и $z$, поэтому можно вычислить только один из этих интегралов. Воспользовавшись разложением:
+\begin{equation*}
+\frac1{1 + x} = \sum_{n = 0}^{\infty}(-1)^nx^n,
+\end{equation*}
+получаем:
+\begin{equation*}
+\int_0^1\int_0^1\frac{2yz\ln y}{1 + y^2z^2}dydz = \int_0^1\int_0^12yz\ln y\sum_{n = 0}^{\infty}(-1)^n(y^2z^2)^ndydz = \sum_{n = 0}^{\infty}\int_0^12(-1)^nz^{2n + 1}\int_0^1y^{2n + 1}\ln ydydz
+\end{equation*}
+Для вычисления внутреннего интеграла воспользуемся \eqref{eq:lem8-3-eq}:
+\begin{multline*}
+\int_0^1\int_0^1\frac{2yz\ln y}{1 + y^2z^2}dydz = \sum_{n = 0}^{\infty}\int_0^12(-1)^nz^{2n + 1}\left(-\frac1{(2n + 2)^2}\right)dz = \\
+ = \sum_{n = 0}^{\infty}\frac{2(-1)^{n + 1}}{(2n + 2)^2}\int_0^1z^{2n + 1}dz = 2\sum_{n = 0}^{\infty}\frac{(-1)^{n + 1}}{(2n + 2)^3} = \frac14\sum_{n = 0}^{\infty}\frac{(-1)^{n + 1}}{(n + 1)^3} = -\frac14\sum_{n = 1}^{\infty}\frac{(-1)^{n - 1}}{n^3} = -\frac14\mu(3)
+\end{multline*}
+Используя утверждение последней леммы \eqref{eq:lem8-4-eq}, получаем:
+\begin{equation}\label{eq:eq8-9}
+\int_0^1\int_0^1\frac{2yz\ln yz}{1 + y^2z^2}dydz = 2\int_0^1\int_0^1\frac{2yz\ln y}{1 + y^2z^2}dydz = -\frac12\mu(3) = -\frac12(1 - 2^{-2})\zeta(3) = -\frac38\zeta(3)
+\end{equation}
+Подставляя \eqref{eq:eq8-8} и \eqref{eq:eq8-9} в \eqref{eq:eq8-7}, окончательно получаем:
+\begin{equation}
+\int_0^{\infty}\frac{\ln(1 + x)\ln\left(1 + \frac1{x^2}\right)}xdx = \pi G - \frac38\zeta(3)
+\end{equation}
+\pagebreak
+\section{Задача 9}
+\label{sec:org144158e}
+\zall
+Решить уравнение
+\begin{equation}\label{eq:9}
+x\lfloor x\lfloor x\lfloor x\rfloor\rfloor\rfloor = 2020
+\end{equation}
+\subsection{Решение}
+\label{sec:orge6150f5}
+Рассмотрим уравнение
+\begin{equation}
+x\lfloor x\rfloor = 10
+\end{equation}
+Заметим, что \(x\lfloor x\rfloor \approx x^2\). Так как \(3 < \sqrt{10} < 4\), то для решения верно, что \(3 < x < 4\).
+
+Заметим, что \(m = \lfloor x\rfloor \in \mathbb{Z}\). Тогда \(x\cdot m = 10 \Rightarrow x = \frac{10}m\). Это значит, что \(3 < \frac{10}m < 4\) или \(\frac{10}3 < m < \frac{10}4 \Rightarrow m = 3\). Это значит, что \(\frac{10}3\) может быть решением. Подстановкой убеждаемся, что \(x = \frac{10}3\) действительно является решением.
+
+Если \(x < 0\), то \(-4 < x < -3\). Положив \(m = \lfloor x\rfloor\), находим, что \(x = \frac{10}m\), т. е. \(-\frac{10}4 < m < -\frac{10}3 \Rightarrow m = -3\), т. е. решение может быть \(x = -\frac{10}3\). Подстановкой убеждаемся, что это не решение.
+
+Заметим, что \(\sqrt[4]{2020} \approx 6.7\). Пусть \(x > 0\), тогда \(6 < x < 7\). Заметим, что \(m = \lfloor x\lfloor x\lfloor x\rfloor\rfloor\rfloor = m \in \mathbb{Z} > 0\), т. е. \(x\cdot m = 2020 \Rightarrow x = \frac{2020}m \Rightarrow \frac{2020}7 < m < \frac{2020}6\), или \(\lceil\frac{2020}7\rceil = 289 \leq m \leq 336 = \lfloor\frac{2020}6\rfloor\). Это означает, что возможными решениями будут числа \(x \in \{\frac{2020}k, k = \overline{289, 336}\}\). 
+
+Покажем, что среди этих чисел решений нет. Пусть \(x \in (6, 7)\). Тогда \(\rfloor x\lfloor = 6\), т. е. \(x\lfloor x\rfloor = 6x < 42 \Rightarrow \lfloor x\lfloor x\rfloor\rfloor \leq 41\). Оценим левую часть уравнения \eqref{eq:9}:
+\begin{equation*}
+x\lfloor x\lfloor x\lfloor x\rfloor\rfloor\rfloor < 7\lfloor7\lfloor x\lfloor x\rfloor\rfloor\rfloor < 7\lfloor7\cdot49\rfloor = 2009 < 2020.
+\end{equation*}
+Таким образом, положительных решений уравнение \eqref{eq:9} не имеет.
+
+Пусть теперь \(x < 0\). Тогда \(-7 < x < -6, \lfloor x\lfloor x\lfloor x\rfloor\rfloor\rfloor = m \in \mathbb{Z}^{-}\). Так как \(x\cdot m = 2020\), то \(-\frac{2020}6 < m < -\frac{2020}7\).
+Получаем неравенство на \(m: -337 \leq m \leq -288\). Перебором можно найти решение \(x = -\frac{2020}{305}\), являющееся единственным.
+\pagebreak
+\section{Задача 10}
+\label{sec:org7904b75}
+\zall
+Пусть \(S \subseteq \mathbb{N}\) является наименьшим множеством, обладающим следующими свойствами:
+\begin{enumerate}
+\item \(2 \in S\).
+\item Если \(n^2 \in S\), то \(n \in S\).
+\item Если \(n \in S\), то \((n + 5)^2 \in S\).
+\end{enumerate}
+Какие натуральные числа заведомо не входят в \(S\)?
+\subsection{Решение}
+\label{sec:org396f931}
+Из свойств 2 и 3 следует, что если \(n \in S\), то \((n + 5) \in S\). Таким образом, все числа вида \((5k + 2), k \in \mathbb{N}\) входят в \(S\). Из свойств операций по модулю вытекает, что числа такого вида не являются полными квадратами. В самом деле, если число делится на 5, то его квадрат также делится на 5. Если число при делении на 5 даёт в остатке 1 или 4, то его квадрат при делении на 5 даёт остаток 1. Наконец, если число даёт остаток 2 или 3 при делении на 5, его квадрат даст остаток 4 при делении на 5. В силу третьего правила, квадраты этих чисел также входят в \(S\). Таким образом, \(S = \{5m + 2, (5n + 2)^2, m \in \mathbb{N}_0, n \in \mathbb{N}\}\). Соответственно, в \(S\) не входят числа вида \(5n + 1, 5n + 3\) и числа вида \(5n + 4\), не являющиеся квадратами, и число \(9\).
+\pagebreak
+\section{Задача 11}
+\label{sec:org570a60c}
+\zall
+Вычислить сумму ряда
+\begin{equation}
+\sum_{n = 1}^{\infty}\frac{\cos n}{n^4}
+\end{equation}
+\subsection{Решение}
+\label{sec:org3c11a48}
+\begin{Theorem}[ряд Фурье]\label{th:Fourier}
+Любую $(2\pi)$-периодическую функцию $f(x)$ можно представить в виде:
+\begin{equation}
+f(x) = \frac{a_0}2 + \sum_{n = 1}^{\infty}(a_n\cos nx + b_n\sin nx), \text{ где}
+\end{equation}
+\begin{equation*}
+a_n = \frac1{\pi}\int_0^{2\pi}f(x)\cos nxdx, b_n = \frac1{\pi}\int_0^{2\pi}f(x)\sin nxdx
+\end{equation*}
+\end{Theorem}
+   \begin{Lemma}
+При $x \in (0, 2\pi)$ выполняется равенство:
+\begin{equation}\label{eq:lemeq}
+\sum_{n = 1}^{\infty}\frac{\sin nx}n = \frac{\pi - x}2.
+\end{equation}
+   \end{Lemma}
+\begin{proof}
+Рассмотрим функцию $f(x) = \frac{\pi - x}2$ на интервале $(0, 2\pi)$, и построим для неё разложение Фурье:
+\begin{gather*}
+\frac{\pi - x}2 = \frac{a_0}2 + \sum_{n = 1}^{\infty}(a_n\cos nx + b_n\sin nx), \\
+a_n = \frac1{\pi}\int_0^{2\pi}f(x)\cos nxdx, b_n = \frac1{\pi}\int_0^{2\pi}f(x)\sin nxdx.
+\end{gather*}
+Заметим, что $f(2\pi - x) = \frac{\pi - (2\pi - x)}2 = \frac{x - \pi}2 = -f(x)$, и $\cos n(2\pi - x) = \cos nx$, поэтому $a_n = 0, n \in \mathbb{N}_0$.
+
+Рассчитаем $b_n$:
+\begin{equation*}
+b_n = \frac1{\pi}\int_0^{2\pi}\frac{\pi - x}2\sin nxdx = \frac12\int_0^{2\pi}\sin nxdx - \frac1{2\pi}\int_0^{2\pi}x\sin nxdx = \frac1{2n}\cos nx\bigg|_0^{2\pi} + \frac1{2\pi n}\int_0^{2\pi}xd(\cos nx)
+\end{equation*}
+Первое слагаемое в силу $(2\pi)$-периодичности $\cos nx$ даёт $0$, интегрируя по частям второе слагаемое, получим:
+\begin{equation*}
+b_n = \frac1{2\pi n}\int_0^{2\pi}xd(\cos nx) = \frac1{2\pi n}\left(x\cos nx\bigg|_0^{2\pi} - \int_0^{2\pi}\cos nxdx\right) = \frac1{2\pi n}\left(2\pi - 0 - \frac1n\sin nx\bigg|_0^{2\pi}\right) = \frac1n
+\end{equation*}
+Таким образом, в силу теоремы \ref{th:Fourier}:
+\begin{equation*}
+\frac{\pi - x}2 = \sum_{n = 1}^{\infty}\frac{\sin nx}n,
+\end{equation*}
+что и требовалось доказать.
+\end{proof}
+Рассмотрим функцию
+\begin{equation*}
+g(x) = \sum_{n = 1}^{\infty}\frac{\cos nx}{n^4}
+\end{equation*}
+Трижды продифференцировав эту функцию, получим:
+\begin{gather*}
+g'(x) = -\sum_{n = 1}^{\infty}\frac{n\sin nx}{n^4} = -\sum_{n = 1}^{\infty}\frac{\sin nx}{n^3}, g'(0) = 0, \\
+g''(x) = -\sum_{n = 1}^{\infty}\frac{n\cos nx}{n^3} = -\sum_{n = 1}^{\infty}\frac{\cos nx}{n^2}, g''(0) = -\sum_{n = 1}^{\infty}\frac1{n^2} = -\frac{\pi^2}6, \\
+g'''(x) = \sum_{n = 1}^{\infty}\frac{n\sin nx}{n^2} = \sum_{n = 1}^{\infty}\frac{\sin nx}n.
+\end{gather*}
+Воспользовавшись ранее доказанным равенством \eqref{eq:lemeq}, получаем дифференциальное уравнение для $g(x)$:
+\begin{equation*}
+g'''(x) = \frac{\pi - x}2.
+\end{equation*}
+Последовательно интегрируя это уравнение, получаем:
+\begin{gather*}
+g''(x) = \frac{\pi}2x - \frac{x^2}4 + A, A = g''(0) = -\frac{\pi^2}6, \\
+g'(x) = \frac{\pi}4x^2 - \frac{x^3}12 + Ax + B, B = g'(0) = 0, \\
+g(x) = \frac{\pi}{12}x^3 - \frac{x^4}{48} + \frac{A}2x^2 + Bx + C, C = g(0) = \sum_{n = 1}^{\infty}\frac1{n^4} = \zeta(4) = \frac{\pi^4}{90}
+\end{gather*}
+Таким образом,
+\begin{equation*}
+g(x) = -\frac1{48}x^4 + \frac{\pi}{12}x^3 - \frac{\pi^2}{12}x^2 + \frac{\pi^4}{90}.
+\end{equation*}
+Теперь можно вычислить сумму исходного ряда:
+\begin{equation*}
+\sum_{n = 1}^{\infty}\frac{\cos n}{n^4} = g(1) = -\frac1{48} + \frac{\pi}{12} - \frac{\pi^2}{12} + \frac{\pi^4}{90}
+\end{equation*}
+
+\begin{multline*}
+g(x) = \sum_{n = 1}^{\infty}\frac{\cos nx}{n^4} = \sum_{n = 1}^{\infty}\left(\frac{\cos nx}{n^4} - \frac{\cos n\cdot 0}{n^4} + \frac1{n^4}\right) = \sum_{n = 1}^{\infty}\frac{\cos ny}{n^4}\bigg|_{y = 0}^x + \sum_{k = 1}^{\infty}\frac1{k^4} = \\
+= \sum_{n = 1}^{\infty}\int_0^x\frac{\sin ny}{n^3}dy + \zeta(4) = \ldots = \sum_{n = 1}^{\infty}\int_0^x\int_0^y\left(\int_0^z\frac{\sin nt}ndt + \frac1{n^2}\right)dzdydx + \zeta(4) = \\
+= \sum_{n = 1}^{\infty}\int_0^x\int_0^y\int_0^z\frac{\sin nt}ndtdzdydx + \sum_{n = 1}^{\infty}\int_0^x\int_0^y\frac1{n^2}dzdydx + \zeta(4) = \\
+= \sum_{n = 1}^{\infty}\int_0^x\int_0^y\int_0^z\frac{\pi - t}ndtdzdydx + \zeta(2)\frac{x^2}2 + \zeta(4) = -\frac1{48}x^4 + \frac{\pi}{12}x^3 - \frac{\pi^2}{12}x^2 + \frac{\pi^4}{90}
+\end{multline*}
+\pagebreak
+\section{Задача 12}
+\label{sec:orgd149149}
+\zall
+Вычислить предел:
+\begin{equation}\label{eq:eq12}
+\lim_{x \to \infty}\left(\frac{3x^2 + 1}{3x^2 - x + 1}\right)^{3x + 4}
+\end{equation}
+\subsection{Решение}
+\label{sec:org4711f20}
+   \begin{equation*}
+\lim_{x \to \infty}\left(\frac{3x^2 + 1}{3x^2 - x + 1}\right)^{3x + 4} = \lim_{x \to \infty}\left(1 + \frac{x}{3x^2 - x + 1}\right)^{3x + 4} = \lim_{x \to \infty}\left(\left(1 + \frac{x}{3x^2 - x + 1}\right)^{\frac{3x^2 - x + 1}x}\right)^{\frac{x(3x + 4)}{3x^2 - x + 1}} = e^1 = e
+   \end{equation*}
+Здесь используется второй замечательный предел:
+\begin{equation*}
+\lim_{y \to 0}(1 + y)^{\frac1y} = e, \text{ где } y = \frac{x}{3x^2 - x + 1}.
+\end{equation*}
+\pagebreak
+\section{Задача 13}
+\label{sec:org6ed3ac3}
+\zall
+Доказать тождество:
+\begin{equation}\label{eq:eq13}
+1^3 + 2^3 + \ldots + n^3 = (1 + 2 + \ldots + n)^2, \forall n \in \mathbb{N}
+\end{equation}
+\subsection{Способ 1}
+\label{sec:orgdad34f7}
+Доказательство проведём индукцией по \(n\).
+
+База индукции: при \(n = 1\) тождество, очевидно, выполняется:
+\begin{equation*}
+1^3 = 1^2
+\end{equation*}
+Индуктивный переход: пусть тождество доказано при \(n = k\), т. е.
+\begin{equation*}
+1^3 + 2^3 + \ldots + k^3 = (1 + 2 + \ldots + k)^2
+\end{equation*}
+Рассмотрим правую часть \eqref{eq:eq13} при \(n = k + 1\):
+\begin{multline*}
+(1 + 2 + \ldots + k + (k + 1))^2 = (1 + 2 + \ldots + k)^2 + (k + 1)^2 + 2(k + 1)(1 + 2 + \ldots + k) = \\
+= 1^3 + 2^3 + \ldots + k^3 + (k + 1)^2 + 2(k + 1)\frac{(k + 1)k}2 = 1^3 + 2^3 + \ldots + k^3 + (k + 1)^2(1 + k) = 1^3 + 2^3 + \ldots + (k + 1)^3,
+\end{multline*}
+что и составляет левую часть \eqref{eq:eq13} при $n = k + 1$. Таким образом, индуктивный переход обоснован и утверждение доказано для всех $n \in \mathbb{N}$.
+\subsection{Способ 2}
+\label{sec:org477e892}
+Раскроем скобки в правой части:
+\begin{equation*}
+(1 + 2 + \ldots + n)^2 = 1^2 + 2^2 + \ldots + n^2 + 2\sum_{1 \leq i < j \leq n}ij
+\end{equation*}
+Разобьём сумму в правой части на две и вынесем из внутренней суммы множитель $j$:
+\begin{equation*}
+(1 + 2 + \ldots + n)^2 = \sum_{k = 1}^nk^2 + 2\sum_{k = 1}^nk\sum_{j = 1}^{k - 1}j
+\end{equation*}
+Объединим суммы по $k$:
+\begin{equation*}
+(1 + 2 + \ldots + n)^2 = \sum_{k = 1}^n\left(k^2 + 2k\sum_{j = 1}^{k - 1}j\right) = \sum_{k = 1}^n\left(k^2 + 2k\frac{k(k - 1)}2\right) = \sum_{k = 1}^n(k^2 + (k^3 - k^2)) = 1^3 + 2^3 + \ldots + n^3
+\end{equation*}
+Тождество доказано.
+\subsection{Способ 3}
+\label{sec:org9b8bfd5}
+\begin{Lemma}
+Рассмотрим последовательность $c_n = 1 + 2 + \ldots + n$ и её производящую функцию $C(x) = \sum_{n = 0}^{\infty}c_nx^n$. Для $C(x)$ справедливо соотношение:
+\begin{equation}
+C(x) = \frac{x}{(1 - x)^3}, x \in (0, 1)
+\end{equation}
+\end{Lemma}
+\begin{proof}
+Из определения $c_n$ можно получить, что эта последовательность удовлетворяет следующему реккурентному соотношению:
+\begin{equation*}
+c_n - c_{n - 1} = n
+\end{equation*}
+Умножим это соотношение на $x^n$ и просуммируем по всем натуральным $n$:
+\begin{equation*}
+\sum_{n = 1}^{\infty}c_nx^n - \sum_{n = 1}^{\infty}c_{n - 1}x^n = \sum_{n = 1}^{\infty}nx^n
+\end{equation*}
+Перепишем это соотношение в виде:
+\begin{equation*}
+\sum_{n = 0}^{\infty}c_nx^n - x\sum_{n = 0}^{\infty}c_nx^n = x\sum_{n = 1}^{\infty}nx^{n - 1}
+\end{equation*}
+Учитывая, что
+\begin{equation*}
+\sum_{n = 1}^{\infty} = \frac{d}{dx}\sum_{n = 1}^{\infty}x^n = \frac{d}{dx}\left(\frac1{1 - x}\right) = \frac1{(1 - x)^2},
+\end{equation*}
+приходим к равенству
+\begin{equation*}
+(1 - x)C(x) = \frac{x}{(1 - x)^2}
+\end{equation*}
+или
+\begin{equation*}
+C(x) = \frac{x}{(1 - x)^3},
+\end{equation*}
+что и доказывает утверждение леммы.
+\end{proof}
+Рассмотрим последовательности \(a_n = 1^3 + 2^3 + \ldots + n^3\) и \(b_n = (1 + 2 + \ldots + 
+n)^2\) и их производящие функции \(A(x) = \sum_{n = 0}^{\infty}a_nx^n, B(x) = \sum_{n = 0}^{\infty}b_nx^n\). Для этих последовательностей выполнены соотношения:
+\begin{gather*}
+a_n - a_{n - 1} = n^3, \\
+b_n - b_{n - 1} = c^2_n - c^2_{n - 1} = (c_n - c_{n - 1})(c_n + c_{n - 1}) = n(2c_{n - 1} + n) = 2nc_{n - 1} + n^2
+\end{gather*}
+Домножив каждое из этих соотношений на $x^n$ и просуммировав по всем натуральным $n$, получим:
+\begin{gather*}
+\sum_{n = 1}^{\infty}a_nx^n - \sum_{n = 1}^{\infty}a_{n - 1}x^n = \sum_{n = 1}^{\infty}n^3x^n, \\
+\sum_{n = 1}^{\infty}b_nx^n - \sum_{n = 1}^{\infty}b_{n - 1}x^n = \sum_{n = 1}^{\infty}2nc_{n - 1}x^n + \sum_{n = 1}^{\infty}n^2x^n
+\end{gather*}
+или
+\begin{gather}\label{eq:genfunc}
+(1 - x)A(x) = \sum_{n = 1}^{\infty}n^3x^n, \\
+(1 - x)B(x) = \sum_{n = 1}^{\infty}2nc_{n - 1}x^n + \sum_{n = 1}^{\infty}n^2x^n
+\end{gather}
+Воспользуемся представлениями
+\begin{equation*}
+n^3 = n(n - 1)(n - 2) + 3n(n - 1) + n
+\end{equation*}
+и
+\begin{equation*}
+n^2 = n(n - 1) + n
+\end{equation*}
+и вычислим суммы рядов в правых частях
+\begin{multline*}
+\sum_{n = 1}^{\infty}n^3x^n = \sum_{n = 1}^{\infty}n(n - 1)(n - 2)x^n + \sum_{n = 1}^{\infty}3n(n - 1)x^n + \sum_{n = 1}^{\infty}nx^n = \\
+= x^3\sum_{n = 1}^{\infty}n(n - 1)(n - 2)x^{n - 3} + 3x^2\sum_{n = 1}^{\infty}n(n - 1)x^{n - 2} + x\sum_{n = 1}^{\infty}nx^{n - 1} = x^3\frac{d^3}{dx^3}\sum_{n = 1}^{\infty}x^n + 3x^2\frac{d^2}{dx^2}\sum_{n = 1}^{\infty}x^n + x\frac{d}{dx}\sum_{n = 1}^{\infty}x^n = \\
+= x^3\frac{d^3}{dx^3}\left(\frac1{1 - x}\right) + 3x^2\frac{d^2}{dx^2}\left(\frac1{1 - x}\right) + x\frac{d}{dx}\left(\frac1{1 - x}\right) = \frac{6x^3}{(1 - x)^4} + \frac{6x^2}{(1 - x)^3} + \frac{x}{(1 - x)^2} = \\
+= \frac{6x^3 + 6x^2(1 - x) + x(1 - 2x + x^2)}{(1 - x)^4} = \frac{x^3 + 4x^2 + x}{(1 - x)^4}
+\end{multline*}
+\begin{multline*}
+\sum_{n = 1}^{\infty}2nc_{n - 1}x^n = 2\sum_{n = 0}^{\infty}(n + 1)c_nx^n = 2\sum_{n = 0}^{\infty}nc_nx^n + 2\sum_{n = 0}^{\infty}c_nx^n = 2x\sum_{n = 0}^{\infty}nc_nx^{n - 1} + \frac{2x}{(1 - x)^3} = \\
+= 2x\frac{d}{dx}\sum_{n = 0}^{\infty}c_nx^n + \frac{2x}{(1 - x)^3} = 2x\frac{d}{dx}\left(\frac{2x}{(1 - x)^3}\right) + \frac{2x}{(1 - x)^3} = 2x\left(\frac{3x}{(1 - x)^4} + \frac1{(1 - x)^3}\right) + \frac{2x}{(1 - x)^3} = \\
+= \frac{6x^2 + 2x(1 - x)\cdot2}{(1 - x)^4} = \frac{2x^2 + 4x}{(1 - x)^4}
+\end{multline*}
+\begin{multline*}
+\sum_{n = 1}^{\infty}n^2x^n = \sum_{n = 1}^{\infty}n(n - 1)x^n + \sum_{n = 1}^{\infty}nx^n = x^2\sum_{n = 1}^{\infty}n(n - 1)x^{n - 2} + x\sum_{n = 1}^{\infty}nx^{n - 1} = x^2\frac{d^2}{dx^2}\sum_{n = 1}^{\infty}x^n + x\frac{d}{dx}\sum_{n = 1}^{\infty}x^n = \\
+= x^2\frac{d^2}{dx^2}\left(\frac1{1 - x}\right) + x\frac{d}{dx}\left(\frac1{1 - x}\right) = \frac{2x^2}{(1 - x)^3} + \frac{x}{(1 - x)^2} = \frac{2x^2 + x(1 - x)}{(1 - x)^3} = \frac{x^2 + x}{(1 - x)^3}
+\end{multline*}
+Подставляя найденные представления в \eqref{eq:genfunc}, находим представления для производящих функций $A(x)$ и $B(x)$:
+\begin{gather*}
+A(x) = \frac{x^3 + 4x^2 + x}{(1 - x)^5}, \\
+B(x) = \frac{2x^3 + 4x^2}{(1 - x)^5} + \frac{x^2 + x}{(1 - x)^4} = \frac{2x^3 + 4x^2 + (x^2 + x)(1 - x)}{(1 - x)^5} = \frac{x^3 + 4x^2 + x}{(1 - x)^5}
+\end{gather*}
+Таким образом, $A(x) = B(x)$, из чего следует, что $a_n = b_n \forall n \in \mathbb{N}$. Тождество доказано.
+\pagebreak
+\section{Задача 14}
+\label{sec:org814d1ba}
+\zall
+Показать, что $|PB| = |PD| + |PE|$ на рисунке \ref{pic:14}.
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{figure}[h]
+\caption{К задаче 14}
+\label{pic:14}
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.36,-5.38) rectangle (26.3,2.84);
+\fill[line width=2.pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (9.52,2.1) -- (6.457135125879073,-2.957926294975052) -- (12.368860224857237,-3.0814819368352766) -- cycle;
+\draw [line width=2.pt] (9.46,-1.32) circle (3.420526275297414cm);
+\draw [line width=2.pt,color=zzttqq] (9.52,2.1)-- (6.457135125879073,-2.957926294975052);
+\draw [line width=2.pt,color=zzttqq] (8.091214189131213,-0.4911215751660492) -- (7.88592093674786,-0.3668047198090024);
+\draw [line width=2.pt,color=zzttqq] (6.457135125879073,-2.957926294975052)-- (12.368860224857237,-3.0814819368352766);
+\draw [line width=2.pt,color=zzttqq] (9.415505139701215,-2.899730316171145) -- (9.410490211035095,-3.1396779156391825);
+\draw [line width=2.pt,color=zzttqq] (12.368860224857237,-3.0814819368352766)-- (9.52,2.1);
+\draw [line width=2.pt,color=zzttqq] (10.839276021903883,-0.5485563404731343) -- (11.049584202953355,-0.4329255963621429);
+\begin{scriptsize}
+\draw [fill=ududff] (9.52,2.1) circle (2.5pt);
+\draw[color=ududff] (9.66,2.47) node {$B$};
+\draw [fill=xdxdff] (6.457135125879073,-2.957926294975052) circle (2.5pt);
+\draw[color=xdxdff] (5.92,-2.91) node {$A$};
+\draw [fill=uuuuuu] (12.368860224857237,-3.0814819368352766) circle (2.5pt);
+\draw[color=uuuuuu] (12.7,-3.23) node {$C$};
+\draw [fill=xdxdff] (8.354238813878693,-4.556864563009642) circle (2.5pt);
+\draw[color=xdxdff] (8.5,-4.19) node {$P$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{figure}
+\subsection{Решение}
+\label{sec:orgace1c2d}
+Поскольку \(\triangle ABC\) равносторонний, \(\angle BAC = \angle ABC = \angle ACB = 60^{\circ}\). Далее, \(\angle APB = \angle ACB = 60^{\circ}\), так как оба угла опираются на дугу \(AB\). Аналогично, \(\angle CPB = \angle CAB = 60^{\circ}\), так как оба этих угла опираются на дугу \(CB\). См. рисунок \ref{pic:14-2}.
+\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{figure}[h]
+\caption{К решению задачи 14}
+\label{pic:14-2}
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.36,-5.38) rectangle (26.3,2.84);
+\fill[line width=2.pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (9.52,2.1) -- (6.457135125879073,-2.957926294975052) -- (12.368860224857237,-3.0814819368352766) -- cycle;
+\draw [shift={(12.368860224857237,-3.0814819368352766)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (118.80268683035553:0.6) arc (118.80268683035553:178.80268683035553:0.6) -- cycle;
+\draw [shift={(6.457135125879073,-2.957926294975052)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (-1.1973131696444788:0.6) arc (-1.1973131696444788:58.80268683035555:0.6) -- cycle;
+\draw [shift={(8.354238813878693,-4.556864563009642)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (20.178496476552063:0.6) arc (20.178496476552063:80.06699104759032:0.6) -- cycle;
+\draw [shift={(8.354238813878693,-4.556864563009642)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (80.06699104759032:0.6) arc (80.06699104759032:139.87476388320002:0.6) -- cycle;
+\draw [line width=2.pt] (9.46,-1.32) circle (3.420526275297414cm);
+\draw [line width=2.pt,color=zzttqq] (9.52,2.1)-- (6.457135125879073,-2.957926294975052);
+\draw [line width=2.pt,color=zzttqq] (8.091214189131213,-0.4911215751660492) -- (7.88592093674786,-0.3668047198090024);
+\draw [line width=2.pt,color=zzttqq] (6.457135125879073,-2.957926294975052)-- (12.368860224857237,-3.0814819368352766);
+\draw [line width=2.pt,color=zzttqq] (9.415505139701215,-2.899730316171145) -- (9.410490211035095,-3.1396779156391825);
+\draw [line width=2.pt,color=zzttqq] (12.368860224857237,-3.0814819368352766)-- (9.52,2.1);
+\draw [line width=2.pt,color=zzttqq] (10.839276021903883,-0.5485563404731343) -- (11.049584202953355,-0.4329255963621429);
+\draw [line width=2.pt] (9.52,2.1)-- (8.354238813878693,-4.556864563009642);
+\draw [line width=2.pt] (6.457135125879073,-2.957926294975052)-- (8.354238813878693,-4.556864563009642);
+\draw [line width=2.pt] (8.354238813878693,-4.556864563009642)-- (12.368860224857237,-3.0814819368352766);
+\begin{scriptsize}
+\draw [fill=ududff] (9.52,2.1) circle (2.5pt);
+\draw[color=ududff] (9.66,2.47) node {$B$};
+\draw [fill=xdxdff] (6.457135125879073,-2.957926294975052) circle (2.5pt);
+\draw[color=xdxdff] (5.88,-2.91) node {$A$};
+\draw [fill=uuuuuu] (12.368860224857237,-3.0814819368352766) circle (2.5pt);
+\draw[color=uuuuuu] (12.7,-3.23) node {$C$};
+\draw [fill=xdxdff] (8.354238813878693,-4.556864563009642) circle (2.5pt);
+\draw[color=xdxdff] (8.5,-4.19) node {$P$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{figure}
+
+Воспользуемся теперь теоремой косинусов для треугольников $ABP$ и $CBP$:
+\begin{gather*}
+AB^2 = AP^2 + BP^2 - 2AP\cdot BP\cos\angle APB, \\
+BC^2 = CP^2 + BP^2 - 2CP\cdot BP\cos\angle CPB.
+\end{gather*}
+Поскольку $\triangle ABC$ равносторонний, $AB = BC$, также из предыдущих выкладок следует, что $\angle APB = \angle CPB = 60^{\circ}$, что позволяет записать уравнение:
+\begin{equation*}
+AP^2 + BP^2 - AP\cdot BP = CP^2 + BP^2 - CP\cdot BP
+\end{equation*}
+или
+\begin{equation*}
+AP^2 - AP\cdot BP - CP^2 + CP\cdot BP = 0
+\end{equation*}
+Вынося за скобки $(AP - CP)$, получаем:
+\begin{equation}
+(AP - CP)(AP + CP - BP) = 0,
+\end{equation}
+таким образом, если $AP \neq CP$, то $BP = AP + CP$, что и требовалось доказать.
+
+Если $AP = CP$, то $\triangle APB = \triangle CPB$ по трём сторонам, и тогда $AP = CP = BP\sin30^{\circ} = \frac12BP$ и в этом случае искомое равенство также выполняется.
+\pagebreak
+\section{Задача 15}
+\label{sec:org9c5b23a}
+\zall
+Найти \(\angle AED\) в треугольнике на рисунке \ref{pic:15-1}.
+\definecolor{ffttww}{rgb}{1.,0.2,0.4}
+\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{figure}[h]
+\caption{К задаче 15}
+\label{pic:15-1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4.3,-4.88) rectangle (21.64,4.84);
+\draw [shift={(7.92,-4.38)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (121.14576283817513:0.6) arc (121.14576283817513:181.14576283817507:0.6) -- cycle;
+\draw [shift={(7.92,-4.38)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (101.14576283817512:0.6) arc (101.14576283817512:121.14576283817513:0.6) -- cycle;
+\draw [shift={(4.92,-4.44)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (1.145762838175113:0.6) arc (1.145762838175113:71.14576283817512:0.6) -- cycle;
+\draw [shift={(6.82989454359299,1.1529183610499507)},line width=2.pt,color=ffttww,fill=ffttww,fill opacity=0.10000000149011612] (0,0) -- (-128.85423716182493:0.6) arc (-128.85423716182493:-108.85423716182488:0.6) -- cycle;
+\draw [shift={(4.92,-4.44)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (71.14576283817512:0.6) arc (71.14576283817512:81.14576283817512:0.6) -- cycle;
+\draw [line width=2.pt] (4.92,-4.44)-- (7.92,-4.38);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (4.92,-4.44);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (7.92,-4.38);
+\draw [line width=2.pt] (7.92,-4.38)-- (5.542256996862793,-0.4454789775735099);
+\draw [line width=2.pt] (4.92,-4.44)-- (6.82989454359299,1.1529183610499507);
+\draw [line width=2.pt] (5.542256996862793,-0.4454789775735099)-- (6.82989454359299,1.1529183610499507);
+\begin{scriptsize}
+\draw [fill=ududff] (4.92,-4.44) circle (2.5pt);
+\draw[color=ududff] (4.56,-4.49) node {$A$};
+\draw [fill=ududff] (7.92,-4.38) circle (2.5pt);
+\draw[color=ududff] (8.14,-4.73) node {$B$};
+\draw [fill=uuuuuu] (6.249861545411466,4.09692272942656) circle (2.0pt);
+\draw[color=uuuuuu] (6.38,4.43) node {$C$};
+\draw[color=qqwuqq] (8.26,-4.13) node {$\gamma = 60\textrm{\degre}$};
+\draw [fill=uuuuuu] (5.542256996862793,-0.4454789775735099) circle (2.0pt);
+\draw[color=uuuuuu] (4.92,-0.27) node {$D$};
+\draw[color=qqwuqq] (8.44,-3.97) node {$\delta = 20\textrm{\degre}$};
+\draw[color=qqwuqq] (5.98,-4.15) node {$\epsilon = 70\textrm{\degre}$};
+\draw [fill=uuuuuu] (6.82989454359299,1.1529183610499507) circle (2.0pt);
+\draw[color=uuuuuu] (6.96,1.49) node {$E$};
+\draw[color=qqwuqq] (5.54,-4.01) node {$\eta = 10\textrm{\degre}$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{figure}
+\subsection{Решение}
+\label{sec:org70e8be2}
+Найдём углы \(\angle CAB\) и \(\angle CBA\):
+\begin{gather*}
+\angle CAB = \angle CAE + \angle EAB = 70^{\circ} + 10^{\circ} = 80^{\circ}, \\
+\angle CBA = \angle ABD + \angle DBC = 60^{\circ} + 20^{\circ} = 80^{\circ}, \\
+\angle C = 180^{\circ} - \angle CAB - \angle CBA = 20^{\circ}.
+\end{gather*}
+Поскольку $\angle CAB = \angle CBA$, $\triangle ABC$ является равнобедренным, т. е. $AC = BC$. Построим отрезок $DF\parallel AB, G = AF\cap BD$ (см. рисунок \ref{pic:15-2}).
+
+Поскольку $DF \parallel AB, \angle CDF = \angle CAB = 80^{\circ}, \angle CFD = \angle CBA = 80^{\circ}$, поэтому $\triangle CDF$ равнобренный и $CD = CF$. $\angle CFD = \angle BDF + \angle DBF$ как внешний в $\triangle DBF$, поэтому $\angle BDF = \angle CFD - angle DBF = 80^{\circ} - 20^{\circ} = 60^{\circ}$.
+Далее,
+\begin{gather*}
+AC = BC, \\
+CF = CD, \\
+\angle ACF = \angle BCD,
+\end{gather*}
+поэтому $\triangle ACF = \triangle BCD$, следовательно, $\angle CAF = \angle CBD = 20^{\circ}$. Поскольку $\angle CDF$ внешний для $\triangle ADF$, то $\angle CDF = \angle DAF + \angle DFA$ и $\angle DFA = \angle CDF - \angle DAF = 80^{\circ} - 20^{\circ} = 60^{\circ}$.
+
+Таким образом, в $\triangle DFG$ $\angle FDG = \angle DFG = 60^{\circ}$. Это значит, что $\triangle DFG$ равносторонний, т. е. $DF = DG = GF$ (рисунок \ref{pic:15-3}).
+\definecolor{ffttww}{rgb}{1.,0.2,0.4}
+\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{figure}[ht]
+\caption{К решению задачи 15}
+\label{pic:15-2}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4.3,-5.88) rectangle (21.64,4.84);
+\draw [shift={(7.92,-4.38)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (121.14576283817513:0.6) arc (121.14576283817513:181.14576283817507:0.6) -- cycle;
+\draw [shift={(7.92,-4.38)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (101.14576283817512:0.6) arc (101.14576283817512:121.14576283817513:0.6) -- cycle;
+\draw [shift={(4.92,-4.44)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (1.145762838175113:0.6) arc (1.145762838175113:71.14576283817512:0.6) -- cycle;
+\draw [shift={(6.82989454359299,1.1529183610499507)},line width=2.pt,color=ffttww,fill=ffttww,fill opacity=0.10000000149011612] (0,0) -- (-128.85423716182493:0.6) arc (-128.85423716182493:-108.85423716182488:0.6) -- cycle;
+\draw [shift={(4.92,-4.44)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (71.14576283817512:0.6) arc (71.14576283817512:81.14576283817512:0.6) -- cycle;
+\draw [line width=2.pt] (4.92,-4.44)-- (7.92,-4.38);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (4.92,-4.44);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (7.92,-4.38);
+\draw [line width=2.pt] (7.92,-4.38)-- (5.542256996862793,-0.4454789775735099);
+\draw [line width=2.pt] (4.92,-4.44)-- (6.82989454359299,1.1529183610499507);
+\draw [line width=2.pt] (5.542256996862793,-0.4454789775735099)-- (6.82989454359299,1.1529183610499507);
+\draw [line width=2.pt] (5.542256996862793,-0.4454789775735099)-- (7.138523655576661,-0.41355364439923226);
+\draw [line width=2.pt] (7.138523655576661,-0.41355364439923226)-- (4.92,-4.44);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (6.3680384757729325,-1.8119237886466841);
+\begin{scriptsize}
+\draw [fill=ududff] (4.92,-4.44) circle (2.5pt);
+\draw[color=ududff] (4.56,-4.49) node {$A$};
+\draw [fill=ududff] (7.92,-4.38) circle (2.5pt);
+\draw[color=ududff] (8.14,-4.73) node {$B$};
+\draw [fill=uuuuuu] (6.249861545411466,4.09692272942656) circle (2.0pt);
+\draw[color=uuuuuu] (6.38,4.43) node {$C$};
+\draw[color=qqwuqq] (8.26,-4.13) node {$\gamma = 60\textrm{\degre}$};
+\draw [fill=uuuuuu] (5.542256996862793,-0.4454789775735099) circle (2.0pt);
+\draw[color=uuuuuu] (4.92,-0.27) node {$D$};
+\draw[color=qqwuqq] (8.44,-3.97) node {$\delta = 20\textrm{\degre}$};
+\draw[color=qqwuqq] (5.98,-4.15) node {$\epsilon = 70\textrm{\degre}$};
+\draw [fill=uuuuuu] (6.82989454359299,1.1529183610499507) circle (2.0pt);
+\draw[color=uuuuuu] (6.96,1.49) node {$E$};
+\draw[color=qqwuqq] (5.54,-4.01) node {$\eta = 10\textrm{\degre}$};
+\draw [fill=uuuuuu] (7.138523655576661,-0.41355364439923226) circle (2.0pt);
+\draw[color=uuuuuu] (7.28,-0.09) node {$F$};
+\draw [fill=uuuuuu] (6.3680384757729325,-1.8119237886466841) circle (2.0pt);
+\draw[color=uuuuuu] (6.32,-2.17) node {$G$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{figure}
+\begin{figure}[h]
+\caption{К решению задачи 15}
+\label{pic:15-3}
+\definecolor{qqzzcc}{rgb}{0.,0.6,0.8}
+\definecolor{qqzzff}{rgb}{0.,0.6,1.}
+\definecolor{ffttww}{rgb}{1.,0.2,0.4}
+\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4.3,-5.88) rectangle (21.64,4.84);
+\draw [shift={(7.92,-4.38)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (121.14576283817513:0.6) arc (121.14576283817513:181.14576283817507:0.6) -- cycle;
+\draw [shift={(7.92,-4.38)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (101.14576283817512:0.6) arc (101.14576283817512:121.14576283817513:0.6) -- cycle;
+\draw [shift={(4.92,-4.44)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (1.145762838175113:0.6) arc (1.145762838175113:71.14576283817512:0.6) -- cycle;
+\draw [shift={(6.82989454359299,1.1529183610499507)},line width=2.pt,color=ffttww,fill=ffttww,fill opacity=0.10000000149011612] (0,0) -- (-128.85423716182493:0.6) arc (-128.85423716182493:-108.85423716182488:0.6) -- cycle;
+\draw [shift={(4.92,-4.44)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (71.14576283817512:0.6) arc (71.14576283817512:81.14576283817512:0.6) -- cycle;
+\draw [shift={(7.138523655576661,-0.41355364439923226)},line width=2.pt,color=qqzzff,fill=qqzzff,fill opacity=0.10000000149011612] (0,0) -- (101.14576283817514:0.6) arc (101.14576283817514:181.14576283817513:0.6) -- cycle;
+\draw [shift={(5.542256996862793,-0.4454789775735099)},line width=2.pt,color=qqzzcc,fill=qqzzcc,fill opacity=0.10000000149011612] (0,0) -- (1.1457628381751144:0.6) arc (1.1457628381751144:81.14576283817513:0.6) -- cycle;
+\draw [shift={(7.138523655576661,-0.41355364439923226)},line width=2.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0,0) -- (-178.8542371618249:0.6) arc (-178.8542371618249:-118.85423716182494:0.6) -- cycle;
+\draw [shift={(5.542256996862793,-0.4454789775735099)},line width=2.pt,color=qqzzff,fill=qqzzff,fill opacity=0.10000000149011612] (0,0) -- (-58.854237161824905:0.6) arc (-58.854237161824905:1.1457628381751148:0.6) -- cycle;
+\draw [line width=2.pt] (4.92,-4.44)-- (7.92,-4.38);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (4.92,-4.44);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (7.92,-4.38);
+\draw [line width=2.pt] (7.92,-4.38)-- (5.542256996862793,-0.4454789775735099);
+\draw [line width=2.pt] (4.92,-4.44)-- (6.82989454359299,1.1529183610499507);
+\draw [line width=2.pt] (5.542256996862793,-0.4454789775735099)-- (6.82989454359299,1.1529183610499507);
+\draw [line width=2.pt] (5.542256996862793,-0.4454789775735099)-- (7.138523655576661,-0.41355364439923226);
+\draw [line width=2.pt] (6.288000803076775,-0.3105401038487504) -- (6.292799843364678,-0.5504921182439514);
+\draw [line width=2.pt] (6.387980809074775,-0.3085405037287911) -- (6.392779849362678,-0.5484925181239921);
+\draw [line width=2.pt] (7.138523655576661,-0.41355364439923226)-- (4.92,-4.44);
+\draw [line width=2.pt] (6.249861545411466,4.09692272942656)-- (6.3680384757729325,-1.8119237886466841);
+\draw [line width=2.pt] (6.3680384757729325,-1.8119237886466841)-- (7.138523655576661,-0.41355364439923226);
+\draw [line width=2.pt] (6.624049886276221,-1.098621270888098) -- (6.834253946575668,-1.2144411872825895);
+\draw [line width=2.pt] (6.672308184773924,-1.0110362457633282) -- (6.882512245073372,-1.1268561621578197);
+\draw [line width=2.pt] (6.3680384757729325,-1.8119237886466841)-- (5.542256996862793,-0.4454789775735099);
+\draw [line width=2.pt] (5.87830608006224,-1.2335601446128572) -- (6.083711100073781,-1.1094280466121453);
+\draw [line width=2.pt] (5.8265843725619435,-1.1479747196080488) -- (6.031989392573485,-1.023842621607337);
+\begin{scriptsize}
+\draw [fill=ududff] (4.92,-4.44) circle (2.5pt);
+\draw[color=ududff] (4.56,-4.49) node {$A$};
+\draw [fill=ududff] (7.92,-4.38) circle (2.5pt);
+\draw[color=ududff] (8.14,-4.73) node {$B$};
+\draw [fill=uuuuuu] (6.249861545411466,4.09692272942656) circle (2.0pt);
+\draw[color=uuuuuu] (6.38,4.43) node {$C$};
+\draw[color=qqwuqq] (8.26,-4.13) node {$\gamma = 60\textrm{\degre}$};
+\draw [fill=uuuuuu] (5.542256996862793,-0.4454789775735099) circle (2.0pt);
+\draw[color=uuuuuu] (4.92,-0.27) node {$D$};
+\draw[color=qqwuqq] (8.44,-3.97) node {$\delta = 20\textrm{\degre}$};
+\draw[color=qqwuqq] (5.98,-4.15) node {$\epsilon = 70\textrm{\degre}$};
+\draw [fill=uuuuuu] (6.82989454359299,1.1529183610499507) circle (2.0pt);
+\draw[color=uuuuuu] (6.96,1.49) node {$E$};
+\draw[color=qqwuqq] (5.54,-4.01) node {$\eta = 10\textrm{\degre}$};
+\draw [fill=uuuuuu] (7.138523655576661,-0.41355364439923226) circle (2.0pt);
+\draw[color=uuuuuu] (7.28,-0.09) node {$F$};
+\draw [fill=uuuuuu] (6.3680384757729325,-1.8119237886466841) circle (2.0pt);
+\draw[color=uuuuuu] (6.32,-2.17) node {$G$};
+\draw[color=qqzzff] (7.48,-0.05) node {$\theta = 80\textrm{\degre}$};
+\draw[color=qqzzcc] (5.28,0.07) node {$\iota = 80\textrm{\degre}$};
+\draw[color=qqwuqq] (7.48,-0.51) node {$\kappa = 60\textrm{\degre}$};
+\draw[color=qqzzff] (5.84,-0.63) node {$\lambda = 60\textrm{\degre}$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{figure}
+
+Так как $\angle ACF = \angle CAF = 20^{\circ}$, то $\triangle ACF$ равнобедренный, поэтому $CF = AF$. Рассмотрим $\triangle CDG$ и $\triangle CFG$:
+\begin{gather*}
+CG = CG, \\
+CD = CF, \\
+DG = GF,
+\end{gather*}
+поэтому $\triangle CGD = \triangle CGF \Rightarrow \angle ACG = \angle BCG = \frac12\angle ACB = 10^{\circ}$. Рассмотрим теперь $\triangle ACE$ и $\triangle CAG$:
+\begin{gather*}
+AC = CA, \\
+\angle ACE = \angle CAG = 20^{\circ}, \\
+\angle CAE = \angle ACG = 10^{\circ},
+\end{gather*}
+поэтому $\triangle ACE = \triangle CAG \Rightarrow CE = AG \Rightarrow EF = FG = DF$.
+
+Поскольку $EF = EF$, то $\triangle DFE$ равнобедренный, следовательно, $\angle EDF = \angle EFD = \frac12(180^{\circ} - \angle DFE) = 50^{\circ}$. $\angle AEF$ можно найти из $\triangle AEB$:
+\begin{equation*}
+\angle AEB = 180^{\circ} - \angle EAB - \angle EBA = 180^{\circ} - 70^{\circ} - 80^{\circ} = 30^{\circ}
+\end{equation*}
+Таким образом, искомый угол $AED$ равен:
+\begin{equation}
+\angle AED = \angle DEF - \angle AEF = 50^{\circ} - 30^{\circ} = 20^{\circ}
+\end{equation}
+\pagebreak
+\section{Задача 16}
+\label{sec:orga1c1c5e}
+\zall
+Найти все функции \(f: \mathbb{R} \to \mathbb{R}\) такие, что:
+\begin{equation}
+f(xf(x) + f(y)) = f(x)^2 + y
+\end{equation}
+\subsection{Решение}
+\label{sec:org5de5445}
+\pagebreak
+\section{Задача 17}
+\label{sec:org59751e9}
+\zall
+Доказать, что любое число, оканчивающееся на 133, имеет простой делитель больше 7.
+\subsection{Решение}
+\label{sec:org9a85d59}
+$133 = 7\cdot19$.   
+\pagebreak
+\end{document}

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+list(nil) \PYGZlt{}\PYGZhy{}
+list(X.Y) \PYGZlt{}\PYGZhy{} list(Y)
+\end{Verbatim}

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+elem(X, X.Z) \PYGZlt{}\PYGZhy{}
+elem(X, Y.Z) \PYGZlt{}\PYGZhy{} elem(X, Z)
+\end{Verbatim}

@@ -1,0 +1,591 @@
+#+LANGUAGE: ru
+#+LATEX_ENGINE: pdflatex
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+LATEX_HEADER:\usepackage{minted}
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+#+LATEX_HEADER:\newcounter{stnmt}\setcounter{stnmt}{0}
+#+LATEX_HEADER:\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+#+LATEX_HEADER:\newtheorem*{Statement}{Утверждение \st}
+
+* Математическая логика
+*Логика* -- междисциплинарная область наук, занимающаяся:
+1. Законами причинно-следственной связи в окружающем мире
+2. Проявлением этих законов в рациональном мышлении человека
+3. Отражением этих законов в языках
+*Формальная логика* изучает *формы*, в которых проявляются законы причинно-следственной связи вне зависимости от их содержания.
+
+Законы формальной логики не позволяют получать новую информацию, они используются для её представления в более удобной форме.
+
+*Основная задача формальной логики*:
+Дана база знаний -- набор утверждений $\Gamma = \{\phi_1, \phi_2, \ldots, \phi_N\}$ и некоторое утверждение $\psi$. Задача -- проверить, что $\psi$ выводится из утверждений $\Gamma$ путём применения законов формальной логики.
+
+Подзадачи:
+1. Придумать язык описания знаний.
+2. Выделить систему законов формальной логики.
+3. Проверить корректность законов формальной логики.
+4. Проверить полноту системы законов логики.
+5. Разработать алгоритм проверки выводимости одних предложений из других по заданным логическим законам.
+6. Оптимизировать построенный алгоритм.
+
+Для использования системы доказательств в качестве вычислений нужно:
+1. Разработать язык для представления программ в виде логических утверждений.
+2. Сделать полученное доказательство конструктивным.
+3. Проверить вычислительную корректность этого способа доказательства.
+4. Проверить алгоритмическую полноту этого способа доказательства.
+5. Сделать этот способ программирования удобным в использовании.
+
+Для доказательства корректности программ также можно использовать методы матлогики. Для этого нужно:
+1. Создать язык для описания требований корректности программ.
+2. Разработать правила логического доказательства корректности программ.
+3. Разработать алгоритм применения этих правил для доказательства корректности программ относительно заданных спецификаций.
+
+* Язык логики предикатов первого порядка
+*Предикат* -- термин, обозначающий сказуемое.
+
+*Логика предикатов* изучает законы причинно-следственной зависимости между утверждениями, представленными в виде отношений. Для этого вводится формальный язык, выражения которого предназначены для описания отношений между произвольными предметами.
+
+Этот язык, как и любой другой, определяется:
+1. Алфавитом.
+2. Синтаксисом.
+3. Семантикой.
+
+Алфавит:
+Базовые символы: переменные($Var$), константы($Const$), функциональные переменные($Func$), предикатные символы($Pred$).
+Арность функционального/предикатного символа. Тройка $(Const, Func, Pred)$ называется *сигнатурой* алфавита.
+
+Предметные переменные обозначают имена предметов. Функциональные переменные обозначают операции над предметами. Предикатные символы обозначают отношения между предметами.
+
+Служебные символы:
+Логические связки и кванторы:
+1. Конъюкция
+2. Дизъюнкция
+3. Отрицание
+4. Импликация
+5. Квантор всеобщности
+6. Квантор существования
+
+Также в алфавит входят разделитель и скобки.
+
+Предметы, вступающие в отношения друг с другом, описываются термами.
+
+*Терм*:
+1. $x$, если $x \in Var$.
+2. $c$, если $c \in Const$.
+3. $f^{(n)}(t_1, t_2, \ldots, t_n)$, если $f^{(n)} \in Func$, $t_1, \ldots, t_n$ -- термы.
+
+$Term$ -- множество термов заданного алфавита. $Var_t$ -- множество переменных, входящих в состав терма $t$. $t(x_1, x_2, \ldots, x_n)$ -- запись, обозначающая терм $t$, у которого $Var_t \subseteq \{x_1, x_2, \ldots, x_n\}$. Если $Var_t = \emptyset$, то $t$ -- *основной терм*.
+
+Для описания отношений между предметами используются *формулы*:
+
+*атомарная формула*:
+#+begin_export latex
+\begin{equation*}
+P^{(m)}(t_1, \ldots, t_m),
+\end{equation*}
+#+end_export
+если $P^{(m)} \in Pred, \{t_1, \ldots, t_m\} \subseteq Term$.
+
+*составная формула*:
+#+begin_export latex
+\begin{equation*}
+(\phi \land \psi), (\phi \lor \psi), (\phi \to \psi), (\neg \phi),
+\end{equation*}
+#+end_export
+если $\phi, \psi$ -- формулы.
+#+begin_export latex
+\begin{equation*}
+\forall x \phi, \exists x \phi,
+\end{equation*}
+#+end_export
+если $x \in Var, \phi$ -- формула. $Form$ -- множество всех формул заданного алфавита.
+
+Предикаты арности 1 называются *свойствами*.
+
+Вхождение переменной в области действия квантора, связывающего эту переменную, называется *связанным*. Вхождение переменной в формулу, не являющееся связанным, называется *свободным*. Переменная называется *свободной*, если она имеет свободное вхождение в формулу. $Var_{\phi}$ -- множество свободных переменных $\phi$. Это множество определяется следующими правилами:
+#+begin_export latex
+\begin{align*}
+\phi = P^{(m)}(t_1, t_2, \ldots, t_m) &\, Var_{\phi} = \cup_{i = 1}^mVar_{t_i}, \\
+\phi = \psi_1 \land \psi_2 &\, Var_{\phi} = Var_{\psi_1} \cup Var_{\psi_2}, \\
+\phi = \psi_1 \lor \psi_2 \\
+\phi = \psi_1 \to \psi_2 \\
+\phi = \neg \psi &\, Var_{\phi} = Var_{\psi}, \\
+\phi = (\forall x \psi) &\, Var_{\phi} = Var_{\psi} \backslash \{x\}, \\
+\phi = (\exists x \psi)
+\end{align*}
+#+end_export
+$\phi(x_1, x_2, \ldots, x_n)$ -- запись, обозначающая формулу $\phi$, для которой
+#+begin_export latex
+\begin{equation*}
+Var_{\phi} \subseteq \{x_1, \ldots, x_n\}.
+\end{equation*}
+Формула $\phi$, для которой $Var_{\phi} = \emptyset$, называется \textbf{замкнутой формулой} или \textbf{предложением}. $CForm$ -- множество всех замкнутых формул.
+
+Служебные символы приоритизированы.
+#+end_export
+*Интерпретация* сигнатуры $(Const, Func, Pred)$ -- это алгебраическая система $I = (D_I, \overline{Const}, \overline{Func}, \overline{Pred})$:
+1. $D_I$ -- непустое множество, *область интерпретации*, *предметная область* или *универсум*.
+2. $\overline{Const}: Const \to D_I$ -- *оценка констант*.
+3. $\overline{Func}: Func^{(n)} \to (D_I^n \to D_I)$ -- *оценка функциональных символов*.
+4. $\overline{Pred}: Pred^{(m)} \to (D_I^m \to \{true, false\})$ -- *оценка предикатов*.
+Пример:
+#+begin_export latex
+\begin{gather*}
+C(x) - \text{ x -- квадрат} \\
+S(x) - \text{ x -- шар} \\
+B(x) - \text{ x -- чёрный предмет} \\
+W(x) - \text{ x -- белый предмет} \\
+U(x, y) - \text{ предмет x лежит над предметом y}
+\end{gather*}
+Каждый белый куб лежит под каким-то чёрным шаром:
+\begin{equation*}
+\forall x: W(x) \land C(x) \to \exists y: B(y) \land S(y) \land U(y, x)
+\end{equation*}
+Какой-то белый куб лежит под всеми чёрными шарами:
+\begin{equation*}
+\exists x: W(x) \land C(x) \land \forall y: B(y) \land S(y) \to U(y, x)
+\end{equation*}
+
+Паша любит всех тех, кто любит то, что любит Паша:
+\begin{equation*}
+\forall x: L(P, x) \to \forall y: L(y, x) \to L(P, y)
+\end{equation*}
+\begin{equation*}
+\forall x: \exists y: L(P, y) \land L(x, y) \to L(P, x)
+\end{equation*}
+
+Существует такая замкнутая формула $\varphi$, которая истинна в любой интерпретации с конечной предметной областью, но не является общезначимой:
+\begin{equation*}
+\forall x: \lnot R(x, x) \land \forall x\forall y\forall z: (R(x, y) \land R(y, z) \to R(x, z)) \to \exists x: \forall y: \lnot R(x, y)
+\end{equation*}
+
+Проверить общезначимость формулы:
+\begin{equation*}
+\phi = \exists x P(x) \to \forall x P(x)
+\end{equation*}
+Пусть $\phi$ не общезначима, тогда существует интерпретация $I$, опровергающая $\phi$. В этой модели: (слева записаны выполненные утверждения, справа не выполненные)
+\begin{align*}
+I \not\models \exists x P(x) \to \forall x P(x) \\
+I \models \exists x P(x) &\, I \not\models \forall x P(x) \\
+\exists d_1 \in I: P(d) = true &\, \exists d_2 \in I: P(d) = false
+\end{align*}
+В такой "минимальной" интерпретации формула невыполнима, следовательно, $\not\models \phi$.
+
+Проверить общезначимость формулы:
+\begin{equation*}
+\phi = \forall x P(x) \to \exists x P(x)
+\end{equation*}
+Пусть $\phi$ не общезначима, тогда существует интерпретация $I$, опровергающая $\phi$. В этой модели:
+\begin{align*}
+I \not\models \forall x P(x) \to \exists x P(x) \\
+I \models \forall x P(x) &\, I \not\models \exists x P(x) \\
+I \models \forall x P(x) \\
+I \models \forall x \neg P(x)
+\end{align*}
+Полученное противоречие показывает, что такую интерпретацию построить невозможно, т. е. формула $\phi$ общезначима.
+
+Семантическая таблица --- пара из множеств "потенциально истинных" и "потенциально ложных" формул. Таблица называется выполнимой, если в некоторой интерпретации при некоторых значениях свободных переменных все "потенциально истинные" формулы выполнены, а "потенциально ложные" --- нет. Общезначимость формулы равносильна выполнимости соответствующей таблицы.
+#+end_export
+Применить подстановку $\theta$ к формуле $\varphi$:
+#+begin_export latex
+\begin{gather*}
+\varphi: \forall x (P(x) \to \neg R(y)) \to R(f(x)) \lor \exists y P(y), \\
+\theta: \{ x / g(x, c), y / x, z / f(z) \}
+\end{gather*}
+После однократной подстановки получим:
+\begin{equation*}
+\forall x (P(x) \to \neg R(x)) \to R(f(g(x, c))) \lor \exists y P(y)
+\end{equation*}
+#+end_export
+
+Построить композицию подстановок:
+#+begin_export latex
+\begin{gather*}
+\theta = \{x/f(x, c), y/g(u), z/y\} \\
+\eta = \{x/g(y), y/z, u/c\}
+\end{gather*}
+Для композиции получаем:
+\begin{equation*}
+\theta\eta = \{x/f(g(y), c), y/g(c), u/c\}
+\end{equation*}
+#+end_export
+
+Унифицировать систему:
+#+begin_export latex
+\begin{equation*}
+\begin{cases}
+f(f(x, c), y) = f(y, f(z, z)) \\
+f(u, v) = y
+\end{cases}
+\end{equation*}
+Применяя правила, получим:
+\begin{multline*}
+\begin{cases}
+f(f(x, c), y) = f(y, f(z, z)) \\
+f(u, v) = y
+\end{cases}
+\Rightarrow_3
+\begin{cases}
+f(f(x, c), y) = f(y, f(z, z)) \\
+y = f(u, v)
+\end{cases}
+\Rightarrow_5 \\
+\Rightarrow_5
+\begin{cases}
+f(f(x, c), f(u, v)) = f(f(u, v), f(z, z)) \\
+y = f(u, v)
+\end{cases}
+\Rightarrow_1
+\begin{cases}
+f(x, c) = f(u, v) \\
+f(u, v) = f(z, z) \\
+y = f(u, v)
+\end{cases}
+\Rightarrow_1
+\begin{cases}
+x = u \\
+c = v \\
+z = u \\
+z = v \\
+y = f(u, v) \\
+\end{cases}
+\Rightarrow_3 \\
+\Rightarrow_3
+\begin{cases}
+x = u \\
+v = c \\
+u = z \\
+z = v \\
+y = f(u, v)
+\end{cases}
+\Rightarrow_5
+\begin{cases}
+x = c \\
+v = c \\
+u = c \\
+z = c \\
+y = f(c, c)
+\end{cases}
+\end{multline*}
+Получаем решение $\{x/c, v/c, u/c, z/c, y/f(c, c)\}$.
+#+end_export
+
+Применить правило резолюции к паре дизъюнктов:
+#+begin_export latex
+\begin{gather*}
+D_1 = P(x, f(y)) \lor \lnot R(g(x, z), f(z)) \\
+D_2 = Q(x) \lor R(y, x) \lor \lnot P(g(z, y), z)
+\end{gather*}
+Рассмотрим дизъюнкты $P(x, f(y))$ и $\lnot P(g(z, y), z)$ и построим для них наименьший общий унификатор. Получим систему:
+\begin{equation*}
+\begin{cases}
+x = g(z, y) \\
+f(y) = z
+\end{cases}
+\Rightarrow \begin{cases}
+x = g(f(y), y) \\
+z = f(y)
+\end{cases}
+\end{equation*}
+Получили унифицирующую подстановку $\theta = \{x/g(f(y), y), z/f(y)\}$. Применяя правило резолюции, получим резольвенту:
+\begin{multline*}
+(D_1 \lor D_2)\theta = (\lnot R(g(x, z), f(z)) \lor Q(x) \lor R(y, x))\theta = \\
+= \lnot R(g(g(f(y), y), f(y)), f(f(y))) \lor Q(g(f(y), y)) \lor R(y, g(f(y), y))
+\end{multline*}
+#+end_export
+
+Применить правило склейки к дизъюнкту:
+#+begin_export latex
+\begin{equation*}
+D_1 = P(x) \lor \lnot R(y, z, f(x)) \lor \lnot R(x, f(c), z)
+\end{equation*}
+Построим НОУ для дизъюнктов $R(y, z, f(x))$ и $R(x, f(c), z)$:
+\begin{equation*}
+\begin{cases}
+y = x \\
+z = f(c) \\
+f(x) = z
+\end{cases}
+\Rightarrow
+\begin{cases}
+x = y = c \\
+z = f(c)
+\end{cases}
+\end{equation*}
+Тогда
+\begin{equation*}
+D_1 = (D_1' \lor L_1)\eta = (P(x) \lor R(y, z, f(x)))\eta = P(c) \lor R(c, f(c), f(c))
+\end{equation*}
+#+end_export
+
+Проверить общезначимость формулы $\varphi$ методом резолюций:
+#+begin_export latex
+\begin{equation*}
+\forall x (\forall y \exists v \forall u ((A(u, v) \to B(y, u)) \land (\lnot \exists w A(w, u) \to \forall z A(z, v))) \to \exists y B(x, y))
+\end{equation*}
+
+Покажем, что формула $\varphi_1 = \lnot \varphi$ противоречива. Построим для неё приведённую форму:
+\begin{gather*}
+\lnot \forall x (\forall y \exists v \forall u ((A(u, v) \to B(y, u)) \land (\lnot \exists w A(w, u) \to \forall z A(z, v))) \to \exists y B(x, y)) \\
+\exists x \lnot (\forall y \exists v \forall u ((A(u, v) \to B(y, u)) \land (\lnot \exists w A(w, u) \to \forall z A(z, v))) \to \exists y B(x, y)) \\
+\exists x (\forall y \exists v \forall u ((A(u, v) \to B(y, u)) \land (\lnot \exists w A(w, u) \to \forall z A(z, v))) \land \lnot \exists y B(x, y)) \\
+\exists x (\forall y \exists v \forall u ((A(u, v) \to B(y, u)) \land (\forall w \lnot A(w, u) \to \forall z A(z, v))) \land \forall y \lnot B(x, y)) \\
+\exists x (\forall y \exists v \forall u ((\lnot A(u, v) \lor B(y, u)) \land (\lnot \forall w \lnot A(w, u) \lor \forall z A(z, v))) \land \forall t \lnot B(x, t)) \\
+\exists x (\forall y \exists v \forall u \forall t ((\lnot A(u, v) \lor B(y, u)) \land (\exists w A(w, u) \lor \forall z A(z, v)) \land \lnot B(x, t))) \\
+\exists x \forall y \exists v \forall u \exists w \forall z \forall t ((\lnot A(u, v) \lor B(y, u)) \land (A(w, u) \lor A(z, v)) \land \lnot B(x, t))
+\end{gather*}
+Построим сколемовскую нормальную форму:
+\begin{gather*}
+\forall y \forall u \forall z \forall t ((\lnot A(u, f_1(y)) \lor B(y, u)) \land (A(f_2(y, u), u) \lor A(z, f_1(y))) \land \lnot B(c_1, t))
+\end{gather*}
+Получаем систему дизъюнктов:
+\begin{gather*}
+S = \{D_1, D_2, D_3\} \\
+D_1 = \lnot A(u, f_1(y)) \lor B(y, u) \\
+D_2 = A(f_2(y, u), u) \lor A(z, f_1(y)) \\
+D_3 = \lnot B(c_1, t)
+\end{gather*}
+Применим к ней резолютивный вывод:
+1. Склейка $D_2$:
+\begin{equation*}
+\begin{cases}
+f_2(y_1, u_1) = z_1 \\
+u_1 = f_1(y_1)
+\end{cases}
+\Rightarrow
+\begin{cases}
+z_1 = f_2(y_1, f_1(y_1)) \\
+u_1 = f_1(y_1)
+\end{cases}
+\end{equation*}
+Откуда получаем новый дизъюнкт:
+\begin{equation*}
+D_2 = A(f_2(y_1, f_1(y_1)), f_1(y_1))
+\end{equation*}
+2. Построим теперь резольвенту $D_1$ и $D_2$:
+\begin{equation*}
+\begin{cases}
+u = f_2(y_1, f_1(y_1)), \\
+f_1(y) = f_1(y_1)
+\end{cases}
+\Rightarrow
+\begin{cases}
+u = f_2(y_1, f_1(y_1)), \\
+y = y_1
+\end{cases}
+\end{equation*}
+Получим новую систему дизъюнктов:
+\begin{gather*}
+S = \{D_2', D_3\} \\
+D_2' = B(y_1, f_2(y_1, f_1(y_1))) \\
+D_3 = \lnot B(c_1, t)
+\end{gather*}
+3. Строим резольвенту $D_2'$ и $D_3$:
+\begin{equation*}
+\begin{cases}
+y_1 = c_1, \\
+f_2(y_1, f_1(y_1)) = t
+\end{cases}
+\Rightarrow
+\begin{cases}
+y_1 = c_1, \\
+t = f_2(c_1, f_1(c))
+\end{cases}
+\end{equation*}
+Получили, что $S \models \square$, что означает противоречивость формулы $\varphi_1$ и общезначимость формулы $\varphi$, что и требовалось доказать.
+#+end_export
+
+Привести к предварённой нормальной форме формулу:
+#+begin_export latex
+\begin{equation*}
+\lnot \forall y (\exists x P(x, y) \to \forall u (R(y, u) \to \lnot\forall z(P(z, u) \lor \lnot R(z, y))))
+\end{equation*}
+
+\begin{gather*}
+\lnot \forall y (\exists x P(x, y) \to \forall u (R(y, u) \to \lnot\forall z(P(z, u) \lor \lnot R(z, y)))) \\
+\lnot \forall y (\lnot \exists x P(x, y) \lor \forall u (\lnot R(y, u) \lor \lnot \forall z (P(z, u) \lor \lnot R(z, y)))) \\
+\exists y (\exists x P(x, y) \land \exists u (\lnot R(y, u) \lor \exists z (\lnot P(z, u) \land R(z, y)))) \\
+\exists x \exists y \exists u \exists z (P(x, y) \land (\lnot R(y, u) \lor (\lnot P(z, u) \lor R(z, y)))) \\
+\exists x \exists y \exists u \exists z (P(x, y) \land (\lnot R(y, u) \lor \lnot P(z, u) \lor P(z, y)))
+\end{gather*}
+
+Провести сколемизацию формулы:
+\begin{equation*}
+\forall x \exists y \forall z \exists u R(x, y, z, u)
+\end{equation*}
+
+\begin{equation*}
+\forall x \forall z R(x, f(x), z, g(x, z))
+\end{equation*}
+
+\begin{equation*}
+\lnot \forall x (\exists y R(x, y) \to \forall z P(z, x))
+\end{equation*}
+
+\begin{gather*}
+\exists x \exists y \exists z(R(x, y) \land \lnot P(z, x)) \\
+R(c_1, c_2) \land \lnot P(c_3, c_1)
+\end{gather*}
+
+\begin{equation*}
+\lnot \forall y (\exists x P(x, y) \to \forall u (R(y, u) \to \lnot \forall z (P(z, u) \lor \lnot R(z, y))))
+\end{equation*}
+
+\begin{gather*}
+\exists x \exists y \exists u \exists z (P(x, y) \land (\lnot R(y, u) \lor \lnot P(z, u) \lor P(z, y))) \\
+P(c_1, c_2) \land (\lnot R(c_2, c_3) \lor \lnot P(c_4, c_3) \lor P(c_4, c_2))
+\end{gather*}
+
+Решить задачу унификации:
+\begin{equation*}
+R(Z, f(X, g(U), h(Y))) = R(h(X), f(g(a), Y, Z))
+\end{equation*}
+\begin{equation*}
+\begin{cases}
+Z = h(X) \\
+f(X, g(U), h(Y)) = f(g(a), Y, Z)
+\end{cases}
+\Rightarrow
+\begin{cases}
+Z = h(X) \\
+X = g(a) \\
+g(U) = Y \\
+h(Y) = Z \\
+\end{cases}
+\Rightarrow
+Z = h(g(a)) \\
+X = g(a) \\
+Y = g(a) \\
+U = a
+\end{equation*}
+Таким образом, искомая подстановка имеет вид:
+\begin{equation*}
+\{X/g(a), Y/g(a), Z/h(g(a)), U/a\}
+\end{equation*}
+#+end_export
+
+Найти НОУ для атомов:
+#+begin_export latex
+\begin{equation*}
+P(f(X, Y), Z, h(Z, Y)), P(f(Y, X), g(y), V)
+\end{equation*}
+\begin{equation*}
+P(f(X, Y), Z, h(Z, Y)) = P(f(Y, X), g(Y), V) \Rightarrow
+\begin{cases}
+f(X, Y) = f(Y, X) \\
+Z = g(Y) \\
+h(Z, Y) = V
+\end{cases}
+\Rightarrow
+\begin{cases}
+X = Y \\
+Z = g(Y) \\
+V = h(Z, Y)
+\end{cases}
+\end{equation*}
+\begin{equation*}
+R(c, X, f(X)) = R(Z, Y, Y)
+\Rightarrow
+\begin{cases}
+Z = c \\
+X = Y \\
+Y = f(Y)
+\end{cases}
+\end{equation*}
+решения нет.
+\begin{equation*}
+P(X, Y, Z, U, V) = P(f(Y, Y), f(Z, Z), f(U, U), f(V, V), f(c, d))
+\Rightarrow
+\begin{cases}
+X = f(Y, Y) \\
+Y = f(Z, Z) \\
+Z = f(U, U) \\
+U = f(V, V) \\
+V = f(c, d)
+\end{cases}
+\Rightarrow
+\begin{cases}
+X = \ldots \\
+Y = \ldots \\
+Z = f(f(f(c, d), f(c, d)), f(f(c, d), f(c, d))) \\
+U = f(f(c, d), f(c, d)) \\
+V = f(c, d)
+\end{cases}
+\end{equation*}
+#+end_export
+Построить резольвенты для дизъюнктов:
+#+begin_export latex
+\begin{equation*}
+\begin{cases}
+D_1 = \lnot P(f(X_1, Y_1), Z_1, h(Z_1, Y_1)) \lor R(Z_1, V_1) \\
+D_2 = Q(X_2) \lor P(f(Y_2, X_2), g(Y_2), V_2)
+\end{cases}
+\end{equation*}
+Вычислим НОУ для контрарной пары:
+\begin{equation*}
+P(f(X_1, Y_1), Z_1, h(Z_1, Y_1)) = P(f(Y_2, X_2), g(Y_2), V_2)
+\Rightarrow
+\begin{cases}
+f(X_1, Y_1) = f(Y_2, X_2) \\
+Z_1 = g(Y_2) \\
+h(Z_1, Y_1) = V_2
+\end{cases}
+\Rightarrow
+\begin{cases}
+X_1 = Y_2 \\
+Y_1 = X_2 \\
+Z_1 = g(Y_2) \\
+V_2 = h(g(Y_2), X_2)
+\end{cases}
+\end{equation*}
+Получаем резольвенту:
+\begin{equation*}
+D = R(g(Y_2), V_1) \lor Q(X_2)
+\end{equation*}
+#+end_export
+#+begin_src text
+родитель(X, Y) <- мать(X, Y)
+родитель(X, Y) <- отец(X, Y)
+#+end_src
+или
+#+begin_src text
+родитель(X, Y) <- мать(X, Y) | отец(X, Y)
+#+end_src
+#+begin_src text
+дед(X, Y) <- отец(X, Z), родитель(Z, Y)
+#+end_src
+#+begin_src text
+сестра(X, Y) <- женщина(X), родитель(Z, X), родитель(Z, Y), X ≠ Y
+#+end_src
+#+begin_src text
+потомок(X, Y) <- родитель(Y, X) | потомок(X, Z), родитель(Y, Z)
+#+end_src
+#+begin_src text
+list(nil) <-
+list(X.Y) <- list(Y)
+#+end_src
+#+begin_src text
+elem(X, X.Z) <-
+elem(X, Y.Z) <- elem(X, Z)
+#+end_src

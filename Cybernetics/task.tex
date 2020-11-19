@@ -1,0 +1,138 @@
+% Created 2020-06-15 Mon 16:13
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\usepackage{dot2texi}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\author{Sergey Makarov}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Sergey Makarov},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.0.50 (Org mode 9.3)}, 
+ pdflang={Russian}}
+\begin{document}
+
+
+\section{Задача 10}
+\label{sec:org031702f}
+Промоделировать \(\pi\)-схемой формулу
+\begin{equation*}
+x_1x_2\lor x_3\overline{x}_4x_5\lor \overline{x}_3x_4(\overline{x}_1\lor \overline{x}_5)x_6\lor x_7
+\end{equation*}
+и выписать с расстановкой всех скобок или задать деревом подобную ей формулу минимальной глубины. Указать и обосновать изменение данной глубины при инвертировании БП $x_2$.
+\subsection{Решение}
+\label{sec:orgadd7fe8}
+Оценка глубины для подобной формулы имеет вид:
+\begin{equation*}
+\lceil\log(L(F) + 1)\rceil = 4 \leq D(F) \leq \lceil\log(L(F) + 1)\rceil + \operatorname{Alt}(F) = \lceil\log(L(F) + 1)\rceil + 2 = 6
+\end{equation*}
+При инвертировании БП \(x_2\) сложность формулы увеличится на 1, поэтому для глубины изменённой формулы будет справедлива та же оценка.
+
+Исходной формуле отвечает \(\pi\)-схема:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=latex']
+\tikzstyle{pole} = [draw, shape=circle, inner sep=0pt, minimum size=1.5mm]
+\tikzstyle{inner} = [draw, shape=circle, inner sep=0pt, minimum size=1.5mm, fill=black]
+
+\begin{dot2tex}[dot, tikz, codeonly, options=-tmath, scale = 0.8]
+graph G {
+    rankdir=LR;
+    node[style=pole, label=""]a; b;
+    node[style=inner];
+    a -- v1[label=x_1];
+    v1 -- b[label=x_2];
+    a -- v2[label=x_3];
+    v2 -- v3[label=" ", texlbl="$\overline{x}_4$"];
+    v3 -- b[label=x_5];
+    a -- v4[label=" ", texlbl="$\overline{x}_3$"];
+    v4 -- v5[label=x_4];
+    v5 -- v6[label=" ", texlbl="$\overline{x}_1$"];
+    v5 -- v6[label=" ", texlbl="$\overline{x}_5$"];
+    v6 -- b[label=x_6];
+    a -- b[label=x_7];
+}
+\end{dot2tex}
+\end{tikzpicture}
+\end{figure}
+\newpage
+
+И дерево:
+\begin{center}
+\begin{dot2tex}[dot, tikz, options=-s -tmath, scale = 0.8]
+graph G {
+    node[shape=plaintext];
+    xx_1[label=x_1];
+    xx_3[label=x_3];
+    xx_4[label=x_4];
+    xx_5[label=x_5];
+
+    v_1[label="\neg"];
+    v_2[label="\neg"];
+    v_3[label="\neg"];
+    v_4[label="\land"];
+    v_5[label="\neg"];
+    v_6[label="\land"];
+    v_7[label="\land"];
+
+    v1[label="\lor"];
+    v2[label="\land"];
+    v3[label="\land"];
+    v4[label="\lor"];
+
+    v5[label="\land"];
+    v6[label="\lor"];
+    v7[label="\lor"];
+
+    x_1 -- v_1; x_5 -- v_2; x_3 -- v_3;
+    x_4 -- v_4; x_6 -- v_4;
+    xx_4 -- v_5; xx_3 -- v_6; xx_5 -- v_6;
+    xx_1 -- v_7; x_2 -- v_7;
+
+    v_1 -- v1; v_2 -- v1; v_3 -- v2; v_4 -- v2;
+    v_5 -- v3; v_6 -- v3; v_7 -- v4; x_7 -- v4;
+
+    v1 -- v5; v2 -- v5; v3 -- v6; v4 -- v6;
+    v5 -- v7; v6 -- v7;
+}
+\end{dot2tex}
+\end{center}
+\end{document}

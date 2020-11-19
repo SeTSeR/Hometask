@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+for each EBB in CFG \PYGZob{}
+    clear tables of value numbers and load expressions;
+    for each block in EBB \PYGZob{}
+        on enter \PYGZob{}
+            add new frame for tables of value numbers and load expressions;
+        \PYGZcb{}
+        on leave \PYGZob{}
+            drop last frame from tables of value numbers and load expressions;
+        \PYGZcb{}
+    \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}

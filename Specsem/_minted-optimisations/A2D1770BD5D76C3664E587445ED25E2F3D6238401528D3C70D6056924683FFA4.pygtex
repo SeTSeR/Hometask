@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+space regs(\PYGZsq{}5);
+
+fn fact(n: \PYGZsq{}32) \PYGZob{}
+    let v: \PYGZsq{}32 = 1;
+    while \PYGZsq{}ne(n, 0\PYGZsq{}32) \PYGZob{}
+        v = \PYGZsq{}mul(v, n);
+        n = \PYGZsq{}sub(n, 1\PYGZsq{}32);
+    \PYGZcb{}
+    v
+\PYGZcb{}
+\end{Verbatim}

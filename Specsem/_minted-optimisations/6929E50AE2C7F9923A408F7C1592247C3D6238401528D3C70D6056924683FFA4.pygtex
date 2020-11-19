@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+for each EBB in CFG \PYGZob{}
+    value numbers = \PYGZob{}\PYGZcb{};
+    memory vars = \PYGZob{}\PYGZcb{};
+    for each block in EBB \PYGZob{}
+        on enter \PYGZob{}
+            add new layer to value numbers;
+            add new layer to memory vars;
+            translate block to SSA, using value numbers and memory vars;
+        \PYGZcb{}
+        on leave \PYGZob{}
+            remove last layer from value numbers;
+            remove last layer from memory vars;
+        \PYGZcb{}
+    \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}

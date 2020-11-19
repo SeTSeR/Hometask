@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+RANGE СЛУЖАЩИЙ IS СЛУЖАЩИЕ
+RANGE СЛУЖАЩИЙ2 IS СЛУЖАЩИЕ
+RANGE ОТДЕЛ IS ОТДЕЛЫ
+
+СЛУЖАЩИЙ.СЛУ\PYGZus{}НОМЕР = ОТДЕЛ.ОТД\PYGZus{}РУК AND СЛУЖАЩИЙ.СЛУ\PYGZus{}ОТД\PYGZus{}НОМЕР = ОТДЕЛ.ОТД\PYGZus{}НОМЕР
+AND FORALL СЛУЖАЩИЙ2 (NOT СЛУЖАЩИЙ2.СЛУ\PYGZus{}ОТД\PYGZus{}НОМЕР = СЛУЖАЩИЙ.СЛУ\PYGZus{}ОТД\PYGZus{}НОМЕР
+    OR СЛУЖАЩИЙ2.СЛУ\PYGZus{}ЗАРП \PYGZlt{}= СЛУЖАЩИЙ.СЛУ\PYGZus{}ЗАРП)
+\end{Verbatim}

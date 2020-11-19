@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+space regs(\PYGZsq{}5);
+
+fn example1(n: \PYGZsq{}32) \PYGZob{}
+    let v = n;
+    let x = n;
+    let t = \PYGZsq{}add(n, 1\PYGZsq{}32);
+    let x = \PYGZsq{}add(x, 1\PYGZsq{}32);
+    regs(0) = n;
+    while \PYGZsq{}ne(v, 0\PYGZsq{}32) \PYGZob{}
+        x = \PYGZsq{}add(x, 1\PYGZsq{}32);
+        v = \PYGZsq{}sub(v, 1\PYGZsq{}32);
+        t = regs(0);
+        t = \PYGZsq{}add(n, 1\PYGZsq{}32);
+    \PYGZcb{}
+    x
+\PYGZcb{}
+\end{Verbatim}

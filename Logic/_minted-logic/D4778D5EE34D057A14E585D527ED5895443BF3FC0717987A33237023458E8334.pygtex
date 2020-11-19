@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+сестра(X, Y) \PYGZlt{}\PYGZhy{} женщина(X), родитель(Z, X), родитель(Z, Y), X ≠ Y
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{n+nf}{INPUT} \PYG{n+no}{a}\PYG{c+c1}{;}
+    \PYG{n+nf}{INPUT} \PYG{n+no}{s}\PYG{c+c1}{;}
+    \PYG{n+nf}{IF} \PYG{n+no}{a} \PYG{n+no}{JMP} \PYG{n+no}{L1}\PYG{c+c1}{;}
+    \PYG{n+nf}{SLICE}\PYG{p}{(}\PYG{n+no}{v0}\PYG{p}{,} \PYG{n+no}{s}\PYG{p}{,} \PYG{l+m+mi}{17}\PYG{p}{,} \PYG{l+m+mi}{34}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{SLICE}\PYG{p}{(}\PYG{n+no}{v1}\PYG{p}{,} \PYG{n+no}{v0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{v1}\PYG{c+c1}{;}
+    \PYG{n+nf}{JMP} \PYG{n+no}{L2}\PYG{c+c1}{;}
+\PYG{n+nl}{L1:} \PYG{n+nf}{SLICE}\PYG{p}{(}\PYG{n+no}{v2}\PYG{p}{,} \PYG{n+no}{s}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{17}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{SLICE}\PYG{p}{(}\PYG{n+no}{v3}\PYG{p}{,} \PYG{n+no}{v2}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{c+c1}{;}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{v3}\PYG{c+c1}{;}
+\PYG{n+nl}{L2:} \PYG{n+nf}{INPUT} \PYG{n+no}{v4}
+    \PYG{n+nf}{OUTPUT} \PYG{n+no}{v4}
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+entries = CFG.entry;
+
+while entries is not empty \PYGZob{}
+    current\PYGZus{}entry = entries.pop();
+    DFS(current\PYGZus{}entry) // Stop at join nodes
+                       // add join nodes to entries;
+\PYGZcb{}
+\end{Verbatim}

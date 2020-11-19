@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+space regs(\PYGZsq{}5);
+
+fn fact(n: \PYGZsq{}32) \PYGZhy{}\PYGZgt{} \PYGZsq{}32 \PYGZob{}
+    v0 \PYGZlt{}\PYGZhy{} INIT(1);
+    OUTPUT n;
+    OUTPUT v0;
+L1: INPUT v1;
+    INPUT v2;
+    v3 \PYGZlt{}\PYGZhy{} INIT(0);
+    v4 \PYGZlt{}\PYGZhy{} APPLY(\PYGZsq{}ne, v1, v3);
+    IF v4 JMP L2;
+    v5 \PYGZlt{}\PYGZhy{} APPLY(\PYGZsq{}mul, v2, v1);
+    v6 \PYGZlt{}\PYGZhy{} INIT(1);
+    v7 \PYGZlt{}\PYGZhy{} APPLY(\PYGZsq{}sub, v1, v6);
+    OUTPUT v7;
+    OUTPUT v5;
+    JMP L1;
+L2: OUTPUT v1
+\PYGZcb{}
+\end{Verbatim}

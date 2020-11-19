@@ -1,0 +1,98 @@
+#+LANGUAGE: ru
+#+LATEX_ENGINE: pdflatex
+#+LATEX_HEADER:\usepackage{listings}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{esint}
+#+LATEX_HEADER:\usepackage{mathtools}
+#+LATEX_HEADER:\usepackage{amsthm}
+#+LATEX_HEADER:\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+
+#+LATEX_HEADER:\usepackage{float}
+#+LATEX_HEADER:\usepackage{dot2texi}
+#+LATEX_HEADER:\usepackage{tikz}
+#+LATEX_HEADER:\usetikzlibrary{shapes, arrows, positioning}
+
+#+LATEX_HEADER:\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+
+#+LATEX_HEADER:\newcounter{lem}\setcounter{lem}{0}
+#+LATEX_HEADER:\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+#+LATEX_HEADER:\newtheorem*{Lemma}{Лемма \lm}
+
+#+LATEX_HEADER:\newcounter{th}\setcounter{th}{0}
+#+LATEX_HEADER:\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+#+LATEX_HEADER:\newtheorem*{Theorem}{Теорема \th}
+
+#+LATEX_HEADER:\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+#+LATEX_HEADER:\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+#+LATEX_HEADER:\newtheorem*{Consequence}{Следствие \cnsqnc}
+
+#+LATEX_HEADER:\newcounter{Cmt}\setcounter{Cmt}{0}
+#+LATEX_HEADER:\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+#+LATEX_HEADER:\newtheorem*{Note}{Замечание \cmt}
+
+#+LATEX_HEADER:\newcounter{stnmt}\setcounter{stnmt}{0}
+#+LATEX_HEADER:\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+#+LATEX_HEADER:\newtheorem*{Statement}{Утверждение \st}
+
+* Контрольная работа
+Вычислить множества $Input$ для базовых блоков следующей функции:
+#+begin_export latex
+\begin{lstlisting}
+param p 
+    param q 
+    param r 
+    q0 <- #0 
+L1:    ifTrue q0 >= p goto L2 
+    q0 <- +, q0,  r 
+    q1 <- +, p,   q 
+    r  <- *, r,  #2 
+    q2 <- +, p,   q 
+    q0 <- +, p,  #1 
+    q2 <- +, q0,  r 
+    s  <- +, q2,  q 
+    s  <- +,  s,  q 
+    q2 <- +, p,   q 
+    q3 <- -, q2, q1 
+    q3 <- -, q2, q3 
+    q3 <- +,  p,  q 
+    q1 <- -, q3,  s 
+    ifTrue q < #256 goto L1 
+    q3 <- +, q0, q1 
+    s  <- +, q2, q3 
+    p  <- -, s,  p 
+    r  <- -, r,  #256 
+    goto L1
+L2:    q <- *, p,   q 
+    return q
+\end{lstlisting}
+\pagebreak
+#+end_export
+** Решение
+CFG имеет вид:
+#+begin_export latex
+ \begin{figure}[h]
+\begin{dot2tex}
+digraph G {
+  node [shape=rectangle];
+  Entry -> B1;
+  B1 -> B2
+  B2 -> B3;
+  B2 -> B5;
+  B3 -> B2;
+  B3 -> B4;
+  B4 -> B2;
+  B5 -> Exit;
+}
+\end{dot2tex}
+\end{figure}
+#+end_export
+Множества достигающих определений для этих блоков имеют вид:
+#+begin_export latex
+\begin{gather*}
+Input(B1) = \emptyset \\
+Input(B2) = \{(B1, q), (B4, s), (B1, p), (B4, p), (B4, r), (B4, q3), (B3, q2)\} \\
+Input(B3) = \{(B1, q), (B4, s), (B1, p), (B4, p), (B4, r), (B4, q3), (B3, q2)\} \\
+Input(B4) = \{(B1, q), (B3, q0), (B3, q1), (B3, q2), (B3, q3), (B3, r), (B3, s)\} \\
+Input(B5) = \{(B1, q), (B4, s), (B1, p), (B4, p), (B4, r), (B4, q3), (B3, q2)\}
+\end{gather*}
+#+end_export

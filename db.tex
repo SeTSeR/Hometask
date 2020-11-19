@@ -1,0 +1,157 @@
+% Created 2020-11-18 Wed 12:43
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[russian]{babel}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{minted}
+\usepackage[top=0.8in, bottom=0.75in, left=0.625in, right=0.625in]{geometry}
+\usepackage{float}
+\usepackage{dot2texi}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning}
+\def\zall{\setcounter{lem}{0}\setcounter{cnsqnc}{0}\setcounter{th}{0}\setcounter{Cmt}{0}\setcounter{equation}{0}\setcounter{stnmt}{0}}
+\newcounter{lem}\setcounter{lem}{0}
+\def\lm{\par\smallskip\refstepcounter{lem}\textbf{\arabic{lem}}}
+\newtheorem*{Lemma}{Лемма \lm}
+\newcounter{th}\setcounter{th}{0}
+\def\th{\par\smallskip\refstepcounter{th}\textbf{\arabic{th}}}
+\newtheorem*{Theorem}{Теорема \th}
+\newcounter{cnsqnc}\setcounter{cnsqnc}{0}
+\def\cnsqnc{\par\smallskip\refstepcounter{cnsqnc}\textbf{\arabic{cnsqnc}}}
+\newtheorem*{Consequence}{Следствие \cnsqnc}
+\newcounter{Cmt}\setcounter{Cmt}{0}
+\def\cmt{\par\smallskip\refstepcounter{Cmt}\textbf{\arabic{Cmt}}}
+\newtheorem*{Note}{Замечание \cmt}
+\newcounter{stnmt}\setcounter{stnmt}{0}
+\def\st{\par\smallskip\refstepcounter{stnmt}\textbf{\arabic{stnmt}}}
+\newtheorem*{Statement}{Утверждение \st}
+\author{Макаров Сергей, группа 427}
+\date{\today}
+\title{Базы данных}
+\hypersetup{
+ pdfauthor={Макаров Сергей, группа 427},
+ pdftitle={Базы данных},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.4)}, 
+ pdflang={Russian}}
+\begin{document}
+
+\maketitle
+
+\section{Введение}
+\label{sec:org1a56f17}
+Требования к СУБД:
+\begin{enumerate}
+\item Эффективный доступ и хранение данных
+\item Поддержка языка запросов
+\item Поддержка целостности данных
+\item Поддержка транзакций и многопользовательского режима
+\item Поддержка журналирования и архивирования данных
+Необходимость СУБД как отдельного компонента:
+\item Журналирование и другие метаданные.
+\item Нормализация и более тонкое управление внешней памятью
+\item Управление оперативной(основной) памятью, доступ к физической основной памяти для кэшей и буферов
+\end{enumerate}
+\section{Реляционная модель}
+\label{sec:orgb86b8b9}
+\subsection{Алгебра Кодда}
+\label{sec:orgbe72c8d}
+Операции:
+\begin{itemize}
+\item UNION -- объединение таблиц с совпадающими заголовками
+\item INTERSECT -- пересечение таблиц с совпадающими заголовками
+\item MINUS -- разность таблиц с совпадающими заголовками
+\item TIMES -- декартово произведение таблиц с непересекающимися заголовками, кортежи результата -- попарное объединение исходных кортежей
+\item WHERE -- ограничение таблицы по условию
+\item PROJECT -- проекция таблицы на множество атрибутов
+\item JOIN -- соединение кортежей по условию
+\item DIVIDE BY -- операция, обратная декартову произведению
+\item RENAME -- переименование атрибутов
+\item Присваивание
+\end{itemize}
+Приоритеты:
+\begin{equation*}
+RENAME \geq WHERE = PROJECT \geq TIMES = JOIN = INTERSECT = DIVIDE BY \geq UNION = MINUS
+\end{equation*}
+\subsection{Алгебра A*}
+\label{sec:orga9146fe}
+\begin{itemize}
+\item Реляционное дополнение -- дополнение тела операнда до всей таблицы
+\item Операция удаления атрибута
+\item Операция переименования
+\item Реляционная конъюкция -- множество кортежей, представляющих попарное объединение кортежей-операндов
+\item Реляционная дизъюнкция -- множество кортежей, представляющее объединение пар кортежей, хотя бы одна из которых содержится в одном из операндов
+\end{itemize}
+Операция дизъюнкции выражается через операцию конъюкции и дополнения по закону де Моргана
+\section{Нормализация}
+\label{sec:org082e95a}
+\begin{itemize}
+\item Теорема Хита
+Пусть задано отношение \(r = \{A, B, C\}\) и выполняется FD \(A \to B\). Тогда
+\end{itemize}
+\begin{minted}[]{text}
+r = (r PROJECT {A, B}) NATURAL JOIN (r PROJECT {A, C})
+\end{minted}
+\begin{itemize}
+\item Первая нормальная форма
+Значения всех атрибутов атомарны, т. е. их внутренняя структура не видна. Несоблюдение этого требования усложняет структуру тублицы и работу со значениями в ней.
+\item Вторая нормальная форма
+Выполняются требования первой нормальной формы, и каждый неключевой атрибут минимально функционально зависит от первичного ключа. Несоблюдение этого требования усложняет работу с БД, так как первичный ключ содержит избыточную информацию.
+\item Третья нормальная форма
+Отношение находится во второй нормальной форме, и каждый неключевой атрибут нетранзитивно функционально зависит от первичного ключа. При несоблюдении этого требования возникают проблемы с обновлением сущности, входящей в транзитивную зависимость.
+\item Теорема Риссанена
+Проекции \(r_1\) и \(r_2\) отношения \(r\) являются независимыми тогда и только тогда, когда:
+\begin{enumerate}
+\item каждая FD в \(r\) логически следует из FD в \(r_1\) и \(r_2\).
+\item общие атрибуты \(r_1\) и \(r_2\) образуют возможный ключ хотя бы одного из этих отношений
+\end{enumerate}
+\item Нормальная форма Бойса-Кодда
+Отношение находится в BCNF тогда и только тогда, когда любая выполняемая для него нетривиальная и минимальная FD имеет в качестве детерминанта некоторый возможный ключ этого отношения.
+\item Теорема Фейджина
+\end{itemize}
+Пусть имеется переменная отношения \(R\{A, B, C\}\). Отношение \(R\) декомпозируется без потерь на проекции \(\{A, B\}\) и \(\{A, C\}\) тогда и только тогда, когда для него выполняется MVD \(A \to\to B | C\).
+\begin{itemize}
+\item Четвёртая нормальная форма
+Переменная отношения \(r\) находится в четвёртой нормальной форме тогда и только тогда, когда она находится в BCNF, и все MVD \(r\) являются FD, детерминантами которых являются возможные ключи \(r\).
+\item Пятая нормальная форма
+Переменная отношения \(r\) находится в пятой нормальной форме тогда и только тогда, когда любая её зависимость проекции-соединения подразумевается возможными ключами отношения \(R\).
+\end{itemize}
+\section{Синхронизация}
+\label{sec:org605dd81}
+\begin{itemize}
+\item Atomicy(атомарность) -- результаты транзакции после фиксации либо отражены в состоянии БД полностью, либо не отображены вообще.
+\item Consistency(согласованность, целостность) -- транзакция может быть зафиксирована тогда и только тогда, когда её действие не нарушает целостности БД.
+\item Isolation(изоляция) -- две параллельно работающие транзакции не должны действовать одна на другую.
+\item Durability(долговечность) -- после успешного завершения транзакции все внесённые ей изменения должны сохраняться даже в случае сбоев.
+\end{itemize}
+
+Степени изоляции транзакций:
+\begin{enumerate}
+\item Отсутствие потерянных изменений.
+\item Отсутствие чтения грязных данных.
+\item Отсутствие неповторяющихся чтений.
+\item Сериализация транзакций -- выполнение их действий в таком порядке, результаты которого были бы такие же, как при последовательном их выполнении в некотором порядке.
+
+Таблица совместимости блокировок
+\end{enumerate}
+\section{B+-деревья}
+\label{sec:orge9261b8}
+\end{document}

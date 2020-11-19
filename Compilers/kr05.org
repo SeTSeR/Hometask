@@ -1,0 +1,184 @@
+#+LATEX_HEADER:\usepackage[T2A]{fontenc}
+#+LATEX_HEADER:\usepackage[utf8]{inputenc}
+#+LATEX_HEADER:\usepackage{minted}
+#+LATEX_HEADER:\usepackage{subcaption}
+#+LATEX_HEADER:\captionsetup{compatibility=false}
+
+#+TITLE: Контрольная работа №5
+#+DATE: \today
+#+AUTHOR: Макаров Сергей, группа 427
+#+EMAIL: setser200018@gmail.com
+#+LANGUAGE: ru
+#+OPTIONS: toc:nil
+
+* Задача
+Вычислить передаточную функцию $f_{R, Out[B_4]}$ для приведённого на рисунке региона:
+#+begin_src dot :file cfg5.png
+  digraph G {
+      node[shape=rectangle];
+      Entry[style=invisible];
+      Exit[style=invisible];
+      Entry -> B0;
+      B0 -> B1;
+      B1 -> B2;
+      B2 -> B1;
+      B1 -> B3;
+      B3 -> B4;
+      B1 -> B4;
+      B4 -> Exit;
+  }
+#+end_src
+
+#+attr_latex: :height 300px
+#+RESULTS:
+[[file:cfg5.png]]
+
+\pagebreak
+Передаточные функции задачи вычисления достигающих определений для каждого блока:
+#+begin_export latex
+\begin{gather*}
+f_0(x) = \{d_1, d_2, d_3\} \cup (x \backslash \{d_4, d_5, d_6\}) \\
+f_1(x) = \{d_4, d_5\} \cup (x \backslash \{d_1, d_2, d_6\}) \\
+f_2(x) = \{d_6\} \cup (x \backslash \{d_2, d_5\}) \\
+f_3(x) = \{d_7\} \cup (x \backslash \{d_8\}) \\
+f_4(x) = \{d_8\} \cup (x \backslash \{d_7\})
+\end{gather*}
+#+end_export
+** Решение
+   Процесс редукции CFG изображён на рисунках \ref{pic:pic1} и \ref{pic:pic2}:
+   #+begin_export latex
+   \begin{figure}[h]
+   \caption{Редукция CFG, шаг 1}
+   \label{pic:pic1}
+   \begin{subfigure}{0.5\textwidth}
+   #+end_export
+   #+begin_src dot :file regions1.png
+     digraph G {
+        Entry[style=invisible];
+        Exit[style=invisible];
+        Entry -> R0;
+        R0 -> R1;
+        subgraph cluster_0 {
+            label = "R5";
+            R1 -> R2;
+            R2 -> R1;
+        }
+        R1 -> R3;
+        R3 -> R4;
+        R1 -> R4;
+        R4 -> Exit;
+     }
+   #+end_src
+
+   #+attr_latex: :height 300px :center nil
+   #+RESULTS:
+   [[file:regions1.png]]
+
+   #+begin_export latex
+   \end{subfigure}
+   \begin{subfigure}{0.5\textwidth}
+   #+end_export
+
+   #+begin_src dot :file regions2.png
+     digraph G {
+         Entry[style=invisible];
+         Exit[style=invisible];
+         Entry -> R0;
+         R0 -> R5;
+         subgraph cluster_0 {
+             label = "R6";
+             R5 -> R5;
+         }
+         R5 -> R3;
+         R3 -> R4;
+         R5 -> R4;
+         R4 -> Exit;
+     }
+   #+end_src
+
+   #+attr_latex: :height 300px :center nil
+   #+RESULTS:
+   [[file:regions2.png]]
+
+   #+begin_export latex
+   \end{subfigure}
+   \end{figure}
+   #+end_export
+\pagebreak
+   #+begin_export latex
+\begin{figure}[h]
+\caption{Редукция CFG, шаг 2}
+\label{pic:pic2}
+\begin{subfigure}{0.5\textwidth}
+   #+end_export
+
+   #+begin_src dot :file region3.png
+     digraph G {
+         subgraph cluster_0 {
+             label = "R";
+             Entry[style=invisible];
+             Exit[style=invisible];
+             Entry -> R0;
+             R0 -> R6;
+             R6 -> R3;
+             R3 -> R4;
+             R6 -> R4;
+             R4 -> Exit;
+         }
+     }
+   #+end_src
+
+   #+attr_latex: :height 300px :center nil
+   #+RESULTS:
+   [[file:region3.png]]
+
+   #+begin_export latex
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+   #+end_export
+
+   #+begin_src dot :file region4.png
+     digraph G {
+        Entry[style=invisible];
+        Exit[style=invisible];
+        Entry -> R;
+        R -> Exit;
+     }
+   #+end_src
+
+   #+attr_latex: :height 200px :center nil
+   #+RESULTS:
+   [[file:region4.png]]
+   
+   #+begin_export latex
+\end{subfigure}
+\end{figure}
+   #+end_export
+
+   Проходя вверх по иерархии областей, рассчитаем передаточные функции:
+#+begin_export latex
+\begin{gather*}
+f_{R_0, In[B_0]} = I, f_{R_0, Out[B_0]} = f_0 \\
+f_{R_1, In[B_1]} = I, f_{R_1, Out[B_1]} = f_1 \\
+f_{R_2, In[B_2]} = I, f_{R_2, Out[B_2]} = f_2 \\
+f_{R_3, In[B_3]} = I, f_{R_3, Out[B_3]} = f_3 \\
+f_{R_4, In[B_4]} = I, f_{R_4, Out[B_4]} = f_4 \\
+f_{R_5, In[R_1]} = I, f_{R_5, Out[B_1]} = f_1 \\
+f_{R_5, In[R_2]} = f_{R_5, Out[B_1]} = f_1, \\
+f_{R_5, Out[B_2]} = f_2 \circ f_{R_5, In[R_2]} = f_2 \circ f_1 = \lambda x. \{d_4, d_6\} \cup (x \backslash \{d_1, d_2, d_5, d_6\}) = \lambda x. \{d_4, d_6\} \cup (x \backslash \{d_1, d_2, d_5\}) \\
+f_{R_6, In[R_5]} = I, \\
+f_{R_6, Out[B_1]} = f_1 \circ f_{R_5, Out[B_2]}^* = f_1 \circ (f_2 \circ f_1)^* = \lambda x. \{d_4, d_5\} \cup (x \backslash \{d_1, d_2, d_6\})
+\end{gather*}
+\begin{gather*}
+f_{R, In[R_0]} = I, f_{R, Out[B_0]} = f_0 \\
+f_{R, In[R_6]} = f_{R, Out[B_0]} = f_0, \\
+f_{R, Out[B_1]} = f_1 \circ f_{R, In[R_6]} = f_1 \circ (f_2 \circ f_1)^* \circ f_0 = \\
+= \lambda x. \{d_3, d_4, d_5\} \cup (x \backslash \{d_1, d_2, d_5, d_6\}) = \lambda x. \{d_3, d_4, d_5\} \cup (x \backslash \{d_1, d_2, d_6\}) \\
+f_{R, In[R_3]} = f_{R, Out[B_1]} = f_1 \circ (f_2 \circ f_1)^* \circ f_0, \\
+f_{R, Out[B_3]} = f_3 \circ f_{R, In[R_3]} = f_3 \circ f_1 \circ (f_2 \circ f_1)^* \circ f_0 = \lambda x. \{d_3, d_4, d_5, d_7\} \cup (x \backslash \{d_1, d_2, d_6, d_8\}) \\
+f_{R, In[R_4]} = f_{R, Out[B_3]} \vee f_{R, Out[B_1]} = (f_3 \circ f_1 \circ (f_2 \circ f_1)^* \circ f_0) \vee (f_1 \circ (f_2 \circ f_1)^* \circ f_0) = \\
+= \lambda x. \{d_3, d_4, d_5, d_7\} \cup (x \backslash \{d_1, d_2, d_6\}) \\
+f_{R, Out[B_4]} = f_4 \circ f_{R, In[B_4]} = f_4 \circ ((f_3 \circ f_1 \circ (f_2 \circ f_1)^* \circ f_0) \vee (f_1 \circ (f_2 \circ f_1)^* \circ f_0)) = \\
+= \lambda x. \{d_3, d_4, d_5, d_8\} \cup (x \backslash \{d_1, d_2, d_6, d_7\})
+\end{gather*}
+#+end_export

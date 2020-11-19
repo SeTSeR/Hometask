@@ -1,0 +1,66 @@
+#+LATEX_HEADER:\usepackage[T2A]{fontenc}
+#+LATEX_HEADER:\usepackage[utf8]{inputenc}
+#+LATEX_HEADER:\usepackage{minted}
+#+LATEX_HEADER:\usepackage{wrapfig}
+
+#+TITLE: Контрольная работа №3
+#+DATE: \today
+#+AUTHOR: Макаров Сергей, группа 427
+#+EMAIL: setser200018@gmail.com
+#+OPTIONS: toc:nil
+
+* Задача
+Построить границы доминирования для приводимого CFG:
+#+ATTR_LATEX: :height 200px
+[[file:cfg3.png]]
+** Решение
+Построим дерево доминаторов для CFG. Для этого воспользуемся DFA:
+#+begin_export latex
+\begin{gather*}
+Out[B] = In[B] \cup \{B\} \\
+\wedge = \cap
+\end{gather*}
+
+\begin{gather*}
+D(Entry) = \{Entry\} \\
+D(A) = \{A\} \cup D(Entry) = \{A, Entry\} \\
+D(B) = \{B\} \cup (D(B) \cap D(A)) = \{A, B\} \\
+D(C) = \{C\} \cup (D(B)) = \{A, B, C\} \\
+D(D) = \{D\} \cup D(C) = \{A, B, C, D\} \\
+D(E) = \{E\} \cup D(C) = \{A, B, C, E\} \\
+D(F) = \{F\} \cup (D(D) \cap D(E)) = \{A, B, C, F\} \\
+D(Exit) = \{Exit\} \cup D(F) = \{F, Exit\}
+\end{gather*}
+Таким образом,
+\begin{gather*}
+Idom(Entry) = \emptyset, Idom(A) = Entry, Idom(B) = A, Idom(C) = B \\
+Idom(D) = C, Idom(E) = C, Idom(F) = C, Idom(Exit) = F.
+\end{gather*}
+#+end_export
+Получаем дерево доминаторов:
+#+begin_src dot :file dom-tree2.png
+graph G {
+    node[shape=plain];
+    Entry -- A; A -- B; B -- C; C -- D; C -- E; C -- F; F -- Exit;
+}
+#+end_src
+
+#+attr_latex: :height 200px
+#+RESULTS:
+[[file:dom-tree2.png]]
+
+Вычислим теперь границы доминирования. В заданном CFG две точки сбора: B и F. Рассмотрим
+каждую из них.
+#+begin_export latex
+\begin{equation*}
+Pred(B) = \{A, B\}
+\end{equation*}
+Проходя по дереву доминаторов от $A$ и $B$ до $Idom(B) = A$ заключаем, что $B \in DF(B)$.
+\begin{equation*}
+Pred(F) = \{D, E\}
+\end{equation*}
+Проходя по дереву доминаторов от $D$ и $E$ до $Idom(F) = C$ заключаем, что $F \in DF(D), DF(E)$.
+Границы доминирования остальных блоков пусты. В самом деле, блоки $A$ и $Entry$ доминируют над
+всеми, поэтому их границы доминирования пусты. Блок $C$ доминирует над всеми блоками ниже, поэтому
+его граница доминирования также пуста. Аналогично, $DF(F) = \emptyset$.
+#+end_export

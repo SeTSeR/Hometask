@@ -1,0 +1,39 @@
+%%
+\node (f0) at (128.0bp,119.0bp) [draw,ellipse,inner] {$ $};
+  \node (f1) at (128.0bp,65.0bp) [draw,ellipse,inner] {$ $};
+  \node (fxl) at (63.0bp,92.0bp) [] {$f$};
+  \node (f) at (33.0bp,92.0bp) [draw,ellipse,pole] {$ $};
+  \node (1xl) at (255.0bp,130.0bp) [] {$1$};
+  \node (1) at (223.0bp,130.0bp) [draw,ellipse,pole] {$ $};
+  \node (f010) at (318.0bp,46.0bp) [draw,ellipse,inner] {$ $};
+  \node (f01) at (223.0bp,75.0bp) [draw,ellipse,inner] {$ $};
+  \node (f00) at (223.0bp,191.0bp) [draw,ellipse,inner] {$ $};
+  \node (f001) at (318.0bp,160.0bp) [draw,ellipse,inner] {$ $};
+  \node (f11) at (223.0bp,18.0bp) [draw,ellipse,inner] {$ $};
+  \draw [] (1) -- (f010);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0}
+  \pgfsetstrokecolor{strokecol}
+  \draw (270.5bp,110.5bp) node {$\overline{x}_4$};
+  \draw [] (f01) -- (f001);
+  \draw (270.5bp,88.5bp) node {$x_3$};
+  \draw [] (f1) -- (f11);
+  \draw (175.5bp,49.5bp) node {$x_2$};
+  \draw [] (f) -- (f0);
+  \draw (80.5bp,112.5bp) node {$\overline{x}_1$};
+  \draw [] (f) -- (f1);
+  \draw (80.5bp,85.5bp) node {$x_1$};
+  \draw [] (f00) -- (f001);
+  \draw (270.5bp,182.5bp) node {$x_3$};
+  \draw [] (1) -- (f001);
+  \draw (270.5bp,152.5bp) node {$x_4$};
+  \draw [] (f11) -- (f010);
+  \draw (270.5bp,16.5bp) node {$\overline{x}_3$};
+  \draw [] (f0) -- (f01);
+  \draw (175.5bp,104.5bp) node {$x_2$};
+  \draw [] (f0) -- (f00);
+  \draw (175.5bp,162.5bp) node {$\overline{x}_2$};
+  \draw [] (f01) -- (f010);
+  \draw (270.5bp,54.5bp) node {$\overline{x}_3$};
+  \draw [] (f1) -- (f01);
+  \draw (175.5bp,77.5bp) node {$\overline{x}_2$};
+%

@@ -1,0 +1,35 @@
+graph G {
+    node[shape=plaintext];
+    xx_1[label=x_1];
+    xx_3[label=x_3];
+    xx_4[label=x_4];
+    xx_5[label=x_5];
+
+    v_1[label="\neg"];
+    v_2[label="\neg"];
+    v_3[label="\neg"];
+    v_4[label="\land"];
+    v_5[label="\neg"];
+    v_6[label="\land"];
+    v_7[label="\land"];
+
+    v1[label="\lor"];
+    v2[label="\land"];
+    v3[label="\land"];
+    v4[label="\lor"];
+
+    v5[label="\land"];
+    v6[label="\lor"];
+    v7[label="\lor"];
+
+    x_1 -- v_1; x_5 -- v_2; x_3 -- v_3;
+    x_4 -- v_4; x_6 -- v_4;
+    xx_4 -- v_5; xx_3 -- v_6; xx_5 -- v_6;
+    xx_1 -- v_7; x_2 -- v_7;
+
+    v_1 -- v1; v_2 -- v1; v_3 -- v2; v_4 -- v2;
+    v_5 -- v3; v_6 -- v3; v_7 -- v4; x_7 -- v4;
+
+    v1 -- v5; v2 -- v5; v3 -- v6; v4 -- v6;
+    v5 -- v7; v6 -- v7;
+}

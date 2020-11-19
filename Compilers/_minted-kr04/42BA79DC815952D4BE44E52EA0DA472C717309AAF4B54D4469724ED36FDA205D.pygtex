@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+start:
+      param n
+      param m
+      ifTrue n = m goto else
+if:
+      t0 \PYGZlt{}\PYGZhy{} 1
+      t1 \PYGZlt{}\PYGZhy{} *, t0, t0
+      t1 \PYGZlt{}\PYGZhy{} *, t1, t1
+      t0 \PYGZlt{}\PYGZhy{} +, t0, t1
+loop:
+      ifTrue n \PYGZgt{} 1 goto endloop
+cnt:
+      t0 \PYGZlt{}\PYGZhy{} *, t0, n
+      n \PYGZlt{}\PYGZhy{} \PYGZhy{}, n, 1
+      goto loop
+post:
+      t0 \PYGZlt{}\PYGZhy{} *, t0, 2
+endloop:
+      return t0
+else:
+      t1 \PYGZlt{}\PYGZhy{} +, n, m
+      return t1
+end:
+      goto post
+\end{Verbatim}

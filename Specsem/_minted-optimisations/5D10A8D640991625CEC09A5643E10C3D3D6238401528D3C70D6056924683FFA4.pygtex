@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+entries = CFG.entry;
+worklist = ∅;
+
+while entries is not empty \PYGZob{}
+    current\PYGZus{}entry = entries.pop();
+    worklist = worklist ∪ \PYGZob{} current\PYGZus{}entry \PYGZcb{};
+\PYGZcb{}
+\end{Verbatim}

@@ -1,0 +1,20 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,]
+%%
+\node (Entry) at (54.0bp,306.0bp) [draw,ellipse] {Entry};
+  \node (B1) at (54.0bp,234.0bp) [draw,ellipse] {B1};
+  \node (B2) at (54.0bp,162.0bp) [draw,ellipse] {B2};
+  \node (B3) at (27.0bp,90.0bp) [draw,ellipse] {B3};
+  \node (B5) at (137.0bp,90.0bp) [draw,ellipse] {B5};
+  \node (B4) at (46.0bp,18.0bp) [draw,ellipse] {B4};
+  \node (Exit) at (137.0bp,18.0bp) [draw,ellipse] {Exit};
+  \draw [->] (Entry) ..controls (54.0bp,279.98bp) and (54.0bp,270.71bp)  .. (B1);
+  \draw [->] (B1) ..controls (54.0bp,207.98bp) and (54.0bp,198.71bp)  .. (B2);
+  \draw [->] (B2) ..controls (37.598bp,135.9bp) and (33.753bp,126.51bp)  .. (B3);
+  \draw [->] (B2) ..controls (84.869bp,134.97bp) and (97.586bp,124.24bp)  .. (B5);
+  \draw [->] (B3) ..controls (43.304bp,115.88bp) and (47.156bp,125.26bp)  .. (B2);
+  \draw [->] (B3) ..controls (33.813bp,63.898bp) and (36.362bp,54.509bp)  .. (B4);
+  \draw [->] (B5) ..controls (137.0bp,63.983bp) and (137.0bp,54.712bp)  .. (Exit);
+  \draw [->] (B4) ..controls (56.838bp,46.53bp) and (61.088bp,59.78bp)  .. (63.0bp,72.0bp) .. controls (66.22bp,92.584bp) and (63.594bp,116.04bp)  .. (B2);
+%
+\end{tikzpicture}

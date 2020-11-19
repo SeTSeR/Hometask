@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{0}:\PYG{l+m+mi}{17}\PYG{p}{][}\PYG{l+m+mi}{0}:\PYG{l+m+mi}{3}\PYG{p}{]}
+\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{17}:\PYG{l+m+mi}{34}\PYG{p}{][}\PYG{l+m+mi}{0}:\PYG{l+m+mi}{3}\PYG{p}{]}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

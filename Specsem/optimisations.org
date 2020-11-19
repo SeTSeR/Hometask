@@ -1,0 +1,435 @@
+#+LATEX_HEADER:\usepackage[T2A]{fontenc}
+#+LATEX_HEADER:\usepackage[utf8]{inputenc}
+#+LATEX_HEADER:\usepackage{minted}
+#+LATEX_HEADER:\usepackage{wrapfig}
+
+#+TITLE: Оптимизация промежуточного представления для абстрактной интерпретации
+#+DATE: \today
+#+AUTHOR: Макаров Сергей
+#+EMAIL: smakarov@ispras.ru
+#+STARTUP: beamer
+#+LANGUAGE: ru
+#+LATEX_CLASS: beamer
+#+OPTIONS: toc:nil H:2 num:t
+#+BEAMER_THEME: Montpellier
+#+BEAMER_COLOR_THEME: rose
+#+BEAMER_INNER_THEME: rounded
+#+BEAMER_FRAME_LEVEL: 2
+
+* Введение
+** Мотивация
++ В современных решениях для анализа бинарного кода одни и те же задачи, в частности, декодирование команд и трансляция их в промежуточное представление, решаются каждый раз заново, для каждой частной задачи.
++ В рамках проекта Glassfrog предлагается унифицированный подход для решения задач декодирования процессорных команд, трансляции их в промежуточное представление и анализа полученного представления.
++ Для описания форматов файлов, формата и семантики машинных команд предлагается использование внутреннего языка спецификаций с расчётом на то, что поддерживать такие спецификации проще, чем код.
++ В качестве решения для задач анализа кода предлагается подход, основанный на теории абстрактной интерпретации.
+** Glassfrog
+[[./glassfrog.png]]
+** Постановка задачи оптимизации
+Поскольку сложность абстрактной интерпретации напрямую зависит от размера кода, имеет смысл перед абстрактной интерпретацией провести некоторые оптимизации, чтобы уменьшить размер промежуточного представления. Есть две возможности для оптимизации сгенерированного кода:
+1. Оптимизация при компиляции спецификаций.
+2. Оптимизация при построении промежуточного представления.
+** Структура Pivot2 IR
++ Модули
++ Адресные пространства
++ Константы
++ Базовые блоки
++ Фрагменты
+** Фрагменты
++ Фрагмент представляет собой гамак из базовых блоков.
++ Фрагмент представляется в SSA форме. Передача переменных по рёбрам CFG осуществляется с помощью входных и выходных переменных базовых блоков.
++ Переменные базовых блоков имеют областью видимости весь фрагмент.
++ Базовые блоки представляют собой последовательность операторов. Всего есть 7 операторов: ~APPLY~, ~CALL~, ~INIT~, ~LOAD~, ~MIX~, ~SLICE~ и ~STORE~.
+* Оптимизация спецификаций
+** Общая структура оптимизаций
+[[./compiler.jpg]]
+** Свёртка и продвижение констант
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+begin_src rust
+let y = 2;
+let x = if y {
+    'add(1, 2)
+} else {
+    'sub(2, 1)
+};
+   #+end_src
+   #+begin_export latex
+\end{minipage}%
+\begin{minipage}[t]{0.2\textwidth}
+$$\Longrightarrow$$
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+begin_src rust
+let y = 2;
+let x = 3;   
+   #+end_src
+   #+begin_export latex
+\end{minipage}%
+\end{figure}
+   #+end_export
+** Построение SSA
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+begin_src rust
+fn fact(n: v32) -> v32 {
+    let v = 1;
+    while 'ne(n, 0) {
+        v = 'mul(v, n);
+        n = 'sub(n, 1);
+    }
+    v
+}
+   #+end_src
+   #+begin_export latex
+\end{minipage}%
+\begin{minipage}[t]{0.2\textwidth}
+$$\Longrightarrow$$
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+#+end_export
+#+attr_latex: :options fontsize=\footnotesize
+#+begin_src asm
+fn fact(n: v32) -> v32 {
+    INIT(v0, 1);
+    OUTPUT n;
+    OUTPUT v0;
+L1: INPUT v1;
+    INPUT v2;
+    INIT(v3, 0);
+    APPLY(v4, ne, v1, v3);
+    IF v4 JMP L2;
+    APPLY(v5, mul, v2, v1);
+    INIT(v6, 1);
+    APPLY(v7, sub, v1, v6);
+    OUTPUT v7;
+    OUTPUT v5;
+    JMP L1;
+L2: OUTPUT v1    
+}
+#+end_src
+#+begin_export latex
+\end{minipage}%
+\end{figure}
+   #+end_export
+** Удаление лишних подвыражений
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+attr_latex: :options fontsize=\scriptsize
+   #+begin_src asm
+space regs(v32);
+
+fn fact(n: v32) -> v32 {
+    INIT(v0, 1);
+    INIT(v1, 0);
+    STORE(regs, v1, v0);
+    OUTPUT n;
+    OUTPUT v0;
+L1: INPUT v2;
+    INPUT v3;
+    INIT(v4, 0);
+    APPLY(v5, ne, v2, v4);
+    IF v5 JMP L2;
+    APPLY(v6, mul, v3, v2);
+    INIT(v7, 1);
+    APPLY(v8, sub, v2, v7);
+    LOAD(v9, regs, v4);
+    OUTPUT v8;
+    OUTPUT v6;
+    JMP L1;
+L2: OUTPUT v2
+}
+   #+end_src
+   #+begin_export latex
+\end{minipage}%
+\begin{minipage}[t]{0.2\textwidth}
+$$\Longrightarrow$$
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+#+end_export
+#+attr_latex: :options fontsize=\scriptsize
+#+begin_src asm
+space regs(v32);
+
+fn fact(n: v32) -> v32 {
+    INIT(v0, 1);
+    INIT(v1, 0);
+    STORE(regs, v1, v0);
+    OUTPUT n;
+    OUTPUT v0;
+L1: INPUT v2;
+    INPUT v3;
+    APPLY(v5, ne, v2, v1);
+    IF v5 JMP L2;
+    APPLY(v6, mul, v3, v2);
+    APPLY(v8, sub, v2, v7);
+    LOAD(v9, regs, v4);
+    OUTPUT v8;
+    OUTPUT v6;
+    JMP L1;
+L2: OUTPUT v2
+}
+#+end_src
+#+begin_export latex
+\end{minipage}%
+\end{figure}
+   #+end_export
+** Удаление лишних LOAD/STORE
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+attr_latex: :options fontsize=\scriptsize
+   #+begin_src asm
+space regs(v32);
+
+fn fact(n: v32) -> v32 {
+    INIT(v0, 1);
+    INIT(v1, 0);
+    STORE(regs, v1, v0);
+    OUTPUT n;
+    OUTPUT v0;
+L1: INPUT v2;
+    INPUT v3;
+    APPLY(v5, ne, v2, v1);
+    IF v5 JMP L2;
+    APPLY(v6, mul, v3, v2);
+    APPLY(v8, sub, v2, v7);
+    LOAD(v9, regs, v4);
+    OUTPUT v8;
+    OUTPUT v6;
+    JMP L1;
+L2: OUTPUT v2
+}
+   #+end_src
+   #+begin_export latex
+\end{minipage}%
+\begin{minipage}[t]{0.2\textwidth}
+$$\Longrightarrow$$
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+#+end_export
+#+attr_latex: :options fontsize=\scriptsize
+#+begin_src asm
+space regs(v32);
+
+fn fact(n: v32) -> v32 {
+    INIT(v0, 1);
+    INIT(v1, 0);
+    STORE(regs, v1, v0);
+    OUTPUT n;
+    OUTPUT v0;
+L1: INPUT v2;
+    INPUT v3;
+    APPLY(v5, ne, v2, v1);
+    IF v5 JMP L2;
+    APPLY(v6, mul, v3, v2);
+    APPLY(v8, sub, v2, v7);
+    OUTPUT v8;
+    OUTPUT v6;
+    JMP L1;
+L2: OUTPUT v2
+}
+#+end_src
+#+begin_export latex
+\end{minipage}%
+\end{figure}
+   #+end_export
+** Расширенные базовые блоки
+#+begin_export latex
+\begin{wrapfigure}{l}{0.3\textwidth}
+#+end_export
+#+begin_src dot :file cfg-ebb.png
+digraph EBB {
+    root[style=invisible];
+    end[style=invisible];
+    node[shape=rectangle];
+    subgraph cluster_EBB1 {
+        b1 b2 b3;
+        color = blue;
+    }
+    subgraph cluster_EBB2 {
+        b4;
+        color = blue;
+    }
+    root -> b1;
+    b1 -> b2;
+    b1 -> b3;
+    b2 -> b4;
+    b3 -> b4;
+    b4 -> end;
+}
+#+end_src
+#+attr_latex: :height 150px :center nil
+#+RESULTS:
+[[file:cfg-ebb.png]]
+#+begin_export latex
+\end{wrapfigure}
+Любое выражение, вычисляемое в блоке b1, может быть использовано в блоках b2 и b3. 
+\alert{Можно ли использовать этот факт, чтобы улучшить описанные оптимизации?}
+#+end_export
+** Обход расширенных базовых блоков
+#+begin_src text
+entries = CFG.entry;
+
+while entries is not empty {
+    current_entry = entries.pop();
+    DFS(current_entry) // Stop at join nodes
+                       // add join nodes to entries;
+}
+#+end_src
+
+Используя этот алгоритм, мы получим обход расширенных базовых блоков в порядке обхода в глубину, вершины каждого расширенного блока будут также обходиться в глубину.
+
+#+begin_export latex
+\alert{Не нарушает ли такой обход корректности алгоритма построения SSA?}
+#+end_export
+** Обобщение методов оптимизации
+#+begin_src text
+for each EBB in CFG {
+    value numbers = {};
+    memory vars = {};
+    for each block in EBB {
+        on enter {
+            add new layer to value numbers;
+            add new layer to memory vars;
+            translate block to SSA;
+        }
+        on leave {
+            remove last layer from value numbers;
+            remove last layer from memory vars;
+        }
+    }
+}   
+#+end_src
+** Сворачивание цепочек операторов SLICE
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+begin_src rust
+if a {
+    s[0:17][0:3]
+} else {
+    s[17:34][0:3]
+}
+   #+end_src
+   #+begin_export latex
+\end{minipage}%
+\begin{minipage}[t]{0.2\textwidth}
+$$\Longrightarrow$$
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+begin_src rust
+if a {
+    s[0:3]
+} else {
+    s[17:20]
+}
+   #+end_src
+   #+begin_export latex
+\end{minipage}
+\end{figure}
+   #+end_export
+** SliceForest
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.5\textwidth}
+   #+end_export
+   #+begin_src asm
+    INPUT a;
+    INPUT s;
+    IF a JMP L1;
+    SLICE(v0, s, 17, 34);
+    SLICE(v1, v0, 0, 3);
+    OUTPUT v1;
+    JMP L2;
+L1: SLICE(v2, s, 0, 17);
+    SLICE(v3, v2, 0, 3);
+    OUTPUT v3;
+L2: INPUT v4
+    OUTPUT v4
+   #+end_src
+   #+begin_export latex
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+   #+end_export
+   #+begin_src dot :file slice-forest.png
+digraph G {
+    node[shape=circle];
+    s -> v0[label="17, 34"];
+    v0 -> v1[label="0, 3"];
+    s -> v2[label="0, 17"];
+    v2 -> v3[label="0, 3"];
+}
+   #+end_src
+#+attr_latex: :height 150px
+   #+RESULTS:
+   [[file:slice-forest.png]]
+
+   #+begin_export latex
+\end{minipage}
+\end{figure}
+   #+end_export
+** Сжатие ветвей
+   #+begin_export latex
+\begin{figure}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+attr_latex: :height 150px
+   #+RESULTS:
+   [[file:slice-forest.png]]
+   #+begin_export latex
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+   #+end_export
+   #+begin_src dot :file slice-forest-compressed.png
+digraph G {
+    node[shape=circle];
+    s -> v1[label="17, 20"];
+    s -> v3[label="0, 3"];
+}
+   #+end_src
+
+   #+attr_latex: :height 100px
+   #+RESULTS:
+   [[file:slice-forest-compressed.png]]
+
+   #+begin_export latex
+\end{minipage}
+\end{figure}
+   #+end_export
+** Удаление мёртвого кода и упрощение CFG
+Удаление мёртвого кода производится с помощью классического Mark&Sweep алгоритма. На первой фазе помечаются все важные операторы и переходы, на второй фазе непомеченные операторы удаляются.
+
+Упрощение CFG достигается посредством систематического применения четырёх трансформаций:
+1. Замена ветвления, оба ребра которого переходят в один блок, на безусловный переход.
+2. Удаление пустого блока.
+3. Слияние двух подряд идущих блоков.
+4. Перенос ветвления из пустого блока к предку.
+* Оптимизация анализируемого кода
+** Абстрактная интерпретация
+В терминах Glassfrog интерпретация это абстрактное состояние и набор передаточных функций, определяющих, как изменяется состояние при выполнении каждого оператора и при переходе по ребру CFG. Для задач анализа потока данных интерпретация должна быть монотонна, т. е. множество её состояний должно образовывать решётку и все передаточные функции должны быть монотонны относительно порядка, введённого этой решёткой. Вычисление результата абстрактной интерпретации по фрагменту происходит с помощью исполнителя.
+** Глобальное удаление избыточного кода
+С помощью абстрактной интерпретации находятся множества доступных выражений и содержимое памяти в начале каждого блока. Следующий проход заменяет лишние вычисления, чтения и записи на операторы ~MIX~, используя эту информацию. Наконец, последним проходом удаляются операторы ~MIX~.
+1. Передаточная функция для операторов ~APPLY~, ~INIT~ и ~SLICE~ добавляет соответствующее выражение как доступное.
+2. Передаточная функция для оператора ~STORE~ обновляет содержимое соответствующей ячейки памяти.
+3. Передаточная функция для оператора ~CALL~ сбрасывает наборы доступных выражений и содержимое памяти.
+* Заключение
+** Заключение
+ + Были реализованы два пакета набора оптимизаций: для оптимизации спецификаций процессорных архитектур и для оптимизации анализируемого представления.
+ + Замеров того, насколько реализованные оптимизации повышают скорость анализа, не производилось, поскольку соответствующая инфраструктура ещё не до конца реализована, и не набрана достаточная база примеров.
+ + В дальнейшем планируется реализовать на основе инфраструктуры поиск утечек и пополнить базу примеров и спецификаций.
+** Источники
++ https://ispranproceedings.elpub.ru/jour/article/view/1120 \\
++ K. Cooper, L. Torczon, Engineering a Compiler 2nd Edition \\
++ https://compilers.cs.uni-saarland.de/papers/bbhlmz13cc.pdf \\
++ http://www.di.ens.fr/~cousot/COUSOTpapers/POPL77.shtml \\
++ https://ispranproceedings.elpub.ru/jour/article/view/1257

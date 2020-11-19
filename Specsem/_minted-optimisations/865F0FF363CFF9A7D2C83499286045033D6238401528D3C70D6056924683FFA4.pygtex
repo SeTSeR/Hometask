@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+space regs(\PYGZsq{}5);
+
+fn fact(n: \PYGZsq{}32) \PYGZhy{}\PYGZgt{} \PYGZsq{}32 \PYGZob{}
+\PYGZcb{}
+\end{Verbatim}
