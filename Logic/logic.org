@@ -589,3 +589,113 @@ list(X.Y) <- list(Y)
 elem(X, X.Z) <-
 elem(X, Y.Z) <- elem(X, Z)
 #+end_src
+#+begin_src text
+nonelem(X, nil) <-
+nonelem(X, Y.L) <- non_eq(X, Y), nonelem(X, L)
+#+end_src
+#+begin_src text
+no_common(nil, L2) <-
+no_common(X.L, L2) <- non_elem(X, L2), no_common(L, L2)
+#+end_src
+#+begin_src text
+  single(nil, nil) <-
+  single(X.L, Y.L1) <- single(L, L1), elem(X, L1)
+  single(X.L, Y.L1) <- single(L, X.L1), nonelem(X, L1)
+#+end_src
+#+begin_src text
+  union(nil, L, L) <-
+  union(x.L, L2, L3) <- elem(x, L2), union(L, L2, L3)
+  union(x.L, L2, x.L3) <- nonelem(x, L2), union(L, L2, L3)
+#+end_src
+#+begin_src text
+  intersect(nil, L, nil) <-
+  intersect(x.L, L2, x.L3) <- elem(x, L2), intersect(L, L2, L3)
+  intersect(x.L, L2, L3) <- nonelem(x, L2), intersect(L, L2, L3)
+#+end_src
+#+begin_src text
+  differ(L, nil, L) <-
+  differ(L1, x.L2, x.L3) <- nonelem(x, L1), differ(L1, L2, L3)
+  differ(L1, x.L2, L3) <- elem(x, L1), differ(L1, L2, L3)
+#+end_src
+#+begin_src text
+  ordered(nil) <-
+  ordered(X.nil) <-
+  ordered(X.Y.L) <- X <= Y, ordered(L)
+#+end_src
+#+begin_src text
+  max(X.nil, X) <-
+  max(X.L, X) <- max(L, Y), Y <= X
+  max(X.L, Y) <- max(L, Y), Y > X
+#+end_src
+#+begin_src text
+  max(Y.L, X) <- max3(L, Y, X)
+  max3(nil, V, V) <-
+  max3(V.L, U, X) <- U < V, max3(L, V, X)
+  max3(V.L, U, X) <- V <= U, max3(L, U, X)
+#+end_src
+#+begin_src text
+  merge_sort(nil, nil) <-
+  merge_sort(L1, L2) <- divide(L1, L3, L4), merge_sort(L3, L5), merge_sort(L4, L6), merge(L5, L6, L7)
+
+  merge(L, nil) <- L
+  merge(nil, L) <- L
+  merge(X.L1, Y.L2, X.L3) <- X < Y, merge(L1, Y.L2, L3)
+  merge(X.L1, Y.L2, Y.L3) <- X >= Y, merge(X.L1, L2, L3)
+
+  divide(nil, nil, nil) <-
+  divide(X.nil, X.nil, nil) <-
+  divide(X.Y.L, X.L1, Y.L2) <- divide(L, L1, L2)
+#+end_src
+#+begin_src text
+  len(L, Z) <- lenAcc(L, 0, Z)
+  lenAcc(nil, A, A) <-
+  lenAcc(X.L, A, B) <- C is A + 1, lenAcc(L, C, B)
+#+end_src
+#+begin_src text
+  sum(Y.L, X) <- sumAcc(L, Y, X)
+  sumAcc(nil, S, S) <-
+  sumAcc(X.L, A, B) <- S is X + A, sumAcc(L, S, B)
+#+end_src
+#+begin_src text
+  mult(L, U, X) <- multAcc(L, U, X, 0)
+  multAcc(nil, U, A, A) <-
+  multAcc(U.L, U, X, A) <- N is A + 1, multAcc(L, U, X, N)
+  multAcc(Y.L, U, X, A) <- V != U, multAcc(L, U, X, A)
+#+end_src
+#+begin_src text
+  most_freq(Y.nil, Y) <-
+  most_freq(Y.L, X) <- mult(Y.L, Y, N), most_freq(L, Z),
+                       mult(L, Z, M), decide(Y, N, M, Z, X)
+  decide(Y, N, Z, M, Z) <- N < M
+  decide(Y, N, Z, M, Y) <- M <= N
+#+end_src
+#+begin_src text
+  max(X, Y, X) <- X > Y, !
+  max(X, Y, Y) <-
+#+end_src
+#+begin_src text
+  common(nil, L, nil) <-
+  common(Y.L1, L2, Y.L3) <- elem(Y, L2), !, common(L1, L2, L3)
+  common(Y.L1, L2, L3) <- common(L1, L2, L3)
+#+end_src
+#+begin_src text
+  nonsquare(L, X) <- nonsquare3(L, L, X)
+  nonsquare3(nil, L, nil) <-
+  nonsquare3(X.L, L1, X) <- Z is Y * Y, elem(Z, L), !nonsquare3(L, L1, X)
+  nonsquare3(X.L, L1, X.D) <- nonsquare3(L, L1, D)
+#+end_src
+#+begin_src text
+  max(L, X) <- not(exists_greater(X, L))
+  exists_greater(X, L) <- Y > X, elem(Y, L)
+#+end_src
+#+begin_src text
+  filter_greater3(nil, nil) <-
+  filter_greater3(X.L1, X.L2) <- X > 3, filter_greater3(L1, L2)
+  filter_greater3(X.L1, L2) <- X <= 3, filter_greater3(L1, L2)
+#+end_src
+#+begin_src text
+  triplets(nil, nil) <-
+  triplets(X.nil, nil) <-
+  triplets(X.Y.nil, nil) <-
+  triplets(L, (X.Y.Z).R) <- X < Y, Y < Z, elem(X, L), elem(Y, L), elem(Z, L)
+#+end_src

@@ -1,4 +1,4 @@
-% Created 2020-11-13 Fri 11:34
+% Created 2020-12-30 Wed 21:17
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -45,7 +45,7 @@
  pdftitle={},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 27.1 (Org mode 9.4)}, 
+ pdfcreator={Emacs 28.0.50 (Org mode )}, 
  pdflang={Russian}}
 \begin{document}
 
@@ -53,7 +53,7 @@
 
 
 \section{Математическая логика}
-\label{sec:orgd6f7fc0}
+\label{sec:org986e0c9}
 \textbf{Логика} -- междисциплинарная область наук, занимающаяся:
 \begin{enumerate}
 \item Законами причинно-следственной связи в окружающем мире
@@ -94,7 +94,7 @@
 \end{enumerate}
 
 \section{Язык логики предикатов первого порядка}
-\label{sec:org568c653}
+\label{sec:org974499a}
 \textbf{Предикат} -- термин, обозначающий сказуемое.
 
 \textbf{Логика предикатов} изучает законы причинно-следственной зависимости между утверждениями, представленными в виде отношений. Для этого вводится формальный язык, выражения которого предназначены для описания отношений между произвольными предметами.
@@ -599,5 +599,115 @@ list(X.Y) <- list(Y)
 \begin{minted}[]{text}
 elem(X, X.Z) <-
 elem(X, Y.Z) <- elem(X, Z)
+\end{minted}
+\begin{minted}[]{text}
+nonelem(X, nil) <-
+nonelem(X, Y.L) <- non_eq(X, Y), nonelem(X, L)
+\end{minted}
+\begin{minted}[]{text}
+no_common(nil, L2) <-
+no_common(X.L, L2) <- non_elem(X, L2), no_common(L, L2)
+\end{minted}
+\begin{minted}[]{text}
+single(nil, nil) <-
+single(X.L, Y.L1) <- single(L, L1), elem(X, L1)
+single(X.L, Y.L1) <- single(L, X.L1), nonelem(X, L1)
+\end{minted}
+\begin{minted}[]{text}
+union(nil, L, L) <-
+union(x.L, L2, L3) <- elem(x, L2), union(L, L2, L3)
+union(x.L, L2, x.L3) <- nonelem(x, L2), union(L, L2, L3)
+\end{minted}
+\begin{minted}[]{text}
+intersect(nil, L, nil) <-
+intersect(x.L, L2, x.L3) <- elem(x, L2), intersect(L, L2, L3)
+intersect(x.L, L2, L3) <- nonelem(x, L2), intersect(L, L2, L3)
+\end{minted}
+\begin{minted}[]{text}
+differ(L, nil, L) <-
+differ(L1, x.L2, x.L3) <- nonelem(x, L1), differ(L1, L2, L3)
+differ(L1, x.L2, L3) <- elem(x, L1), differ(L1, L2, L3)
+\end{minted}
+\begin{minted}[]{text}
+ordered(nil) <-
+ordered(X.nil) <-
+ordered(X.Y.L) <- X <= Y, ordered(L)
+\end{minted}
+\begin{minted}[]{text}
+max(X.nil, X) <-
+max(X.L, X) <- max(L, Y), Y <= X
+max(X.L, Y) <- max(L, Y), Y > X
+\end{minted}
+\begin{minted}[]{text}
+max(Y.L, X) <- max3(L, Y, X)
+max3(nil, V, V) <-
+max3(V.L, U, X) <- U < V, max3(L, V, X)
+max3(V.L, U, X) <- V <= U, max3(L, U, X)
+\end{minted}
+\begin{minted}[]{text}
+merge_sort(nil, nil) <-
+merge_sort(L1, L2) <- divide(L1, L3, L4), merge_sort(L3, L5), merge_sort(L4, L6), merge(L5, L6, L7)
+
+merge(L, nil) <- L
+merge(nil, L) <- L
+merge(X.L1, Y.L2, X.L3) <- X < Y, merge(L1, Y.L2, L3)
+merge(X.L1, Y.L2, Y.L3) <- X >= Y, merge(X.L1, L2, L3)
+
+divide(nil, nil, nil) <-
+divide(X.nil, X.nil, nil) <-
+divide(X.Y.L, X.L1, Y.L2) <- divide(L, L1, L2)
+\end{minted}
+\begin{minted}[]{text}
+len(L, Z) <- lenAcc(L, 0, Z)
+lenAcc(nil, A, A) <-
+lenAcc(X.L, A, B) <- C is A + 1, lenAcc(L, C, B)
+\end{minted}
+\begin{minted}[]{text}
+sum(Y.L, X) <- sumAcc(L, Y, X)
+sumAcc(nil, S, S) <-
+sumAcc(X.L, A, B) <- S is X + A, sumAcc(L, S, B)
+\end{minted}
+\begin{minted}[]{text}
+mult(L, U, X) <- multAcc(L, U, X, 0)
+multAcc(nil, U, A, A) <-
+multAcc(U.L, U, X, A) <- N is A + 1, multAcc(L, U, X, N)
+multAcc(Y.L, U, X, A) <- V != U, multAcc(L, U, X, A)
+\end{minted}
+\begin{minted}[]{text}
+most_freq(Y.nil, Y) <-
+most_freq(Y.L, X) <- mult(Y.L, Y, N), most_freq(L, Z),
+                     mult(L, Z, M), decide(Y, N, M, Z, X)
+decide(Y, N, Z, M, Z) <- N < M
+decide(Y, N, Z, M, Y) <- M <= N
+\end{minted}
+\begin{minted}[]{text}
+max(X, Y, X) <- X > Y, !
+max(X, Y, Y) <-
+\end{minted}
+\begin{minted}[]{text}
+common(nil, L, nil) <-
+common(Y.L1, L2, Y.L3) <- elem(Y, L2), !, common(L1, L2, L3)
+common(Y.L1, L2, L3) <- common(L1, L2, L3)
+\end{minted}
+\begin{minted}[]{text}
+nonsquare(L, X) <- nonsquare3(L, L, X)
+nonsquare3(nil, L, nil) <-
+nonsquare3(X.L, L1, X) <- Z is Y * Y, elem(Z, L), !nonsquare3(L, L1, X)
+nonsquare3(X.L, L1, X.D) <- nonsquare3(L, L1, D)
+\end{minted}
+\begin{minted}[]{text}
+max(L, X) <- not(exists_greater(X, L))
+exists_greater(X, L) <- Y > X, elem(Y, L)
+\end{minted}
+\begin{minted}[]{text}
+filter_greater3(nil, nil) <-
+filter_greater3(X.L1, X.L2) <- X > 3, filter_greater3(L1, L2)
+filter_greater3(X.L1, L2) <- X <= 3, filter_greater3(L1, L2)
+\end{minted}
+\begin{minted}[]{text}
+triplets(nil, nil) <-
+triplets(X.nil, nil) <-
+triplets(X.Y.nil, nil) <-
+triplets(L, (X.Y.Z).R) <- X < Y, Y < Z, elem(X, L), elem(Y, L), elem(Z, L)
 \end{minted}
 \end{document}
