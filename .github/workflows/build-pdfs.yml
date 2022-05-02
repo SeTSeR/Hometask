@@ -1,0 +1,20 @@
+name: Build PDFs with hometasks
+on: [push]
+jobs:
+  Build-PDFs: 
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y --no-install-recommends texlive-full pandoc zip python-pygments dot2tex
+      - name: Clone the repository
+        uses: actions/checkout@v3
+      - run: make pdf || true
+      - run: zip -r pdfs.zip build/
+      - name: Release latest archive on GitHub
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Latest build"
+          files: pdfs.zip
